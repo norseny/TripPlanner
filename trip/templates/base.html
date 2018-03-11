@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <title>{% block title %}My amazing site{% endblock %}</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<nav>
+    {% if user.is_authenticated %}
+        <div class=nav-left> You're logged as {{ user.username }}</div>
+    {% endif %}
+
+    <div class=nav-right>
+        <a href="{% url 'trip-list' %}">Trip Planner - Home</a>
+        {% if user.is_anonymous %}
+            <a href="{% url 'login' %}">Login</a>
+        {% else %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% endif %}
+    </div>
+</nav>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li class="{{ message.tags }}">Message: {{ message }}</li>
+    {% endfor %}
+</ul>
+    {% endif %}
+<div class="container md-col-10">
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>

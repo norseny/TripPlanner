@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+
+    <h2>Here are all user trips: </h2>
+    <div>
+        <ul>
+            {% for trip in object_list %}
+                <li>{{ trip.name }} {{ trip.description }} | <a
+                        href="{% url 'trip-update' trip.pk %}">edit</a>
+                    <a href="{% url 'trip-delete' trip.pk %}">delete</a>
+                </li>
+            {% empty %}
+                <li>No trip yet.</li>
+            {% endfor %}
+
+        </ul>
+        <p>
+            <a href="{% url 'trip-add' %}">add a trip</a>
+        </p>
+    </div>
+{% endblock %}
