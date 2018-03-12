@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView

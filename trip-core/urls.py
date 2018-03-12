@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from trip import views
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     url(r'^trip-planner/', include('trip.urls')),
@@ -25,6 +26,6 @@ urlpatterns = [
     url(r'', include('trip.urls')),
     url(r'^$', lambda r: HttpResponseRedirect('trip-planner/')),
     url(r'^login/$', auth_views.login, {'template_name': 'register/login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
+    url(r'^logout/$', login_required(auth_views.logout), {'next_page': 'login'}, name='logout'),
     url(r'^signup/$', views.signup, name='signup'),
 ]
