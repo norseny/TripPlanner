@@ -1,6 +1,6 @@
 from django.forms import ModelForm, inlineformset_factory
 
-from trip.models import *
+from tripplanner.models import *
 
 
 class TripForm(ModelForm):

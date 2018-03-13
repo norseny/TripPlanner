@@ -1,20 +1,35 @@
-from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy, reverse
 from django.db import transaction
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+from django.http import HttpResponseRedirect
 
-from trip.models import Trip
-from trip.forms import AttractionFormSet
+from tripplanner.models import *
+from tripplanner.forms import AttractionFormSet
 
 
 class TripList(ListView):
     model = Trip
 
 
+class TripDetail(DetailView):
+    model = Trip
+
+
 class TripCreate(CreateView):
     model = Trip
-    fields = ['name', 'description']
+    template_name_suffix = '_create_form'
+    fields = ['name', 'description', 'start_time', 'end_time']
+
+    def get_success_url(self):
+         return reverse('trip-add-attraction', kwargs={'trip_id': self.object.id} )
+
+    def form_valid(self, form):
+        with transaction.atomic():
+            if isinstance(form.instance, Trip):
+                form.instance.created_by = self.request.user
+            self.object = form.save()
+            return HttpResponseRedirect(self.get_success_url())
 
 
 class TripAttractionCreate(CreateView):

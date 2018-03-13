@@ -16,14 +16,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.http import HttpResponseRedirect
-from trip import views
+from tripplanner import views
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    url(r'^trip-planner/', include('trip.urls')),
+    url(r'^tripplanner/', include('tripplanner.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'', include('trip.urls')),
+    url(r'', include('tripplanner.urls')),
     url(r'^$', lambda r: HttpResponseRedirect('trip-planner/')),
     url(r'^login/$', auth_views.login, {'template_name': 'register/login.html'}, name='login'),
     url(r'^logout/$', login_required(auth_views.logout), {'next_page': 'login'}, name='logout'),

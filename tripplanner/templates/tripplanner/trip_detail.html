@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+
+    <h2>Trip's details: </h2>
+    <div>
+        <ul>
+                <li>Name: {{ trip.name }} </li>
+                <li>Description: {{ trip.description }}</li>
+                <li>Created by: {{ trip.created_by }}</li>
+        </ul>
+        <p>
+            <a href="{% url 'trip-add' %}">add a trip</a>
+        </p>
+    </div>
+{% endblock %}

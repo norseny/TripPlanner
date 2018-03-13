@@ -2,12 +2,13 @@
 {% block title %}{% endblock %}
 {% block content %}
 
-    <h2>Here are all user trips: </h2>
+    <h2>Here are all trips: </h2>
     <div>
         <ul>
             {% for trip in object_list %}
-                <li>{{ trip.name }} {{ trip.description }} | <a
-                        href="{% url 'trip-update' trip.pk %}">edit</a>
+                <li>{{ trip.name }} {{ trip.description }} |
+                    <a href="{% url 'trip-detail' trip.pk %}">details</a>
+                    <a href="{% url 'trip-update' trip.pk %}">edit</a>
                     <a href="{% url 'trip-delete' trip.pk %}">delete</a>
                 </li>
             {% empty %}

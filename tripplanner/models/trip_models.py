@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class BasicInfo(models.Model):
@@ -18,6 +19,9 @@ class Trip(BasicInfo):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('trip-detail', kwargs={'pk': self.pk})
 
 
 class Journey(BasicInfo):
