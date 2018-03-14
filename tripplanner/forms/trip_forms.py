@@ -1,4 +1,4 @@
-from django.forms import ModelForm, inlineformset_factory
+from django.forms import Form, ModelForm, inlineformset_factory, formset_factory
 
 from tripplanner.models import *
 
@@ -15,5 +15,7 @@ class AttractionForm(ModelForm):
         exclude = ()
 
 
-AttractionFormSet = inlineformset_factory(Trip, Attraction,
-                                            form=AttractionForm, extra=1)
+# AttractionFormSet = inlineformset_factory(Trip, Attraction, form=AttractionForm, extra=1)
+
+AttractionFormSet = formset_factory(Attraction, extra=1)
+
