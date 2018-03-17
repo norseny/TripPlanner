@@ -1,23 +1,30 @@
-from django.forms import Form, ModelForm, inlineformset_factory, formset_factory, DateTimeInput
-
+from django.forms import Form, ModelForm, inlineformset_factory, formset_factory, Textarea
 
 from tripplanner.models import *
+from django import forms
 
-class DateTimeInput(DateTimeInput):
+class DateTimeInput(forms.DateTimeInput):
     input_type = 'datetime'
 
 
-class TripForm(ModelForm):
+class TripForm(ModelForm, Form):
     class Meta:
         model = Trip
+        fields = ['name', 'description']
         exclude = ()
-
+        widgets = {
+          'description': Textarea(attrs={'rows':3, 'cols':'70'}),
+        }
 
 
 class AttractionForm(ModelForm):
     class Meta:
         model = Attraction
         exclude = ()
+        widgets= {
+            'start_time': DateTimeInput(), #todo: ???
+            'end_time': DateTimeInput(),
+        }
 
 
 class JourneyForm(ModelForm):
@@ -34,6 +41,10 @@ class AccomodationForm(ModelForm):
     class Meta:
         model = Accomodation
         exclude = ()
+        widgets= {
+            'start_time': DateTimeInput(),
+            'end_time': DateTimeInput(),
+        }
 
 
 AttractionFormSet = inlineformset_factory(Trip, Attraction, form=AttractionForm, extra=1, max_num=10, min_num=0)

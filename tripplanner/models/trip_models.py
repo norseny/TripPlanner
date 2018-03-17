@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-
 class BasicInfo(models.Model):
     start_time = models.DateTimeField(null=True)
     end_time = models.DateTimeField(null=True)
@@ -14,8 +13,8 @@ class BasicInfo(models.Model):
 
 class Trip(BasicInfo):
     name = models.CharField(max_length=50, unique=True)
-    description = models.TextField(null=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE) # todo: wiec szablony wycieczek- inna klasa?
+    description = models.TextField(null=True, max_length=50)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE) # todo:szablony wycieczek- inna klasa
 
     def __str__(self):
         return self.name
