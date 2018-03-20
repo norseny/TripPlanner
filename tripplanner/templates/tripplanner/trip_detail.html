@@ -2,12 +2,62 @@
 {% block title %}{% endblock %}
 {% block content %}
 
-    <h2>Trip's details: </h2>
+    <h1>Trip's details: </h1>
     <div>
         <ul>
-                <li>Name: {{ trip.name }} </li>
-                <li>Description: {{ trip.description }}</li>
-                <li>Created by: {{ trip.created_by }}</li>
+            <li><label>Name:</label> {{ trip.name }} </li>
+            <li><label>Description:</label> {{ trip.description }}</li>
+            <li><label>Created by:</label> {{ trip.created_by }}</li>
         </ul>
+
+        {% if trip.journey_set.all %}
+            <h2>Journeys</h2>
+            <ul>
+                {% for journey in trip.journey_set.all %}
+                    <li>
+                        <label>Start time:</label> {{ journey.start_time|date:"d-m-Y H:i"}}, {# todo: somehow implement default display of dates #}
+                        <label>End time:</label> {{ journey.end_time|date:"d-m-Y H:i" }},
+                        <label>Start point:</label> {{ journey.start_point }},
+                        <label>End point:</label> {{ journey.end_point }},
+                        <label>Means of transport:</label> {{ journey.means_of_transport }},
+                        <label>Price (PLN):</label> {{ journey.price }}.
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if trip.accommodation_set.all %}
+            <h2>Accommodations</h2>
+            <ul>
+                {% for accommodation in trip.accommodation_set.all %}
+                    <li>
+                        <label>Start time:</label> {{ accommodation.start_time|date:"d-m-Y H:i" }},
+                        <label>End time:</label> {{ accommodation.end_time|date:"d-m-Y H:i" }},
+                        <label>Place:</label> {{ accommodation.place }},
+                        <label>Price (PLN):</label> {{ accommodation.price }}.
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if trip.attraction_set.all %}
+            <h2>Attractions</h2>
+            <ul>
+                {% for attraction in trip.attraction_set.all %}
+                    <li>
+                        <label>Start time:</label> {{ attraction.start_time|date:"d-m-Y H:i" }},
+                        <label>End time:</label> {{ attraction.end_time|date:"d-m-Y H:i" }},
+                        <label>Place:</label> {{ attraction.place }},
+                        <label>Price (PLN):</label> {{ attraction.price }}.
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div><a href="{% url 'trip-update' trip.pk %}">Edit the trip</a></div>
+        <div><a href="{% url 'trip-delete' trip.pk %}">Delete the trip</a></div>
+
+{#    todo: button to my next trip in detail#}
+
     </div>
 {% endblock %}

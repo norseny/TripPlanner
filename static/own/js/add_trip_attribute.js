@@ -1,14 +1,32 @@
-$('document').ready(function(){
+$('document').ready(function () {
     addFormsets()
     $(function () {
-        $('input[type=datetime]').datepicker();
+        $('input[type=datetime]').flatpickr({
+            enableTime: true,
+            dateFormat: "d-m-Y H:i",
+            locale: "pl",
+            time_24hr: true,
+        });
     });
 });
+
+
+// $('document').ready(function(){
+//     addFormsets()
+//     $(function () {
+//         $('input[type=datetime]').datepicker();
+//     });
+// });
 
 function addFormsets() {
     const datepickerCallback = function () {
         return function (addedRow) {
-            $(addedRow.find('input[type=datetime]')).datepicker();
+            $(addedRow.find('input[type=datetime]')).flatpickr({
+                enableTime: true,
+                dateFormat: "d-m-Y H:i",
+                locale: "pl",
+                time_24hr: true,
+            });
         }
     };
     $('.formset_row1').formset({
@@ -20,7 +38,7 @@ function addFormsets() {
     $('.formset_row2').formset({
         addText: 'add new row',
         deleteText: 'remove',
-        prefix: 'accomodation_set',
+        prefix: 'accommodation_set',
         added: datepickerCallback()
     });
     $('.formset_row3').formset({

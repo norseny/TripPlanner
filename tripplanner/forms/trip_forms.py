@@ -2,9 +2,17 @@ from django.forms import Form, ModelForm, inlineformset_factory, formset_factory
 
 from tripplanner.models import *
 from django import forms
+from tripcore import settings
 
-class DateTimeInput(forms.DateTimeInput):
+
+class MyDateTimeInput(forms.DateTimeInput):
     input_type = 'datetime'
+
+# class MyDateTimeField(forms.DateTimeField):
+#     input_formats = settings.DATETIME_INPUT_FORMATS
+#     widget = MyDateTimeInput(
+#         attrs={'placeholder': 'date'}
+#     )
 
 
 class TripForm(ModelForm, Form):
@@ -13,42 +21,53 @@ class TripForm(ModelForm, Form):
         fields = ['name', 'description']
         exclude = ()
         widgets = {
-          'description': Textarea(attrs={'rows':3, 'cols':'70'}),
-        }
-
-
-class AttractionForm(ModelForm):
-    class Meta:
-        model = Attraction
-        exclude = ()
-        widgets= {
-            'start_time': DateTimeInput(), #todo: ???
-            'end_time': DateTimeInput(),
+            'description': Textarea(attrs={'rows': 3, 'cols': '70'}),
         }
 
 
 class JourneyForm(ModelForm):
+    start_time = forms.DateTimeField( # todo: jakos tego nie powtarzac
+        input_formats=settings.DATETIME_INPUT_FORMATS, #todo: validation : start date cannot be later than enddate
+        widget=MyDateTimeInput
+    )
+    end_time = forms.DateTimeField(
+        input_formats=settings.DATETIME_INPUT_FORMATS,
+        widget=MyDateTimeInput
+    )
+
     class Meta:
         model = Journey
         exclude = (),
-        widgets= {
-            'start_time': DateTimeInput(),
-            'end_time': DateTimeInput(),
-        }
 
 
-class AccomodationForm(ModelForm):
+class AccommodationForm(ModelForm):
+    start_time = forms.DateTimeField(
+        input_formats=settings.DATETIME_INPUT_FORMATS,
+        widget=MyDateTimeInput
+    )
+    end_time = forms.DateTimeField(
+        input_formats=settings.DATETIME_INPUT_FORMATS,
+        widget=MyDateTimeInput
+    )
     class Meta:
-        model = Accomodation
+        model = Accommodation
         exclude = ()
-        widgets= {
-            'start_time': DateTimeInput(),
-            'end_time': DateTimeInput(),
-        }
 
 
-AttractionFormSet = inlineformset_factory(Trip, Attraction, form=AttractionForm, extra=1, max_num=10, min_num=0)
+class AttractionForm(ModelForm):
+    start_time = forms.DateTimeField(
+        input_formats=settings.DATETIME_INPUT_FORMATS,
+        widget=MyDateTimeInput()
+    )
+    end_time = forms.DateTimeField(
+        input_formats=settings.DATETIME_INPUT_FORMATS,
+        widget=MyDateTimeInput()
+    )
+    class Meta:
+        model = Attraction
+        exclude = ()
+
+
+AttractionFormSet = inlineformset_factory(Trip, Attraction, form=AttractionForm, extra=1)
 JourneyFormSet = inlineformset_factory(Trip, Journey, form=JourneyForm, extra=1)
-AccomodationFormSet = inlineformset_factory(Trip, Accomodation, form=AccomodationForm, extra=1)
-
-# AttractionFormSet = formset_factory(Attraction, extra=1)
+AccommodationFormSet = inlineformset_factory(Trip, Accommodation, form=AccommodationForm, extra=1)

@@ -5,17 +5,24 @@
 
 {% block content %}
     <h1>Trip</h1>
-    <hr>
 
-    <div class="col-md-2">
         <form action="" method="post">{% csrf_token %}
-            <table class="table table-responsive">
+            <table class="table">
                 {{ form }}
             </table>
 
+{#        todo:display errors#}
+
+{#            <div class="tab">#}
+{#                <button class="tablinks" onclick="openCategory(event, 'Journeys')">Journeys</button>#}
+{#                <button class="tablinks" onclick="openCategory(event, 'Accommodations')">Accommodations</button>#}
+{#                <button class="tablinks" onclick="openCategory(event, 'Attractions')">Attractions</button>#}
+{#            </div>#}
+
+{#        <div class="tabcontent" id="Journeys">#}
             <table class="table">
                 {{ journeys.management_form }}
-                <h2>Journeys:</h2>
+                <h2>Journeys</h2>
                 {% for form in journeys.forms %}
                     {% if forloop.first %}
                         <thead>
@@ -34,17 +41,19 @@
                                         {{ hidden }}
                                     {% endfor %}
                                 {% endif %}
-                                {{ field.errors.as_ul }}
+                                <div class="error-style">{{ field.errors.as_text }}</div>
                                 {{ field }}
                             </td>
                         {% endfor %}
                     </tr>
                 {% endfor %}
             </table>
+{#        </div>#}
 
+{#        <div class="tabcontent" id="Accommodations">#}
             <table class="table">
                 {{ accommodations.management_form }}
-                <h2>Accommodation:</h2>
+                <h2>Accommodations</h2>
                 {% for form in accommodations.forms %}
                     {% if forloop.first %}
                         <thead>
@@ -63,15 +72,16 @@
                                         {{ hidden }}
                                     {% endfor %}
                                 {% endif %}
-                                {{ field.errors.as_ul }}
+                                <div class="error-style">{{ field.errors.as_text }}</div>
                                 {{ field }}
                             </td>
                         {% endfor %}
                     </tr>
                 {% endfor %}
             </table>
+{#        </div>#}
 
-
+{#        <div class="tabcontent" id="Attractions">#}
             <table class="table">
                 {{ attractions.management_form }}
                 <h2>Attractions</h2>
@@ -93,25 +103,34 @@
                                         {{ hidden }}
                                     {% endfor %}
                                 {% endif %}
-                                {{ field.errors.as_ul }}
+                                <div class="error-style">{{ field.errors.as_text }}</div> {# todo: gdy kopiuje sie wiersz, to bledy tez #}
                                 {{ field }}
                             </td>
                         {% endfor %}
                     </tr>
                 {% endfor %}
             </table>
+{#        </div>#}
 
-
-            <input type="submit" value="Save"/> <a href="{% url 'trip-list' %}">back to the list</a>
+            <div><input type="submit" value="Save"/></div>
+            <div><a href="{% url 'trip-list' %}">back to the list</a></div>
         </form>
-    </div>
 
 {% endblock %}
 
 {% block js %}
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{% static 'libs/formset/jquery.formset.js' %}"></script>
     <script src="{% static 'own/js/add_trip_attribute.js' %}"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>
+
+{#    <script src="{% static 'own/js/tabs.js' %}"></script>#}
+
+{#    <script>#}
+{#    // Get the element with id="defaultOpen" and click on it#}
+{#    document.getElementById("defaultOpen").click();#}
+{#    </script>#}
+
 {% endblock %}
