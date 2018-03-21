@@ -2,18 +2,33 @@ from django.urls import reverse_lazy
 from django.db import transaction
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from tripplanner.decorators import user_is_admin_or_trip_creator
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from tripplanner.forms import *
+
+decorators = [user_is_admin_or_trip_creator, login_required]
 
 
 class TripList(ListView):
     model = Trip
 
+    def get_queryset(self):
+        curr_user = User.objects.get(pk=self.request.user.id)
+        if not curr_user.is_superuser:
+            return Trip.objects.filter(created_by=self.request.user.pk)
+        else:
+            return Trip.objects.all()
 
+
+@method_decorator(decorators, name='dispatch')
 class TripDetail(DetailView):
     model = Trip
 
 
+
+@method_decorator(decorators, name='dispatch')
 class TripWithAttributesCreate(CreateView):
     model = Trip
     form_class = TripForm
@@ -37,30 +52,27 @@ class TripWithAttributesCreate(CreateView):
         accommodation = context['accommodations']
         attractions = context['attractions']
         with transaction.atomic():
-            form.instance.created_by = self.request.user
-            self.object = form.save()
+            if attractions.is_valid() and accommodation.is_valid() and journeys.is_valid():
+                form.instance.created_by = self.request.user
+                self.object = form.save()
 
-            if journeys.is_valid():
-                journeys.instance = self.object
-                journeys.save()
+                if journeys.is_valid():
+                    journeys.instance = self.object
+                    journeys.save()
+                if accommodation.is_valid():
+                    accommodation.instance = self.object
+                    accommodation.save()
+                if attractions.is_valid():
+                    attractions.instance = self.object
+                    attractions.save()
             else:
                 return self.form_invalid(form)
-            if accommodation.is_valid():
-                accommodation.instance = self.object
-                accommodation.save()
-            else:
-                return self.form_invalid(form)
-            if attractions.is_valid():
-                attractions.instance = self.object
-                attractions.save()
-            else:
-                return self.form_invalid(form)
-
-            # todo: check and update trip: full cost, start and end date
+                # todo: check and update trip: full cost, start and end date
 
         return super(TripWithAttributesCreate, self).form_valid(form)
 
 
+@method_decorator(decorators, name='dispatch')
 class TripWithAttributesUpdate(UpdateView):
     model = Trip
     form_class = TripForm
@@ -78,35 +90,33 @@ class TripWithAttributesUpdate(UpdateView):
             data['attractions'] = AttractionFormSet(instance=self.object)
         return data
 
+
     def form_valid(self, form):
         context = self.get_context_data()
         journeys = context['journeys']
         accommodation = context['accommodations']
         attractions = context['attractions']
         with transaction.atomic():
-            form.instance.created_by = self.request.user
-            self.object = form.save()
+            if attractions.is_valid() and accommodation.is_valid() and journeys.is_valid():
+                form.instance.created_by = self.request.user
+                self.object = form.save()
 
-            if journeys.is_valid():
-                journeys.instance = self.object
-                journeys.save()
+                if journeys.is_valid():
+                    journeys.instance = self.object
+                    journeys.save()
+                if accommodation.is_valid():
+                    accommodation.instance = self.object
+                    accommodation.save()
+                if attractions.is_valid():
+                    attractions.instance = self.object
+                    attractions.save()
             else:
                 return self.form_invalid(form)
-            if accommodation.is_valid():
-                accommodation.instance = self.object
-                accommodation.save()
-            else:
-                return self.form_invalid(form)
-            if attractions.is_valid():
-                attractions.instance = self.object
-                attractions.save()
-            else:
-                return self.form_invalid(form)
-
 
         return super(TripWithAttributesUpdate, self).form_valid(form)
 
 
+@method_decorator(decorators, name='dispatch')
 class TripDelete(DeleteView):
     model = Trip
     success_url = reverse_lazy('trip-list')

@@ -8,6 +8,7 @@ from tripcore import settings
 class MyDateTimeInput(forms.DateTimeInput):
     input_type = 'datetime'
 
+
 # class MyDateTimeField(forms.DateTimeField):
 #     input_formats = settings.DATETIME_INPUT_FORMATS
 #     widget = MyDateTimeInput(
@@ -26,8 +27,8 @@ class TripForm(ModelForm, Form):
 
 
 class JourneyForm(ModelForm):
-    start_time = forms.DateTimeField( # todo: jakos tego nie powtarzac
-        input_formats=settings.DATETIME_INPUT_FORMATS, #todo: validation : start date cannot be later than enddate
+    start_time = forms.DateTimeField(  # todo: jakos tego nie powtarzac
+        input_formats=settings.DATETIME_INPUT_FORMATS,  # todo: validation : start date cannot be later than enddate
         widget=MyDateTimeInput
     )
     end_time = forms.DateTimeField(
@@ -37,6 +38,7 @@ class JourneyForm(ModelForm):
 
     class Meta:
         model = Journey
+        fields = ['means_of_transport', 'start_point', 'end_point', 'start_time', 'end_time', 'price']
         exclude = (),
 
 
@@ -49,8 +51,10 @@ class AccommodationForm(ModelForm):
         input_formats=settings.DATETIME_INPUT_FORMATS,
         widget=MyDateTimeInput
     )
+
     class Meta:
         model = Accommodation
+        fields = ['place', 'start_time', 'end_time', 'price']
         exclude = ()
 
 
@@ -63,8 +67,10 @@ class AttractionForm(ModelForm):
         input_formats=settings.DATETIME_INPUT_FORMATS,
         widget=MyDateTimeInput()
     )
+
     class Meta:
         model = Attraction
+        fields = ['place', 'start_time', 'end_time', 'price']
         exclude = ()
 
 

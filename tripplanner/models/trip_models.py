@@ -6,7 +6,7 @@ from django.urls import reverse
 class MeansOfTransport(models.Model):
     name = models.CharField(max_length=50, unique=True)
 
-    def __str__(self):
+    def __str__(self): #todo: in forms always in english (as in db) -- translations?
         return self.name
 
 

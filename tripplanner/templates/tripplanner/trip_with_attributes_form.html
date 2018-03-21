@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}{% endblock %}
@@ -11,15 +12,14 @@
                 {{ form }}
             </table>
 
-{#        todo:display errors#}
 
-{#            <div class="tab">#}
-{#                <button class="tablinks" onclick="openCategory(event, 'Journeys')">Journeys</button>#}
-{#                <button class="tablinks" onclick="openCategory(event, 'Accommodations')">Accommodations</button>#}
-{#                <button class="tablinks" onclick="openCategory(event, 'Attractions')">Attractions</button>#}
-{#            </div>#}
+            <div class="tab">
+                <button type="button" class="tablinks" onclick="openCategory(event, 'Journeys')">Journeys</button>
+                <button type="button" class="tablinks" onclick="openCategory(event, 'Accommodations')">Accommodations</button>
+                <button type="button" class="tablinks" onclick="openCategory(event, 'Attractions')">Attractions</button>
+            </div>
 
-{#        <div class="tabcontent" id="Journeys">#}
+        <div class="tabcontent" id="Journeys">
             <table class="table">
                 {{ journeys.management_form }}
                 <h2>Journeys</h2>
@@ -48,9 +48,9 @@
                     </tr>
                 {% endfor %}
             </table>
-{#        </div>#}
+        </div>
 
-{#        <div class="tabcontent" id="Accommodations">#}
+        <div class="tabcontent" id="Accommodations">
             <table class="table">
                 {{ accommodations.management_form }}
                 <h2>Accommodations</h2>
@@ -79,9 +79,9 @@
                     </tr>
                 {% endfor %}
             </table>
-{#        </div>#}
+        </div>
 
-{#        <div class="tabcontent" id="Attractions">#}
+        <div class="tabcontent" id="Attractions">
             <table class="table">
                 {{ attractions.management_form }}
                 <h2>Attractions</h2>
@@ -110,7 +110,7 @@
                     </tr>
                 {% endfor %}
             </table>
-{#        </div>#}
+        </div>
 
             <div><input type="submit" value="Save"/></div>
             <div><a href="{% url 'trip-list' %}">back to the list</a></div>
@@ -126,7 +126,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>
 
-{#    <script src="{% static 'own/js/tabs.js' %}"></script>#}
+    <script src="{% static 'own/js/tabs.js' %}"></script>
 
 {#    <script>#}
 {#    // Get the element with id="defaultOpen" and click on it#}
