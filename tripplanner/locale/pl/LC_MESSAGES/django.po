@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-21 21:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: tripcore/settings.py:109
+msgid "Polish"
+msgstr "Polski"
+
+#: tripcore/settings.py:110
+msgid "English"
+msgstr "Angielski"
+
+#: tripplanner/templates/base.html:25
+msgid "You are logged as"
+msgstr "Jesteś zalogowany jako"
+
+#: tripplanner/templates/base.html:29
+msgid "Trip Planner - Home"
+msgstr "Planer wycieczek - Strona Główna"
+
+#: tripplanner/templates/base.html:31
+#: tripplanner/templates/register/logged_out.html:10
+#: tripplanner/templates/register/login.html:26
+msgid "Log in"
+msgstr "Zaloguj"
+
+#: tripplanner/templates/base.html:33
+msgid "Logout"
+msgstr "Wyloguj"
+
+#: tripplanner/templates/register/logged_out.html:5
+msgid "See you!"
+msgstr "Do zobaczenia!"
+
+#: tripplanner/templates/register/logged_out.html:8
+msgid "Logged out"
+msgstr "Wylogowano"
+
+#: tripplanner/templates/register/logged_out.html:9
+msgid "You have been successfully logged out."
+msgstr "Wylogowywanie zakończone powodzeniem."
+
+#: tripplanner/templates/register/login.html:5
+msgid "Log in to Trip Planner"
+msgstr "Logowanie"
+
+#: tripplanner/templates/register/login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr "Login lub hasło są nieprawidłowe. Spróbuj ponownie."
+
+#: tripplanner/templates/register/login.html:27
+msgid "New to Trip Planner? Sign up!"
+msgstr "Nie masz jeszcze konta? Zarejestruj się!"
+
+#: tripplanner/templates/register/signup.html:5
+msgid "Sign up"
+msgstr "Rejestracja"
+
+#: tripplanner/templates/register/signup.html:9
+msgid "Sign up!"
+msgstr "Zarejestruj!"
+
+#: tripplanner/templates/tripplanner/trip_confirm_delete.html:6
+msgid "Confirm trip removal"
+msgstr "Potwierdź usunięcie wycieczki"
+
+#: tripplanner/templates/tripplanner/trip_confirm_delete.html:9
+msgid "Are you sure you want to delete "
+msgstr "Czy na pewno chcesz usunąć "
+
+#: tripplanner/templates/tripplanner/trip_detail.html:6
+msgid "Trip's details:"
+msgstr "Szczegóły wycieczki"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:9
+msgid "Name:"
+msgstr "Nazwa:"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:10
+msgid "Description:"
+msgstr "Opis:"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:11
+msgid "Created by:"
+msgstr "Stworzona przez:"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:15
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:17
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:25
+msgid "Journeys"
+msgstr "Podróże"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:19
+#: tripplanner/templates/tripplanner/trip_detail.html:41
+#: tripplanner/templates/tripplanner/trip_detail.html:59
+msgid "Start time:"
+msgstr "Czas rozpoczęcia:"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:21
+#: tripplanner/templates/tripplanner/trip_detail.html:43
+#: tripplanner/templates/tripplanner/trip_detail.html:61
+msgid "End time:"
+msgstr "Czas zakończenia:"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:23
+msgid "Start point:"
+msgstr "Punkt startowy"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:25
+msgid "End point:"
+msgstr "Punkt docelowy"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:27
+msgid "Means of transport:"
+msgstr "Środek transportu"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:29
+#: tripplanner/templates/tripplanner/trip_detail.html:47
+#: tripplanner/templates/tripplanner/trip_detail.html:65
+msgid "Price (PLN):"
+msgstr "Koszt (PLN)"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:37
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:18
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:56
+msgid "Accommodations"
+msgstr "Zakwaterowanie"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:45
+#: tripplanner/templates/tripplanner/trip_detail.html:63
+msgid "Place:"
+msgstr "Miejsce:"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:55
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:19
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:87
+msgid "Attractions"
+msgstr "Atrakcje"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:72
+msgid "Edit the trip"
+msgstr "Edytuj wycieczkę"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:73
+msgid "Delete the trip"
+msgstr "Usuń wycieczkę"
+
+#: tripplanner/templates/tripplanner/trip_list.html:6
+msgid "The trips"
+msgstr "Wycieczki"
+
+#: tripplanner/templates/tripplanner/trip_list.html:11
+msgid "Details"
+msgstr "Szczegóły"
+
+#: tripplanner/templates/tripplanner/trip_list.html:12
+msgid "Edit"
+msgstr "Edytuj"
+
+#: tripplanner/templates/tripplanner/trip_list.html:13
+msgid "Delete"
+msgstr "Usuń"
+
+#: tripplanner/templates/tripplanner/trip_list.html:16
+msgid "No trip yet."
+msgstr "Brak wycieczek."
+
+#: tripplanner/templates/tripplanner/trip_list.html:21
+msgid "Create a new trip"
+msgstr "Utwórz nową wycieczkę"
+
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:8
+msgid "Trip"
+msgstr "Wycieczka"
+
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:116
+msgid "Back to the list"
+msgstr "Powrót do listy"

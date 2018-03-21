@@ -10,14 +10,6 @@ $('document').ready(function () {
     });
 });
 
-
-// $('document').ready(function(){
-//     addFormsets()
-//     $(function () {
-//         $('input[type=datetime]').datepicker();
-//     });
-// });
-
 function addFormsets() {
     const datepickerCallback = function () {
         return function (addedRow) {

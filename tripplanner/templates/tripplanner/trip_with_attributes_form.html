@@ -5,24 +5,18 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    <h1>Trip</h1>
+    <h1>{% trans "Trip" %}</h1>
 
-        <form action="" method="post">{% csrf_token %}
-            <table class="table">
-                {{ form }}
-            </table>
+    <form action="" method="post">{% csrf_token %}
+        <table class="table">
+            {{ form }}
+        </table>
 
-
-            <div class="tab">
-                <button type="button" class="tablinks" onclick="openCategory(event, 'Journeys')">Journeys</button>
-                <button type="button" class="tablinks" onclick="openCategory(event, 'Accommodations')">Accommodations</button>
-                <button type="button" class="tablinks" onclick="openCategory(event, 'Attractions')">Attractions</button>
-            </div>
-
-        <div class="tabcontent" id="Journeys">
+        <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys">{% trans 'Journeys' %}</button>
+        <div class="collapse" id="journeys">
             <table class="table">
                 {{ journeys.management_form }}
-                <h2>Journeys</h2>
+{#                <h2>{% trans 'Journeys' %}</h2>#}
                 {% for form in journeys.forms %}
                     {% if forloop.first %}
                         <thead>
@@ -50,10 +44,11 @@
             </table>
         </div>
 
-        <div class="tabcontent" id="Accommodations">
+        <button type="button" class="accordion" data-toggle="collapse" data-target="#accommodations">{% trans 'Accommodations' %}</button>
+        <div class="collapse" id="accommodations">
             <table class="table">
                 {{ accommodations.management_form }}
-                <h2>Accommodations</h2>
+{#                <h2>{% trans 'Accommodations' %}</h2>#}
                 {% for form in accommodations.forms %}
                     {% if forloop.first %}
                         <thead>
@@ -81,10 +76,11 @@
             </table>
         </div>
 
-        <div class="tabcontent" id="Attractions">
+        <button type="button" class="accordion" data-toggle="collapse" data-target="#attractions">{% trans 'Attractions' %}</button>
+        <div class="collapse" id="attractions">
             <table class="table">
                 {{ attractions.management_form }}
-                <h2>Attractions</h2>
+{#                <h2>{% trans 'Attractions' %}</h2>#}
                 {% for form in attractions.forms %}
                     {% if forloop.first %}
                         <thead>
@@ -103,7 +99,8 @@
                                         {{ hidden }}
                                     {% endfor %}
                                 {% endif %}
-                                <div class="error-style">{{ field.errors.as_text }}</div> {# todo: gdy kopiuje sie wiersz, to bledy tez #}
+                                <div class="error-style">{{ field.errors.as_text }}</div>
+                                {# todo: gdy kopiuje sie wiersz, to bledy tez #}
                                 {{ field }}
                             </td>
                         {% endfor %}
@@ -112,9 +109,9 @@
             </table>
         </div>
 
-            <div><input type="submit" value="Save"/></div>
-            <div><a href="{% url 'trip-list' %}">back to the list</a></div>
-        </form>
+        <div><input type="submit" value="Save"/></div>
+        <div><a href="{% url 'trip-list' %}">{% trans 'Back to the list' %}</a></div>
+    </form>
 
 {% endblock %}
 
@@ -126,11 +123,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>
 
-    <script src="{% static 'own/js/tabs.js' %}"></script>
+    {#    <script src="{% static 'own/js/tabs.js' %}"></script>#}
 
-{#    <script>#}
-{#    // Get the element with id="defaultOpen" and click on it#}
-{#    document.getElementById("defaultOpen").click();#}
-{#    </script>#}
 
 {% endblock %}

@@ -1,64 +1,78 @@
-{% load i18n %}
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}{% endblock %}
 {% block content %}
 
-    <h1>Trip's details: </h1>
+    <h1>{% trans "Trip's details:" %}</h1>
     <div>
         <ul>
-            <li><label>Name:</label> {{ trip.name }} </li>
-            <li><label>Description:</label> {{ trip.description }}</li>
-            <li><label>Created by:</label> {{ trip.created_by }}</li>
+            <li><label>{% trans 'Name:' %}</label> {{ trip.name }} </li>
+            <li><label>{% trans 'Description:' %}</label> {{ trip.description }}</li>
+            <li><label>{% trans 'Created by:' %}</label> {{ trip.created_by }}</li>
         </ul>
 
         {% if trip.journey_set.all %}
-            <h2>Journeys</h2>
+            <h2>{% trans 'Journeys' %}</h2>
             <ul>
                 {% for journey in trip.journey_set.all %}
                     <li>
-                        <label>Start time:</label> {{ journey.start_time|date:"d-m-Y H:i"}}, {# todo: somehow implement default display of dates #}
-                        <label>End time:</label> {{ journey.end_time|date:"d-m-Y H:i" }},
-                        <label>Start point:</label> {{ journey.start_point }},
-                        <label>End point:</label> {{ journey.end_point }},
-                        <label>Means of transport:</label> {{ journey.means_of_transport }},
-                        <label>Price (PLN):</label> {{ journey.price }}.
+                        <label>{% trans 'Start time:' %}</label>
+                        {{ journey.start_time|date:"d-m-Y H:i" }},{# todo: somehow implement default display of dates #}
+                        <label>{% trans 'End time:' %}</label>
+                        {{ journey.end_time|date:"d-m-Y H:i" }},
+                        <label>{% trans 'Start point:' %}</label>
+                        {{ journey.start_point }},
+                        <label>{% trans 'End point:' %}</label>
+                        {{ journey.end_point }},
+                        <label>{% trans 'Means of transport:' %}</label>
+                        {{ journey.means_of_transport }},
+                        <label>{% trans 'Price (PLN):' %}</label>
+                        {{ journey.price }}.
                     </li>
                 {% endfor %}
             </ul>
         {% endif %}
 
         {% if trip.accommodation_set.all %}
-            <h2>Accommodations</h2>
+            <h2>{% trans 'Accommodations'%}</h2>
             <ul>
                 {% for accommodation in trip.accommodation_set.all %}
                     <li>
-                        <label>Start time:</label> {{ accommodation.start_time|date:"d-m-Y H:i" }},
-                        <label>End time:</label> {{ accommodation.end_time|date:"d-m-Y H:i" }},
-                        <label>Place:</label> {{ accommodation.place }},
-                        <label>Price (PLN):</label> {{ accommodation.price }}.
+                        <label>{% trans 'Start time:' %}</label>
+                        {{ accommodation.start_time|date:"d-m-Y H:i" }},
+                        <label>{% trans 'End time:' %}</label>
+                        {{ accommodation.end_time|date:"d-m-Y H:i" }},
+                        <label>{% trans 'Place:' %}</label>
+                        {{ accommodation.place }},
+                        <label>{% trans 'Price (PLN):' %}</label>
+                        {{ accommodation.price }}.
                     </li>
                 {% endfor %}
             </ul>
         {% endif %}
 
         {% if trip.attraction_set.all %}
-            <h2>Attractions</h2>
+            <h2>{% trans 'Attractions'%}</h2>
             <ul>
                 {% for attraction in trip.attraction_set.all %}
                     <li>
-                        <label>Start time:</label> {{ attraction.start_time|date:"d-m-Y H:i" }},
-                        <label>End time:</label> {{ attraction.end_time|date:"d-m-Y H:i" }},
-                        <label>Place:</label> {{ attraction.place }},
-                        <label>Price (PLN):</label> {{ attraction.price }}.
+                        <label>{% trans 'Start time:' %}</label>
+                        {{ attraction.start_time|date:"d-m-Y H:i" }},
+                        <label>{% trans 'End time:' %}</label>
+                        {{ attraction.end_time|date:"d-m-Y H:i" }},
+                        <label>{% trans 'Place:' %}</label>
+                        {{ attraction.place }},
+                        <label>{% trans 'Price (PLN):' %}</label>
+                        {{ attraction.price }}.
                     </li>
                 {% endfor %}
             </ul>
         {% endif %}
 
-        <div><a href="{% url 'trip-update' trip.pk %}">Edit the trip</a></div>
-        <div><a href="{% url 'trip-delete' trip.pk %}">Delete the trip</a></div>
+        <div><a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit the trip'%}</a></div>
+        <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip'%}</a></div>
 
-{#    todo: button to my next trip in detail#}
+        {#    todo: button to my next trip in detail#}
 
     </div>
 {% endblock %}

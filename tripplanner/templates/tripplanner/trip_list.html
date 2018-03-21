@@ -1,24 +1,24 @@
-{% load i18n %}
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}{% endblock %}
 {% block content %}
 
-    <h2>The trips: </h2>
+    <h1>{% trans 'The trips'%}</h1>
     <div>
         <ul>
             {% for trip in object_list %}
                 <li>{{ trip.name }} {{ trip.description }} |
-                    <a href="{% url 'trip-detail' trip.pk %}">details</a> |
-                    <a href="{% url 'trip-update' trip.pk %}">edit</a> |
-                    <a href="{% url 'trip-delete' trip.pk %}">delete</a>
+                    <a href="{% url 'trip-detail' trip.pk %}">{% trans 'Details'%}</a> |
+                    <a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit'%}</a> |
+                    <a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete'%}</a>
                 </li>
             {% empty %}
-                <li>No trip yet.</li>
+                <li>{% trans 'No trip yet.'%}</li>
             {% endfor %}
 
         </ul>
         <p>
-            <a href="{% url 'trip-with-attributes-create' %}">Create a trip</a>
+            <a href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip'%}</a>
         </p>
     </div>
 {% endblock %}

@@ -28,4 +28,6 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name': 'register/login.html'}, name='login'),
     url(r'^logout/$', login_required(auth_views.logout), {'next_page': 'login'}, name='logout'),
     url(r'^signup/$', views.signup, name='signup'),
+    url('i18n/', include('django.conf.urls.i18n')),
+
 ]
