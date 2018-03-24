@@ -27,12 +27,14 @@ function addFormsets() {
         prefix: 'journey_set',
         added: datepickerCallback()
     });
+
     $('.formset_row2').formset({
         addText: 'add new row',
         deleteText: 'remove',
         prefix: 'accommodation_set',
         added: datepickerCallback()
     });
+
     $('.formset_row3').formset({
         addText: 'add new row',
         deleteText: 'remove',

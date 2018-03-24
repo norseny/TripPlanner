@@ -135,10 +135,18 @@
             }
             if (hasChildElements(row)) {
                 row.addClass(options.formCssClass);
+
+                /* start - fix for adding remove link in row in case of accordion implementation*/
+                insertDeleteLink(row);
+                applyExtraClasses(row, i);
+                /* stop */
+
+                /* original
                 if (row.is(':visible')) {
                     insertDeleteLink(row);
                     applyExtraClasses(row, i);
                 }
+                */
             }
         });
 

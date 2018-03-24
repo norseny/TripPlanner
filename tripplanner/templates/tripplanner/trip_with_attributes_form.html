@@ -12,7 +12,7 @@
             {{ form }}
         </table>
 
-        <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys">{% trans 'Journeys' %}</button>
+        <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys" aria-controls="journeys">{% trans 'Journeys' %}</button>
         <div class="collapse" id="journeys">
             <table class="table">
                 {{ journeys.management_form }}
@@ -35,8 +35,8 @@
                                         {{ hidden }}
                                     {% endfor %}
                                 {% endif %}
-                                <div class="error-style">{{ field.errors.as_text }}</div>
                                 {{ field }}
+                                <div class="error-style">{{ field.errors.as_text }}</div>
                             </td>
                         {% endfor %}
                     </tr>
@@ -67,8 +67,8 @@
                                         {{ hidden }}
                                     {% endfor %}
                                 {% endif %}
-                                <div class="error-style">{{ field.errors.as_text }}</div>
                                 {{ field }}
+                                <div class="error-style">{{ field.errors.as_text }}</div>
                             </td>
                         {% endfor %}
                     </tr>
@@ -99,9 +99,9 @@
                                         {{ hidden }}
                                     {% endfor %}
                                 {% endif %}
+                                {{ field }}
                                 <div class="error-style">{{ field.errors.as_text }}</div>
                                 {# todo: gdy kopiuje sie wiersz, to bledy tez #}
-                                {{ field }}
                             </td>
                         {% endfor %}
                     </tr>

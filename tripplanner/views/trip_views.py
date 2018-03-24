@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 
 from tripplanner.forms import *
 
-decorators = [user_is_admin_or_trip_creator, login_required]
+decorators = [login_required, user_is_admin_or_trip_creator]
 
 
 class TripList(ListView):
