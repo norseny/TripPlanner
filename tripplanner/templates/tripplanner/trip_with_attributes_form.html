@@ -13,10 +13,9 @@
         </table>
 
         <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys" aria-controls="journeys">{% trans 'Journeys' %}</button>
-        <div class="collapse" id="journeys">
+        <div class="collapse show" id="journeys">
             <table class="table">
                 {{ journeys.management_form }}
-{#                <h2>{% trans 'Journeys' %}</h2>#}
                 {% for form in journeys.forms %}
                     {% if forloop.first %}
                         <thead>
@@ -48,7 +47,6 @@
         <div class="collapse" id="accommodations">
             <table class="table">
                 {{ accommodations.management_form }}
-{#                <h2>{% trans 'Accommodations' %}</h2>#}
                 {% for form in accommodations.forms %}
                     {% if forloop.first %}
                         <thead>
@@ -80,7 +78,6 @@
         <div class="collapse" id="attractions">
             <table class="table">
                 {{ attractions.management_form }}
-{#                <h2>{% trans 'Attractions' %}</h2>#}
                 {% for form in attractions.forms %}
                     {% if forloop.first %}
                         <thead>
@@ -112,18 +109,14 @@
         <div><input type="submit" value="Save"/></div>
         <div><a href="{% url 'trip-list' %}">{% trans 'Back to the list' %}</a></div>
     </form>
-
 {% endblock %}
 
 {% block js %}
+    <script>const language_code = '{{ request.LANGUAGE_CODE }}';</script>
     <script src="{% static 'libs/formset/jquery.formset.js' %}"></script>
     <script src="{% static 'own/js/add_trip_attribute.js' %}"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>
-
-    {#    <script src="{% static 'own/js/tabs.js' %}"></script>#}
-
-
 {% endblock %}

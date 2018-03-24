@@ -1,24 +1,21 @@
+const params = {
+    enableTime: true,
+    dateFormat: "d-m-Y H:i",
+    locale: language_code,
+    time_24hr: true
+};
+
 $('document').ready(function () {
-    addFormsets()
+    addFormsets();
     $(function () {
-        $('input[type=datetime]').flatpickr({
-            enableTime: true,
-            dateFormat: "d-m-Y H:i",
-            locale: "pl",
-            time_24hr: true,
-        });
+        $('input[type=datetime]').flatpickr(params);
     });
 });
 
 function addFormsets() {
     const datepickerCallback = function () {
         return function (addedRow) {
-            $(addedRow.find('input[type=datetime]')).flatpickr({
-                enableTime: true,
-                dateFormat: "d-m-Y H:i",
-                locale: "pl",
-                time_24hr: true,
-            });
+            $(addedRow.find('input[type=datetime]')).flatpickr(params);
         }
     };
     $('.formset_row1').formset({
