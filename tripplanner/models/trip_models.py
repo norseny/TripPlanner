@@ -1,12 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+import django
 
 
 class MeansOfTransport(models.Model):
     name = models.CharField(max_length=50, unique=True)
+    name_pl = models.CharField(max_length=50)
 
-    def __str__(self): #todo: in forms always in english (as in db) -- translations?
+    def __str__(self):
+        lang = django.utils.translation.get_language()
+        if lang == 'pl':
+            return self.name_pl
         return self.name
 
 

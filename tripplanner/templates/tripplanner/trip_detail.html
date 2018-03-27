@@ -16,17 +16,17 @@
             <ul>
                 {% for journey in trip.journey_set.all %}
                     <li>
-                        <label>{% trans 'Start time:' %}</label>
+                        <label>{% trans 'Start time' %}</label>
                         {{ journey.start_time|date:"d-m-Y H:i" }},{# todo: somehow implement default display of dates #}
-                        <label>{% trans 'End time:' %}</label>
+                        <label>{% trans 'End time' %}</label>
                         {{ journey.end_time|date:"d-m-Y H:i" }},
-                        <label>{% trans 'Start point:' %}</label>
+                        <label>{% trans 'Start point' %}</label>
                         {{ journey.start_point }},
-                        <label>{% trans 'End point:' %}</label>
+                        <label>{% trans 'End point' %}</label>
                         {{ journey.end_point }},
-                        <label>{% trans 'Means of transport:' %}</label>
+                        <label>{% trans 'Means of transport' %}</label>
                         {{ journey.means_of_transport }},
-                        <label>{% trans 'Price (PLN):' %}</label>
+                        <label>{% trans 'Price (PLN)' %}</label>
                         {{ journey.price }}.
                     </li>
                 {% endfor %}
@@ -38,13 +38,13 @@
             <ul>
                 {% for accommodation in trip.accommodation_set.all %}
                     <li>
-                        <label>{% trans 'Start time:' %}</label>
+                        <label>{% trans 'Start time' %}</label>
                         {{ accommodation.start_time|date:"d-m-Y H:i" }},
-                        <label>{% trans 'End time:' %}</label>
+                        <label>{% trans 'End time' %}</label>
                         {{ accommodation.end_time|date:"d-m-Y H:i" }},
-                        <label>{% trans 'Place:' %}</label>
+                        <label>{% trans 'Place' %}</label>
                         {{ accommodation.place }},
-                        <label>{% trans 'Price (PLN):' %}</label>
+                        <label>{% trans 'Price (PLN)' %}</label>
                         {{ accommodation.price }}.
                     </li>
                 {% endfor %}
@@ -56,13 +56,13 @@
             <ul>
                 {% for attraction in trip.attraction_set.all %}
                     <li>
-                        <label>{% trans 'Start time:' %}</label>
+                        <label>{% trans 'Start time' %}</label>
                         {{ attraction.start_time|date:"d-m-Y H:i" }},
-                        <label>{% trans 'End time:' %}</label>
+                        <label>{% trans 'End time' %}</label>
                         {{ attraction.end_time|date:"d-m-Y H:i" }},
-                        <label>{% trans 'Place:' %}</label>
+                        <label>{% trans 'Place' %}</label>
                         {{ attraction.place }},
-                        <label>{% trans 'Price (PLN):' %}</label>
+                        <label>{% trans 'Price (PLN)' %}</label>
                         {{ attraction.price }}.
                     </li>
                 {% endfor %}

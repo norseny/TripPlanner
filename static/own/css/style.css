@@ -1,12 +1,47 @@
-.nav-item{
+/*.flatpickr-month{*/
+/*height: 50px;*/
+/*overflow: hidden; !*todo: temp solution*!*/
+/*}*/
+
+label {
+    font-weight: bold;
+}
+
+.dynamic-form-add > td { /*todo: nie dziala*/
+    padding: 0.5rem;
+}
+
+div .row {
+    margin: .5rem 0;
+
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table td {
+    vertical-align: middle;
+    padding: .25rem;
+}
+
+.font-size-bigger {
+    font-size: 2.5rem;
+}
+/*todo sizes font*/
+.remove-element {
+    font-size: 3rem;
+}
+
+.nav-item {
     padding: 2px;
 }
 
-.error-style{
+.error-style {
     color: #bf0000;
 }
 
-.flatpickr-input{
+.flatpickr-input {
     width: 145px;
 }
 

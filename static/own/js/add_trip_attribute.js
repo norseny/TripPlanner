@@ -19,22 +19,22 @@ function addFormsets() {
         }
     };
     $('.formset_row1').formset({
-        addText: 'add new row',
-        deleteText: 'remove',
+        addText: '<span class="font-size-bigger">+</span>',
+        deleteText: '<span class="remove-element">-</span>',
         prefix: 'journey_set',
         added: datepickerCallback()
     });
 
     $('.formset_row2').formset({
-        addText: 'add new row',
-        deleteText: 'remove',
+        addText: '<span class="font-size-bigger">+</span>',
+        deleteText: '<span class="remove-element">-</span>',
         prefix: 'accommodation_set',
         added: datepickerCallback()
     });
 
     $('.formset_row3').formset({
-        addText: 'add new row',
-        deleteText: 'remove',
+        addText: '<span class="font-size-bigger">+</span>',
+        deleteText: '<span class="remove-element">-</span>',
         prefix: 'attraction_set',
         added: datepickerCallback()
     });

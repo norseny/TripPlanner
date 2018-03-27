@@ -10,7 +10,6 @@ from tripplanner.forms import *
 
 decorators = [login_required, user_is_admin_or_trip_creator]
 
-
 class TripList(ListView):
     model = Trip
 
@@ -28,7 +27,7 @@ class TripDetail(DetailView):
 
 
 
-@method_decorator(decorators, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class TripWithAttributesCreate(CreateView):
     model = Trip
     form_class = TripForm

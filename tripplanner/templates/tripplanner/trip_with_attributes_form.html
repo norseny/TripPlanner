@@ -8,9 +8,21 @@
     <h1>{% trans "Trip" %}</h1>
 
     <form action="" method="post">{% csrf_token %}
-        <table class="table">
-            {{ form }}
-        </table>
+        <div>
+        {% for field in form %}
+            <div class="row">
+                <div class="col-1">
+                    <span class="font-weight-bold"> {% trans field.label %} </span>
+                </div>
+
+                <div class="col-11">
+                    {{ field.errors }}
+                    {{ field }}
+                </div>
+
+            </div>
+        {% endfor %}
+        </div>
 
         <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys" aria-controls="journeys">{% trans 'Journeys' %}</button>
         <div class="collapse show" id="journeys">
@@ -52,7 +64,7 @@
                         <thead>
                         <tr>
                             {% for field in form.visible_fields %}
-                                <th>{{ field.label|capfirst }}</th>
+                                <th>{% trans field.label|capfirst %}</th>
                             {% endfor %}
                         </tr>
                         </thead>
@@ -83,7 +95,7 @@
                         <thead>
                         <tr>
                             {% for field in form.visible_fields %}
-                                <th>{{ field.label|capfirst }}</th>
+                                <th>{% trans field.label|capfirst %}</th>
                             {% endfor %}
                         </tr>
                         </thead>
@@ -106,17 +118,21 @@
             </table>
         </div>
 
-        <div><input type="submit" value="Save"/></div>
+        <div><input type="submit" value="{% trans 'Save' %}"/></div>
         <div><a href="{% url 'trip-list' %}">{% trans 'Back to the list' %}</a></div>
     </form>
 {% endblock %}
 
 {% block js %}
     <script>const language_code = '{{ request.LANGUAGE_CODE }}';</script>
+
     <script src="{% static 'libs/formset/jquery.formset.js' %}"></script>
     <script src="{% static 'own/js/add_trip_attribute.js' %}"></script>
 
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>
+
 {% endblock %}
