@@ -22,7 +22,7 @@ class TripForm(ModelForm, Form):
         fields = ['name', 'description']
         exclude = ()
         widgets = {
-            'description': Textarea(attrs={'rows': 2, 'cols': '70'}),
+            'description': Textarea(attrs={'rows': 2, 'cols': '65'}),
         }
 
 

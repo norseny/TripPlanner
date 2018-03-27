@@ -8,6 +8,9 @@ from django.utils.decorators import method_decorator
 
 from tripplanner.forms import *
 
+import pdfkit
+from django.http import HttpResponse
+
 decorators = [login_required, user_is_admin_or_trip_creator]
 
 
@@ -118,3 +121,17 @@ class TripWithAttributesUpdate(UpdateView):
 class TripDelete(DeleteView):
     model = Trip
     success_url = reverse_lazy('trip-list')
+
+#
+# def pdffile(request):
+#
+#     # pdf = pdfkit.from_url("http://localhost:8001/trip/1/", "trip1.pdf")
+#     # return HttpResponse("Everything working good, check out the root of your project to see the generated PDF.")
+#
+#     # Use False instead of output path to save pdf to a variable
+#     pdf = pdfkit.from_url('http://localhost:8001/tripplanner/published-trip', False)
+#     response = HttpResponse(pdf,content_type='application/pdf')
+#     response['Content-Disposition'] = 'attachment; filename="trip1.pdf"'
+#
+#
+#     return response

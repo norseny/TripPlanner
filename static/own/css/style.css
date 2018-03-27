@@ -3,6 +3,10 @@
 /*overflow: hidden; !*todo: temp solution*!*/
 /*}*/
 
+.scrollable-horizontally {
+    overflow-x: auto
+}
+
 .delete-row {
     padding-left: 1.25rem
 }

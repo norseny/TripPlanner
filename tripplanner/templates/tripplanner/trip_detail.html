@@ -16,7 +16,7 @@
             <ul>
                 {% for journey in trip.journey_set.all %}
                     <li>
-                        {% trans 'Start time' %}
+                        <label>{% trans 'Start time' %}</label>
                         {{ journey.start_time|date:"d-m-Y H:i" }},{# todo: somehow implement default display of dates #}
                         <label>{% trans 'End time' %}</label>
                         {{ journey.end_time|date:"d-m-Y H:i" }},

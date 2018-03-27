@@ -38,6 +38,7 @@ class Trip(BasicInfo):
 
 class Journey(BasicInfo):
     start_point = models.CharField(max_length=250, null=True, blank=True)
+    # todo: quicksearch cities/countries - googlemaps dest?
     end_point = models.CharField(max_length=250, null=True, blank=True)
     # todo: moze dodac bool srodek publiczny/prywatny jak publiczny, to reusable dla innych użytkowników
     means_of_transport = models.ForeignKey(MeansOfTransport, on_delete=models.SET_NULL, null=True, blank=True)

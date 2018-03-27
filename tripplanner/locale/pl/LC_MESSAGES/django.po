@@ -137,6 +137,9 @@ msgstr "Środek transportu"
 msgid "Price (PLN)"
 msgstr "Koszt (PLN)"
 
+msgid "Price"
+msgstr "Koszt (PLN)"
+
 #: tripplanner/templates/tripplanner/trip_detail.html:37
 #: tripplanner/templates/tripplanner/trip_with_attributes_form.html:58
 msgid "Accommodations"
