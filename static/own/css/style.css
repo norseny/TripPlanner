@@ -3,13 +3,17 @@
 /*overflow: hidden; !*todo: temp solution*!*/
 /*}*/
 
+.delete-row {
+    padding-left: 1.25rem
+}
+
 label {
     font-weight: bold;
 }
 
-.dynamic-form-add > td { /*todo: nie dziala*/
-    padding: 0.5rem;
-}
+/*.dynamic-form-add > td { !*todo: nie dziala*!*/
+    /*padding: 0.5rem;*/
+/*}*/
 
 div .row {
     margin: .5rem 0;

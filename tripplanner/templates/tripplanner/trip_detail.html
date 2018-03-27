@@ -6,9 +6,9 @@
     <h1>{% trans "Trip's details:" %}</h1>
     <div>
         <ul>
-            <li><label>{% trans 'Name:' %}</label> {{ trip.name }} </li>
-            <li><label>{% trans 'Description:' %}</label> {{ trip.description }}</li>
-            <li><label>{% trans 'Created by:' %}</label> {{ trip.created_by }}</li>
+            <li><label>{% trans 'Name' %}</label> {{ trip.name }} </li>
+            <li><label>{% trans 'Description' %}</label> {{ trip.description }}</li>
+            <li><label>{% trans 'Created by' %}</label> {{ trip.created_by }}</li>
         </ul>
 
         {% if trip.journey_set.all %}
@@ -16,7 +16,7 @@
             <ul>
                 {% for journey in trip.journey_set.all %}
                     <li>
-                        <label>{% trans 'Start time' %}</label>
+                        {% trans 'Start time' %}
                         {{ journey.start_time|date:"d-m-Y H:i" }},{# todo: somehow implement default display of dates #}
                         <label>{% trans 'End time' %}</label>
                         {{ journey.end_time|date:"d-m-Y H:i" }},

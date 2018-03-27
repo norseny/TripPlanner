@@ -10,6 +10,7 @@ from tripplanner.forms import *
 
 decorators = [login_required, user_is_admin_or_trip_creator]
 
+
 class TripList(ListView):
     model = Trip
 
@@ -24,7 +25,6 @@ class TripList(ListView):
 @method_decorator(decorators, name='dispatch')
 class TripDetail(DetailView):
     model = Trip
-
 
 
 @method_decorator(login_required, name='dispatch')
@@ -88,7 +88,6 @@ class TripWithAttributesUpdate(UpdateView):
             data['accommodations'] = AccommodationFormSet(instance=self.object)
             data['attractions'] = AttractionFormSet(instance=self.object)
         return data
-
 
     def form_valid(self, form):
         context = self.get_context_data()
