@@ -8,10 +8,9 @@
     <h1>{% trans "Trip" %}</h1>
 
     <form action="" method="post">{% csrf_token %}
-        <div class="trip-form">
         {% for field in form %}
                 <div>
-                    <span class="font-weight-bold"> {% trans field.label %} </span>
+                    <span> {% trans field.label %} </span>
                 </div>
 
                 <div>
@@ -21,7 +20,7 @@
         {% endfor %}
         </div>
 
-        <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys" aria-controls="journeys">{% trans 'Journeys' %}</button>
+        <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys" aria-controls="journeys">{% trans 'Journeys' %}</button> {# todo: tabs zamiast accord #}
         <div class="collapse show scrollable-horizontally" id="journeys">
             <table class="table">
                 {{ journeys.management_form }}
@@ -118,6 +117,7 @@
         <div><input type="submit" value="{% trans 'Save' %}"/></div>
         <div><a href="{% url 'trip-list' %}">{% trans 'Back to the list' %}</a></div>
     </form>
+
 {% endblock %}
 
 {% block js %}
@@ -131,5 +131,4 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>
-
 {% endblock %}

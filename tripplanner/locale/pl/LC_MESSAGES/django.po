@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-27 19:29+0000\n"
+"POT-Creation-Date: 2018-03-28 17:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,29 +20,29 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: tripplanner/templates/base.html:35
+#: tripplanner/templates/base.html:53
 msgid "Home"
 msgstr "Strona Główna"
 
-#: tripplanner/templates/base.html:41
+#: tripplanner/templates/base.html:59
 msgid "Trip List"
 msgstr "Wycieczki"
 
-#: tripplanner/templates/base.html:44
+#: tripplanner/templates/base.html:62
 msgid "New trip"
 msgstr "Nowa wycieczka"
 
-#: tripplanner/templates/base.html:66
+#: tripplanner/templates/base.html:84
 msgid "You are logged as"
 msgstr "Jesteś zalogowany jako"
 
-#: tripplanner/templates/base.html:71
+#: tripplanner/templates/base.html:89
 #: tripplanner/templates/register/logged_out.html:10
-#: tripplanner/templates/register/login.html:26
+#: tripplanner/templates/register/login.html:60
 msgid "Log in"
 msgstr "Zaloguj"
 
-#: tripplanner/templates/base.html:73
+#: tripplanner/templates/base.html:91
 msgid "Logout"
 msgstr "Wyloguj"
 
@@ -58,15 +58,21 @@ msgstr "Wylogowano"
 msgid "You have been successfully logged out."
 msgstr "Wylogowywanie zakończone powodzeniem."
 
-#: tripplanner/templates/register/login.html:5
+#: tripplanner/templates/register/login.html:42
 msgid "Log in to Trip Planner"
 msgstr "Logowanie"
 
-#: tripplanner/templates/register/login.html:7
-msgid "Your username and password didn't match. Please try again."
-msgstr "Login lub hasło są nieprawidłowe. Spróbuj ponownie."
+#: tripplanner/templates/register/login.html:47
+#: tripplanner/templates/register/login.html:49
+msgid "Username"
+msgstr "Nazwa użytkownika"
 
-#: tripplanner/templates/register/login.html:28
+#: tripplanner/templates/register/login.html:53
+#: tripplanner/templates/register/login.html:55
+msgid "Password"
+msgstr "Hasło"
+
+#: tripplanner/templates/register/login.html:61
 msgid "New to Trip Planner? Sign up!"
 msgstr "Nie masz jeszcze konta? Zarejestruj się!"
 
@@ -103,7 +109,7 @@ msgid "Created by"
 msgstr "Stworzona przez"
 
 #: tripplanner/templates/tripplanner/trip_detail.html:15
-#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:27
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:24
 msgid "Journeys"
 msgstr "Podróże"
 
@@ -137,11 +143,8 @@ msgstr "Środek transportu"
 msgid "Price (PLN)"
 msgstr "Koszt (PLN)"
 
-msgid "Price"
-msgstr "Koszt (PLN)"
-
 #: tripplanner/templates/tripplanner/trip_detail.html:37
-#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:58
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:55
 msgid "Accommodations"
 msgstr "Zakwaterowanie"
 
@@ -151,7 +154,7 @@ msgid "Place"
 msgstr "Miejsce"
 
 #: tripplanner/templates/tripplanner/trip_detail.html:55
-#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:89
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:86
 msgid "Attractions"
 msgstr "Atrakcje"
 
@@ -191,13 +194,22 @@ msgstr "Utwórz nową wycieczkę"
 msgid "Trip"
 msgstr "Wycieczka"
 
-#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:121
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:118
 msgid "Save"
 msgstr "Zapisz"
 
-#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:122
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:119
 msgid "Back to the list"
 msgstr "Powrót do listy"
 
+#~ msgid "Your username and password didn't match. Please try again."
+#~ msgstr "Login lub hasło są nieprawidłowe. Spróbuj ponownie."
+
+msgid "Price"
+msgstr "Koszt (PLN)"
+
 #~ msgid "Polish"
 #~ msgstr "Polski"
+
+msgid "Repeat Password"
+msgstr "Powtórz hasło"

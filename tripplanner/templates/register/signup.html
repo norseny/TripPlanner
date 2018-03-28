@@ -8,4 +8,36 @@
       {{ form.as_p }}
     <button type="submit">{% trans 'Sign up!' %}</button>
   </form>
+
+
+
+{#    <div  class="text-center d-flex justify-content-center align-content-center login-box md-form" id="signup">#}
+{#    <form class="form-signup" name="SignUpForm"  method="post">#}
+{#    {% csrf_token %}#}
+{#    <h1 class="h3 mb-3 font-weight-normal">{% trans 'Sign up' %}</h1>#}
+{#    {% if next %}#}
+{#        <input type="hidden" name="next" value="{{ next }}" />#}
+{#    {% endif %}#}
+{#    <div class="control-group">#}
+{#        <label class="control-label sr-only" for="username">{% trans "Username"%}</label>#}
+{#        <div class="controls">#}
+{#            <input class="form-control" type="text" id="username" name="username"  placeholder={% trans "Username"%}>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="control-group">#}
+{#        <label class="control-label sr-only" for="password1">{% trans "Password"%}</label>#}
+{#        <div class="controls">#}
+{#            <input class="form-control" type="password" name="password1" id="password1" placeholder={% trans "Password" %}>#}
+{#        </div>#}
+{#  </div>#}
+{#        <div class="control-group">#}
+{#        <label class="control-label sr-only" for="password2">{% trans "Repeat Password"%}</label>#}
+{#        <div class="controls">#}
+{#            <input class="form-control" type="password" name="password2" id="password2" placeholder={% trans "Repeat Password" %}>#}
+{#        </div>#}
+{#  </div>#}
+{#        <button type="submit" class="btn btn-lg btn-primary btn-block">{% trans 'Sign up!' %}</button>#}
+{#        </form>#}
+{#</div>#}
+
 {% endblock %}

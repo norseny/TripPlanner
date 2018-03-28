@@ -1,4 +1,4 @@
-from django.forms import Form, ModelForm, inlineformset_factory, formset_factory, Textarea
+from django.forms import Form, ModelForm, inlineformset_factory, formset_factory, Textarea, TextInput, Select, NumberInput
 
 from tripplanner.models import *
 from django import forms
@@ -22,55 +22,71 @@ class TripForm(ModelForm, Form):
         fields = ['name', 'description']
         exclude = ()
         widgets = {
-            'description': Textarea(attrs={'rows': 2, 'cols': '65'}),
+            'description': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
+            'name': TextInput(attrs={'class':'form-control form-control-sm'})
         }
 
 
 class JourneyForm(ModelForm):
     start_time = forms.DateTimeField(  # todo: jakos tego nie powtarzac
         input_formats=settings.DATETIME_INPUT_FORMATS,  # todo: validation : start date cannot be later than enddate
-        widget=MyDateTimeInput
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
     )
     end_time = forms.DateTimeField(
         input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
     )
 
     class Meta:
         model = Journey
         fields = ['means_of_transport', 'start_point', 'end_point', 'start_time', 'end_time', 'price']
+        widgets = {
+            'means_of_transport': Select(attrs={'class': 'custom-select mb-2 mr-sm-2 mb-sm-0'}),
+            'start_point': TextInput(attrs={'class':'form-control form-control-sm'}),
+            'end_point': TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),
+        }
         exclude = (),
 
 
 class AccommodationForm(ModelForm):
     start_time = forms.DateTimeField(
         input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
     )
     end_time = forms.DateTimeField(
         input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
     )
 
     class Meta:
         model = Accommodation
         fields = ['place', 'start_time', 'end_time', 'price']
+        widgets = {
+            'place': TextInput(attrs={'class':'form-control form-control-sm'}),
+            'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),
+        }
         exclude = ()
 
 
 class AttractionForm(ModelForm):
     start_time = forms.DateTimeField(
         input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput()
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
     )
     end_time = forms.DateTimeField(
         input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput()
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
     )
 
     class Meta:
         model = Attraction
         fields = ['place', 'start_time', 'end_time', 'price']
+        widgets = {
+            'place': TextInput(attrs={'class':'form-control form-control-sm'}),
+            'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),
+
+        }
         exclude = ()
 
 

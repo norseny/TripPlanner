@@ -2,30 +2,34 @@
 {% load i18n %}
 
 {% block content %}
-    <h1>{% trans 'Log in to Trip Planner' %}</h1>
+    <div  class="text-center d-flex justify-content-center align-content-center login-box md-form" id="login">
+    <form class="form-signin" name="LoginForm"  method="post">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 font-weight-normal">{% trans 'Log in to Trip Planner' %}</h1>
     {% if form.errors %}
-        <p style="color: red">{% trans "Your username and password didn't match. Please try again." %}</p>
+            <p class="error-style">{% trans "Your username and password didn't match. Please try again." %}</p> {# todo: moze inny komunikat #}
     {% endif %}
-    <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}"/>
-        {% for field in form %}
-            <p>
-                {{ field.label_tag }}<br>
-                {{ field }}<br>
-                {% for error in field.errors %}
-                    <p style="color: red">{{ error }}</p>
-                {% endfor %}
-            {% if field.help_text %}
-                <p>
-                    <small style="color: grey">{{ field.help_text }}</small>
-                </p>
-            {% endif %}
-            </p>
-        {% endfor %}
-        <button type="submit">{% trans 'Log in' %}</button>
-    <p>
-        <a href="{% url 'signup' %}">{% trans 'New to Trip Planner? Sign up!' %}</a>
-    </p>
+    {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+    {% endif %}
+    <div class="control-group">
+        <label class="control-label sr-only" for="username">{% trans "Username"%}</label>
+        <div class="controls">
+            <input class="form-control" type="text" id="username" name="username"  placeholder={% trans "Username"%}>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label sr-only" for="password">{% trans "Password"%}</label>
+        <div class="controls">
+            <input class="form-control" type="password" name="password" id="password" placeholder={% trans "Password" %}>
+        </div>
+  </div>
+        <div class="controls">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">{% trans 'Log in' %}</button>
+        </div>
+        <div class="controls">
+            <a href="{% url 'signup' %}">{% trans 'New to Trip Planner? Sign up!' %}</a>
+        </div>
     </form>
+</div>
 {% endblock %}
