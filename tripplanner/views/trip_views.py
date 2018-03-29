@@ -8,8 +8,8 @@ from django.utils.decorators import method_decorator
 
 from tripplanner.forms import *
 
-import pdfkit
-from django.http import HttpResponse
+# import pdfkit
+# from django.http import HttpResponse
 
 decorators = [login_required, user_is_admin_or_trip_creator]
 
