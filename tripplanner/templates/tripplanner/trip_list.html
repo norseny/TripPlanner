@@ -2,23 +2,32 @@
 {% load i18n %}
 {% block title %}{% endblock %}
 {% block content %}
-
     <h1>{% trans 'The trips'%}</h1>
-    <div>
-        <ul>
+        <table class="table">
+        <thead>
+        <tr>
+            <th>{% trans 'Name' %}</th>
+            <th>{% trans 'Description' %}</th>
+        </tr>
+        </thead>
+        <tbody>
             {% for trip in object_list %}
-                <li>{{ trip.name }} {{ trip.description }} |
-                    <a href="{% url 'trip-detail' trip.pk %}">{% trans 'Details'%}</a> |
-                    <a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit'%}</a> |
-                    <a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete'%}</a>
-                </li>
-            {% empty %}
-                <li>{% trans 'No trip yet.'%}</li>
-            {% endfor %}
+                <tr>
+                    <td>{{ trip.name }}</td>
+                    <td>{{ trip.description }}</td>
 
-        </ul>
-        <p>
+                    <td><a href="{% url 'trip-detail' trip.pk %}">{% trans 'Details'%}</a></td> {# todo:ostylowac#}
+                    <td><a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit'%}</a></td>
+                    <td><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete'%}</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td>{% trans 'No trip yet.'%}<td/>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+            <p>
             <a href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip'%}</a>
         </p>
-    </div>
 {% endblock %}

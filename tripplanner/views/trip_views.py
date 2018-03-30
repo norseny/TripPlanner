@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from tripplanner.forms import *
+from tripplanner import models
 
 # import pdfkit
 # from django.http import HttpResponse
@@ -51,22 +52,23 @@ class TripWithAttributesCreate(CreateView):
     def form_valid(self, form):
         context = self.get_context_data()
         journeys = context['journeys']
-        accommodation = context['accommodations']
+        accommodations = context['accommodations']
         attractions = context['attractions']
         with transaction.atomic():
-            if attractions.is_valid() and accommodation.is_valid() and journeys.is_valid():
+            if attractions.is_valid() and accommodations.is_valid() and journeys.is_valid():
                 form.instance.created_by = self.request.user
                 self.object = form.save()
 
                 if journeys.is_valid():
                     journeys.instance = self.object
                     journeys.save()
-                if accommodation.is_valid():
-                    accommodation.instance = self.object
-                    accommodation.save()
+                if accommodations.is_valid():
+                    accommodations.instance = self.object
+                    accommodations.save()
                 if attractions.is_valid():
                     attractions.instance = self.object
                     attractions.save()
+                models.Trip.update_dates_and_price(self.object, journeys, accommodations, attractions)
             else:
                 return self.form_invalid(form)
                 # todo: check and update trip: full cost, start and end date
@@ -95,22 +97,24 @@ class TripWithAttributesUpdate(UpdateView):
     def form_valid(self, form):
         context = self.get_context_data()
         journeys = context['journeys']
-        accommodation = context['accommodations']
+        accommodations = context['accommodations']
         attractions = context['attractions']
         with transaction.atomic():
-            if attractions.is_valid() and accommodation.is_valid() and journeys.is_valid():
+            if attractions.is_valid() and accommodations.is_valid() and journeys.is_valid():
                 form.instance.created_by = self.request.user
                 self.object = form.save()
 
                 if journeys.is_valid():
                     journeys.instance = self.object
                     journeys.save()
-                if accommodation.is_valid():
-                    accommodation.instance = self.object
-                    accommodation.save()
+                if accommodations.is_valid():
+                    accommodations.instance = self.object
+                    accommodations.save()
                 if attractions.is_valid():
                     attractions.instance = self.object
                     attractions.save()
+                models.Trip.update_dates_and_price(self.object, journeys, accommodations, attractions) # todo: tylko
+                # zmienione atrybuty
             else:
                 return self.form_invalid(form)
 

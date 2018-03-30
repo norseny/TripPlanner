@@ -35,6 +35,9 @@ class Trip(BasicInfo):
     def get_absolute_url(self):
         return reverse('trip-detail', kwargs={'pk': self.pk})
 
+    def update_dates_and_price(self, journeys, accommodations, attractions): #todo: finish
+        pass
+
 
 class Journey(BasicInfo):
     start_point = models.CharField(max_length=250, null=True, blank=True)
