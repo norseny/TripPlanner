@@ -68,10 +68,10 @@ class TripWithAttributesCreate(CreateView):
                 if attractions.is_valid():
                     attractions.instance = self.object
                     attractions.save()
-                models.Trip.update_dates_and_price(self.object, journeys, accommodations, attractions)
+                models.Trip.update_dates_and_price(self.object, journeys, accommodations, attractions) # todo:
+                # sprawdzic czy dzialaja daty - wprowadzanie
             else:
                 return self.form_invalid(form)
-                # todo: check and update trip: full cost, start and end date
 
         return super(TripWithAttributesCreate, self).form_valid(form)
 
@@ -113,8 +113,7 @@ class TripWithAttributesUpdate(UpdateView):
                 if attractions.is_valid():
                     attractions.instance = self.object
                     attractions.save()
-                models.Trip.update_dates_and_price(self.object, journeys, accommodations, attractions) # todo: tylko
-                # zmienione atrybuty
+                models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data, attractions.cleaned_data)
             else:
                 return self.form_invalid(form)
 

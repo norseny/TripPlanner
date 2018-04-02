@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 import django
+from datetime import datetime
+from decimal import *
+
 
 
 class MeansOfTransport(models.Model):
@@ -16,9 +19,9 @@ class MeansOfTransport(models.Model):
 
 
 class BasicInfo(models.Model):
-    start_time = models.DateTimeField(null=True, blank=True)
-    end_time = models.DateTimeField(null=True, blank=True)
-    price = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True)
+    start_time = models.DateTimeField(null=True, blank=True, default=datetime.now)
+    end_time = models.DateTimeField(null=True, blank=True, default=datetime.now)
+    price = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True, default=0.00)
 
     class Meta:
         abstract = True
@@ -35,8 +38,23 @@ class Trip(BasicInfo):
     def get_absolute_url(self):
         return reverse('trip-detail', kwargs={'pk': self.pk})
 
-    def update_dates_and_price(self, journeys, accommodations, attractions): #todo: finish
-        pass
+    def update_dates_and_price(self, journeys, accommodations, attractions): # todo: finish
+        start_times = set()
+        end_times = set()
+        all_details = journeys + accommodations + attractions
+
+        for el in all_details:
+
+            if ('start_time' in el) and ('start_time' is not None):
+                start_times.add(el['start_time'])
+            if ('end_time' in el) and ('end_time'is not None):
+                end_times.add(el['end_time'])
+            if 'price' in el:
+                self.price += el['price']
+
+        self.start_time = min(start_times)
+        self.end_time = max(end_times)
+        self.save()
 
 
 class Journey(BasicInfo):

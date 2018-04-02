@@ -30,11 +30,13 @@ class TripForm(ModelForm, Form):
 class JourneyForm(ModelForm):
     start_time = forms.DateTimeField(  # todo: jakos tego nie powtarzac
         input_formats=settings.DATETIME_INPUT_FORMATS,  # todo: validation : start date cannot be later than enddate
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
+        required=False
     )
     end_time = forms.DateTimeField(
         input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
+        required=False
     )
 
     class Meta:
@@ -52,11 +54,13 @@ class JourneyForm(ModelForm):
 class AccommodationForm(ModelForm):
     start_time = forms.DateTimeField(
         input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
+        required=False
     )
     end_time = forms.DateTimeField(
         input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
+        required=False
     )
 
     class Meta:
@@ -72,11 +76,13 @@ class AccommodationForm(ModelForm):
 class AttractionForm(ModelForm):
     start_time = forms.DateTimeField(
         input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
+        required=False
     )
     end_time = forms.DateTimeField(
         input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'})
+        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
+        required=False
     )
 
     class Meta:

@@ -10,7 +10,9 @@
             <th>{% trans 'Name' %}</th>
             <th>{% trans 'Description' %}</th>
             <th>{% trans 'Created by' %}</th>
-
+            <th>{% trans 'Start time' %}</th>
+            <th>{% trans 'End time' %}</th>
+            <th>{% trans 'Price (PLN)' %}</th>
         </tr>
         </thead>
         <tbody>
@@ -18,87 +20,86 @@
             <td>{{ trip.name }} </td>
             <td>{{ trip.description }}</td>
             <td>{{ trip.created_by }}</td>
+            <td>{{ trip.start_time }}</td>
+            <td>{{ trip.end_time }}</td>
+            <td>{{ trip.price }}</td>
         </tr>
         </tbody>
     </table>
 
 
-    {% if trip.journey_set.all %}
         <table class="table">
-            <h2>{% trans 'Journeys' %}</h2>
+            <h2>{% trans 'Details' %}</h2>
             <thead>
             <tr>
+                <th></th>
                 <th>{% trans 'Start time' %}</th>
                 <th>{% trans 'End time' %}</th>
                 <th>{% trans 'Start point' %}</th>
                 <th>{% trans 'End point' %}</th>
                 <th>{% trans 'Means of transport' %}</th>
+                <th>{% trans 'Place' %}</th>
                 <th>{% trans 'Price (PLN)' %}</th>
             </tr>
             </thead>
             <tbody>
+            {% if trip.journey_set.all %}
             {% for journey in trip.journey_set.all %}
                 <tr>
+                    <td>{% trans 'Journeys' %}</td>
                     <td>{{ journey.start_time|date:"d-m-y H:i" }}</td>
                     {# todo: somehow implement default display of dates #}
                     <td>{{ journey.end_time|date:"d-m-Y H:i" }}</td>
                     <td>{{ journey.start_point }}</td>
                     <td>{{ journey.end_point }}</td>
                     <td>{{ journey.means_of_transport }}</td>
+                    <td></td>
                     <td>{{ journey.price }}</td>
                 </tr>
             {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
-
-    {% if trip.accommodation_set.all %}
-        <table class="table">
-            <h2>{% trans 'Accommodations' %}</h2>
-            <thead>
-            <tr>
-                <th>{% trans 'Start time' %}</th>
-                <th>{% trans 'End time' %}</th>
-                <th>{% trans 'Place' %}</th>
-                <th>{% trans 'Price (PLN)' %}</th>
-            </tr>
-            </thead>
-            <tbody>
+            {% endif %}
+            {% if trip.accommodation_set.all %}
             {% for accommodation in trip.accommodation_set.all %}
                 <tr>
+                    <td>{% trans 'Accommodations' %}</td>
                     <td>{{ accommodation.start_time|date:"d-m-Y H:i" }}</td>
                     <td>{{ accommodation.end_time|date:"d-m-Y H:i" }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td>{{ accommodation.place }}</td>
                     <td>{{ accommodation.price }}</td>
                 </tr>
             {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
-
-    {% if trip.attraction_set.all %}
-        <table class="table">
-            <h2>{% trans 'Attractions' %}</h2>
-            <thead>
-            <tr>
-                <th>{% trans 'Start time' %}</th>
-                <th>{% trans 'End time' %}</th>
-                <th>{% trans 'Place' %}</th>
-                <th>{% trans 'Price (PLN)' %}</th>
-            </tr>
-            </thead>
-            <tbody>
+            {% endif %}
+            {% if trip.attraction_set.all %}
             {% for attraction in trip.attraction_set.all %}
                 <tr>
+                    <td>{% trans 'Attractions' %}</td>
                     <td>{{ attraction.start_time|date:"d-m-Y H:i" }}</td>
                     <td>{{ attraction.end_time|date:"d-m-Y H:i" }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td>{{ attraction.place }}</td>
                     <td>{{ attraction.price }}</td>
                 </tr>
             {% endfor %}
+            {% endif %}
             </tbody>
+            <tfoot>
+                <tr>
+                    <td><label>{% trans 'Total' %}</label></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ trip.price }}</td>
+                </tr>
+            </tfoot>
         </table>
-    {% endif %}
 
 
     <div><a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit the trip' %}</a></div>
