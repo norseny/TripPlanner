@@ -9,5 +9,7 @@ urlpatterns = [
     url(r'trip/create/$', views.TripWithAttributesCreate.as_view(), name='trip-with-attributes-create'),
     url(r'trip/(?P<pk>[0-9]+)/edit/$', views.TripWithAttributesUpdate.as_view(), name='trip-update'),
     url(r'trip/(?P<pk>[0-9]+)/delete/$', views.TripDelete.as_view(), name='trip-delete'),
+    url(r'trip/(?P<pk>[0-9]+)/participants$', views.TripParticipants.as_view(), name='trip-participants'),
+
     # url(r'pdffile$', views.pdffile, name='pdffile')
 ]

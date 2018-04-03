@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.db import transaction
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView, DetailView
 from tripplanner.decorators import user_is_admin_or_trip_creator
 from django.contrib.auth.decorators import login_required
@@ -68,8 +68,7 @@ class TripWithAttributesCreate(CreateView):
                 if attractions.is_valid():
                     attractions.instance = self.object
                     attractions.save()
-                models.Trip.update_dates_and_price(self.object, journeys, accommodations, attractions) # todo:
-                # sprawdzic czy dzialaja daty - wprowadzanie
+                models.Trip.update_dates_and_price(self.object, journeys, accommodations, attractions)  # todo: sprawdzic czy dzialaja daty - wprowadzanie
             else:
                 return self.form_invalid(form)
 
@@ -113,11 +112,17 @@ class TripWithAttributesUpdate(UpdateView):
                 if attractions.is_valid():
                     attractions.instance = self.object
                     attractions.save()
-                models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data, attractions.cleaned_data)
+                models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
+                                                   attractions.cleaned_data)
             else:
                 return self.form_invalid(form)
 
         return super(TripWithAttributesUpdate, self).form_valid(form)
+
+
+@method_decorator(decorators, name='dispatch')
+class TripParticipants(FormView):  # todo: add user
+    pass
 
 
 @method_decorator(decorators, name='dispatch')
