@@ -90,7 +90,7 @@ class AttractionForm(ModelForm):
         fields = ['place', 'start_time', 'end_time', 'price']
         widgets = {
             'place': TextInput(attrs={'class':'form-control form-control-sm'}),
-            'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),
+            # 'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),
 
         }
         exclude = ()

@@ -3,11 +3,10 @@
 {% block title %}{% endblock %}
 {% block content %}
 
-    <h1>{% trans "Trip's details:" %}</h1>
+    <h1>{{ trip.name }} </h1>
     <table class="table">
         <thead>
         <tr>
-            <th>{% trans 'Name' %}</th>
             <th>{% trans 'Description' %}</th>
             <th>{% trans 'Created by' %}</th>
             <th>{% trans 'Start time' %}</th>
@@ -17,7 +16,6 @@
         </thead>
         <tbody>
         <tr>
-            <td>{{ trip.name }} </td>
             <td>{{ trip.description }}</td>
             <td>{{ trip.created_by }}</td>
             <td>{{ trip.start_time }}</td>
@@ -29,7 +27,7 @@
 
 
         <table class="table">
-            <h2>{% trans 'Details' %}</h2>
+            <h2>{% trans "Trip's details:" %}</h2>
             <thead>
             <tr>
                 <th></th>

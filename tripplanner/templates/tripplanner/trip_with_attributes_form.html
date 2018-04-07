@@ -20,7 +20,7 @@
         {% endfor %}
         </div>
 
-        <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys" aria-controls="journeys">{% trans 'Journeys' %}</button> {# todo: tabs zamiast accord?????? #}
+        <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys" aria-controls="journeys">{% trans 'Journeys' %} + </button> {# todo: tabs zamiast accord?????? #}
         <div class="collapse show scrollable-horizontally" id="journeys">
             <table class="table">
                 {{ journeys.management_form }}
@@ -51,7 +51,7 @@
             </table>
         </div>
 
-        <button type="button" class="accordion" data-toggle="collapse" data-target="#accommodations">{% trans 'Accommodations' %}</button>
+        <button type="button" class="accordion" data-toggle="collapse" data-target="#accommodations">{% trans 'Accommodations' %} + </button>
         <div class="collapse scrollable-horizontally" id="accommodations">
             <table class="table">
                 {{ accommodations.management_form }}
@@ -82,7 +82,7 @@
             </table>
         </div>
 
-        <button type="button" class="accordion" data-toggle="collapse" data-target="#attractions">{% trans 'Attractions' %}</button>
+        <button type="button" class="accordion" data-toggle="collapse" data-target="#attractions">{% trans 'Attractions' %} + </button>
         <div class="collapse scrollable-horizontally" id="attractions">
             <table class="table">
                 {{ attractions.management_form }}

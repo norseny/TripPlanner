@@ -60,7 +60,10 @@
                 <a href="{% url 'trip-list' %}">{% trans 'Trip List' %}</a> |
             </li>
             <li class="nav-item">
-            <a href="{% url 'trip-with-attributes-create' %}">{% trans 'New trip'%}</a>
+            <a href="{% url 'trip-with-attributes-create' %}">{% trans 'New trip'%}</a> |
+            </li>
+            <li class="nav-item">
+            <a href="{% url 'trip-with-attributes-create' %}">{% trans 'About trips'%}</a>
             </li>
         </ul>
         <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
@@ -104,7 +107,7 @@
         {% endfor %}
     </ul>
 {% endif %}
-<div class="container md-col-12">
+<div class="container lg-col-12">
     <div class="content">
         {% block content %}{% endblock %}
     </div>

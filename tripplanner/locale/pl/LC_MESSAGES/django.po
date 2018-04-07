@@ -213,3 +213,6 @@ msgstr "Koszt (PLN)"
 
 msgid "Repeat Password"
 msgstr "Powtórz hasło"
+
+msgid "About trips"
+msgstr "O wycieczkach"

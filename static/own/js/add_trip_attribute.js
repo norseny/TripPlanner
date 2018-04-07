@@ -19,7 +19,7 @@ function addFormsets() {
         }
     };
     $('.formset_row1').formset({
-        addText: '<span class="font-size-bigger">+</span>',
+        addText: '<span class="font-size-bigger">+</span> Add new row', //todo: tłumaczenie - trans nie dziala
         deleteText: '<span class="font-size-bigger">-</span>',
         prefix: 'journey_set',
         added: datepickerCallback()

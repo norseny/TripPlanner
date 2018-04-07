@@ -42,18 +42,29 @@ class Trip(BasicInfo):
         start_times = set()
         end_times = set()
         all_details = journeys + accommodations + attractions
+        total_price = Decimal(0.0)
 
         for el in all_details:
 
-            if ('start_time' in el) and ('start_time' is not None):
-                start_times.add(el['start_time'])
-            if ('end_time' in el) and ('end_time'is not None):
-                end_times.add(el['end_time'])
+            if ('start_time' in el):
+                if el['start_time'] is not None:
+                    start_times.add(el['start_time'])
+            if ('end_time' in el):
+                if el['end_time'] is not None:
+                    end_times.add(el['end_time'])
             if 'price' in el:
-                self.price += el['price']
+                if el['price'] is not None:
+                    # self.price += el['price']
+                    total_price += el['price']
 
-        self.start_time = min(start_times)
-        self.end_time = max(end_times)
+        if start_times:
+            self.start_time = min(start_times)
+        if end_times:
+            self.end_time = max(end_times)
+        if isinstance(self.price, float):
+            self.price += float(total_price)
+        else:
+            self.price += total_price
         self.save()
 
 
