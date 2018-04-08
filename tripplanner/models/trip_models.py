@@ -70,7 +70,6 @@ class Trip(BasicInfo):
                     end_times.add(el['end_time'])
             if 'price' in el:
                 if el['price'] is not None:
-                    # self.price += el['price']
                     total_price += el['price']
 
         if start_times:

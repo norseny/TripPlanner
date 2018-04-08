@@ -18,3 +18,17 @@ def user_is_admin_or_trip_creator(function):
     wrap.__doc__ = function.__doc__
     wrap.__name__ = function.__name__
     return wrap
+
+
+def user_is_trip_participant(function):
+    def wrap(request, *args, **kwargs):
+        curr_user = request.user.username
+        trip = Trip.objects.get(pk=kwargs['pk'])
+        if curr_user in list(trip.participants.values_list('username', flat=True).all()):
+            return function(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
+    wrap.__doc__ = function.__doc__
+    wrap.__name__ = function.__name__
+    return wrap

@@ -4,11 +4,12 @@
     }
 }
 
-#new_participant {
+.new-participant {
     width: 20rem;
-    display: inline;
+    display: inline-block;
 }
 
+#check_icon {display: inline-block}
 
 .login-box {
     height: 80%;

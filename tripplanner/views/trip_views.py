@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.db import transaction
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView, DetailView
-from tripplanner.decorators import user_is_admin_or_trip_creator
+from tripplanner.decorators import user_is_admin_or_trip_creator, user_is_trip_participant
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -14,13 +14,14 @@ from django.http import JsonResponse
 # import pdfkit
 # from django.http import HttpResponse
 
-decorators = [login_required, user_is_admin_or_trip_creator]
+group1 = [login_required, user_is_admin_or_trip_creator]
+group2 = [login_required, user_is_trip_participant]
 
 
 class TripList(ListView):
     model = Trip
 
-    def get_queryset(self):
+    def get_queryset(self): #todo: chenage display filters for diff users
         curr_user = User.objects.get(pk=self.request.user.id)
         if not curr_user.is_superuser:
             return Trip.objects.filter(created_by=self.request.user.pk)
@@ -28,7 +29,7 @@ class TripList(ListView):
             return Trip.objects.all()
 
 
-@method_decorator(decorators, name='dispatch')
+@method_decorator(group2, name='dispatch')
 class TripDetail(DetailView):
     model = Trip
 
@@ -80,7 +81,7 @@ class TripWithAttributesCreate(CreateView):
         return super(TripWithAttributesCreate, self).form_valid(form)
 
 
-@method_decorator(decorators, name='dispatch')
+@method_decorator(group1, name='dispatch')
 class TripWithAttributesUpdate(UpdateView):
     model = Trip
     form_class = TripForm
@@ -125,33 +126,47 @@ class TripWithAttributesUpdate(UpdateView):
         return super(TripWithAttributesUpdate, self).form_valid(form)
 
 
-@method_decorator(decorators, name='dispatch')
+@method_decorator(group1, name='dispatch')
 class TripDelete(DeleteView):
     model = Trip
     success_url = reverse_lazy('trip-list')
 
-
-class TripParticipantsList(ListView):
-    model = User
+@method_decorator(login_required, name='dispatch')
+class TripParticipantsList(FormView):
+    form_class = AddParticipantForm
     template_name = 'tripplanner/trip_participants_list.html'
 
-    def get_queryset(self):
-        return Trip.objects.get(id=self.kwargs['pk']).participants.all()
+    def get_success_url(self):
+        return reverse_lazy('trip-participants', kwargs={'pk': self.kwargs['pk']})
 
     def get_context_data(self, **kwargs):
         data = super(TripParticipantsList, self).get_context_data(**kwargs)
+        data['participants'] = Trip.objects.get(id=self.kwargs['pk']).participants.all()
         data['trip_name'] = Trip.objects.get(id=self.kwargs['pk']).name
+        data['trip_creator'] = Trip.objects.get(id=self.kwargs['pk']).created_by_id
         return data
 
+    def form_valid(self, form):
+        trip = Trip.objects.get(id=self.kwargs['pk'])
+        user = User.objects.filter(username__iexact=form.cleaned_data['username']).first()
+        trip.participants.add(user)
+
+        return super(TripParticipantsList, self).form_valid(form)
 
 def validate_participant(request):
     username = request.GET.get('username', None)
-    data = {
-        'exists': User.objects.filter(username__iexact=username).exists()
-    }
-    if data['exists']:
-        data['message'] = 'A user exists. You can send invitation to your trip.'
+    trip_name = request.GET.get('tripName', None)
+    trip = Trip.objects.filter(name=trip_name).first()
+    success = False
+    if User.objects.filter(username__iexact=username).exists():
+        if username not in list(trip.participants.values_list('username', flat=True).all()):
+            success = True
 
+    data = {
+        'exists': success,
+        'message_error' : "User doesn't exist or is already added.",
+        'message_text' : 'Click "add" to add this user to your trip.'
+    }
     return JsonResponse(data)
 #
 # def pdffile(request):

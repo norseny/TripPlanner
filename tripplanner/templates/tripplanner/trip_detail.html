@@ -102,8 +102,7 @@
 
     <div><a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit the trip' %}</a></div>
     <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip' %}</a></div>
+    <div><a href="{% url 'trip-participants' trip.pk %}">{% trans 'Trip participants' %}</a></div>
 
     {#    todo: button to my next trip in detail#}
-
-    </table>
 {% endblock %}
