@@ -4,6 +4,12 @@
     }
 }
 
+#new_participant {
+    width: 20rem;
+    display: inline;
+}
+
+
 .login-box {
     height: 80%;
     align-items: center;
@@ -23,30 +29,18 @@ th,td {
 }
 
 .btn {
-    /*background: rgba(31, 31, 31, 0.63)!important;*/
     background: #321911!important;
 }
 
-/*.flatpickr-month{*/
-/*height: 50px;*/
-/*overflow: hidden; !*todo: temp solution*!*/
-/*}*/
 
 nav {
-    /*background-color: rgba(122, 122, 122, 0.77);*/
-    /*color: #f7f7f7;*/
     background: #B2DFDB;
-    /*box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12)*/
 }
 
 body {
     background-image: url(../img/paperwood.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-
-    /*background: rgb(242, 250, 255);*/
-    /*background-color: #fafafa;*/
-    /*background: #64dd17;*/
 }
 
 h1,h2  {
@@ -54,19 +48,7 @@ h1,h2  {
 }
 
 .container {
-    /*border-color: #525b6b;*/
-    /*border-color: #82ADA9;*/
-    /*border-left-style: solid;*/
-    /*border-top-style: solid;*/
-    /*border-bottom-style: solid;*/
-    /*border-left-width: 4rem;*/
-    /*border-bottom-width: 5rem;*/
-    /*border-top-width: .5rem;*/
 
-    /*background-color: #fafafa;*/
-    /*background: rgba(255, 243, 211, 0.8);*/
-    /*background: #9cff57;*/
-    /*margin-top: .75rem;*/
     padding: 1rem;
 }
 
@@ -81,10 +63,6 @@ h1,h2  {
 label {
     font-weight: bold;
 }
-
-/*.dynamic-form-add > td { !*todo: nie dziala*!*/
-    /*padding: 0.5rem;*/
-/*}*/
 
 .trip-form {
     padding: .5rem 0;
@@ -119,9 +97,7 @@ input[type=number] {
 }
 
 .accordion {
-    /*background-color: rgba(31, 31, 31, 0.63);*/
     background-color: #b2dfdb;
-    /*color: #ffffff;*/
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -129,9 +105,9 @@ input[type=number] {
     text-align: left;
     outline: none;
     transition: 0.4s;
+    margin-top: .2rem;
 }
 
 .accordion:active, .accordion:hover {
-    /*background-color: rgba(0, 0, 0, 0.84);*/
     background-color: #e5ffff;
 }

@@ -8,6 +8,8 @@ from django.utils.decorators import method_decorator
 
 from tripplanner.forms import *
 from tripplanner import models
+from django.contrib.auth.models import User
+from django.http import JsonResponse
 
 # import pdfkit
 # from django.http import HttpResponse
@@ -40,7 +42,7 @@ class TripWithAttributesCreate(CreateView):
     def get_context_data(self, **kwargs):
         data = super(TripWithAttributesCreate, self).get_context_data(**kwargs)
         if self.request.POST:
-            data['journeys'] = JourneyFormSet(self.request.POST, )
+            data['journeys'] = JourneyFormSet(self.request.POST, ) # todo: ta czesc w create niepotrzebna ?
             data['accommodations'] = AccommodationFormSet(self.request.POST)
             data['attractions'] = AttractionFormSet(self.request.POST)
         else:
@@ -56,8 +58,10 @@ class TripWithAttributesCreate(CreateView):
         attractions = context['attractions']
         with transaction.atomic():
             if attractions.is_valid() and accommodations.is_valid() and journeys.is_valid():
-                form.instance.created_by = self.request.user
+                current_user = self.request.user
+                form.instance.created_by = current_user
                 self.object = form.save()
+                self.object.participants.add(current_user)
 
                 if journeys.is_valid():
                     journeys.instance = self.object
@@ -68,7 +72,8 @@ class TripWithAttributesCreate(CreateView):
                 if attractions.is_valid():
                     attractions.instance = self.object
                     attractions.save()
-                models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data, attractions.cleaned_data)  # todo: sprawdzic czy dzialaja daty - wprowadzanie
+                models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
+                                                   attractions.cleaned_data)
             else:
                 return self.form_invalid(form)
 
@@ -121,15 +126,33 @@ class TripWithAttributesUpdate(UpdateView):
 
 
 @method_decorator(decorators, name='dispatch')
-class TripParticipants(FormView):  # todo: add user
-    pass
-
-
-@method_decorator(decorators, name='dispatch')
 class TripDelete(DeleteView):
     model = Trip
     success_url = reverse_lazy('trip-list')
 
+
+class TripParticipantsList(ListView):
+    model = User
+    template_name = 'tripplanner/trip_participants_list.html'
+
+    def get_queryset(self):
+        return Trip.objects.get(id=self.kwargs['pk']).participants.all()
+
+    def get_context_data(self, **kwargs):
+        data = super(TripParticipantsList, self).get_context_data(**kwargs)
+        data['trip_name'] = Trip.objects.get(id=self.kwargs['pk']).name
+        return data
+
+
+def validate_participant(request):
+    username = request.GET.get('username', None)
+    data = {
+        'exists': User.objects.filter(username__iexact=username).exists()
+    }
+    if data['exists']:
+        data['message'] = 'A user exists. You can send invitation to your trip.'
+
+    return JsonResponse(data)
 #
 # def pdffile(request):
 #

@@ -4,7 +4,22 @@ from django.urls import reverse
 import django
 from datetime import datetime
 from decimal import *
-
+# from django.db.models.signals import post_save
+# from django.dispatch import receiver
+#
+#
+# class Profile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#
+#
+#     @receiver(post_save, sender=User)
+#     def create_user_profile(sender, instance, created, **kwargs):
+#         if created:
+#             Profile.objects.create(user=instance)
+#
+#     @receiver(post_save, sender=User)
+#     def save_user_profile(sender, instance, **kwargs):
+#         instance.profile.save()
 
 
 class MeansOfTransport(models.Model):
@@ -30,7 +45,8 @@ class BasicInfo(models.Model):
 class Trip(BasicInfo):
     name = models.CharField(max_length=50, unique=True)
     description = models.TextField(null=True, max_length=250, blank=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)  # todo:szablony wycieczek- inna klasa
+    created_by = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
+    participants = models.ManyToManyField(User)
 
     def __str__(self):
         return self.name

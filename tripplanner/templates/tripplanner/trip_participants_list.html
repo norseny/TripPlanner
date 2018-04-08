@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% endblock %}
+{% block content %}
+    <h1>{{ trip_name }}</h1>
+    <h2>{% trans 'Trip participants' %}</h2>
+    <ul>
+        {% for user in object_list %}
+            <li>{{ user.username }}</li>
+        {% endfor %}
+    </ul>
+
+    {#    <form method="post">#}
+    {#        {% csrf_token %}#}
+    {#        <h2>{% trans 'Add new participant' %}</h2>#}
+    {#        <p>{% trans 'Type in the username' %}</p>#}
+    {#        {{ form.username }}#}
+    {#        <div>#}
+    {#            <button class="btn" type="submit">{% trans 'Add' %}</button>#}
+    {#        </div>#}
+    {#    </form>#}
+    <form>
+        <h2>{% trans 'Add new participant' %}</h2>
+        <p>{% trans 'Type in the username' %}</p>
+        <input type="text" name="username" id="new_participant" class="form-control form-control-sm"
+               data-validate-participant-url="{% url 'validate_participant' %}"> <span id="check_icon" style="display: none">check icon</span>
+        <div>
+            <input class="btn" type="submit" value="{% trans 'Add' %}"/>
+        </div>
+    </form>
+
+
+    <script>
+        $("#new_participant").change(function () {
+            var form = $(this).closest("form");
+            var input = $(this).closest("input");
+
+            $.ajax({
+                url: input.attr("data-validate-participant-url"),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function (data) {
+                    if (data.exists) {
+                        var x = document.getElementById("check_icon");
+                            if (x.style.display === "none") {
+                                x.style.display = "inline";
+                            }
+{#                        $("#check_icon").style.display = "block" ;#}
+                        alert(data.message);
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block js %}
+    {#  <script>#}
+    {#    $("#new_participant").change(function () {#}
+    {#      var username = $(this).val();#}
+    {##}
+    {#        $.ajax({#}
+    {#        url: '/ajax/validate_participant/',#}
+    {#        data: {#}
+    {#          'username': username#}
+    {#        },#}
+    {#        dataType: 'json',#}
+    {#        success: function (data) {#}
+    {#          if (data.is_taken) {#}
+    {#            alert("A user with this username already exists.");#}
+    {#          }#}
+    {#        }#}
+    {#        });#}
+    {#    });#}
+    {#  </script>#}
+{% endblock %}
