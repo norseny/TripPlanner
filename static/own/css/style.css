@@ -11,6 +11,11 @@
 
 #check_icon {display: inline-block}
 
+
+.font-weight-400 {
+    font-weight: 400;
+}
+
 .login-box {
     height: 80%;
     align-items: center;
@@ -25,8 +30,8 @@
 th,td {
     border-bottom-style: inherit;
     border-top-style: inherit;
-    border-bottom-color: #B2DFDB!important;
-    border-top-color: #B2DFDB!important;
+    border-bottom-color: #ede7f6!important;
+    border-top-color: #ede7f6!important;
 }
 
 .btn {
@@ -35,7 +40,7 @@ th,td {
 
 
 nav {
-    background: #B2DFDB;
+    background: #ede7f6;
 }
 
 body {
@@ -98,7 +103,7 @@ input[type=number] {
 }
 
 .accordion {
-    background-color: #b2dfdb;
+    background-color: #bbb5c3;
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -110,5 +115,5 @@ input[type=number] {
 }
 
 .accordion:active, .accordion:hover {
-    background-color: #e5ffff;
+    background-color: #ede7f6;
 }

@@ -33,6 +33,15 @@ class TripList(ListView):
 class TripDetail(DetailView):
     model = Trip
 
+    def get_context_data(self, **kwargs):
+        trip = kwargs['object']
+        all = list(trip.journey_set.all()) + list(trip.accommodation_set.all()) + list(trip.attraction_set.all())
+        all.sort(key=lambda x: x.start_time)
+        data = super(TripDetail, self).get_context_data(**kwargs)
+        data['all'] = all
+        return data
+
+
 
 @method_decorator(login_required, name='dispatch')
 class TripWithAttributesCreate(CreateView):

@@ -19,21 +19,21 @@ function addFormsets() {
         }
     };
     $('.formset_row1').formset({
-        addText: '<span class="font-size-bigger">+</span> Add new row', //todo: tłumaczenie - trans nie dziala
+        addText: '<span class="font-size-bigger">+</span>' + addNewRow,
         deleteText: '<span class="font-size-bigger">-</span>',
         prefix: 'journey_set',
         added: datepickerCallback()
     });
 
     $('.formset_row2').formset({
-        addText: '<span class="font-size-bigger">+</span>',
+        addText: '<span class="font-size-bigger">+</span>' + addNewRow,
         deleteText: '<span class="font-size-bigger">-</span>',
         prefix: 'accommodation_set',
         added: datepickerCallback()
     });
 
     $('.formset_row3').formset({
-        addText: '<span class="font-size-bigger">+</span>',
+        addText: '<span class="font-size-bigger">+</span>' + addNewRow,
         deleteText: '<span class="font-size-bigger">-</span>',
         prefix: 'attraction_set',
         added: datepickerCallback()

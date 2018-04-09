@@ -37,13 +37,14 @@ class BasicInfo(models.Model):
     start_time = models.DateTimeField(null=True, blank=True, default=datetime.now)
     end_time = models.DateTimeField(null=True, blank=True, default=datetime.now)
     price = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True, default=0.00)
+    name = models.CharField(null=True, blank=True, max_length=50, unique=True)
 
     class Meta:
         abstract = True
 
 
 class Trip(BasicInfo):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, unique=True, null=False, blank=False)
     description = models.TextField(null=True, max_length=250, blank=True)
     created_by = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
     participants = models.ManyToManyField(User)
@@ -93,10 +94,10 @@ class Journey(BasicInfo):
 
 
 class Accommodation(BasicInfo):
-    place = models.CharField(max_length=250, null=True, blank=True)
+    address = models.CharField(max_length=250, null=True, blank=True)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
 
 
 class Attraction(BasicInfo):
-    place = models.CharField(max_length=250, null=True, blank=True)
+    address = models.CharField(max_length=250, null=True, blank=True)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)

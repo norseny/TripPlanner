@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load custom_template_filters %}
 {% block title %}{% endblock %}
 {% block content %}
 
@@ -27,67 +28,43 @@
 
 
         <table class="table">
-            <h2>{% trans "Trip's details:" %}</h2>
+            <h2>{% trans "Trip's details" %}</h2>
+            <p>{% trans "Ordered by Start Time" %}</p>
             <thead>
             <tr>
                 <th></th>
+                <th>{% trans 'Name' %}</th>
                 <th>{% trans 'Start time' %}</th>
                 <th>{% trans 'End time' %}</th>
                 <th>{% trans 'Start point' %}</th>
                 <th>{% trans 'End point' %}</th>
                 <th>{% trans 'Means of transport' %}</th>
-                <th>{% trans 'Place' %}</th>
+                <th>{% trans 'Address' %}</th>
                 <th>{% trans 'Price (PLN)' %}</th>
             </tr>
             </thead>
+
             <tbody>
-            {% if trip.journey_set.all %}
-            {% for journey in trip.journey_set.all %}
-                <tr>
-                    <td>{% trans 'Journeys' %}</td>
-                    <td>{{ journey.start_time|date:"d-m-y H:i" }}</td>
-                    {# todo: somehow implement default display of dates #}
-                    <td>{{ journey.end_time|date:"d-m-Y H:i" }}</td>
-                    <td>{{ journey.start_point }}</td>
-                    <td>{{ journey.end_point }}</td>
-                    <td>{{ journey.means_of_transport }}</td>
-                    <td></td>
-                    <td>{{ journey.price }}</td>
-                </tr>
-            {% endfor %}
-            {% endif %}
-            {% if trip.accommodation_set.all %}
-            {% for accommodation in trip.accommodation_set.all %}
-                <tr>
-                    <td>{% trans 'Accommodations' %}</td>
-                    <td>{{ accommodation.start_time|date:"d-m-Y H:i" }}</td>
-                    <td>{{ accommodation.end_time|date:"d-m-Y H:i" }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>{{ accommodation.place }}</td>
-                    <td>{{ accommodation.price }}</td>
-                </tr>
-            {% endfor %}
-            {% endif %}
-            {% if trip.attraction_set.all %}
-            {% for attraction in trip.attraction_set.all %}
-                <tr>
-                    <td>{% trans 'Attractions' %}</td>
-                    <td>{{ attraction.start_time|date:"d-m-Y H:i" }}</td>
-                    <td>{{ attraction.end_time|date:"d-m-Y H:i" }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>{{ attraction.place }}</td>
-                    <td>{{ attraction.price }}</td>
-                </tr>
-            {% endfor %}
+            {% if all %}
+                {% for el in all %}
+                    <tr>
+                        <td class="font-weight-400">{{ el|cust_trunc }}</td>
+                        <td>{{ el.name|default_if_none:"" }}</td>
+                        <td>{{ el.start_time|date:"d-m-y H:i"|default_if_none:"" }}</td>
+                        <td>{{ el.end_time|date:"d-m-Y H:i"|default_if_none:"" }}</td>
+                        <td>{{ el.start_point|default_if_none:"" }}</td>
+                        <td>{{ el.end_point|default_if_none:"" }}</td>
+                        <td>{{ el.means_of_transport|default_if_none:"" }}</td>
+                        <td>{{ el.address|default_if_none:"" }}</td>
+                        <td>{{ el.price|default_if_none:"" }}</td>
+                    </tr>
+                {% endfor %}
             {% endif %}
             </tbody>
             <tfoot>
                 <tr>
                     <td><label>{% trans 'Total' %}</label></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -104,5 +81,5 @@
     <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip' %}</a></div>
     <div><a href="{% url 'trip-participants' trip.pk %}">{% trans 'Trip participants' %}</a></div>
 
-    {#    todo: button to my next trip in detail#}
+    {# todo: button to my next trip in detail #}
 {% endblock %}

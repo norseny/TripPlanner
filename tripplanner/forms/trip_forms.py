@@ -41,7 +41,7 @@ class JourneyForm(ModelForm):
 
     class Meta:
         model = Journey
-        fields = ['means_of_transport', 'start_point', 'end_point', 'start_time', 'end_time', 'price']
+        fields = ['means_of_transport','start_point', 'end_point', 'start_time', 'end_time', 'price']
         widgets = {
             'means_of_transport': Select(attrs={'class': 'custom-select mb-2 mr-sm-2 mb-sm-0'}),
             'start_point': TextInput(attrs={'class':'form-control form-control-sm'}),
@@ -65,9 +65,10 @@ class AccommodationForm(ModelForm):
 
     class Meta:
         model = Accommodation
-        fields = ['place', 'start_time', 'end_time', 'price']
+        fields = ['name', 'address','start_time', 'end_time', 'price']
         widgets = {
-            'place': TextInput(attrs={'class':'form-control form-control-sm'}),
+            'name': TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'address': TextInput(attrs={'class':'form-control form-control-sm'}),
             'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),
         }
         exclude = ()
@@ -87,11 +88,11 @@ class AttractionForm(ModelForm):
 
     class Meta:
         model = Attraction
-        fields = ['place', 'start_time', 'end_time', 'price']
+        fields = ['name','address','start_time', 'end_time', 'price']
         widgets = {
-            'place': TextInput(attrs={'class':'form-control form-control-sm'}),
-            # 'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),
-
+            'name': TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'address': TextInput(attrs={'class':'form-control form-control-sm'}),
+            'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),
         }
         exclude = ()
 

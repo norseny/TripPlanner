@@ -123,6 +123,7 @@
 
 {% block js %}
     <script>const language_code = '{{ request.LANGUAGE_CODE }}';</script>
+    <script>const addNewRow= '{% trans 'Add new row' %}'</script>
 
     <script src="{% static 'libs/formset/jquery.formset.js' %}"></script>
     <script src="{% static 'own/js/add_trip_attribute.js' %}"></script>

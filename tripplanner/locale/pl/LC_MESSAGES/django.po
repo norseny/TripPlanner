@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-28 17:48+0000\n"
+"POT-Creation-Date: 2018-04-09 21:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,59 +20,55 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: tripplanner/templates/base.html:53
+#: tripplanner/templates/base.html:54
 msgid "Home"
 msgstr "Strona Główna"
 
-#: tripplanner/templates/base.html:59
+#: tripplanner/templates/base.html:60
 msgid "Trip List"
 msgstr "Wycieczki"
 
-#: tripplanner/templates/base.html:62
+#: tripplanner/templates/base.html:63
 msgid "New trip"
 msgstr "Nowa wycieczka"
 
-#: tripplanner/templates/base.html:84
+#: tripplanner/templates/base.html:66
+msgid "About trips"
+msgstr "O wycieczkach"
+
+#: tripplanner/templates/base.html:88
 msgid "You are logged as"
 msgstr "Jesteś zalogowany jako"
 
-#: tripplanner/templates/base.html:89
-#: tripplanner/templates/register/logged_out.html:10
-#: tripplanner/templates/register/login.html:60
+#: tripplanner/templates/base.html:93
+#: tripplanner/templates/register/login.html:28
 msgid "Log in"
 msgstr "Zaloguj"
 
-#: tripplanner/templates/base.html:91
+#: tripplanner/templates/base.html:95
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: tripplanner/templates/register/logged_out.html:5
-msgid "See you!"
-msgstr "Do zobaczenia!"
-
-#: tripplanner/templates/register/logged_out.html:8
-msgid "Logged out"
-msgstr "Wylogowano"
-
-#: tripplanner/templates/register/logged_out.html:9
-msgid "You have been successfully logged out."
-msgstr "Wylogowywanie zakończone powodzeniem."
-
-#: tripplanner/templates/register/login.html:42
+#: tripplanner/templates/register/login.html:8
 msgid "Log in to Trip Planner"
 msgstr "Logowanie"
 
-#: tripplanner/templates/register/login.html:47
-#: tripplanner/templates/register/login.html:49
+#: tripplanner/templates/register/login.html:10
+msgid "Your username and password didn't match. Please try again."
+msgstr "Login lub hasło są nieprawidłowe. Spróbuj ponownie."
+
+#: tripplanner/templates/register/login.html:16
+#: tripplanner/templates/register/login.html:18
+#: tripplanner/templates/tripplanner/trip_participants_list.html:19
 msgid "Username"
 msgstr "Nazwa użytkownika"
 
-#: tripplanner/templates/register/login.html:53
-#: tripplanner/templates/register/login.html:55
+#: tripplanner/templates/register/login.html:22
+#: tripplanner/templates/register/login.html:24
 msgid "Password"
 msgstr "Hasło"
 
-#: tripplanner/templates/register/login.html:61
+#: tripplanner/templates/register/login.html:31
 msgid "New to Trip Planner? Sign up!"
 msgstr "Nie masz jeszcze konta? Zarejestruj się!"
 
@@ -92,127 +88,166 @@ msgstr "Potwierdź usunięcie wycieczki"
 msgid "Are you sure you want to delete "
 msgstr "Czy na pewno chcesz usunąć "
 
-#: tripplanner/templates/tripplanner/trip_detail.html:6
-msgid "Trip's details:"
-msgstr "Szczegóły wycieczki"
-
-#: tripplanner/templates/tripplanner/trip_detail.html:9
-msgid "Name"
-msgstr "Nazwa"
-
-#: tripplanner/templates/tripplanner/trip_detail.html:10
+#: tripplanner/templates/tripplanner/trip_detail.html:11
+#: tripplanner/templates/tripplanner/trip_list.html:10
 msgid "Description"
 msgstr "Opis"
 
-#: tripplanner/templates/tripplanner/trip_detail.html:11
+#: tripplanner/templates/tripplanner/trip_detail.html:12
 msgid "Created by"
 msgstr "Stworzona przez"
 
-#: tripplanner/templates/tripplanner/trip_detail.html:15
-#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:24
-msgid "Journeys"
-msgstr "Podróże"
-
-#: tripplanner/templates/tripplanner/trip_detail.html:19
-#: tripplanner/templates/tripplanner/trip_detail.html:41
-#: tripplanner/templates/tripplanner/trip_detail.html:59
+#: tripplanner/templates/tripplanner/trip_detail.html:13
+#: tripplanner/templates/tripplanner/trip_detail.html:37
 msgid "Start time"
 msgstr "Czas rozpoczęcia"
 
-#: tripplanner/templates/tripplanner/trip_detail.html:21
-#: tripplanner/templates/tripplanner/trip_detail.html:43
-#: tripplanner/templates/tripplanner/trip_detail.html:61
+#: tripplanner/templates/tripplanner/trip_detail.html:14
+#: tripplanner/templates/tripplanner/trip_detail.html:38
 msgid "End time"
 msgstr "Czas zakończenia"
 
-#: tripplanner/templates/tripplanner/trip_detail.html:23
-msgid "Start point"
-msgstr "Punkt startowy"
-
-#: tripplanner/templates/tripplanner/trip_detail.html:25
-msgid "End point"
-msgstr "Punkt końcowy"
-
-#: tripplanner/templates/tripplanner/trip_detail.html:27
-msgid "Means of transport"
-msgstr "Środek transportu"
-
-#: tripplanner/templates/tripplanner/trip_detail.html:29
-#: tripplanner/templates/tripplanner/trip_detail.html:47
-#: tripplanner/templates/tripplanner/trip_detail.html:65
+#: tripplanner/templates/tripplanner/trip_detail.html:15
+#: tripplanner/templates/tripplanner/trip_detail.html:43
 msgid "Price (PLN)"
 msgstr "Koszt (PLN)"
 
-#: tripplanner/templates/tripplanner/trip_detail.html:37
-#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:55
-msgid "Accommodations"
-msgstr "Zakwaterowanie"
+#: tripplanner/templates/tripplanner/trip_detail.html:31
+msgid "Trip's details"
+msgstr "Szczegóły wycieczki"
 
-#: tripplanner/templates/tripplanner/trip_detail.html:45
-#: tripplanner/templates/tripplanner/trip_detail.html:63
-msgid "Place"
-msgstr "Miejsce"
+#: tripplanner/templates/tripplanner/trip_detail.html:32
+msgid "Ordered by Start Time"
+msgstr "Uporządkowane chronologicznie wg czasu rozpoczęcia"
 
-#: tripplanner/templates/tripplanner/trip_detail.html:55
-#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:86
-msgid "Attractions"
-msgstr "Atrakcje"
+#: tripplanner/templates/tripplanner/trip_detail.html:36
+#: tripplanner/templates/tripplanner/trip_list.html:9
+msgid "Name"
+msgstr "Nazwa"
 
-#: tripplanner/templates/tripplanner/trip_detail.html:72
+#: tripplanner/templates/tripplanner/trip_detail.html:39
+msgid "Start point"
+msgstr "Punkt startowy"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:40
+msgid "End point"
+msgstr "Punkt końcowy"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:41
+msgid "Means of transport"
+msgstr "Środek transportu"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:42
+msgid "Address"
+msgstr "Adres"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:66
+msgid "Total"
+msgstr "Suma"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:80
 msgid "Edit the trip"
 msgstr "Edytuj wycieczkę"
 
-#: tripplanner/templates/tripplanner/trip_detail.html:73
+#: tripplanner/templates/tripplanner/trip_detail.html:81
 msgid "Delete the trip"
 msgstr "Usuń wycieczkę"
 
-#: tripplanner/templates/tripplanner/trip_list.html:6
+#: tripplanner/templates/tripplanner/trip_detail.html:82
+#: tripplanner/templates/tripplanner/trip_participants_list.html:6
+msgid "Trip participants"
+msgstr "Uczestnicy wycieczki"
+
+#: tripplanner/templates/tripplanner/trip_list.html:5
 msgid "The trips"
 msgstr "Wycieczki"
 
-#: tripplanner/templates/tripplanner/trip_list.html:11
+#: tripplanner/templates/tripplanner/trip_list.html:19
 msgid "Details"
 msgstr "Szczegóły"
 
-#: tripplanner/templates/tripplanner/trip_list.html:12
+#: tripplanner/templates/tripplanner/trip_list.html:20
 msgid "Edit"
 msgstr "Edytuj"
 
-#: tripplanner/templates/tripplanner/trip_list.html:13
+#: tripplanner/templates/tripplanner/trip_list.html:21
 msgid "Delete"
 msgstr "Usuń"
 
-#: tripplanner/templates/tripplanner/trip_list.html:16
+#: tripplanner/templates/tripplanner/trip_list.html:25
 msgid "No trip yet."
 msgstr "Brak wycieczek."
 
-#: tripplanner/templates/tripplanner/trip_list.html:21
+#: tripplanner/templates/tripplanner/trip_list.html:31
 msgid "Create a new trip"
 msgstr "Utwórz nową wycieczkę"
+
+#: tripplanner/templates/tripplanner/trip_participants_list.html:17
+msgid "Add new participant"
+msgstr "Dodaj współuczestnika"
+
+#: tripplanner/templates/tripplanner/trip_participants_list.html:18
+msgid "Type in the username and click \"Tab\" to validate it"
+msgstr "Wpisz nazwę użytkownika i kliknij \"Tab\" aby ją zweryfikować"
+
+#: tripplanner/templates/tripplanner/trip_participants_list.html:21
+msgid "Add"
+msgstr "Dodaj"
 
 #: tripplanner/templates/tripplanner/trip_with_attributes_form.html:8
 msgid "Trip"
 msgstr "Wycieczka"
 
-#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:118
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:22
+msgid "Journeys"
+msgstr "Podróże"
+
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:53
+msgid "Accommodations"
+msgstr "Zakwaterowanie"
+
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:84
+msgid "Attractions"
+msgstr "Atrakcje"
+
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:116
 msgid "Save"
 msgstr "Zapisz"
 
-#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:119
+#: tripplanner/templates/tripplanner/trip_with_attributes_form.html:117
 msgid "Back to the list"
 msgstr "Powrót do listy"
 
-#~ msgid "Your username and password didn't match. Please try again."
-#~ msgstr "Login lub hasło są nieprawidłowe. Spróbuj ponownie."
+msgid "Journey"
+msgstr "Podróż"
 
-msgid "Price"
-msgstr "Koszt (PLN)"
+msgid "Accommodation"
+msgstr "Zakwaterowanie"
+
+msgid "Attraction"
+msgstr "Atrakcja"
+
+msgid "Add new row"
+msgstr "Dodaj kolejny wiersz"
+
+
+#~ msgid "Place"
+#~ msgstr "Miejsce"
+
+#~ msgid "See you!"
+#~ msgstr "Do zobaczenia!"
+
+#~ msgid "Logged out"
+#~ msgstr "Wylogowano"
+
+#~ msgid "You have been successfully logged out."
+#~ msgstr "Wylogowywanie zakończone powodzeniem."
+
+#~ msgid "Price"
+#~ msgstr "Koszt (PLN)"
 
 #~ msgid "Polish"
 #~ msgstr "Polski"
 
-msgid "Repeat Password"
-msgstr "Powtórz hasło"
-
-msgid "About trips"
-msgstr "O wycieczkach"
+#~ msgid "Repeat Password"
+#~ msgstr "Powtórz hasło"
