@@ -18,7 +18,7 @@
                 <p>{% trans 'Type in the username and click "Tab" to validate it' %}</p>
                 <input class="form-control new-participant" type="text" id="username" name="username"  placeholder={% trans "Username"%} data-validate-participant-url="{% url 'validate_participant' %}"> <span id="check_icon" style="visibility: hidden"></span>
                 <div>
-                    <button class="btn" style="display: none" type="submit">{% trans 'Add' %}</button>
+                    <button class="btn" id='add-button'style="display: none" type="submit">{% trans 'Add' %}</button>
                 </div>
             </form>
         </div>
@@ -37,13 +37,12 @@
 
             $.ajax({
                 url: input.attr("data-validate-participant-url"),
-{#                data: form.serialize(),#}
                 data: data,
                 dataType: 'json',
                 success: function (data) {
                     $('#check_icon').css('visibility', 'visible');
                     $('#check_icon').css('font-style', 'italic');
-                    $('.btn').hide();
+                    $('#add-button').hide();
                     if (data.exists) {
                         $('#check_icon').css('color', '#4caf50');
                         $('#check_icon').html("<i class='fa fa-check fa-2x green-text' aria-hidden='true'></i>" + data.message_text);

@@ -9,11 +9,9 @@ class MyDateTimeInput(forms.DateTimeInput):
     input_type = 'datetime'
 
 
-# class MyDateTimeField(forms.DateTimeField):
-#     input_formats = settings.DATETIME_INPUT_FORMATS
-#     widget = MyDateTimeInput(
-#         attrs={'placeholder': 'date'}
-#     )
+class MyDateTimeField(forms.DateTimeField):
+    widget = MyDateTimeInput(
+        attrs={'class': 'form-control form-control-sm'})
 
 
 class TripForm(ModelForm, Form):
@@ -26,18 +24,9 @@ class TripForm(ModelForm, Form):
             'name': TextInput(attrs={'class':'form-control form-control-sm'})
         }
 
-
 class JourneyForm(ModelForm):
-    start_time = forms.DateTimeField(  # todo: jakos tego nie powtarzac
-        input_formats=settings.DATETIME_INPUT_FORMATS,  # todo: validation : start date cannot be later than enddate
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
-        required=False
-    )
-    end_time = forms.DateTimeField(
-        input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
-        required=False
-    )
+    start_time = MyDateTimeField(required=False)
+    end_time = MyDateTimeField(required=False)
 
     class Meta:
         model = Journey
@@ -52,16 +41,8 @@ class JourneyForm(ModelForm):
 
 
 class AccommodationForm(ModelForm):
-    start_time = forms.DateTimeField(
-        input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
-        required=False
-    )
-    end_time = forms.DateTimeField(
-        input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
-        required=False
-    )
+    start_time = MyDateTimeField(required=False)
+    end_time = MyDateTimeField(required=False)
 
     class Meta:
         model = Accommodation
@@ -75,16 +56,8 @@ class AccommodationForm(ModelForm):
 
 
 class AttractionForm(ModelForm):
-    start_time = forms.DateTimeField(
-        input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
-        required=False
-    )
-    end_time = forms.DateTimeField(
-        input_formats=settings.DATETIME_INPUT_FORMATS,
-        widget=MyDateTimeInput(attrs={'class': 'form-control form-control-sm'}),
-        required=False
-    )
+    start_time = MyDateTimeField(required=False)
+    end_time = MyDateTimeField(required=False)
 
     class Meta:
         model = Attraction
@@ -103,3 +76,4 @@ AccommodationFormSet = inlineformset_factory(Trip, Accommodation, form=Accommoda
 
 class AddParticipantForm(Form):
     username = forms.CharField(max_length=50)
+

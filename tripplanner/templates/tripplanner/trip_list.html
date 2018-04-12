@@ -17,8 +17,13 @@
                     <td>{{ trip.description }}</td>
 
                     <td><a href="{% url 'trip-detail' trip.pk %}">{% trans 'Details'%}</a></td> {# todo:ostylowac#}
-                    <td><a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit'%}</a></td>
-                    <td><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete'%}</a></td>
+                    {% if user.id == trip.created_by_id %}
+                        <td><a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit'%}</a></td>
+                        <td><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete'%}</a></td>
+                    {% else %}
+                        <td></td>
+                        <td></td>
+                    {% endif %}
                 </tr>
             {% empty %}
                 <tr>

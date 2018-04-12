@@ -11,6 +11,9 @@ from tripplanner import models
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 
+from django.utils.translation import gettext as _
+
+
 # import pdfkit
 # from django.http import HttpResponse
 
@@ -24,7 +27,7 @@ class TripList(ListView):
     def get_queryset(self): #todo: chenage display filters for diff users
         curr_user = User.objects.get(pk=self.request.user.id)
         if not curr_user.is_superuser:
-            return Trip.objects.filter(created_by=self.request.user.pk)
+            return Trip.objects.filter(participants=curr_user.id)
         else:
             return Trip.objects.all()
 
@@ -36,11 +39,13 @@ class TripDetail(DetailView):
     def get_context_data(self, **kwargs):
         trip = kwargs['object']
         all = list(trip.journey_set.all()) + list(trip.accommodation_set.all()) + list(trip.attraction_set.all())
-        all.sort(key=lambda x: x.start_time)
+        filtered_rows = [x for x in all if x.start_time != None]
+        filtered_rows_leftouts = [x for x in all if x.start_time == None]
+        filtered_rows.sort(key=lambda x: x.start_time)
+        all_sorted = filtered_rows + filtered_rows_leftouts
         data = super(TripDetail, self).get_context_data(**kwargs)
-        data['all'] = all
+        data['all'] = all_sorted
         return data
-
 
 
 @method_decorator(login_required, name='dispatch')
@@ -128,7 +133,7 @@ class TripWithAttributesUpdate(UpdateView):
                     attractions.instance = self.object
                     attractions.save()
                 models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
-                                                   attractions.cleaned_data)
+                                                   attractions.cleaned_data) # todo: fix
             else:
                 return self.form_invalid(form)
 
@@ -173,8 +178,8 @@ def validate_participant(request):
 
     data = {
         'exists': success,
-        'message_error' : "User doesn't exist or is already added.",
-        'message_text' : 'Click "add" to add this user to your trip.'
+        'message_error' : _(str("User doesn't exist or is already added.")),
+        'message_text' : _(str('Click "Add" to add this user to your trip.'))
     }
     return JsonResponse(data)
 #

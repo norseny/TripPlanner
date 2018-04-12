@@ -4,6 +4,7 @@
 {% block title %}{% endblock %}
 {% block content %}
 
+
     <h1>{{ trip.name }} </h1>
     <table class="table">
         <thead>
@@ -26,7 +27,7 @@
         </tbody>
     </table>
 
-
+    <div class="scrollable-horizontally">
         <table class="table">
             <h2>{% trans "Trip's details" %}</h2>
             <p>{% trans "Ordered by Start Time" %}</p>
@@ -75,10 +76,12 @@
                 </tr>
             </tfoot>
         </table>
+    </div>
 
-
-    <div><a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit the trip' %}</a></div>
-    <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip' %}</a></div>
+    {% if user.id == trip.created_by_id %}
+        <div><a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit the trip' %}</a></div>
+        <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip' %}</a></div>
+    {% endif %}
     <div><a href="{% url 'trip-participants' trip.pk %}">{% trans 'Trip participants' %}</a></div>
 
     {# todo: button to my next trip in detail #}

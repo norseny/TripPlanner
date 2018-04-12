@@ -115,9 +115,10 @@
 
         <div><input class="btn btn-primary" type="submit" value="{% trans 'Save' %}"/></div>
         <div><a href="{% url 'trip-list' %}">{% trans 'Back to the list' %}</a></div>
-
+{# todo: flatpicker kasuje godzinę przy update#}
+{#    todo: implementacja - gdy bład, to pokaż wszystkie tabby rozsuniete#}
+        {#    todo: implementacja - gdy bład, to pokaż wszystkie taby rozsuniete#}
     </form>
-
 
 {% endblock %}
 
@@ -128,9 +129,16 @@
     <script src="{% static 'libs/formset/jquery.formset.js' %}"></script>
     <script src="{% static 'own/js/add_trip_attribute.js' %}"></script>
 
+{#    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">#}
+    <link rel="stylesheet" href="{% static 'libs/flatpickr/flatpickr.min.css' %}">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-    <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>
+{#    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>#}
+    <script src="{% static 'libs/flatpickr/flatpickr' %}"></script>
+{#    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>#}
+    <script src="{% static 'libs/flatpickr/flatpickr.min.js' %}"></script>
+
+{#    <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>#}
+    <script src="{% static 'libs/flatpickr/pl.js' %}"></script>
+
 {% endblock %}
+

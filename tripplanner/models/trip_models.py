@@ -78,9 +78,9 @@ class Trip(BasicInfo):
         if end_times:
             self.end_time = max(end_times)
         if isinstance(self.price, float):
-            self.price += float(total_price)
+            self.price = float(total_price)
         else:
-            self.price += total_price
+            self.price = total_price
         self.save()
 
 
