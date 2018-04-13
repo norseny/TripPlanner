@@ -96,6 +96,9 @@ body {
     background-size: 100% 100%;
 }
 
+body, html, main{min-height:100%;}
+
+
 h1, h2 {
     padding: 1rem;
 }
@@ -104,9 +107,13 @@ h1, h2 {
     display: inline-block;
 }
 
-.container {
+#trip-participants-h1 {
+    margin-top: 5rem;
+}
 
+.container {
     padding: 1rem;
+    min-height: 100%;
 }
 
 .scrollable-horizontally {

@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block title %}{% endblock %}
 {% block content %}
-            <h1>{{ trip.name }}</h1>
+            <h1 id="trip-participants-h1">{{ trip.name }}</h1>
             <h2>{% trans 'Trip participants' %}</h2>
             <ul>
                 {% for user in participants %}
@@ -33,9 +33,9 @@
             var form = $(this).closest("form");
             var input = $(this).closest("input");
             var $form = $('form')
-            var tripName = {'tripName' : '{{trip_name}}' };
+            var tripId = {'tripId' : '{{trip.id}}' };
 
-            data = $form.serialize() + '&' + $.param(tripName);
+            data = $form.serialize() + '&' + $.param(tripId);
 
             $.ajax({
                 url: input.attr("data-validate-participant-url"),

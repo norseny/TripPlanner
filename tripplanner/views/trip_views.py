@@ -168,13 +168,12 @@ class TripParticipantsList(FormView): # todo: change to list view, think of diff
 
 def validate_participant(request):
     username = request.GET.get('username', None)
-    trip_name = request.GET.get('tripName', None)
-    trip = Trip.objects.filter(name=trip_name).first()
+    trip_id = request.GET.get('tripId', None)
+    trip = Trip.objects.get(pk=trip_id)
     success = False
     if User.objects.filter(username__iexact=username).exists():
         if username not in list(trip.participants.values_list('username', flat=True).all()):
             success = True
-
     data = {
         'exists': success,
         'message_error': _(str("User doesn't exist or is already added.")),
