@@ -145,7 +145,7 @@ class TripDelete(DeleteView):
 
 
 @method_decorator(login_required, name='dispatch')
-class TripParticipantsList(FormView):
+class TripParticipantsList(FormView): # todo: change to list view, think of diff mechanism with adding and validation
     form_class = AddParticipantForm
     template_name = 'tripplanner/trip_participants_list.html'
 
@@ -154,9 +154,8 @@ class TripParticipantsList(FormView):
 
     def get_context_data(self, **kwargs):
         data = super(TripParticipantsList, self).get_context_data(**kwargs)
+        data['trip'] = Trip.objects.get(id=self.kwargs['pk'])
         data['participants'] = Trip.objects.get(id=self.kwargs['pk']).participants.all()
-        data['trip_name'] = Trip.objects.get(id=self.kwargs['pk']).name
-        data['trip_creator'] = Trip.objects.get(id=self.kwargs['pk']).created_by_id
         return data
 
     def form_valid(self, form):

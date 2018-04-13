@@ -4,25 +4,54 @@
 {% block title %}{% endblock %}
 {% block content %}
 
+    <div class="row details-top-part">
+        <div class="col-6">
+            <h1 class="h1-details">{{ trip.name }} </h1>
 
-    <h1>{{ trip.name }} </h1>
-    {% if user.id == trip.created_by_id %}
-        <a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit the trip' %}</a>
-        <a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip' %}</a>
-    {% endif %}
-
-    <div>
-        <p class="details-main"><label>{% trans 'Description' %}:</label> {{ trip.description }} </p>
-        <p class="details-main"><label>{% trans 'Created by' %}:</label> {{ trip.created_by }} </p>
-        <p class="details-main"><label>{% trans 'Start time' %}:</label> {{ trip.start_time }} </p>
-        <p class="details-main"><label>{% trans 'End time' %}:</label> {{ trip.end_time }} </p>
-        <p class="details-main"><label>{% trans 'Price (PLN)' %}:</label> {{ trip.price }} </p>
+            <div>
+                <p class="details-main"><label>{% trans 'Description' %}:</label> {{ trip.description }} </p>
+                <p class="details-main"><label>{% trans 'Created by' %}:</label> {{ trip.created_by }} </p>
+                <p class="details-main"><label>{% trans 'Start time' %}:</label> {{ trip.start_time }} </p>
+                <p class="details-main"><label>{% trans 'End time' %}:</label> {{ trip.end_time }} </p>
+                <p class="details-main"><label>{% trans 'Price (PLN)' %}:</label> {{ trip.price }} </p>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row w-100 justify-content-center align-items-end text-center" id="details-main-icons-1row">
+                {% if user.id == trip.created_by_id %}
+                    <div class="col-6 d-inline-block">
+                        <a href="{% url 'trip-update' trip.pk %}"><span class="myicon">
+                            <i class="far fa-edit fa-5x d-block"></i>{% trans 'Edit' %}
+                        </span></a>
+                    </div>
+                    <div class="col-6 d-inline-block">
+                        <a href="{% url 'trip-delete' trip.pk %}"><span class="myicon">
+                        <i class="far fa-trash fa-5x d-block"></i>{% trans 'Delete' %}
+                        </span></a>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="row w-100 justify-content-center align-items-end text-center">
+                <div class="col-6 d-inline-block">
+                    <a href="{% url 'trip-participants' trip.pk %}"><span class="myicon">
+                            <i class="far fa-users fa-5x d-block"></i>{% trans 'Trip participants' %}
+                    </span></a>
+                </div>
+                <div class="col-6 d-inline-block">
+                    <a href="{% url 'trip-detail-pdf' trip.pk %}"><span class="myicon">
+                        <i class="far fa-file-pdf fa-5x d-block"></i>{% trans 'Pdf-file with details' %}
+                    </span></a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="scrollable-horizontally">
-        <table class="table">
-            <h2>{% trans "Trip's details" %}</h2>
-            <p>{% trans "Ordered by Start Time" %}</p>
+    <div class="accordion" onclick="openDetails(event, 'trip-details-table')">
+        {% trans "Show/Hide Trip's Details" %}</div>
+
+    <div class="scrollable-horizontally tabcontent" id="trip-details-table">
+        <table class="table table-details">
+            <label id="table-details-label">{% trans "Trip's Details Ordered by Start Time" %}</label>
             <thead>
             <tr>
                 <th></th>
@@ -55,24 +84,36 @@
             {% endif %}
             </tbody>
             <tfoot>
-                <tr>
-                    <td><label>{% trans 'Total' %}</label></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>{{ trip.price }}</td>
-                </tr>
+            <tr>
+                <td class="font-weight-bold">{% trans 'Total' %}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="font-weight-bold">{{ trip.price }}</td>
+            </tr>
             </tfoot>
         </table>
     </div>
 
-    <div><a href="{% url 'trip-participants' trip.pk %}">{% trans 'Trip participants' %}</a></div>
-
-        <div><a href="{% url 'trip-detail-pdf' trip.pk %}">{% trans 'trip-detail-pdf' %}</a></div>
-
     {# todo: button to my next trip in detail #}
+{% endblock %}
+
+{% block js %}
+    <script>
+        function openDetails(evt, id) {
+            var myvar;
+            myvar = document.getElementById(id);
+            if (myvar.style.display == "block") {
+                myvar.style.display = "none";
+            } else {
+                myvar.style.display = "block";
+            }
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
 {% endblock %}

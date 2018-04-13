@@ -116,9 +116,12 @@ msgstr "Koszt (PLN)"
 msgid "Trip's details"
 msgstr "Szczegóły wycieczki"
 
+msgid "Show/Hide Trip's Details"
+msgstr "Pokaż/Ukryj szczegóły wycieczki"
+
 #: tripplanner/templates/tripplanner/trip_detail.html:33
-msgid "Ordered by Start Time"
-msgstr "Uporządkowane chronologicznie wg czasu rozpoczęcia"
+msgid "Trip's Details Ordered by Start Time"
+msgstr "Szczegóły wycieczki uporządkowane chronologicznie według czasu rozpoczęcia"
 
 #: tripplanner/templates/tripplanner/trip_detail.html:37
 #: tripplanner/templates/tripplanner/trip_list.html:9
@@ -257,3 +260,9 @@ msgstr "Polski"
 
 msgid "Repeat Password"
 msgstr "Powtórz hasło"
+
+msgid "Pdf-file with details"
+msgstr "Plik .pdf ze szczegółami"
+
+msgid "Back to Trip Details"
+msgstr "Powrót do szczegółów wycieczki"

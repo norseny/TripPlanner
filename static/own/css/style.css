@@ -1,12 +1,55 @@
-@media screen and (min-width: 768px) {
+@media (max-width: 576px) {
     .container {
-        margin-left: 80px;
+        max-width: 90%;
     }
 }
 
+@media (min-width: 992px) {
+    .container {
+        max-width: 920px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+.details-top-part {
+    margin: 5rem 0 2rem 0;
+}
+
+#details-main-icons-1row {
+    margin-top: 5rem;
+}
+
+.tabcontent {
+    display: none;
+    padding: 1rem;
+}
+
+.myicon{
+    color: #321911;
+}
+.myicon:hover{
+    color: #8b6b61;
+}
+
+i {
+    font-style: normal;
+}
+
 .details-main {
-    margin: 0;
-    line-height: 1rem;
+    /*margin: .25rem;*/
+}
+
+.table-details {
+     margin-top: 2rem;
+ }
+
+#table-details-label {
+    margin: 1.5rem 0 1rem 0;
 }
 
 .new-participant {
@@ -14,8 +57,9 @@
     display: inline-block;
 }
 
-#check_icon {display: inline-block}
-
+#check_icon {
+    display: inline-block
+}
 
 .font-weight-400 {
     font-weight: 400;
@@ -25,27 +69,25 @@
     height: 80%;
     align-items: center;
     overflow: hidden;
-    margin-left: 150px;
 }
 
 .form-signin > div {
     padding: 1rem;
 }
 
-th,td {
+th, td {
     border-bottom-style: inherit;
     border-top-style: inherit;
-    border-bottom-color: #ede7f6!important;
-    border-top-color: #ede7f6!important;
+    border-bottom-color: #ede7f6 !important;
+    border-top-color: #ede7f6 !important;
 }
 
 .btn {
-    background: #321911!important;
+    background: #321911 !important;
 }
 
-
 nav {
-    background: rgba(237, 231, 246, 0.95);
+    background: rgb(237, 231, 246);
 }
 
 body {
@@ -54,8 +96,12 @@ body {
     background-size: 100% 100%;
 }
 
-h1,h2  {
+h1, h2 {
     padding: 1rem;
+}
+
+.h1-details {
+    display: inline-block;
 }
 
 .container {
@@ -73,15 +119,12 @@ h1,h2  {
 
 label {
     font-weight: 400;
+    margin: 0;
 }
 
 .trip-form {
     padding: .5rem 0;
 
-}
-
-.table {
-    margin-bottom: .5rem;
 }
 
 .table td {

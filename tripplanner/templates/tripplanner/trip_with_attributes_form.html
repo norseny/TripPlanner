@@ -115,6 +115,11 @@
 
         <div><input class="btn btn-primary" type="submit" value="{% trans 'Save' %}"/></div>
         <div><a href="{% url 'trip-list' %}">{% trans 'Back to the list' %}</a></div>
+
+    {% if form.initial|length > 0 %}
+        <a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details'%}</a>
+    {% endif %}
+
 {# todo: flatpicker kasuje godzinę przy update#}
 {#    todo: implementacja - gdy bład, to pokaż wszystkie tabby rozsuniete#}
         {#    todo: implementacja - gdy bład, to pokaż wszystkie taby rozsuniete#}

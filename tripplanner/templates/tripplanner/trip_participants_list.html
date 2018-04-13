@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block title %}{% endblock %}
 {% block content %}
-            <h1>{{ trip_name }}</h1>
+            <h1>{{ trip.name }}</h1>
             <h2>{% trans 'Trip participants' %}</h2>
             <ul>
                 {% for user in participants %}
@@ -10,9 +10,9 @@
                 {% endfor %}
             </ul>
 
-        {% if trip_creator == user.id %}
+        {% if trip.created_by_id == user.id %}
         <div class="md-form">
-            <form method="post">
+            <form method="post"> {# todo: half of the screen displaying only #}
                 {% csrf_token %}
                 <h2>{% trans 'Add new participant' %}</h2>
                 <p>{% trans 'Type in the username and click "Tab" to validate it' %}</p>
@@ -23,6 +23,8 @@
             </form>
         </div>
         {% endif %}
+
+        <a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details'%}</a>
 
 
 
@@ -45,12 +47,14 @@
                     $('#add-button').hide();
                     if (data.exists) {
                         $('#check_icon').css('color', '#4caf50');
-                        $('#check_icon').html("<i class='fa fa-check fa-2x green-text' aria-hidden='true'></i>" + data.message_text);
+                        $('#check_icon').html("<i class='fa fa-check fa-2x green-text' aria-hidden='true'><\/i>" +
+                            data.message_text);
                         $('.btn').show();
                     }
                     else {
                         $('#check_icon').css('color', '#f44336');
-                        $('#check_icon').html("<i class='fa fa-close fa-2x red-text' aria-hidden='true'></i>" + data.message_error);
+                        $('#check_icon').html("<i class='fa fa-close fa-2x red-text' aria-hidden='true'><\/i>" + data
+                            .message_error);
                     }
                 }
             });
