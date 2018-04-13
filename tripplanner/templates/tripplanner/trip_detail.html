@@ -6,26 +6,18 @@
 
 
     <h1>{{ trip.name }} </h1>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>{% trans 'Description' %}</th>
-            <th>{% trans 'Created by' %}</th>
-            <th>{% trans 'Start time' %}</th>
-            <th>{% trans 'End time' %}</th>
-            <th>{% trans 'Price (PLN)' %}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>{{ trip.description }}</td>
-            <td>{{ trip.created_by }}</td>
-            <td>{{ trip.start_time }}</td>
-            <td>{{ trip.end_time }}</td>
-            <td>{{ trip.price }}</td>
-        </tr>
-        </tbody>
-    </table>
+    {% if user.id == trip.created_by_id %}
+        <a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit the trip' %}</a>
+        <a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip' %}</a>
+    {% endif %}
+
+    <div>
+        <p class="details-main"><label>{% trans 'Description' %}:</label> {{ trip.description }} </p>
+        <p class="details-main"><label>{% trans 'Created by' %}:</label> {{ trip.created_by }} </p>
+        <p class="details-main"><label>{% trans 'Start time' %}:</label> {{ trip.start_time }} </p>
+        <p class="details-main"><label>{% trans 'End time' %}:</label> {{ trip.end_time }} </p>
+        <p class="details-main"><label>{% trans 'Price (PLN)' %}:</label> {{ trip.price }} </p>
+    </div>
 
     <div class="scrollable-horizontally">
         <table class="table">
@@ -78,11 +70,9 @@
         </table>
     </div>
 
-    {% if user.id == trip.created_by_id %}
-        <div><a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit the trip' %}</a></div>
-        <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip' %}</a></div>
-    {% endif %}
     <div><a href="{% url 'trip-participants' trip.pk %}">{% trans 'Trip participants' %}</a></div>
+
+        <div><a href="{% url 'trip-detail-pdf' trip.pk %}">{% trans 'trip-detail-pdf' %}</a></div>
 
     {# todo: button to my next trip in detail #}
 {% endblock %}

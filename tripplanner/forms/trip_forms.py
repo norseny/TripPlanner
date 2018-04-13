@@ -30,9 +30,10 @@ class JourneyForm(ModelForm):
 
     class Meta:
         model = Journey
-        fields = ['means_of_transport','start_point', 'end_point', 'start_time', 'end_time', 'price']
+        fields = ['means_of_transport','name','start_point', 'end_point', 'start_time', 'end_time', 'price']
         widgets = {
             'means_of_transport': Select(attrs={'class': 'custom-select mb-2 mr-sm-2 mb-sm-0'}),
+            'name': TextInput(attrs={'class': 'form-control form-control-sm'}),
             'start_point': TextInput(attrs={'class':'form-control form-control-sm'}),
             'end_point': TextInput(attrs={'class': 'form-control form-control-sm'}),
             'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),

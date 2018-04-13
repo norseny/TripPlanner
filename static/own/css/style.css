@@ -4,6 +4,11 @@
     }
 }
 
+.details-main {
+    margin: 0;
+    line-height: 1rem;
+}
+
 .new-participant {
     width: 20rem;
     display: inline-block;
@@ -40,7 +45,7 @@ th,td {
 
 
 nav {
-    background: #ede7f6;
+    background: rgba(237, 231, 246, 0.95);
 }
 
 body {
@@ -67,7 +72,7 @@ h1,h2  {
 }
 
 label {
-    font-weight: bold;
+    font-weight: 400;
 }
 
 .trip-form {

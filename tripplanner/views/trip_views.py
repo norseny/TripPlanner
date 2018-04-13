@@ -11,11 +11,12 @@ from tripplanner import models
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 
+from datetime import date
+from io import BytesIO
+from django.http import HttpResponse
+from tripplanner.pdf_utils import PdfPrint
+
 from django.utils.translation import gettext as _
-
-
-# import pdfkit
-# from django.http import HttpResponse
 
 group1 = [login_required, user_is_admin_or_trip_creator]
 group2 = [login_required, user_is_trip_participant]
@@ -24,12 +25,9 @@ group2 = [login_required, user_is_trip_participant]
 class TripList(ListView):
     model = Trip
 
-    def get_queryset(self): #todo: chenage display filters for diff users
+    def get_queryset(self):
         curr_user = User.objects.get(pk=self.request.user.id)
-        if not curr_user.is_superuser:
-            return Trip.objects.filter(participants=curr_user.id)
-        else:
-            return Trip.objects.all()
+        return Trip.objects.filter(participants=curr_user.id)
 
 
 @method_decorator(group2, name='dispatch')
@@ -57,7 +55,7 @@ class TripWithAttributesCreate(CreateView):
     def get_context_data(self, **kwargs):
         data = super(TripWithAttributesCreate, self).get_context_data(**kwargs)
         if self.request.POST:
-            data['journeys'] = JourneyFormSet(self.request.POST, ) # todo: ta czesc w create niepotrzebna ?
+            data['journeys'] = JourneyFormSet(self.request.POST, )  # todo: ta czesc w create niepotrzebna ?
             data['accommodations'] = AccommodationFormSet(self.request.POST)
             data['attractions'] = AttractionFormSet(self.request.POST)
         else:
@@ -133,7 +131,7 @@ class TripWithAttributesUpdate(UpdateView):
                     attractions.instance = self.object
                     attractions.save()
                 models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
-                                                   attractions.cleaned_data) # todo: fix
+                                                   attractions.cleaned_data)  # todo: fix
             else:
                 return self.form_invalid(form)
 
@@ -144,6 +142,7 @@ class TripWithAttributesUpdate(UpdateView):
 class TripDelete(DeleteView):
     model = Trip
     success_url = reverse_lazy('trip-list')
+
 
 @method_decorator(login_required, name='dispatch')
 class TripParticipantsList(FormView):
@@ -167,6 +166,7 @@ class TripParticipantsList(FormView):
 
         return super(TripParticipantsList, self).form_valid(form)
 
+
 def validate_participant(request):
     username = request.GET.get('username', None)
     trip_name = request.GET.get('tripName', None)
@@ -178,20 +178,24 @@ def validate_participant(request):
 
     data = {
         'exists': success,
-        'message_error' : _(str("User doesn't exist or is already added.")),
-        'message_text' : _(str('Click "Add" to add this user to your trip.'))
+        'message_error': _(str("User doesn't exist or is already added.")),
+        'message_text': _(str('Click "Add" to add this user to your trip.'))
     }
     return JsonResponse(data)
-#
-# def pdffile(request):
-#
-#     # pdf = pdfkit.from_url("http://localhost:8001/trip/1/", "trip1.pdf")
-#     # return HttpResponse("Everything working good, check out the root of your project to see the generated PDF.")
-#
-#     # Use False instead of output path to save pdf to a variable
-#     pdf = pdfkit.from_url('http://localhost:8001/tripplanner/published-trip', False)
-#     response = HttpResponse(pdf,content_type='application/pdf')
-#     response['Content-Disposition'] = 'attachment; filename="trip1.pdf"'
-#
-#
-#     return response
+
+
+@method_decorator(group2, name='dispatch')
+class TripDetailPdf(DetailView):
+    model = Trip
+
+    def render_to_response(self, context, **response_kwargs):
+        response = HttpResponse(content_type='application/pdf')
+        today = date.today()
+        filename = _(context['trip'].name) + '_' + today.strftime('%d-%m-%Y')
+        response['Content-Disposition'] = \
+            'attachement; filename={0}.pdf'.format(filename)
+        buffer = BytesIO()
+        print = PdfPrint(buffer, 'A4')
+        pdf = print.report(context, context['trip'].name)
+        response.write(pdf)
+        return response

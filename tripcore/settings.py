@@ -163,6 +163,7 @@ DATETIME_INPUT_FORMATS = [
     '%d-%m-%Y %H:%M',  # '10-25-2006 14:30'
 ]
 
+
 # DATETIME_FORMAT = [
 #     "d m Y H i"
 # ]

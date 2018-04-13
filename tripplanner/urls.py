@@ -11,6 +11,5 @@ urlpatterns = [
     url(r'trip/(?P<pk>[0-9]+)/delete/$', views.TripDelete.as_view(), name='trip-delete'),
     url(r'trip/(?P<pk>[0-9]+)/participants$', views.TripParticipantsList.as_view(), name='trip-participants'),
     url(r'^ajax/validate_participant/$', views.validate_participant, name='validate_participant'),
-
-    # url(r'pdffile$', views.pdffile, name='pdffile')
+    url(r'trip/(?P<pk>[0-9]+)/pdf$', views.TripDetailPdf.as_view(), name='trip-detail-pdf'),
 ]
