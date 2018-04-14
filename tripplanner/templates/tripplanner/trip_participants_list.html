@@ -16,7 +16,7 @@
                 {% csrf_token %}
                 <h2>{% trans 'Add new participant' %}</h2>
                 <p>{% trans 'Type in the username and click "Tab" to validate it' %}</p>
-                <input class="form-control new-participant" type="text" id="username" name="username"  placeholder={% trans "Username"%} data-validate-participant-url="{% url 'validate_participant' %}"> <span id="check_icon" style="visibility: hidden"></span>
+                <input class="form-control new-participant" type="text" id="username" name="username"  placeholder={% trans "Username"%}> <span id="check_icon" style="visibility: hidden"></span>
                 <div>
                     <button class="btn" id='add-button'style="display: none" type="submit">{% trans 'Add' %}</button>
                 </div>
@@ -38,7 +38,7 @@
             data = $form.serialize() + '&' + $.param(tripId);
 
             $.ajax({
-                url: input.attr("data-validate-participant-url"),
+                url: '/ajax/validate-participant',
                 data: data,
                 dataType: 'json',
                 success: function (data) {
@@ -47,13 +47,13 @@
                     $('#add-button').hide();
                     if (data.exists) {
                         $('#check_icon').css('color', '#4caf50');
-                        $('#check_icon').html("<i class='fa fa-check fa-2x green-text' aria-hidden='true'><\/i>" +
+                        $('#check_icon').html("<i class='fas fa-check fa-2x green-text' aria-hidden='true'><\/i>" +
                             data.message_text);
                         $('.btn').show();
                     }
                     else {
                         $('#check_icon').css('color', '#f44336');
-                        $('#check_icon').html("<i class='fa fa-close fa-2x red-text' aria-hidden='true'><\/i>" + data
+                        $('#check_icon').html("<i class='fas fa-times fa-2x red-text' aria-hidden='true'><\/i>" + data
                             .message_error);
                     }
                 }

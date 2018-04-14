@@ -13,36 +13,52 @@
                 <p class="details-main"><label>{% trans 'Created by' %}:</label> {{ trip.created_by }} </p>
                 <p class="details-main"><label>{% trans 'Start time' %}:</label> {{ trip.start_time }} </p>
                 <p class="details-main"><label>{% trans 'End time' %}:</label> {{ trip.end_time }} </p>
-                <p class="details-main"><label>{% trans 'Price (PLN)' %}:</label> {{ trip.price }} </p>
+                <p class="details-main"><label>{% trans 'Total Cost (PLN)' %}:</label> {{ trip.price }} </p>
             </div>
         </div>
         <div class="col-6">
-            <div class="row w-100 justify-content-center align-items-end text-center" id="details-main-icons-1row">
-                {% if user.id == trip.created_by_id %}
-                    <div class="col-6 d-inline-block">
-                        <a href="{% url 'trip-update' trip.pk %}"><span class="myicon">
-                            <i class="far fa-edit fa-5x d-block"></i>{% trans 'Edit' %}
+            {% if  participant %}
+                <div class="row w-100 justify-content-center align-items-end text-center" id="details-main-icons-1row">
+                    {% if user.id == trip.created_by_id %}
+                        <div class="col-6 d-inline-block">
+                            <a href="{% url 'trip-update' trip.pk %}"><span class="myicon">
+                            <p><i class="far fa-edit fa-5x d-inline-block"></i></p>
+                            <p>{% trans 'Edit' %}</p>
                         </span></a>
+                        </div>
+                        <div class="col-6 d-inline-block">
+                            <a href="{% url 'trip-delete' trip.pk %}"><span class="myicon">
+                            <p><i class="far fa-trash-alt fa-5x d-inline-block"></i></p>
+                            <p>{% trans 'Delete' %}</p>
+                        </span></a>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="row w-100 justify-content-center align-items-end text-center">
+                    <div class="col-6 d-inline-block">
+                        <a href="{% url 'trip-participants' trip.pk %}"><span class="myicon"></p>
+                            <p><i class="fas fa-users fa-5x d-inline-block"></i></p>
+                        <p>{% trans 'Trip participants' %}</p>
+                    </span></a>
                     </div>
                     <div class="col-6 d-inline-block">
-                        <a href="{% url 'trip-delete' trip.pk %}"><span class="myicon">
-                        <i class="far fa-trash fa-5x d-block"></i>{% trans 'Delete' %}
+                        <a href="{% url 'trip-detail-pdf' trip.pk %}"><span class="myicon">
+                        <p><i class="far fa-file-pdf fa-5x d-inline-block"></i></p>
+                        <p>{% trans 'Pdf-file with details' %}</p>
+                    </span></a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row h-100 w-100 align-items-center text-center">
+                    <div class="col-12 d-inline-block">
+                        <a id="inspired" href=#><span class="myicon">
+                        <p><i class="far fa-smile fa-5x d-inline-block"></i><i class="far fa-lightbulb fa-3x
+                        d-inline-block mb-5"></i></p>
+                        <p>{% trans 'Got inspired? Go on a same trip!' %}</p>
                         </span></a>
                     </div>
-                {% endif %}
-            </div>
-            <div class="row w-100 justify-content-center align-items-end text-center">
-                <div class="col-6 d-inline-block">
-                    <a href="{% url 'trip-participants' trip.pk %}"><span class="myicon">
-                            <i class="far fa-users fa-5x d-block"></i>{% trans 'Trip participants' %}
-                    </span></a>
                 </div>
-                <div class="col-6 d-inline-block">
-                    <a href="{% url 'trip-detail-pdf' trip.pk %}"><span class="myicon">
-                        <i class="far fa-file-pdf fa-5x d-block"></i>{% trans 'Pdf-file with details' %}
-                    </span></a>
-                </div>
-            </div>
+            {% endif %}
         </div>
     </div>
 
@@ -103,6 +119,23 @@
 {% endblock %}
 
 {% block js %}
+    <script>
+    $(document).ready(function() {
+        $('#inspired').click(function () {
+            var tripId = {'tripId' : '{{trip.id}}' };
+
+            $.ajax({
+                url: '/ajax/inspired/',
+                data: tripId,
+                dataType: 'json',
+                success: function (data) {
+                    window.location.href= data.tripEditUrl;
+                }
+            });
+        });
+    });
+    </script>
+
     <script>
         function openDetails(evt, id) {
             var myvar;

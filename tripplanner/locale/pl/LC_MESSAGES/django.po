@@ -28,6 +28,10 @@ msgstr "Strona Główna"
 msgid "Trip List"
 msgstr "Wycieczki"
 
+msgid "My Trip List"
+msgstr "Moje wycieczki"
+
+
 #: tripplanner/templates/base.html:62
 msgid "New trip"
 msgstr "Nowa wycieczka"
@@ -81,8 +85,11 @@ msgid "Sign up!"
 msgstr "Zarejestruj!"
 
 #: tripplanner/templates/tripplanner/trip_confirm_delete.html:6
-msgid "Confirm trip removal"
-msgstr "Potwierdź usunięcie wycieczki"
+msgid "Confirm"
+msgstr "Potwierdź"
+
+msgid "I confirm"
+msgstr "Potwierdzam"
 
 #: tripplanner/templates/tripplanner/trip_confirm_delete.html:9
 msgid "Are you sure you want to delete "
@@ -113,11 +120,12 @@ msgid "Price (PLN)"
 msgstr "Koszt (PLN)"
 
 #: tripplanner/templates/tripplanner/trip_detail.html:32
-msgid "Trip's details"
+msgid "Trip's Details"
 msgstr "Szczegóły wycieczki"
 
 msgid "Show/Hide Trip's Details"
 msgstr "Pokaż/Ukryj szczegóły wycieczki"
+
 
 #: tripplanner/templates/tripplanner/trip_detail.html:33
 msgid "Trip's Details Ordered by Start Time"
@@ -162,8 +170,11 @@ msgid "Trip participants"
 msgstr "Uczestnicy wycieczki"
 
 #: tripplanner/templates/tripplanner/trip_list.html:5
-msgid "The trips"
+msgid "Trips"
 msgstr "Wycieczki"
+
+msgid "My Trips"
+msgstr "Moje wycieczki"
 
 #: tripplanner/templates/tripplanner/trip_list.html:19
 msgid "Details"
@@ -218,15 +229,15 @@ msgid "Save"
 msgstr "Zapisz"
 
 #: tripplanner/templates/tripplanner/trip_with_attributes_form.html:117
-msgid "Back to the list"
-msgstr "Powrót do listy"
+msgid "Back to the List of My Trips"
+msgstr "Powrót do listy moich wycieczek"
 
 #: tripplanner/templates/tripplanner/trip_with_attributes_form.html:127
 msgid "Add new row"
 msgstr "Dodaj kolejny wiersz"
 
 msgid "User doesn't exist or is already added."
-msgstr "Użytkownik nie istnieje lub już został dodany do wycieczki."
+msgstr "Użytkownik nie istnieje lub został już dodany do wycieczki."
 
 msgid "Click \"Add\" to add this user to your trip."
 msgstr "Kliknij \"Dodaj\", aby dodać użytkownika."
@@ -266,3 +277,12 @@ msgstr "Plik .pdf ze szczegółami"
 
 msgid "Back to Trip Details"
 msgstr "Powrót do szczegółów wycieczki"
+
+msgid "Total Cost (PLN)"
+msgstr "Koszt całkowity (PLN)"
+
+msgid "Got inspired? Go on a same trip!"
+msgstr "Zainspirowany? Wybierz się na taką samą wycieczkę!"
+
+msgid "Here is your new trip! Change the name and fill in some fields."
+msgstr "Oto twoja nowa wycieczka! Zmień nazwę i uzupełnij dowolne pola."

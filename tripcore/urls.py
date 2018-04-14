@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^tripplanner/', include('tripplanner.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'', include('tripplanner.urls')),
-    url(r'^$', lambda r: HttpResponseRedirect('trip-planner/')),
+    url(r'^$', lambda r: HttpResponseRedirect('tripplanner/')),
     url(r'^login/$', auth_views.login, {'template_name': 'register/login.html'}, name='login'),
     url(r'^logout/$', login_required(auth_views.logout), {'next_page': 'login'}, name='logout'),
     url(r'^signup/$', views.signup, name='signup'),

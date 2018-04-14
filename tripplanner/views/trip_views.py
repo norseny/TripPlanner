@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.db import transaction
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView, DetailView
-from tripplanner.decorators import user_is_admin_or_trip_creator, user_is_trip_participant
+from tripplanner.decorators import user_is_trip_creator, user_is_trip_participant
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -15,10 +15,11 @@ from datetime import date
 from io import BytesIO
 from django.http import HttpResponse
 from tripplanner.pdf_utils import PdfPrint
+from django.contrib import messages
 
 from django.utils.translation import gettext as _
 
-group1 = [login_required, user_is_admin_or_trip_creator]
+group1 = [login_required, user_is_trip_creator]
 group2 = [login_required, user_is_trip_participant]
 
 
@@ -26,11 +27,23 @@ class TripList(ListView):
     model = Trip
 
     def get_queryset(self):
+        if self.request.user.is_authenticated:
+            curr_user = User.objects.get(pk=self.request.user.id)
+            return Trip.objects.exclude(participants=curr_user.id)
+        else:
+            return Trip.objects.all()
+
+@method_decorator(login_required, name='dispatch')
+class MyTripList(ListView):
+    model = Trip
+    template_name = 'tripplanner/my_trip_list.html'
+
+    def get_queryset(self):
         curr_user = User.objects.get(pk=self.request.user.id)
         return Trip.objects.filter(participants=curr_user.id)
 
 
-@method_decorator(group2, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class TripDetail(DetailView):
     model = Trip
 
@@ -43,6 +56,11 @@ class TripDetail(DetailView):
         all_sorted = filtered_rows + filtered_rows_leftouts
         data = super(TripDetail, self).get_context_data(**kwargs)
         data['all'] = all_sorted
+        try:
+            if trip.participants.get(id=self.request.user.id):
+                data['participant'] = True
+        except:
+            pass
         return data
 
 
@@ -179,6 +197,60 @@ def validate_participant(request):
         'message_error': _(str("User doesn't exist or is already added.")),
         'message_text': _(str('Click "Add" to add this user to your trip.'))
     }
+    return JsonResponse(data)
+
+def inspired(request):
+    user_id = request.user.id
+    trip_id = request.GET.get('tripId', None)
+    trip_org = Trip.objects.get(pk=trip_id)
+    trip_clone = Trip.objects.get(pk=trip_id)
+
+    try:
+        trip_clone.name = trip_clone.name + ' copy'
+        trip_clone.created_by_id = user_id
+        trip_clone.start_time = None
+        trip_clone.end_time = None
+        trip_clone.price = None
+        trip_clone.pk = None
+        trip_clone.save()
+        trip_clone.participants.add(request.user)
+
+        for journey in trip_org.journey_set.all():
+            journey_clone = journey
+            journey_clone.start_time = None
+            journey_clone.end_time = None
+            journey_clone.price = None
+            journey_clone.pk = None
+            journey_clone.trip_id = trip_clone.id
+            journey_clone.save()
+
+        for accommodation in trip_org.accommodation_set.all():
+            accommodation_clone = accommodation
+            accommodation_clone.start_time = None
+            accommodation_clone.end_time = None
+            accommodation_clone.price = None
+            accommodation_clone.pk = None
+            accommodation_clone.trip_id = trip_clone.id
+            accommodation_clone.save()
+
+        for attraction in trip_org.attraction_set.all():
+            attraction_clone = attraction
+            attraction_clone.start_time = None
+            attraction_clone.end_time = None
+            attraction_clone.price = None
+            attraction_clone.pk = None
+            attraction_clone.trip_id = trip_clone.id
+            attraction_clone.save()
+
+        messages.success(request, _('Here is your new trip! Change the name and fill in some fields.'))
+
+        data = {
+             'tripEditUrl': reverse_lazy('trip-update',
+                                kwargs={'pk': trip_clone.id}),
+         }
+    except:
+        pass #todo: sth...
+
     return JsonResponse(data)
 
 

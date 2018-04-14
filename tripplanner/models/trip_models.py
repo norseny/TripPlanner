@@ -4,22 +4,6 @@ from django.urls import reverse
 import django
 from datetime import datetime
 from decimal import *
-# from django.db.models.signals import post_save
-# from django.dispatch import receiver
-#
-#
-# class Profile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#
-#
-#     @receiver(post_save, sender=User)
-#     def create_user_profile(sender, instance, created, **kwargs):
-#         if created:
-#             Profile.objects.create(user=instance)
-#
-#     @receiver(post_save, sender=User)
-#     def save_user_profile(sender, instance, **kwargs):
-#         instance.profile.save()
 
 
 class MeansOfTransport(models.Model):
@@ -37,7 +21,7 @@ class BasicInfo(models.Model):
     start_time = models.DateTimeField(null=True, blank=True, default=datetime.now)
     end_time = models.DateTimeField(null=True, blank=True, default=datetime.now)
     price = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True, default=0.00)
-    name = models.CharField(null=True, blank=True, max_length=50, unique=True)
+    name = models.CharField(null=True, blank=True, max_length=50)
 
     class Meta:
         abstract = True
