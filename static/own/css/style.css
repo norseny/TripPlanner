@@ -16,12 +16,13 @@
     }
 }
 
+
 .details-top-part {
-    margin: 5rem 0 2rem 0;
+    margin: 3% 0 2% 0;
 }
 
-#details-main-icons-1row {
-    margin-top: 5rem;
+.details-main-icons {
+    margin-top: 3%;
 }
 
 .tabcontent {
@@ -108,7 +109,11 @@ h1, h2 {
 }
 
 #trip-participants-h1 {
-    margin-top: 5rem;
+    margin-top: 3%;
+}
+
+#trip-details{
+    margin-top: 3%;
 }
 
 .container {
