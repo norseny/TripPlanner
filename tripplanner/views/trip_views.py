@@ -269,3 +269,10 @@ class TripDetailPdf(DetailView):
         pdf = print.report(context, context['trip'].name)
         response.write(pdf)
         return response
+
+
+@method_decorator(group2, name='dispatch')
+class ImageUploadView(UpdateView):
+    model = Trip
+    form_class = ImageUploadForm
+    template_name = 'tripplanner/trip_upload_img.html'

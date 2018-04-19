@@ -75,6 +75,14 @@ AttractionFormSet = inlineformset_factory(Trip, Attraction, form=AttractionForm,
 JourneyFormSet = inlineformset_factory(Trip, Journey, form=JourneyForm, extra=1)
 AccommodationFormSet = inlineformset_factory(Trip, Accommodation, form=AccommodationForm, extra=1)
 
+
 class AddParticipantForm(Form):
     username = forms.CharField(max_length=50)
+
+
+class ImageUploadForm(ModelForm):
+    """Image upload form."""
+    class Meta:
+        model = Trip
+        fields = ['main_image']
 

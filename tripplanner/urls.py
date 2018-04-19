@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from tripplanner import views
+from tripcore import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -15,4 +17,6 @@ urlpatterns = [
     url(r'^ajax/validate-participant/$', views.validate_participant, name='validate-participant'),
     url(r'^ajax/inspired/$', views.inspired, name='inspired'),
     url(r'trip/(?P<pk>[0-9]+)/pdf$', views.TripDetailPdf.as_view(), name='trip-detail-pdf'),
-]
+    url(r'trip/(?P<pk>[0-9]+)/upload-img$', views.ImageUploadView.as_view(), name='upload-trip-img'),
+] \
+              # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #todo: sort out

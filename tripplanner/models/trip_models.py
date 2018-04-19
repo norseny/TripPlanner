@@ -31,6 +31,7 @@ class Trip(BasicInfo):
     name = models.CharField(max_length=50, unique=True, null=False, blank=False)
     description = models.TextField(null=True, max_length=250, blank=True)
     created_by = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
+    main_image = models.ImageField(upload_to='static/own/img/users_img', default='static/own/img/users_img/default.png')
     participants = models.ManyToManyField(User)
 
     def __str__(self):
