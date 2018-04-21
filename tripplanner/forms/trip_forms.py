@@ -2,7 +2,8 @@ from django.forms import Form, ModelForm, inlineformset_factory, formset_factory
 
 from tripplanner.models import *
 from django import forms
-from tripcore import settings
+
+from bootstrap_daterangepicker import widgets, fields
 
 
 class MyDateTimeInput(forms.DateTimeInput):
@@ -24,13 +25,23 @@ class TripForm(ModelForm, Form):
             'name': TextInput(attrs={'class':'form-control form-control-sm'})
         }
 
+
+
 class JourneyForm(ModelForm):
-    start_time = MyDateTimeField(required=False)
-    end_time = MyDateTimeField(required=False)
+
+    dict_of_datetime_range_attrs = {'class': 'datetimepicker-range form-control form-control-sm'}
+    datetime_range = fields.DateTimeRangeField(
+        clearable=True,
+        input_formats=['%d/%m/%Y (%H:%M)'], #todo: 24h format
+        widget=widgets.DateTimeRangeWidget(
+            attrs= dict_of_datetime_range_attrs,
+            format='%d/%m/%Y (%H:%M)'
+        )
+    )
 
     class Meta:
         model = Journey
-        fields = ['means_of_transport','name','start_point', 'end_point', 'start_time', 'end_time', 'price']
+        fields = ['means_of_transport','datetime_range','start_point', 'end_point','name','price']
         widgets = {
             'means_of_transport': Select(attrs={'class': 'custom-select mb-2 mr-sm-2 mb-sm-0'}),
             'name': TextInput(attrs={'class': 'form-control form-control-sm'}),

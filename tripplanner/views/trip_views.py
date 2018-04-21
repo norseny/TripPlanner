@@ -18,6 +18,7 @@ from tripplanner.pdf_utils import PdfPrint
 from django.contrib import messages
 
 from django.utils.translation import gettext as _
+from tripplanner import additional
 
 group1 = [login_required, user_is_trip_creator]
 group2 = [login_required, user_is_trip_participant]
@@ -97,6 +98,21 @@ class TripWithAttributesCreate(CreateView):
                 if journeys.is_valid():
                     journeys.instance = self.object
                     journeys.save()
+
+                    journeys_list = []
+                    for element in self.object.journey_set.all():
+                        journeys_list.append(element.id)
+
+                    for idx, el in enumerate(journeys.cleaned_data):
+                        if ('datetime_range_clearable' in el) and (el['DELETE'] == False):
+                            if journeys_list[idx]:
+                                journey = models.Journey.objects.get(pk=journeys_list[idx])
+                                journey.start_time = el['datetime_range_clearable'][0]
+                                journey.end_time = el['datetime_range_clearable'][1]
+                                journeys.cleaned_data[idx]['start_time'] = el['datetime_range_clearable'][0]
+                                journeys.cleaned_data[idx]['end_time'] = el['datetime_range_clearable'][1]
+                                journey.save()
+
                 if accommodations.is_valid():
                     accommodations.instance = self.object
                     accommodations.save()
@@ -125,9 +141,17 @@ class TripWithAttributesUpdate(UpdateView):
             data['attractions'] = AttractionFormSet(self.request.POST, instance=self.object)
         else:
             data['journeys'] = JourneyFormSet(instance=self.object)
+
+            for idx, el in enumerate(data['journeys'].initial_forms):
+                journey_id = data['journeys'].initial_forms[idx].instance.id
+                journey = models.Journey.objects.get(pk=journey_id)
+                datetime_range = additional.format_to_daterange(str(journey.start_time), str(journey.end_time))
+                data['journeys'].initial_forms[idx].initial['datetime_range'] = datetime_range
+
             data['accommodations'] = AccommodationFormSet(instance=self.object)
             data['attractions'] = AttractionFormSet(instance=self.object)
         return data
+
 
     def form_valid(self, form):
         context = self.get_context_data()
@@ -142,6 +166,16 @@ class TripWithAttributesUpdate(UpdateView):
                 if journeys.is_valid():
                     journeys.instance = self.object
                     journeys.save()
+
+                    for idx, el in enumerate(journeys.cleaned_data):
+                        if ('datetime_range_clearable' in el) and (el['DELETE'] == False):
+                            journey = models.Journey.objects.get(pk=el['id'].id)
+                            journey.start_time = el['datetime_range_clearable'][0]
+                            journeys.cleaned_data[idx]['start_time'] = el['datetime_range_clearable'][0]
+                            journey.end_time = el['datetime_range_clearable'][1]
+                            journeys.cleaned_data[idx]['end_time'] = el['datetime_range_clearable'][1]
+                            journey.save()
+
                 if accommodations.is_valid():
                     accommodations.instance = self.object
                     accommodations.save()
@@ -149,7 +183,7 @@ class TripWithAttributesUpdate(UpdateView):
                     attractions.instance = self.object
                     attractions.save()
                 models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
-                                                   attractions.cleaned_data)  # todo: fix
+                                                   attractions.cleaned_data)
             else:
                 return self.form_invalid(form)
 
