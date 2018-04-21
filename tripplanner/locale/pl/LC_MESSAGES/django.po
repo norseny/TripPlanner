@@ -281,8 +281,17 @@ msgstr "Powrót do szczegółów wycieczki"
 msgid "Total Cost (PLN)"
 msgstr "Koszt całkowity (PLN)"
 
-msgid "Got inspired? Go on a same trip!"
+msgid "Inspired? Go on a same trip!"
 msgstr "Zainspirowany? Wybierz się na taką samą wycieczkę!"
 
 msgid "Here is your new trip! Change the name and fill in some fields."
 msgstr "Oto twoja nowa wycieczka! Zmień nazwę i uzupełnij dowolne pola."
+
+msgid "Add main image"
+msgstr "Dodaj zdjęcie główne"
+
+msgid "Change main image"
+msgstr "Zmień zdjęcie główne"
+
+msgid "Upload trip main image"
+msgstr "Wybierz zdjęcie"

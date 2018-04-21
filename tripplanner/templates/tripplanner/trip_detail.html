@@ -5,26 +5,55 @@
 {% block title %}{% endblock %}
 {% block content %}
 
-        <div class="row details-top-part">
-            <div class="col-6">
-    <h1 class="h1-details">{{ trip.name }} </h1>
+    <div class="row details-top-part">
+        <div class="col-6">
+            <h1 class="h1-details">{{ trip.name }} </h1>
 
-    <div>
-        <p class="details-main"><label>{% trans 'Description' %}:</label> {{ trip.description }} </p>
-        <p class="details-main"><label>{% trans 'Created by' %}:</label> {{ trip.created_by }} </p>
-        <p class="details-main"><label>{% trans 'Start time' %}:</label> {{ trip.start_time|default_if_none:"" }} </p>
-        <p class="details-main"><label>{% trans 'End time' %}:</label> {{ trip.end_time|default_if_none:"" }} </p>
-        <p class="details-main"><label>{% trans 'Total Cost (PLN)' %}:</label> {{ trip.price|default_if_none:"" }} </p>
-    </div>
+            <div>
+                <p class="details-main"><label>{% trans 'Description' %}:</label> {{ trip.description }} </p>
+                <p class="details-main"><label>{% trans 'Created by' %}:</label> {{ trip.created_by }} </p>
+                <p class="details-main">
+                    <label>{% trans 'Start time' %}:</label> {{ trip.start_time|default_if_none:"" }} </p>
+                <p class="details-main"><label>{% trans 'End time' %}:</label> {{ trip.end_time|default_if_none:"" }}
+                </p>
+                <p class="details-main">
+                    <label>{% trans 'Total Cost (PLN)' %}:</label> {{ trip.price|default_if_none:"" }} </p>
             </div>
-                    <div class="col-6"> {# todo: wyrownac w pionie #}
-                        <img src='../../../{{trip.main_image.url }}' alt="img" height = "300" with = "400">
-{#                        todo: static#}
-{#                        <img src='../../../static/own/img/users_img/default.png' height = "200" with = "200">#}
-{#                        <img src="{% static trip.main_image.url %}">#}
-{#                        <img src='home/bea/PycharmProjects/tripproject/static/own/img/users_img/default.png' height = "200" with = "200">#}
+        </div>
+        <div class="col-6 d-flex justify-content-center align-items-center text-center">
+            {% if user.id == trip.created_by_id %}
+                {% if trip.main_image %}
+                    <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
+                        <a href="{% url 'upload-trip-img' trip.pk %}">
+                            <img src='../../../{{ trip.main_image.url }}'
+                                                                           alt="Trip main photo"
+                                                                           class="photo-img img-fluid mx-auto
+                                                                           d-block">
+
+                            <div class="overlay">
+                                <div class="photo-text-over myicon">
+                                    <p><i class="far fa-image fa-5x d-inline-block"></i></p>
+                                    <p>{% trans "Change main image" %}</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-            </div>
+                {% else %}
+                    <div class="row h-100 justify-content-center align-items-center text-center">
+                            <a href="{% url 'upload-trip-img' trip.pk %}"><span class="myicon">
+                                            <p><i class="far fa-image fa-5x d-inline-block"></i>
+                                                <i class="fas fa-plus fa-2x d-inline-block mb-5"></i></p>
+                                            <p>{% trans 'Add main image' %}</p>
+                                        </span></a>
+                    </div>
+                {% endif %}
+            {% else %}
+                {% if trip.main_image %}
+                    <img src='../../../{{ trip.main_image.url }}' alt="img" height="300">
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
 
 
     <a href="#trip-details">
@@ -82,51 +111,52 @@
         </table>
     </div>
     {% if  participant %}
-{#        <div class="row w-100 justify-content-center align-items-end text-center" id="details-main-icons-1row">#}
+        {#        <div class="row w-100 justify-content-center align-items-end text-center" id="details-main-icons-1row">#}
         <div class="row w-100 justify-content-center text-center details-main-icons">
             {% if user.id == trip.created_by_id %}
-{#                <div class="col-6 d-inline-block">#}
+                {#                <div class="col-6 d-inline-block">#}
                 <div class="col-3">
                     <a href="{% url 'trip-update' trip.pk %}"><span class="myicon">
                             <p><i class="far fa-edit fa-5x d-inline-block"></i></p>
                             <p>{% trans 'Edit' %}</p>
                         </span></a>
-{#                </div>#}
+                    {#                </div>#}
                 </div>
                 <div class="col-3">
-{#                <div class="col-6 d-inline-block">#}
+                    {#                <div class="col-6 d-inline-block">#}
                     <a href="{% url 'trip-delete' trip.pk %}"><span class="myicon">
                             <p><i class="far fa-trash-alt fa-5x d-inline-block"></i></p>
                             <p>{% trans 'Delete' %}</p>
                         </span></a>
-{#                </div>#}
+                    {#                </div>#}
                 </div>
             {% endif %}
-{#        </div>#}
-{#        <div class="row w-100 justify-content-center align-items-end text-center">#}
-{#            <div class="col-6 d-inline-block">#}
+            {#        </div>#}
+            {#        <div class="row w-100 justify-content-center align-items-end text-center">#}
+            {#            <div class="col-6 d-inline-block">#}
             <div class="col-3">
                 <a href="{% url 'trip-participants' trip.pk %}"><span class="myicon">
                     <p><i class="fas fa-users fa-5x d-inline-block"></i></p>
                     <p>{% trans 'Trip participants' %}</p>
                 </span></a>
             </div>
-{#            </div>#}
-{#            <div class="col-6 d-inline-block">#}
+            {#            </div>#}
+            {#            <div class="col-6 d-inline-block">#}
             <div class="col-3">
                 <a href="{% url 'trip-detail-pdf' trip.pk %}"><span class="myicon">
                         <p><i class="far fa-file-pdf fa-5x d-inline-block"></i></p>
                         <p>{% trans 'Pdf-file with details' %}</p>
                     </span></a>
-{#            </div>#}
+                {#            </div>#}
             </div>
         </div>
     {% else %}
         <div class="row h-100 w-100 align-items-center text-center details-main-icons">
             <div class="col-12 d-inline-block">
                 <a id="inspired" href=#><span class="myicon">
-                    <p><i class="far fa-smile fa-5x d-inline-block"></i><i class="far fa-lightbulb fa-3x d-inline-block mb-5"></i></p>
-                    <p>{% trans 'Got inspired? Go on a same trip!' %}</p>
+                    <p><i class="far fa-smile fa-5x d-inline-block"></i><i
+                            class="far fa-lightbulb fa-3x d-inline-block mb-5"></i></p>
+                    <p>{% trans 'Inspired? Go on a same trip!' %}</p>
                 </span></a>
             </div>
         </div>

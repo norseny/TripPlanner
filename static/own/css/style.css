@@ -16,6 +16,15 @@
     }
 }
 
+.container {
+    margin-top: .5rem;
+    background-color: #fdfdfd;
+    -webkit-box-shadow: 14px -7px 11px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 14px -7px 11px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 14px -7px 11px -4px rgba(0, 0, 0, 0.75);
+    width: 100%;
+    height: 100%;
+}
 
 .details-top-part {
     margin: 3% 0 2% 0;
@@ -30,10 +39,11 @@
     padding: 1rem;
 }
 
-.myicon{
+.myicon {
     color: #321911;
 }
-.myicon:hover{
+
+.myicon:hover {
     color: #8b6b61;
 }
 
@@ -46,8 +56,8 @@ i {
 }
 
 .table-details {
-     margin-top: 2rem;
- }
+    margin-top: 2rem;
+}
 
 #table-details-label {
     margin: 1.5rem 0 1rem 0;
@@ -88,17 +98,21 @@ th, td {
 }
 
 nav {
-    background: rgb(237, 231, 246);
+    /*background: rgb(237, 231, 246);*/
+    /*background: 	#73C2FB;*/
+    /*background:#87CEFA;*/
+    background: rgba(245, 245, 245, 0.48);
 }
 
 body {
-    background-image: url(../img/paperwood.jpg);
+    background-image: url(../img/darkwood1.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
 
-body, html, main{min-height:100%;}
-
+body, html, main {
+    min-height: 100%;
+}
 
 h1, h2 {
     padding: 1rem;
@@ -112,7 +126,7 @@ h1, h2 {
     margin-top: 3%;
 }
 
-#trip-details{
+#trip-details {
     margin-top: 3%;
 }
 
@@ -176,4 +190,48 @@ input[type=number] {
 
 .accordion:active, .accordion:hover {
     background-color: #ede7f6;
+}
+
+.photo-container {
+    position: relative;
+    width: 50%;
+    max-height: 20rem;
+    overflow: auto;
+}
+
+.photo-img {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #fdfdfd;
+}
+
+.photo-container:hover .overlay {
+    opacity: 1;
+}
+
+.photo-text-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
 }
