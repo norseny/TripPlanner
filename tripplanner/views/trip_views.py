@@ -36,6 +36,7 @@ class TripList(ListView):
         else:
             return Trip.objects.all()
 
+
 @method_decorator(login_required, name='dispatch')
 class MyTripList(ListView):
     model = Trip
@@ -59,11 +60,23 @@ class TripDetail(DetailView):
         all_sorted = filtered_rows + filtered_rows_leftouts
         data = super(TripDetail, self).get_context_data(**kwargs)
         data['all'] = all_sorted
+
+        # arrows implementation
+        trip_list = []
         try:
             if trip.participants.get(id=self.request.user.id):
                 data['participant'] = True
+                trip_list = list(Trip.objects.filter(participants=self.request.user.id).values_list('id', flat=True).all())
         except:
-            pass
+            trip_list = list(Trip.objects.exclude(participants=self.request.user.id).values_list('id', flat=True).all())
+        trip_count = len(trip_list)
+        curr_trip_pos = trip_list.index(trip.id)
+        if  trip_count >1:
+            if (curr_trip_pos >= 0) and (curr_trip_pos <= trip_count-2):
+                data['next_trip_id'] = trip_list[curr_trip_pos+1]
+            if (curr_trip_pos >= 1) and (curr_trip_pos <= trip_count-1):
+                data['prev_trip_id'] = trip_list[curr_trip_pos-1]
+
         return data
 
 
@@ -124,7 +137,7 @@ class TripWithAttributesCreate(CreateView):
                                 journeys.instance = self.object
                                 journeys.save()
 
-                                # save start_time and end_time from date_range
+                                # extract start_time and end_time from form field daterange and save them
                                 journeys_list = []
                                 for element in self.object.journey_set.all():
                                     journeys_list.append(element.id)
@@ -232,7 +245,7 @@ class TripWithAttributesUpdate(UpdateView):
 @method_decorator(group1, name='dispatch')
 class TripDelete(DeleteView):
     model = Trip
-    success_url = reverse_lazy('trip-list')
+    success_url = reverse_lazy('my-trip-list')
 
 
 @method_decorator(login_required, name='dispatch')

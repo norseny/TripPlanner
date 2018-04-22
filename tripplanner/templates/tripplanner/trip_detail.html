@@ -4,6 +4,19 @@
 {% block title %}{% endblock %}
 {% block content %}
 
+    <div class="row"> {# todo: style #}
+        <div class="col-6 text-left">
+        {% if prev_trip_id %}
+            <a class="myicon" href="{% url 'trip-detail' prev_trip_id %}"><i class="fas fa-angle-left fa-3x"></i></a>
+        {% endif %}
+        </div>
+        <div class="col-6 text-right">
+        {% if next_trip_id %}
+            <a class="myicon" href="{% url 'trip-detail' next_trip_id %}"><i class="fas fa-angle-right fa-3x"></i></a>
+        {% endif %}
+        </div>
+    </div>
+
     <div class="row details-top-part">
         <div class="col-6">
             <h1 class="h1-details">{{ trip.name }} </h1>
@@ -72,9 +85,9 @@
             <tr>
                 <th></th>
                 <th>{% trans 'Name' %}</th>
-                <th class="text-center">{% trans 'From - to' %}</th>
-                <th>{% trans 'Start point' %}</th>
-                <th>{% trans 'End point' %}</th>
+                <th class="text-center">{% trans 'Time' %}</th>
+{#                <th>{% trans 'Start point' %} - {% trans 'End point' %}</th>#}
+                <th>{% trans 'Z - do' %}</th>
                 <th>{% trans 'Means of transport' %}</th>
                 <th>{% trans 'Address' %}</th>
                 <th class="text-right">{% trans 'Price (PLN)' %}</th>
@@ -87,9 +100,8 @@
                     <tr>
                         <td class="justify-content-center"><i class="{{ el|ret_icon }}"></i></td>
                         <td>{{ el.name|default_if_none:"" }}</td>
-                        <td class="text-center">{{ el.start_time|date:"d.m.Y H:i - "|default_if_none:"" }}{{ el.end_time|date:"d.m.Y H:i"|default_if_none:"" }}</td>
-                        <td>{{ el.start_point|default_if_none:"" }}</td>
-                        <td>{{ el.end_point|default_if_none:"" }}</td>
+                        <td class="text-center">{{ el.start_time|date:"d.m.y H:i - "|default_if_none:"" }}{{ el.end_time|date:"d.m.y H:i"|default_if_none:"" }}</td>
+                        <td>{{ el.start_point|default_if_none:"" }} {{ el.end_point|default_if_none:"" }}</td>
                         <td>{{ el.means_of_transport|default_if_none:"" }}</td>
                         <td>{{ el.address|default_if_none:"" }}</td>
                         <td class="text-right">{{ el.price|default_if_none:"" }}</td>
@@ -99,7 +111,6 @@
             </tbody>
             <tfoot>
             <tr>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -118,7 +129,7 @@
                 {#                <div class="col-6 d-inline-block">#}
                 <div class="col-3">
                     <a href="{% url 'trip-update' trip.pk %}"><span class="myicon">
-                            <p><i class="far fa-edit fa-5x d-inline-block"></i></p>
+                            <p><i class="far fa-edit fa-4x d-inline-block"></i></p>
                             <p>{% trans 'Edit' %}</p>
                         </span></a>
                     {#                </div>#}
@@ -126,7 +137,7 @@
                 <div class="col-3">
                     {#                <div class="col-6 d-inline-block">#}
                     <a href="{% url 'trip-delete' trip.pk %}"><span class="myicon">
-                            <p><i class="far fa-trash-alt fa-5x d-inline-block"></i></p>
+                            <p><i class="far fa-trash-alt fa-4x d-inline-block"></i></p>
                             <p>{% trans 'Delete' %}</p>
                         </span></a>
                     {#                </div>#}
@@ -137,7 +148,7 @@
             {#            <div class="col-6 d-inline-block">#}
             <div class="col-3">
                 <a href="{% url 'trip-participants' trip.pk %}"><span class="myicon">
-                    <p><i class="fas fa-users fa-5x d-inline-block"></i></p>
+                    <p><i class="fas fa-users fa-4x d-inline-block"></i></p>
                     <p>{% trans 'Trip participants' %}</p>
                 </span></a>
             </div>
@@ -145,7 +156,7 @@
             {#            <div class="col-6 d-inline-block">#}
             <div class="col-3">
                 <a href="{% url 'trip-detail-pdf' trip.pk %}"><span class="myicon">
-                        <p><i class="far fa-file-pdf fa-5x d-inline-block"></i></p>
+                        <p><i class="far fa-file-pdf fa-4x d-inline-block"></i></p>
                         <p>{% trans 'Pdf-file with details' %}</p>
                     </span></a>
                 {#            </div>#}

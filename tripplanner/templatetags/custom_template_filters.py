@@ -18,8 +18,8 @@ def truncate_chars(value):
 def return_icon(value):
     """ Returns relevant icons (fontsawesome class code) """
     if str(value).startswith('Journey'):
-        return 'fas fa-rocket fa-2x'
+        return 'fas fa-rocket'
     elif str(value).startswith('Accommodation'):
-        return 'fas fa-bed fa-2x'
+        return 'fas fa-bed'
     elif str(value).startswith('Attraction'):
-        return 'fas fa-star fa-2x '
+        return 'fas fa-star'
