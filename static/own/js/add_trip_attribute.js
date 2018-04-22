@@ -7,20 +7,6 @@ const params2 = {
         }
 };
 
-const params = {
-    enableTime: true,
-    dateFormat: "d-m-Y H:i",
-    locale: language_code,
-    time_24hr: true
-};
-
-// $('document').ready(function () {
-//     addFormsets();
-//     $(function () {
-//         $('input[type=datetime]').flatpickr(params);
-//     });
-// });
-
 
 $('document').ready(function () {
     addFormsets();
@@ -31,10 +17,6 @@ $('document').ready(function () {
 
 
 function addFormsets() {
-    // const datepickerCallback = function () {
-    //     return function (addedRow) {
-    //         $(addedRow.find('input[type=datetime]')).flatpickr(params);
-    //     }
         const datepickerrangeCallback = function () {
         return function (addedRow) {
             $(addedRow.find('input.datetimepicker-range')).daterangepicker(params2);
@@ -51,13 +33,13 @@ function addFormsets() {
         addText: '<span class="font-size-bigger">+</span>' + addNewRow,
         deleteText: '<span class="font-size-bigger">-</span>',
         prefix: 'accommodation_set',
-        added: datepickerCallback()
+        added: datepickerrangeCallback()
     });
 
     $('.formset_row3').formset({
         addText: '<span class="font-size-bigger">+</span>' + addNewRow,
         deleteText: '<span class="font-size-bigger">-</span>',
         prefix: 'attraction_set',
-        added: datepickerCallback()
+        added: datepickerrangeCallback()
     });
 }

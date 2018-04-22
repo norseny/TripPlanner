@@ -295,3 +295,9 @@ msgstr "Zmień zdjęcie główne"
 
 msgid "Upload trip main image"
 msgstr "Wybierz zdjęcie"
+
+msgid "Datetime range"
+msgstr "Zakres czasowy"
+
+msgid "From - to"
+msgstr "Od - do"

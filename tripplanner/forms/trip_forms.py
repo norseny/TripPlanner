@@ -1,19 +1,22 @@
-from django.forms import Form, ModelForm, inlineformset_factory, formset_factory, Textarea, TextInput, Select, NumberInput
+from django.forms import Form, ModelForm, inlineformset_factory, Textarea, TextInput, Select, NumberInput
 
 from tripplanner.models import *
+from tripcore import settings
 from django import forms
 
 from bootstrap_daterangepicker import widgets, fields
 
+dict_of_textinput_attrs = {'class': 'form-control form-control-sm'}
+dict_of_datetime_range_attrs = {'class': 'datetimepicker-range form-control form-control-sm'}
 
-class MyDateTimeInput(forms.DateTimeInput):
-    input_type = 'datetime'
 
-
-class MyDateTimeField(forms.DateTimeField):
-    widget = MyDateTimeInput(
-        attrs={'class': 'form-control form-control-sm'})
-
+class MyDateTimeRangeField(fields.DateTimeRangeField):
+        clearable=True,
+        input_formats=settings.DATETIME_INPUT_FORMATS
+        widget=widgets.DateTimeRangeWidget(
+            attrs= dict_of_datetime_range_attrs,
+            format='%d/%m/%Y (%H:%M)'
+        )
 
 class TripForm(ModelForm, Form):
     class Meta:
@@ -22,62 +25,49 @@ class TripForm(ModelForm, Form):
         exclude = ()
         widgets = {
             'description': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
-            'name': TextInput(attrs={'class':'form-control form-control-sm'})
+            'name': TextInput(attrs=dict_of_textinput_attrs)
         }
 
-
-
 class JourneyForm(ModelForm):
-
-    dict_of_datetime_range_attrs = {'class': 'datetimepicker-range form-control form-control-sm'}
-    datetime_range = fields.DateTimeRangeField(
-        clearable=True,
-        input_formats=['%d/%m/%Y (%H:%M)'], #todo: 24h format
-        widget=widgets.DateTimeRangeWidget(
-            attrs= dict_of_datetime_range_attrs,
-            format='%d/%m/%Y (%H:%M)'
-        )
-    )
+    datetime_range = MyDateTimeRangeField()
 
     class Meta:
         model = Journey
-        fields = ['means_of_transport','datetime_range','start_point', 'end_point','name','price']
+        fields = ['start_point', 'end_point', 'datetime_range', 'means_of_transport','name','price']
         widgets = {
-            'means_of_transport': Select(attrs={'class': 'custom-select mb-2 mr-sm-2 mb-sm-0'}),
-            'name': TextInput(attrs={'class': 'form-control form-control-sm'}),
-            'start_point': TextInput(attrs={'class':'form-control form-control-sm'}),
-            'end_point': TextInput(attrs={'class': 'form-control form-control-sm'}),
-            'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),
+            'means_of_transport': Select(attrs={'class': 'custom-select form-control-sm'}),
+            'name': TextInput(attrs=dict_of_textinput_attrs),
+            'start_point': TextInput(attrs=dict_of_textinput_attrs),
+            'end_point': TextInput(attrs=dict_of_textinput_attrs),
+            'price': NumberInput(attrs=dict_of_textinput_attrs),
         }
         exclude = (),
 
 
 class AccommodationForm(ModelForm):
-    start_time = MyDateTimeField(required=False)
-    end_time = MyDateTimeField(required=False)
+    datetime_range = MyDateTimeRangeField()
 
     class Meta:
         model = Accommodation
-        fields = ['name', 'address','start_time', 'end_time', 'price']
+        fields = ['name', 'address','datetime_range', 'price']
         widgets = {
-            'name': TextInput(attrs={'class': 'form-control form-control-sm'}),
-            'address': TextInput(attrs={'class':'form-control form-control-sm'}),
-            'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),
+            'name': TextInput(attrs=dict_of_textinput_attrs),
+            'address': TextInput(attrs=dict_of_textinput_attrs),
+            'price': NumberInput(attrs=dict_of_textinput_attrs),
         }
         exclude = ()
 
 
 class AttractionForm(ModelForm):
-    start_time = MyDateTimeField(required=False)
-    end_time = MyDateTimeField(required=False)
+    datetime_range = MyDateTimeRangeField()
 
     class Meta:
         model = Attraction
-        fields = ['name','address','start_time', 'end_time', 'price']
+        fields = ['name','address','datetime_range', 'price']
         widgets = {
-            'name': TextInput(attrs={'class': 'form-control form-control-sm'}),
-            'address': TextInput(attrs={'class':'form-control form-control-sm'}),
-            'price': NumberInput(attrs={'class': 'form-control form-control-sm'}),
+            'name': TextInput(attrs=dict_of_textinput_attrs),
+            'address': TextInput(attrs=dict_of_textinput_attrs),
+            'price': NumberInput(attrs=dict_of_textinput_attrs),
         }
         exclude = ()
 
@@ -92,7 +82,7 @@ class AddParticipantForm(Form):
 
 
 class ImageUploadForm(ModelForm):
-    """Image upload form."""
+    """Image upload form """
     class Meta:
         model = Trip
         fields = ['main_image']

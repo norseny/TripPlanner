@@ -119,11 +119,11 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Warsaw'
 
 USE_I18N = True
 USE_L10N = False
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -143,24 +143,8 @@ LOGIN_REDIRECT_URL = '/' # default: /accounts/profile/
 
 
 DATETIME_INPUT_FORMATS = [
-    '%Y-%m-%d %H:%M:%S',     # '2006-10-25 14:30:59'
-    '%Y-%m-%d %H:%M:%S.%f',  # '2006-10-25 14:30:59.000200'
-    '%Y-%m-%d %H:%M',        # '2006-10-25 14:30'
-    '%Y-%m-%d',              # '2006-10-25'
-    '%m/%d/%Y %H:%M:%S',     # '10/25/2006 14:30:59'
-    '%m/%d/%Y %H:%M:%S.%f',  # '10/25/2006 14:30:59.000200'
-    '%m/%d/%Y %H:%M',        # '10/25/2006 14:30'
-    '%m/%d/%Y',              # '10/25/2006'
-    '%m/%d/%y %H:%M:%S',     # '10/25/06 14:30:59'
-    '%m/%d/%y %H:%M:%S.%f',  # '10/25/06 14:30:59.000200'
-    '%m/%d/%y %H:%M',        # '10/25/06 14:30'
-    '%m/%d/%y',              # '10/25/06'
-
     '%d/%m/%y',              # '25/10/06'
     '%d/%m/%Y',              # '10/25/2006'
     '%d/%m/%Y %H:%M',        # '10/25/2006 14:30'
-
-    '%d-%m-%y',  # '25-10-06'
-    '%d-%m-%Y',  # '10-25-2006'
-    '%d-%m-%Y %H:%M',  # '10-25-2006 14:30'
+    '%d/%m/%Y (%H:%M)',  # '10/25/2006 14:30'
 ]

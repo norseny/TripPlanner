@@ -18,9 +18,9 @@ class MeansOfTransport(models.Model):
 
 
 class BasicInfo(models.Model):
-    start_time = models.DateTimeField(null=True, blank=True, default=datetime.now)
-    end_time = models.DateTimeField(null=True, blank=True, default=datetime.now)
-    price = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True, default=0.00)
+    start_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
+    price = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True)
     name = models.CharField(null=True, blank=True, max_length=50)
 
     class Meta:

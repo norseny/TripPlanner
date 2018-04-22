@@ -18,7 +18,7 @@
 
 .container {
     margin-top: .5rem;
-    background-color: #fdfdfd;
+    background-color: #fffcfc;
     -webkit-box-shadow: 14px -7px 11px -4px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 14px -7px 11px -4px rgba(0, 0, 0, 0.75);
     box-shadow: 14px -7px 11px -4px rgba(0, 0, 0, 0.75);
@@ -220,7 +220,7 @@ input[type=number] {
     width: 100%;
     opacity: 0;
     transition: .5s ease;
-    background-color: #fdfdfd;
+    background-color: #fffcfc;
 }
 
 .photo-container:hover .overlay {
@@ -234,4 +234,8 @@ input[type=number] {
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
+}
+
+.table th {
+    padding: .25rem;
 }

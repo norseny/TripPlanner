@@ -71,14 +71,13 @@
             <thead>
             <tr>
                 <th></th>
-                <th>{% trans 'Name'|default_if_none:"" %}</th>
-                <th>{% trans 'Start time'|default_if_none:"" %}</th>
-                <th>{% trans 'End time'|default_if_none:"" %}</th>
-                <th>{% trans 'Start point'|default_if_none:"" %}</th>
-                <th>{% trans 'End point'|default_if_none:"" %}</th>
-                <th>{% trans 'Means of transport'|default_if_none:"" %}</th>
-                <th>{% trans 'Address'|default_if_none:"" %}</th>
-                <th>{% trans 'Price (PLN)'|default_if_none:"" %}</th>
+                <th>{% trans 'Name' %}</th>
+                <th class="text-center">{% trans 'From - to' %}</th>
+                <th>{% trans 'Start point' %}</th>
+                <th>{% trans 'End point' %}</th>
+                <th>{% trans 'Means of transport' %}</th>
+                <th>{% trans 'Address' %}</th>
+                <th class="text-right">{% trans 'Price (PLN)' %}</th>
             </tr>
             </thead>
 
@@ -86,22 +85,20 @@
             {% if all %}
                 {% for el in all %}
                     <tr>
-                        <td class="font-weight-400">{{ el|cust_trunc }}</td>
+                        <td class="justify-content-center"><i class="{{ el|ret_icon }}"></i></td>
                         <td>{{ el.name|default_if_none:"" }}</td>
-                        <td>{{ el.start_time|date:"d-m-y H:i"|default_if_none:"" }}</td>
-                        <td>{{ el.end_time|date:"d-m-Y H:i"|default_if_none:"" }}</td>
+                        <td class="text-center">{{ el.start_time|date:"d.m.Y H:i - "|default_if_none:"" }}{{ el.end_time|date:"d.m.Y H:i"|default_if_none:"" }}</td>
                         <td>{{ el.start_point|default_if_none:"" }}</td>
                         <td>{{ el.end_point|default_if_none:"" }}</td>
                         <td>{{ el.means_of_transport|default_if_none:"" }}</td>
                         <td>{{ el.address|default_if_none:"" }}</td>
-                        <td>{{ el.price|default_if_none:"" }}</td>
+                        <td class="text-right">{{ el.price|default_if_none:"" }}</td>
                     </tr>
                 {% endfor %}
             {% endif %}
             </tbody>
             <tfoot>
             <tr>
-                <td class="font-weight-bold">{% trans 'Total' %}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -109,7 +106,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td class="font-weight-bold">{{ trip.price }}</td>
+                <td class="font-weight-bold text-right">{{ trip.price }}</td>
             </tr>
             </tfoot>
         </table>
