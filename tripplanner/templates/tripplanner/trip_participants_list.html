@@ -2,82 +2,127 @@
 {% load i18n %}
 {% block title %}{% endblock %}
 {% block content %}
-            <h1 id="trip-participants-h1">{{ trip.name }}</h1>
-            <h2>{% trans 'Trip participants' %}</h2>
-            <ul>
-                {% for user in participants %}
-                    <li>{{ user.username }}</li>
-                {% endfor %}
-            </ul>
+    <h1 id="trip-participants-h1">{{ trip.name }}</h1>
+    <h2>{% trans 'Trip participants' %}</h2>
+    <ul>
+        {% for participant in user_list %}
+            <li>{{ participant.username }}</li>
+            {% if trip.created_by_id == user.id  %}
+                {% if participant.id != user.id %}
+                    <span class="error-style" onclick="removeParticipant('{{ participant.id }}')">Remove</span>
+                {% endif %}
+            {% else %}
+                {% if participant.id == user.id %}
+                    <span class="error-style" onclick="removeParticipant('{{ participant.id }}')">Remove</span>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </ul>
 
-        {% if trip.created_by_id == user.id %}
-        <div class="md-form">
-            <form method="post"> {# todo: half of the screen displaying only #}
-                {% csrf_token %}
-                <h2>{% trans 'Add new participant' %}</h2>
-                <p>{% trans 'Type in the username and click "Tab" to validate it' %}</p>
-                <input class="form-control new-participant" type="text" id="username" name="username"  placeholder={% trans "Username"%}> <span id="check_icon" style="visibility: hidden"></span>
-                <div>
-                    <button class="btn" id='add-button'style="display: none" type="submit">{% trans 'Add' %}</button>
-                </div>
-            </form>
-        </div>
-        {% endif %}
+    {% if trip.created_by_id == user.id %}
+        <form class="md-form" method="post"> {# todo: half of the screen displaying only #}
+            {% csrf_token %}
+            <h2>{% trans 'Add new participant' %}</h2>
+            <input class="form-control new-participant" type="text" id="username" name="username"
+                   placeholder={% trans "Username" %}> <span id="check_icon" style="visibility: hidden"></span>
+            <div>
+                <button class="verify-new-participant btn" type="button">{% trans 'Find' %}</button>
+                <button class="btn" id='add-button' style="display: none" type="button">{% trans 'Add' %}</button>
+            </div>
+        </form>
+    {% endif %}
 
-        <a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details'%}</a>
+    <a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details' %}</a>
 
 
-    <script>
-        $(".new-participant").change(function () {
-            var form = $(this).closest("form");
-            var input = $(this).closest("input");
-            var $form = $('form')
-            var tripId = {'tripId' : '{{trip.id}}' };
 
-            data = $form.serialize() + '&' + $.param(tripId);
-
-            $.ajax({
-                url: '/ajax/validate-participant',
-                data: data,
-                dataType: 'json',
-                success: function (data) {
-                    $('#check_icon').css('visibility', 'visible');
-                    $('#check_icon').css('font-style', 'italic');
-                    $('#add-button').hide();
-                    if (data.exists) {
-                        $('#check_icon').css('color', '#4caf50');
-                        $('#check_icon').html("<i class='fas fa-check fa-2x green-text' aria-hidden='true'><\/i>" +
-                            data.message_text);
-                        $('.btn').show();
-                    }
-                    else {
-                        $('#check_icon').css('color', '#f44336');
-                        $('#check_icon').html("<i class='fas fa-times fa-2x red-text' aria-hidden='true'><\/i>" + data
-                            .message_error);
-                    }
-                }
-            });
-        });
-    </script>
 {% endblock %}
 
 {% block js %}
-    {#  <script>#}
-    {#    $("#new_participant").change(function () {#}
-    {#      var username = $(this).val();#}
-    {##}
-    {#        $.ajax({#}
-    {#        url: '/ajax/validate_participant/',#}
-    {#        data: {#}
-    {#          'username': username#}
-    {#        },#}
-    {#        dataType: 'json',#}
-    {#        success: function (data) {#}
-    {#          if (data.is_taken) {#}
-    {#            alert("A user with this username already exists.");#}
-    {#          }#}
-    {#        }#}
-    {#        });#}
-    {#    });#}
-    {#  </script>#}
+
+    <script>
+        $(document).ready(function () {
+            $(".verify-new-participant").click(function () {
+                var form = $('.md-form');
+                var tripId = {'tripId': '{{trip.id}}'};
+
+                data = form.serialize() + '&' + $.param(tripId);
+
+                $.ajax({
+                    url: '/ajax/validate-participant',
+                    data: data,
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#check_icon').css('visibility', 'visible');
+                        $('#check_icon').css('font-style', 'italic');
+                        $('#add-button').hide();
+                        if (data.exists) {
+                            $('#check_icon').css('color', '#4caf50');
+                            $('#check_icon').html("<i class='fas fa-check fa-2x green-text' aria-hidden='true'><\/i>" +
+                                data.message_text);
+                            $('#add-button').show();
+                        }
+                        else {
+                            $('#check_icon').css('color', '#f44336');
+                            $('#check_icon').html("<i class='fas fa-times fa-2x red-text' aria-hidden='true'><\/i>" + data
+                                .message_error);
+                        }
+                    }
+                });
+            });
+            $("#add-button").click(function () {
+                var form = $('.md-form');
+                var tripId = {'tripId': '{{trip.id}}'};
+
+                data = form.serialize() + '&' + $.param(tripId);
+
+                $.ajax({
+                    url: '/ajax/add-participant',
+                    data: data,
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data.success == true){
+                            location.reload();
+                        }
+                    }
+                });
+            });
+
+            $("#add-button").click(function () {
+                var form = $('.md-form');
+                var tripId = {'tripId': '{{trip.id}}'};
+
+                data = form.serialize() + '&' + $.param(tripId);
+
+                $.ajax({
+                    url: '/ajax/add-participant',
+                    data: data,
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data.success == true){
+                            location.reload();
+                        }
+                    }
+                });
+            });
+
+{#            $('.new-participant').on('input', function() { todo: when accurate input changed hide add button#}
+{#                alert('Content has been changed');#}
+{#            });#}
+        });
+        function removeParticipant(userId)
+            {
+                $.ajax({
+                    url: '/ajax/remove-participant',
+                    data:  "userId=" + userId + "&tripId=" + {{trip.id}},
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data.success == true){
+                            location.reload();
+                        }
+                    }
+                });
+            }
+    </script>
+
 {% endblock %}

@@ -200,10 +200,6 @@ msgstr "Utwórz nową wycieczkę"
 msgid "Add new participant"
 msgstr "Dodaj współuczestnika"
 
-#: tripplanner/templates/tripplanner/trip_participants_list.html:18
-msgid "Type in the username and click \"Tab\" to validate it"
-msgstr "Wpisz nazwę użytkownika i kliknij \"Tab\" aby ją zweryfikować"
-
 #: tripplanner/templates/tripplanner/trip_participants_list.html:21
 msgid "Add"
 msgstr "Dodaj"
@@ -301,3 +297,6 @@ msgstr "Zakres czasowy"
 
 msgid "Time"
 msgstr "Czas"
+
+msgid "Find"
+msgstr "Wyszukaj"

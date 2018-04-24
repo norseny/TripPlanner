@@ -18,11 +18,7 @@ from tripplanner.pdf_utils import PdfPrint
 from django.contrib import messages
 
 from django.utils.translation import gettext as _
-from tripplanner import additional
 
-import datetime
-
-# from django.utils import timezone
 
 
 group1 = [login_required, user_is_trip_creator]
@@ -94,22 +90,7 @@ class TripWithAttributesCreate(CreateView):
         data = super(TripWithAttributesCreate, self).get_context_data(**kwargs)
         if self.request.POST:
             data['journeys'] = JourneyFormSet(self.request.POST, )
-
-            #check if daterange for journey not default
-            # for idx, el in enumerate(data['journeys'].cleaned_data):
-            #     checked_datetime_range = additional.check_daterange(
-            #         data['journeys'].cleaned_data[idx]['datetime_range'])
-            #     data['journeys'].cleaned_data[idx]['datetime_range'] = checked_datetime_range
-
             data['accommodations'] = AccommodationFormSet(self.request.POST)
-
-            #check if daterange for acc not default
-
-            # for idx, el in enumerate(data['accommodations'].cleaned_data):
-            #     checked_datetime_range = additional.check_daterange(
-            #         data['accommodations'].cleaned_data[idx]['datetime_range'])
-            #     data['accommodations'].cleaned_data[idx]['datetime_range'] = checked_datetime_range
-
             data['attractions'] = AttractionFormSet(self.request.POST)
         else:
             data['journeys'] = JourneyFormSet()
@@ -134,51 +115,9 @@ class TripWithAttributesCreate(CreateView):
 
                 if journeys.is_valid():
                     journeys.instance = self.object
-
-                    # self.object = form.save(commit=False)
-
-                    # not_yet_saved_journeys = journeys.save(commit=False)
-                    journeys_data_with_daterange = []
-                    # delete=true if all input fields for row are None
-                    for el in journeys.cleaned_data:
-                        # from django.utils import timezone
-
-                        if isinstance(el, dict):
-                            # el['start_time'] = timezone.now()
-                            if (len([value for value in el.values() if
-                                         value == None]) == 9) or (len([value for value in el.values() if value == None]) == 7):
-                                el['DELETE'] = True
-                            else:
-                                journeys_data_with_daterange.append(el)
-
-
-                    not_yet_saved_journeys = journeys.save(commit=False)
-
-                    if len(journeys_data_with_daterange) == len(not_yet_saved_journeys):
-                        for idx, el in enumerate(not_yet_saved_journeys):
-                            journey_dict = journeys_data_with_daterange[idx]
-                            if journey_dict['datetime_range']:
-                                # a = datetime.datetime.strptime(journey_dict['start_time'], '%d. %B %Y %H:%M')
-                                # st = time.strftime('%Y-%m-%d %H:%M:%S',
-                                #                    time.strptime(journey_dict['start_time'], '%a %b %d %H:%M:%S +0000 %Y'))
-                                el.start_time = journey_dict['start_time']
-                                # el.start_time = a
-
-                                el.end_time = journey_dict['end_time']
-
-                    saved = []
-                    for x in not_yet_saved_journeys:
-                        saved.append(x.save())
-                    # saved_journeys = not_yet_saved_journeys.save()
+                    journeys.save()
 
                 if accommodations.is_valid():
-
-                    # delete=true if all input fields for row are None
-                    for el in accommodations.cleaned_data:
-                        if isinstance(el, dict):
-                            if len(list((value for value in el.values() if value == None))) != 9:
-                                el['DELETE'] = True
-
                     accommodations.instance = self.object
                     accommodations.save()
 
@@ -186,7 +125,7 @@ class TripWithAttributesCreate(CreateView):
                     attractions.instance = self.object
                     attractions.save()
 
-                models.Trip.update_dates_and_price(self.object, journeys_data_with_daterange, accommodations.cleaned_data,
+                models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
                                                attractions.cleaned_data)
 
             else:
@@ -205,40 +144,11 @@ class TripWithAttributesUpdate(UpdateView):
         data = super(TripWithAttributesUpdate, self).get_context_data(**kwargs)
         if self.request.POST:
             data['journeys'] = JourneyFormSet(self.request.POST, instance=self.object)
-
-            # for idx, el in enumerate(data['journeys'].cleaned_data):
-            #     checked_datetime_range = additional.check_daterange(
-            #         data['journeys'].cleaned_data[idx]['datetime_range'])
-            #     data['journeys'].cleaned_data[idx]['datetime_range'] = checked_datetime_range
-
             data['accommodations'] = AccommodationFormSet(self.request.POST, instance=self.object)
-
-            # for idx, el in enumerate(data['accommodations'].cleaned_data):
-            #     checked_datetime_range = additional.check_daterange(
-            #         data['accommodations'].cleaned_data[idx]['datetime_range'])
-            #     data['accommodations'].cleaned_data[idx]['datetime_range'] = checked_datetime_range
-
             data['attractions'] = AttractionFormSet(self.request.POST, instance=self.object)
         else:
             data['journeys'] = JourneyFormSet(instance=self.object)
-
-            # initialize datetime
-            for idx, el in enumerate(data['journeys'].initial_forms):
-                journey_id = data['journeys'].initial_forms[idx].instance.id
-                journey = models.Journey.objects.get(pk=journey_id)
-                if journey.start_time and journey.end_time:
-                    datetime_range = additional.format_to_daterange(journey.start_time, journey.end_time)
-                    data['journeys'].initial_forms[idx].initial['datetime_range'] = datetime_range
-
             data['accommodations'] = AccommodationFormSet(instance=self.object)
-
-            for idx, el in enumerate(data['accommodations'].initial_forms):
-                accommodation_id = data['accommodationss'].initial_forms[idx].instance.id
-                accommodation = models.Accommodation.objects.get(pk=accommodation_id)
-                if accommodation.start_time and accommodation.end_time:
-                    datetime_range = additional.format_to_daterange(accommodation.start_time, accommodation.end_time)
-                    data['accommodations'].initial_forms[idx].initial['datetime_range'] = datetime_range
-
             data['attractions'] = AttractionFormSet(instance=self.object)
         return data
 
@@ -255,19 +165,6 @@ class TripWithAttributesUpdate(UpdateView):
                 if journeys.is_valid():
                     journeys.instance = self.object
                     journeys.save()
-
-                    # extract start_time and end_time from form field daterange and save them
-                    # for idx, el in enumerate(journeys.cleaned_data):
-                    #     if ('datetime_range' in el) and (el['DELETE'] == False):
-                    #         # if el['id'] and (el['datetime_range'] != None):
-                    #         if el['datetime_range']:
-                    #             journey = models.Journey.objects.get(pk=el['id'].id)
-                    #             journey.start_time = el['datetime_range'][0]
-                    #             journeys.cleaned_data[idx]['start_time'] = el['datetime_range'][0]
-                    #             journey.end_time = el['datetime_range'][1]
-                    #             journeys.cleaned_data[idx]['end_time'] = el['datetime_range'][1]
-                    #             journey.save()
-
                 if accommodations.is_valid():
                     accommodations.instance = self.object
                     accommodations.save()
@@ -289,25 +186,18 @@ class TripDelete(DeleteView):
 
 
 @method_decorator(login_required, name='dispatch')
-class TripParticipantsList(FormView):  # todo: change to list view, think of diff mechanism with adding and validation
-    form_class = AddParticipantForm
+class TripParticipantsList(ListView):
+    model = User
     template_name = 'tripplanner/trip_participants_list.html'
 
-    def get_success_url(self):
-        return reverse_lazy('trip-participants', kwargs={'pk': self.kwargs['pk']})
+    def get_queryset(self):
+        User.objects.filter(trip=self.kwargs['pk'])
+        return User.objects.filter(trip=self.kwargs['pk'])
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs):
         data = super(TripParticipantsList, self).get_context_data(**kwargs)
-        data['trip'] = Trip.objects.get(id=self.kwargs['pk'])
-        data['participants'] = Trip.objects.get(id=self.kwargs['pk']).participants.all()
+        data['trip'] = Trip.objects.get(pk=self.kwargs['pk'])
         return data
-
-    def form_valid(self, form):
-        trip = Trip.objects.get(id=self.kwargs['pk'])
-        user = User.objects.filter(username__iexact=form.cleaned_data['username']).first()
-        trip.participants.add(user)
-
-        return super(TripParticipantsList, self).form_valid(form)
 
 
 def validate_participant(request):
@@ -323,6 +213,33 @@ def validate_participant(request):
         'message_error': _(str("User doesn't exist or is already added.")),
         'message_text': _(str('Click "Add" to add this user to your trip.'))
     }
+    return JsonResponse(data)
+
+def add_participant(request):
+    username = request.GET.get('username', None)
+    trip_id = request.GET.get('tripId', None)
+    trip = Trip.objects.get(pk=trip_id)
+    data = {'success':False}
+    if User.objects.filter(username__iexact=username).exists():
+        if username not in list(trip.participants.values_list('username', flat=True).all()):
+            user = User.objects.get(username=username)
+            trip.participants.add(user)
+            data['success'] = True
+    return JsonResponse(data)
+
+
+def remove_participant(request):
+    user_id = request.GET.get('userId', None)
+    trip_id = request.GET.get('tripId', None)
+    trip = Trip.objects.get(pk=trip_id)
+    data = {'success':False}
+    try:
+        user = User.objects.get(pk=user_id)
+        if user in list(trip.participants.all()):
+            trip.participants.remove(user)
+            data['success'] = True
+    except:
+        pass
     return JsonResponse(data)
 
 
