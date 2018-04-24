@@ -18,7 +18,6 @@ class MeansOfTransport(models.Model):
 
 class BasicInfo(models.Model):
     start_time = models.DateTimeField(null=True, blank=True)
-    end_time = models.DateTimeField(null=True, blank=True)
     price = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True)
     name = models.CharField(null=True, blank=True, max_length=50)
 
@@ -30,6 +29,7 @@ class Trip(BasicInfo):
     name = models.CharField(max_length=50, unique=True, null=False, blank=False)
     description = models.TextField(null=True, max_length=250, blank=True)
     created_by = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
+    end_time = models.DateTimeField(null=True, blank=True)
     main_image = models.ImageField(upload_to='static/own/img/users_img', blank=True, null=True)
     participants = models.ManyToManyField(User)
 
@@ -73,12 +73,14 @@ class Journey(BasicInfo):
     # todo: quicksearch cities/countries - googlemaps dest?
     end_point = models.CharField(max_length=250, null=True, blank=True)
     # todo: moze dodac bool srodek publiczny/prywatny jak publiczny, to reusable dla innych użytkowników
+    end_time = models.DateTimeField(null=True, blank=True)
     means_of_transport = models.ForeignKey(MeansOfTransport, on_delete=models.SET_NULL, null=True, blank=True)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
 
 
 class Accommodation(BasicInfo):
     address = models.CharField(max_length=250, null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
 
 

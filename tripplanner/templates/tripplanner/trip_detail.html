@@ -5,9 +5,12 @@
 {% block content %}
 
     <div class="row"> {# todo: style #}
-        <div class="col-6 text-left">
+        <div class="col-6 text-left justify-content-center align-items-center">
         {% if prev_trip_id %}
-            <a class="myicon" href="{% url 'trip-detail' prev_trip_id %}"><i class="fas fa-angle-left fa-3x"></i></a>
+            <a class="myicon" href="{% url 'trip-detail' prev_trip_id %}"><i class="fas fa-angle-left fa-3x d-inline-block">
+                </i>
+{#                <span class="d-inline-block">{% trans 'Previous trip' %}</span>#}
+            </a>
         {% endif %}
         </div>
         <div class="col-6 text-right">
@@ -100,7 +103,7 @@
                     <tr>
                         <td class="justify-content-center"><i class="{{ el|ret_icon }}"></i></td>
                         <td>{{ el.name|default_if_none:"" }}</td>
-                        <td class="text-center">{{ el.start_time|date:"d.m.y H:i - "|default_if_none:"" }}{{ el.end_time|date:"d.m.y H:i"|default_if_none:"" }}</td>
+                        <td class="text-center">{{ el.start_time|date:"d.m.y H:i"|default_if_none:"" }}{{ el.end_time|date:" - d.m.y H:i"|default_if_none:"" }}</td>
                         <td>{{ el.start_point|default_if_none:"" }} {{ el.end_point|default_if_none:"" }}</td>
                         <td>{{ el.means_of_transport|default_if_none:"" }}</td>
                         <td>{{ el.address|default_if_none:"" }}</td>
