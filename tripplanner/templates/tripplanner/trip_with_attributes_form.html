@@ -20,6 +20,7 @@
         {% endfor %}
 
         <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys" aria-controls="journeys">{% trans 'Journeys' %} + </button>
+{#        <div class="accordion" data-toggle="collapse" data-target="#journeys" aria-controls="journeys">{% trans 'Journeys' %} + </div>#}
         <div class="collapse show scrollable-horizontally" id="journeys">
             <table class="table">
                 {{ journeys.management_form }}
@@ -142,17 +143,6 @@
 {#    <script src="{% static 'libs/flatpickr/flatpickr.min.js' %}"></script>#}
     <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>
 {#    <script src="{% static 'libs/flatpickr/pl.js' %}"></script>#}
-
-
-{#    <!-- Include Required Prerequisites -->#}
-{#    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>#}
-{##}
-{#    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/locale/pl.js"></script>#}
-{##}
-{##}
-{#<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>#}
-{##}
-{#    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />#}
 
 
 
