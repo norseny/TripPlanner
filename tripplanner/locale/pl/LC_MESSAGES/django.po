@@ -124,7 +124,7 @@ msgid "Trip's Details"
 msgstr "Szczegóły wycieczki"
 
 msgid "Show/Hide Trip's Details"
-msgstr "Pokaż/Ukryj szczegóły wycieczki"
+msgstr "Szczegóły wycieczki"
 
 
 #: tripplanner/templates/tripplanner/trip_detail.html:33
@@ -137,8 +137,16 @@ msgid "Name"
 msgstr "Nazwa"
 
 #: tripplanner/templates/tripplanner/trip_detail.html:40
-msgid "Start point"
-msgstr "Punkt startowy"
+msgid "Start"
+msgstr "Początek"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:41
+msgid "End"
+msgstr "Koniec"
+
+#: tripplanner/templates/tripplanner/trip_detail.html:40
+msgid "Start Point"
+msgstr "Punkt początkowy"
 
 #: tripplanner/templates/tripplanner/trip_detail.html:41
 msgid "End point"

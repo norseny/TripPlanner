@@ -122,7 +122,7 @@ class PdfPrint:
             table_data.append(
                 [Paragraph(formatTableCellData(attraction.name), styles['MyNormal']),
                  Paragraph(formatTableCellData(attraction.start_time), styles['MyNormal']),
-                 Paragraph(formatTableCellData(attraction.end_time), styles['MyNormal']),
+                 '',
                  '',
                  '',
                  '',

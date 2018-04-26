@@ -4,26 +4,24 @@
 {% block title %}{% endblock %}
 {% block content %}
 
-    <div class="row"> {# todo: style #}
-        <div class="col-6 text-left justify-content-center align-items-center">
+    <div class="row d-flex justify-content-center align-items-center m-3">
+        <div class="col-1 text-left justify-content-center align-items-center">
         {% if prev_trip_id %}
-            <a class="myicon" href="{% url 'trip-detail' prev_trip_id %}"><i class="fas fa-angle-left fa-3x d-inline-block">
-                </i>
-{#                <span class="d-inline-block">{% trans 'Previous trip' %}</span>#}
-            </a>
+            <a class="myicon" href="{% url 'trip-detail' prev_trip_id %}"><i class="fas fa-angle-left fa-3x"></i></a>
         {% endif %}
         </div>
-        <div class="col-6 text-right">
+        <div class="col-10 text-center">
+            <h1>{{ trip.name }} </h1>
+        </div>
+        <div class="col-1 text-right">
         {% if next_trip_id %}
             <a class="myicon" href="{% url 'trip-detail' next_trip_id %}"><i class="fas fa-angle-right fa-3x"></i></a>
         {% endif %}
         </div>
     </div>
 
-    <div class="row details-top-part">
+    <div class="row details-top-part m-3">
         <div class="col-6">
-            <h1 class="h1-details">{{ trip.name }} </h1>
-
             <div>
                 <p class="details-main"><label>{% trans 'Description' %}:</label> {{ trip.description }} </p>
                 <p class="details-main"><label>{% trans 'Created by' %}:</label> {{ trip.created_by }} </p>
@@ -39,11 +37,10 @@
             {% if user.id == trip.created_by_id %}
                 {% if trip.main_image %}
                     <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
-                        <a href="{% url 'upload-trip-img' trip.pk %}">
-                            <img src='../../../{{ trip.main_image.url }}'
+                        <img src='../../../{{ trip.main_image.url }}'
                                  alt="Trip main photo"
                                  class="photo-img img-fluid mx-auto d-block">
-
+                        <a href="{% url 'upload-trip-img' trip.pk %}">
                             <div class="overlay">
                                 <div class="photo-text-over myicon">
                                     <p><i class="far fa-image fa-5x d-inline-block"></i></p>
@@ -74,22 +71,22 @@
         </div>
     </div>
 
-
-    <a href="#trip-details">
-        <div class="accordion" id="trip-details" onclick="openDetails(event, 'trip-details-table')">
-            {% trans "Show/Hide Trip's Details" %}</div>
-    </a>
-
-    <div class="scrollable-horizontally tabcontent" id="trip-details-table">
+    <div class="details-with-acc m-4">
+{#    <a href="#trip-details">#}
+        <div class="accordion d-flex justify-content-center text-center align-items-center" id="trip-details" onclick="openCloseDetails(event, 'trip-details-table')">
+            <h2><span class="d-inline-block details-label">{% trans "Trip's Details" %}</span></h2>
+            <i class="fas fa-angle-down fa-3x" id="icon-details-down-view"></i>
+            <i class="fas fa-angle-up fa-3x" id="icon-details-up-view"></i>
+        </div>
+{#    </a>#}
+    <div class="scrollable-horizontally" id="trip-details-table" style="display: block">
         <table class="table table-details">
-            <label id="table-details-label">{% trans "Trip's Details Ordered by Start Time" %}</label>
             <thead>
             <tr>
                 <th></th>
                 <th>{% trans 'Name' %}</th>
                 <th class="text-center">{% trans 'Time' %}</th>
-{#                <th>{% trans 'Start point' %} - {% trans 'End point' %}</th>#}
-                <th>{% trans 'Z - do' %}</th>
+                <th>{% trans 'Start' %} - {% trans 'End' %}</th>
                 <th>{% trans 'Means of transport' %}</th>
                 <th>{% trans 'Address' %}</th>
                 <th class="text-right">{% trans 'Price (PLN)' %}</th>
@@ -103,7 +100,11 @@
                         <td class="justify-content-center"><i class="{{ el|ret_icon }}"></i></td>
                         <td>{{ el.name|default_if_none:"" }}</td>
                         <td class="text-center">{{ el.start_time|date:"d.m.y H:i"|default_if_none:"" }}{{ el.end_time|date:" - d.m.y H:i"|default_if_none:"" }}</td>
-                        <td>{{ el.start_point|default_if_none:"" }} - {{ el.end_point|default_if_none:"" }}</td>
+                        <td>{{ el.start_point|default_if_none:"" }}
+                            {% if el.start_point or el.end_point %}
+                                -
+                            {% endif %}
+                            {{ el.end_point|default_if_none:"" }}</td>
                         <td>{{ el.means_of_transport|default_if_none:"" }}</td>
                         <td>{{ el.address|default_if_none:"" }}</td>
                         <td class="text-right">{{ el.price|default_if_none:"" }}</td>
@@ -124,19 +125,20 @@
             </tfoot>
         </table>
     </div>
+
+    </div>
     {% if  participant %}
-        <div class="row w-100 justify-content-center text-center details-main-icons">
+        <div class="row w-100 justify-content-center text-center details-main-icons m-1">
             {% if user.id == trip.created_by_id %}
                 <div class="col-3">
                     <a href="{% url 'trip-update' trip.pk %}"><span class="myicon">
-                            <p><i class="far fa-edit fa-4x d-inline-block"></i></p>
+                            <p><i class="far fa-edit fa-3x d-inline-block"></i></p>
                             <p>{% trans 'Edit' %}</p>
                         </span></a>
-                    {#                </div>#}
                 </div>
                 <div class="col-3">
                     <a href="{% url 'trip-delete' trip.pk %}"><span class="myicon">
-                            <p><i class="far fa-trash-alt fa-4x d-inline-block"></i></p>
+                            <p><i class="far fa-trash-alt fa-3x d-inline-block"></i></p>
                             <p>{% trans 'Delete' %}</p>
                         </span></a>
                 </div>
@@ -144,14 +146,14 @@
 
             <div class="col-3">
                 <a href="{% url 'trip-participants' trip.pk %}"><span class="myicon">
-                    <p><i class="fas fa-users fa-4x d-inline-block"></i></p>
+                    <p><i class="fas fa-users fa-3x d-inline-block"></i></p>
                     <p>{% trans 'Trip participants' %}</p>
                 </span></a>
             </div>
 
             <div class="col-3">
                 <a href="{% url 'trip-detail-pdf' trip.pk %}"><span class="myicon">
-                        <p><i class="far fa-file-pdf fa-4x d-inline-block"></i></p>
+                        <p><i class="far fa-file-pdf fa-3x d-inline-block"></i></p>
                         <p>{% trans 'Pdf-file with details' %}</p>
                     </span></a>
             </div>
@@ -186,36 +188,39 @@
                 });
             });
         });
-    </script>
-
-    <script>
-        function openDetails(evt, id) {
+{#    </script>#}
+{##}
+{#    <script>#}
+        function openCloseDetails(evt, id) {
             var myvar;
             myvar = document.getElementById(id);
             if (myvar.style.display == "block") {
                 myvar.style.display = "none";
+                document.getElementById("icon-details-down-view").style.display = "block";
+                document.getElementById("icon-details-up-view").style.display = "none";
             } else {
                 myvar.style.display = "block";
+                document.getElementById("icon-details-up-view").style.display = "block";
+                document.getElementById("icon-details-down-view").style.display = "none";
             }
             evt.currentTarget.className += " active";
         }
     </script>
 
-    <script>
-        $(function () {
-            $('a[href*="#"]:not([href="#"])').click(function () {
-                if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
-                    var target = $(this.hash)
-                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']')
-                    if (target.length) {
-                        $('html, body').animate({
-                            scrollTop: target.offset().top
-                        }, 1000)
-                        return false
-                    }
-                }
-            })
-        })
-    </script>
+{#    <script>#}
+{#        $(function () {#}
+{#            $('a[href*="#"]:not([href="#"])').click(function () {#}
+{#                    var target = $(this.hash)#}
+{#                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']')#}
+{#                    if (target.length) {#}
+{#                        $('html, body').animate({#}
+{#                            scrollTop: target.offset().top#}
+{#                        }, 1000)#}
+{#                        return false#}
+{#                    }#}
+{#                }#}
+{#            })#}
+{#        })#}
+{#    </script>#}
 
 {% endblock %}
