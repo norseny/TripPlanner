@@ -69,31 +69,58 @@
 </head>
 
 <body>
-<nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center">
-    <div class="navbar-brand d-flex w-50 mr-auto">
-        <a href="{% url 'trip-list' %}">LOGO {% trans 'Home' %}</a>
-    </div>
 
-    <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
-        <ul class="navbar-nav w-100 justify-content-center">
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand minw-10" href="{% url 'trip-list' %}">
+        <div id="logo">
+            <span class="" id="home">{% trans 'Tripplanner' %}</span>
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a href="{% url 'trip-list' %}">{% trans 'Trip List' %}</a> |
-            </li>
-            <li class="nav-item active">
-                <a href="{% url 'my-trip-list' %}">{% trans 'My Trip List' %}</a> |
+                <a class="nav-link" href="{% url 'trip-list' %}">{% trans 'All Trips List' %}
+                </a>
             </li>
             <li class="nav-item">
-                <a href="{% url 'trip-with-attributes-create' %}">{% trans 'New trip' %}</a>
+                <a class="nav-link" href="{% url 'my-trip-list' %}">{% trans 'My Trip List' %}</a>
             </li>
-{#            <li class="nav-item">#}
-{#                <a href=#>{% trans 'About trips' %}</a>#}
-{#            </li>#}
+            {#      <li class="nav-item dropdown">#}
+            {#        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+            {#          Dropdown#}
+            {#        </a>#}
+            {#        <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+            {#          <a class="dropdown-item" href="#">Action</a>#}
+            {#          <a class="dropdown-item" href="#">Another action</a>#}
+            {#          <div class="dropdown-divider"></div>#}
+            {#          <a class="dropdown-item" href="#">Something else here</a>#}
+            {#        </div>#}
+            {#      </li>#}
+            {#      <li class="nav-item">#}
+            {#        <a class="nav-link disabled" href="#">Disabled</a>#}
+            {#      </li>#}
         </ul>
-        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
-            <li class="nav-item">
-                <form class="form-inline" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+
+
+        {#        <form class="form-inline my-2 my-lg-0">#}
+        {#            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">#}
+        {#            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+        {#        </form>#}
+
+        <div class="d-flex justify-content-center align-items-center">
+
+            <div class="d-inline-block maxw-40">
+                <form class="form-inline m-0 p-0" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                    <select name="language" class="custom-select w-50">
+                    <select name="language" class="custom-select">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
@@ -104,24 +131,41 @@
                             </option>
                         {% endfor %}
                     </select>
-                    <input class="btn btn-sm btn-primary" type="submit" value="Go"/>
+                    <input class="btn btn-sm btn-primary d-inline-block" type="submit" value="{% trans 'Change' %}"/>
                 </form>
-            </li>
-            <li class="nav-item">
-                {% if user.is_authenticated %}{% trans 'You are logged as' %} "{{ user.username }}"
-                {% endif %}
-            </li>
-            <li class="nav-item">
-                {% if user.is_anonymous %}
-                    <a href="{% url 'login' %}">{% trans 'Log in' %}</a>
-                {% else %}
-                    <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
-                {% endif %}
-            </li>
-        </ul>
-    </div>
+            </div>
 
+            <div class="d-block pl-3">
+                    <div class="row justify-content-center align-items-center text-center">
+                        <div class="col d-block">
+                            {% if user.is_authenticated %}
+                                <i class="fas fa-user"></i>
+                                {#            {% trans 'You are logged as' %} #}
+                                {{ user.username }}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col d-block">
+                            {% if user.is_anonymous %}
+                                <button class="btn btn-sm btn-primary">
+                                    <a href="{% url 'login' %}">{% trans 'Log in' %}</a>
+                                </button>
+                            {% else %}
+                                <button class="btn btn-sm btn-primary">
+                                    <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
 </nav>
+
 {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -129,8 +173,20 @@
         {% endfor %}
     </ul>
 {% endif %}
-<div class="container lg-col-12 h-100">
+<div class="container lg-col-12 my-3">
     {% block content %}{% endblock %}
 </div>
+
+
+<footer>
+    <div class="container-fluid">
+        <div class="text-center p-3 font-weight-bold">
+            Strona internetowa wykonana przez Beatę Piechowicz w ramach pracy licencjackiej pod kierunkiem dr Piotra
+            Jordana
+            Śliwińskiego.
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>

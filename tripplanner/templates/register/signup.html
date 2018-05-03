@@ -2,11 +2,15 @@
 {% load i18n %}
 
 {% block content %}
+    <div class="d-flex justify-content-center align-items-center h-100 w-100 md-form signup-form">
+  <div>
   <h1>{% trans 'Sign up' %}</h1>
-  <form method="post">
+  <form method="post" class="py-4">
     {% csrf_token %}
       {{ form.as_p }}
-    <button type="submit">{% trans 'Sign up!' %}</button>
+    <button type="submit" class="btn">{% trans 'Sign up!' %}</button>
   </form>
+  </div>
+    </div>
 
 {% endblock %}

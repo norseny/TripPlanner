@@ -25,8 +25,8 @@ msgid "Home"
 msgstr "Strona Główna"
 
 #: tripplanner/templates/base.html:59
-msgid "Trip List"
-msgstr "Wycieczki"
+msgid "All Trips List"
+msgstr "Wszystkie wycieczki"
 
 msgid "My Trip List"
 msgstr "Moje wycieczki"
@@ -145,7 +145,7 @@ msgid "End"
 msgstr "Koniec"
 
 #: tripplanner/templates/tripplanner/trip_detail.html:40
-msgid "Start Point"
+msgid "Start point"
 msgstr "Punkt początkowy"
 
 #: tripplanner/templates/tripplanner/trip_detail.html:41
