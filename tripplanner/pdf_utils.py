@@ -126,7 +126,7 @@ class PdfPrint:
                  '',
                  '',
                  '',
-                 '',
+                 Paragraph(formatTableCellData(attraction.address), styles['MyNormal']),
                  Paragraph(formatTableCellData(attraction.price), styles['MyNormalDecimal']),
                  ]
             )
