@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    url(r'^$', (views.MyTripList.as_view()), name='my-trip-list'),
+    url(r'^$', views.tripplanner, name='tripplanner'),
     url(r'^trips$', (views.TripList.as_view()), name='trip-list'),
     url(r'my-trips$', (views.MyTripList.as_view()), name='my-trip-list'),
     url(r'trip/(?P<pk>[0-9]+)/$', views.TripDetail.as_view(), name='trip-detail'),

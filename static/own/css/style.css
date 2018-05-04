@@ -91,14 +91,6 @@ i {
     /*margin: .25rem;*/
 }
 
-/*#trip-details-table {*/
-    /*background: #f2e5dc;*/
-/*}*/
-
-/*#table-details-label {*/
-    /*margin: 1.5rem 0 1rem 0;*/
-/*}*/
-
 .new-participant {
     width: 20rem;
     display: inline-block;
@@ -179,6 +171,20 @@ h1, h2 {
 
 #trip-participants-h1 {
     margin-top: 3%;
+}
+
+.navbar.navbar-light .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-light .navbar-nav .nav-item.active>.nav-link{
+        background-color: rgba(0, 145, 234, 0.4);
+
+}
+
+.table td, .table th{
+    border: none;
+}
+
+form table.table td{
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .container {

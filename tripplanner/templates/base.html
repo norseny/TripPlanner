@@ -63,6 +63,14 @@
 
     <link rel="stylesheet" href="{% static 'own/css/style.css' %}">
 
+
+    <script>
+        $(document).ready(function () {
+            $('li.active').removeClass('active');
+            $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+        });
+    </script>
+
     {% block js %}{% endblock %}
 
 
@@ -71,9 +79,9 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand minw-10" href="{% url 'trip-list' %}">
-        <div id="logo">
-            <span class="" id="home">{% trans 'Tripplanner' %}</span>
+    <a class="navbar-brand minw-10" href="{% url 'tripplanner' %}">
+        <div id="logo" class="d-flex align-items-center w-100 text-left">
+            <span class="mb-3 ml-2 d-inline-block" id="home">{% trans 'Tripplanner' %}</span>
         </div>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -92,6 +100,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'my-trip-list' %}">{% trans 'My Trip List' %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
             </li>
             {#      <li class="nav-item dropdown">#}
             {#        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
@@ -136,30 +147,29 @@
             </div>
 
             <div class="d-block pl-3">
-                    <div class="row justify-content-center align-items-center text-center">
-                        <div class="col d-block">
-                            {% if user.is_authenticated %}
-                                <i class="fas fa-user"></i>
-                                {#            {% trans 'You are logged as' %} #}
-                                {{ user.username }}
-                            {% endif %}
-                        </div>
+                <div class="row justify-content-center align-items-center text-center">
+                    <div class="col d-block">
+                        {% if user.is_authenticated %}
+                            <i class="fas fa-user"></i>
+{#                                        {% trans 'You are logged as' %}#}
+                            {{ user.username }}
+                        {% endif %}
                     </div>
+                </div>
 
-                    <div class="row">
-                        <div class="col d-block">
-                            {% if user.is_anonymous %}
-                                <button class="btn btn-sm btn-primary">
-                                    <a href="{% url 'login' %}">{% trans 'Log in' %}</a>
-                                </button>
-                            {% else %}
-                                <button class="btn btn-sm btn-primary">
-                                    <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
-                                </button>
-                            {% endif %}
-                        </div>
+                <div class="row">
+                    <div class="col d-block">
+                        {% if user.is_anonymous %}
+                            <button class="btn btn-sm btn-primary">
+                                <a href="{% url 'login' %}">{% trans 'Log in' %}</a>
+                            </button>
+                        {% else %}
+                            <button class="btn btn-sm btn-primary">
+                                <a class="d-inline-block h-100 w-100" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+                            </button>
+                        {% endif %}
                     </div>
-                </form>
+                </div>
             </div>
 
         </div>
@@ -167,7 +177,7 @@
 </nav>
 
 {% if messages %}
-    <ul class="messages">
+    <ul class="alert alert-info list-unstyled rounded-0" role="alert">
         {% for message in messages %}
             <li class="{{ message.tags }}">{{ message }}</li> {# todo: display messages differently #}
         {% endfor %}

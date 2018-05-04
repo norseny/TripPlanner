@@ -5,9 +5,14 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Trip" %}</h1>
 
-    <form action="" method="post">{% csrf_token %}
+    {% if form.initial|length > 0 %}
+        <h1>{% trans "Edit Trip" %}</h1>
+    {% else %}
+        <h1>{% trans "New Trip" %}</h1>
+    {% endif %}
+
+    <form class="" action="" method="post">{% csrf_token %}
         {% for field in form %}
             <div>
                 <span> {% trans field.label %} </span>
@@ -21,8 +26,10 @@
 
         {#        <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys" aria-controls="journeys">{% trans 'Journeys' %} + </button>#}
         <div class="form-with-acc">
-            <div class="accordion" data-toggle="collapse" data-target="#journeys"
-                 aria-controls="journeys" id="journey-acc">{% trans 'Journeys' %}
+            <div class="accordion d-flex justify-content-center text-left align-items-center"
+                 data-toggle="collapse"
+                 data-target="#journeys"
+                 aria-controls="journeys" id="journey-acc"><span class="pr-2">{% trans 'Journeys' %}</span>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form" id="icon-down-journey"></i>
                 <i class="fas fa-angle-up fa-3x icon-details-up-form" id="icon-up-journey"></i>
             </div>
@@ -58,9 +65,9 @@
         </div>
 
         <div class="form-with-acc">
-            <div class="accordion" data-toggle="collapse"
+            <div class="accordion d-flex justify-content-center text-left align-items-center" data-toggle="collapse"
                 data-target="#accommodations" aria-controls="accommodations" id="accommodation-acc"
-            >{% trans 'Accommodations' %}
+            ><span class="pr-2">{% trans 'Accommodations' %}</span>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form" id="icon-down-accommodation"></i>
                 <i class="fas fa-angle-up fa-3x icon-details-up-form" id="icon-up-accommodation"></i>
             </div>
@@ -100,9 +107,9 @@
 {#        </button>#}
 {#        <div>#}
         <div class="form-with-acc">
-            <div class="accordion" data-toggle="collapse"
+            <div class="accordion d-flex justify-content-center text-left align-items-center" data-toggle="collapse"
                 data-target="#attractions" aria-controls="attractions" id="attraction-acc"
-            >{% trans 'Attractions' %}
+            ><span class="pr-2">{% trans 'Attractions' %}</span>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form" id="icon-down-attraction"></i>
                 <i class="fas fa-angle-up fa-3x icon-details-up-form" id="icon-up-attraction"></i>
             </div>

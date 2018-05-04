@@ -126,7 +126,6 @@ msgstr "Szczegóły wycieczki"
 msgid "Show/Hide Trip's Details"
 msgstr "Szczegóły wycieczki"
 
-
 #: tripplanner/templates/tripplanner/trip_detail.html:33
 msgid "Trip's Details Ordered by Start Time"
 msgstr "Szczegóły wycieczki uporządkowane chronologicznie według czasu rozpoczęcia"
@@ -288,8 +287,8 @@ msgstr "Koszt całkowity (PLN)"
 msgid "Inspired? Go on a same trip!"
 msgstr "Zainspirowany? Wybierz się na taką samą wycieczkę!"
 
-msgid "Here is your new trip! Change the name and fill in some fields."
-msgstr "Oto twoja nowa wycieczka! Zmień nazwę i uzupełnij dowolne pola."
+msgid "Here is your new trip! Change the name and fill in the fields."
+msgstr "Oto twoja nowa wycieczka! Zmień nazwę i uzupełnij pola."
 
 msgid "Add main image"
 msgstr "Dodaj zdjęcie główne"
@@ -308,3 +307,12 @@ msgstr "Czas"
 
 msgid "Find"
 msgstr "Wyszukaj"
+
+msgid "Edit Trip"
+msgstr "Edycja wycieczki"
+
+msgid "New Trip"
+msgstr "Nowa wycieczka"
+
+msgid "Total: "
+msgstr "Suma: "

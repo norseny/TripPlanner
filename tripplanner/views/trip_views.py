@@ -5,6 +5,8 @@ from django.views.generic import ListView, DetailView
 from tripplanner.decorators import user_is_trip_creator, user_is_trip_participant
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.shortcuts import render
+
 
 from tripplanner.forms import *
 from tripplanner import models
@@ -23,6 +25,10 @@ from django.utils.translation import gettext as _
 
 group1 = [login_required, user_is_trip_creator]
 group2 = [login_required, user_is_trip_participant]
+
+
+def tripplanner(request):
+    return render(request, 'tripplanner/tripplanner.html')
 
 
 class TripList(ListView):
@@ -293,7 +299,7 @@ def inspired(request):
                                         kwargs={'pk': trip_clone.id}),
         }
     except:
-        pass  # todo: sth...
+        pass  # todo: alert when name 'bla bla copy already exists'
 
     return JsonResponse(data)
 

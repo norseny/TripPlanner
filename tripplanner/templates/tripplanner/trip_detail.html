@@ -134,7 +134,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td class="font-weight-bold text-right">{{ trip.price }}</td>
+                <td class="font-weight-bold text-right">{% trans 'Total: ' %}{{ trip.price|default_if_none:"" }}</td>
             </tr>
             </tfoot>
         </table>
