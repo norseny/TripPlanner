@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import render
 
-
 from tripplanner.forms import *
 from tripplanner import models
 from django.contrib.auth.models import User
@@ -20,7 +19,7 @@ from tripplanner.pdf_utils import PdfPrint
 from django.contrib import messages
 
 from django.utils.translation import gettext as _
-
+import json
 
 
 group1 = [login_required, user_is_trip_creator]
@@ -52,7 +51,6 @@ class MyTripList(ListView):
         return Trip.objects.filter(participants=curr_user.id)
 
 
-@method_decorator(login_required, name='dispatch')
 class TripDetail(DetailView):
     model = Trip
 
@@ -326,3 +324,101 @@ class ImageUploadView(UpdateView):
     model = Trip
     form_class = ImageUploadForm
     template_name = 'tripplanner/trip_upload_img.html'
+
+
+def get_places(request):
+  if request.is_ajax():
+    q = request.GET.get('term', '')
+
+
+    results = []
+    # json_data = open('tripplanner/data/countries.min.json')
+    json_data = open('tripplanner/data/sorted_cities.json')
+
+    jdictionary = json.load(json_data)
+
+    json_data.close()
+
+    results = find_in_city_json(q, jdictionary)
+
+    data = json.dumps(results)
+
+
+  #   places = Journey.objects.filter(start_point__icontains=q)
+  #   results = []
+  #
+  #   for pl in places:
+  #     place_json = {}
+  #     place_json = pl.start_point #+ "," + pl.state
+  #     results.append(place_json)
+  #   data = json.dumps(results)
+  # else:
+  #   data = 'fail'
+
+
+  mimetype = 'application/json'
+  return HttpResponse(data, mimetype)
+
+
+def find_in_json(key, jdictionary):
+    results = []
+    for k, v in jdictionary.items():
+        if k.startswith(key):
+            results.append(k)
+        if isinstance(v, list):
+            for city in v:
+                if city.startswith(key):
+                    results.append(city+', '+k)
+    return results
+
+
+def find_in_city_json(key, jlist, c_code=''):
+    results = []
+
+    for el in jlist:
+        for k, v in el.items():
+            if k == 'name':
+                if v.startswith(key):
+                    country_code = el.get('country')
+                    if v + ', ' + country_code in results:
+                        pass
+                    else:
+                        results.append(v + ', ' + country_code)
+        if len(results) >= 10:
+            break
+
+    # results.sort()
+    # final = results[:10]
+    return results
+
+#
+# def find_same_names_json(key, c_code, jlist):
+#     counter = 0
+#
+#     for el in jlist:
+#         for k, v in el.items():
+#             if k == 'name':
+#                 if v.startswith(key):
+#                     country_code = el.get('country')
+#                     if country_code == c_code:
+#                         counter += 1
+#                         if counter >=2:
+#                             return True
+#     return False
+
+
+# def sort_json():
+#     json_data = open('tripplanner/data/cities.json')
+#
+#     jlist = json.load(json_data)
+#
+#     json_data.close()
+#
+#     jsorted = sorted(jlist, key=lambda k: k['name'])
+#
+#     with open('tripplanner/data/sorted_cities.json', 'w') as fp:
+#         json.dump(jsorted, fp, indent=4, ensure_ascii=False)
+
+
+
+

@@ -284,8 +284,8 @@ msgstr "Powrót do szczegółów wycieczki"
 msgid "Total Cost (PLN)"
 msgstr "Koszt całkowity (PLN)"
 
-msgid "Inspired? Go on a same trip!"
-msgstr "Zainspirowany? Wybierz się na taką samą wycieczkę!"
+msgid "Inspired? Plan a similar trip!"
+msgstr "Zainspirowany? Zaplanuj podobną wycieczkę!"
 
 msgid "Here is your new trip! Change the name and fill in the fields."
 msgstr "Oto twoja nowa wycieczka! Zmień nazwę i uzupełnij pola."
@@ -316,3 +316,6 @@ msgstr "Nowa wycieczka"
 
 msgid "Total: "
 msgstr "Suma: "
+
+msgid "About Tripplanner"
+msgstr "O Tripplannerze"

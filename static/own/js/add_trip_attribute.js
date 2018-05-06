@@ -45,7 +45,7 @@ function addFormsets() {
         };
 
         $('.formset_row1').formset({
-        addText: '<span class="font-size-bigger">+</span>' + addNewRow,
+        addText: '<span class="font-size-bigger ">+</span>' + addNewRow,
         deleteText: '<span class="font-size-bigger">-</span>',
         prefix: 'journey_set',
         added: datepickerCallback()
@@ -55,7 +55,7 @@ function addFormsets() {
         addText: '<span class="font-size-bigger">+</span>' + addNewRow,
         deleteText: '<span class="font-size-bigger">-</span>',
         prefix: 'accommodation_set',
-        added: datepickerCallback()
+        added: datepickerCallback(),
     });
 
     $('.formset_row3').formset({

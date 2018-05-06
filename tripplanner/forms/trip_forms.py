@@ -3,7 +3,7 @@ from django.forms import Form, ModelForm, inlineformset_factory, Textarea, TextI
 from tripplanner.models import *
 from django import forms
 
-
+dict_of_textinput_attrs_autocomplete = {'class': 'form-control form-control-sm autocomplete'}
 dict_of_textinput_attrs = {'class': 'form-control form-control-sm'}
 dict_of_datetime_range_attrs = {'class': 'datetimepicker-range form-control form-control-sm'}
 
@@ -22,10 +22,12 @@ class MyDateTimeField(forms.DateTimeField):
 class TripForm(ModelForm, Form):
     class Meta:
         model = Trip
-        fields = ['name', 'description']
+        # fields = ['name', 'description']
+        fields = ['name', 'more_info']
         exclude = ()
         widgets = {
-            'description': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
+            # 'description': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
+            'more_info': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
             'name': TextInput(attrs=dict_of_textinput_attrs)
         }
 
@@ -36,12 +38,16 @@ class JourneyForm(ModelForm):
 
     class Meta:
         model = Journey
-        fields = ['means_of_transport','name','start_point', 'end_point', 'start_time', 'end_time','price']
+        fields = ['means_of_transport','name','start_point', 'end_point', 'start_time', 'end_time','price','more_info']
         widgets = {
             'means_of_transport': Select(attrs={'class': 'custom-select form-control-sm'}),
-            'start_point': TextInput(attrs=dict_of_textinput_attrs),
-            'end_point': TextInput(attrs=dict_of_textinput_attrs),
+            'start_point': TextInput(attrs=dict_of_textinput_attrs_autocomplete),
+            'end_point': TextInput(attrs=dict_of_textinput_attrs_autocomplete),
             'price': NumberInput(attrs=dict_of_textinput_attrs),
+            'more_info': Textarea(
+                attrs={'rows': 2, 'cols': '65', 'class': 'materialize-textarea form-control form-control-sm '
+                                                         'more-info d-none'}),
+
         }
         exclude = ('name',)
 
@@ -53,11 +59,15 @@ class AccommodationForm(ModelForm):
 
     class Meta:
         model = Accommodation
-        fields = ['name','address','start_time', 'end_time', 'price']
+        fields = ['name','address','start_time', 'end_time', 'price','more_info']
         widgets = {
             'name': TextInput(attrs=dict_of_textinput_attrs),
             'address': TextInput(attrs=dict_of_textinput_attrs),
             'price': NumberInput(attrs=dict_of_textinput_attrs),
+            'more_info': Textarea(
+                attrs={'rows': 2, 'cols': '65', 'class': 'materialize-textarea form-control form-control-sm '
+                                                         'more-info'}),
+
         }
         exclude = ()
 
@@ -67,11 +77,14 @@ class AttractionForm(ModelForm):
 
     class Meta:
         model = Attraction
-        fields = ['name','address','start_time', 'price']
+        fields = ['name','address','start_time', 'price','more_info']
         widgets = {
             'name': TextInput(attrs=dict_of_textinput_attrs),
             'address': TextInput(attrs=dict_of_textinput_attrs),
             'price': NumberInput(attrs=dict_of_textinput_attrs),
+            'more_info': Textarea(
+                attrs={'rows': 2, 'cols': '65', 'class': 'materialize-textarea form-control form-control-sm'}),
+
         }
         exclude = ()
 

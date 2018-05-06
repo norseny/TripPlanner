@@ -20,5 +20,7 @@ urlpatterns = [
     url(r'^ajax/inspired/$', views.inspired, name='inspired'),
     url(r'trip/(?P<pk>[0-9]+)/pdf$', views.TripDetailPdf.as_view(), name='trip-detail-pdf'),
     url(r'trip/(?P<pk>[0-9]+)/upload-img$', views.ImageUploadView.as_view(), name='upload-trip-img'),
+    url(r'^api/get_places/', views.get_places, name='get_places'),
+
 ] \
               # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #todo: sort it out
