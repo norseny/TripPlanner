@@ -54,7 +54,8 @@
                                             {{ hidden }}
                                         {% endfor %}
                                     {% endif %}
-                                    {{ field }}
+                                    <div class="field">{{ field }}
+                                    </div>
                                     <div class="error-style">{{ field.errors.as_text }}</div>
                                 </td>
                             {% endfor %}
@@ -149,7 +150,8 @@
         <div><a href="{% url 'my-trip-list' %}">{% trans 'Back to the List of My Trips' %}</a></div>
 
         {% if form.initial|length > 0 %}
-            <a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details' %}</a>
+            <div><a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details' %}</a></div>
+            <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip'%}</a></div>
         {% endif %}
 
         {# todo: flatpicker kasuje godzinę przy update#}
@@ -166,52 +168,8 @@
 
     <script src="{% static 'libs/formset/jquery.formset.js' %}"></script>
     <script src="{% static 'own/js/add_trip_attribute.js' %}"></script>
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    {#    <link rel="stylesheet" href="{% static 'libs/flatpickr/flatpickr.min.css' %}">#}
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    {#    <script src="{% static 'libs/flatpickr/flatpickr' %}"></script>#}
-    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-    {#    <script src="{% static 'libs/flatpickr/flatpickr.min.js' %}"></script>#}
-    <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>
-    {#    <script src="{% static 'libs/flatpickr/pl.js' %}"></script>#}
-
-    <script>
-        $(document).ready(function () {
-{#            alert($(".ii").find("textarea[style='display:block;']").attr('id'));#}
-            alert($(".materialize-textarea:hidden").attr('id'));
-
-            $("#journey-acc").click(function () {
-                if ($('#icon-down-journey').is(':visible')) {
-                    $("#icon-down-journey").hide();
-                    $("#icon-up-journey").show();
-                } else {
-                    $("#icon-down-journey").show();
-                    $("#icon-up-journey").hide();
-
-                }
-            });
-            $("#accommodation-acc").click(function () {
-                if ($('#icon-down-accommodation').is(':visible')) {
-                    $("#icon-down-accommodation").hide();
-                    $("#icon-up-accommodation").show();
-                } else {
-                    $("#icon-down-accommodation").show();
-                    $("#icon-up-accommodation").hide();
-                }
-            });
-            $("#attraction-acc").click(function () {
-                if ($('#icon-down-attraction').is(':visible')) {
-                    $("#icon-down-attraction").hide();
-                    $("#icon-up-attraction").show();
-                } else {
-                    $("#icon-down-attraction").show();
-                    $("#icon-up-attraction").hide();
-                }
-            });
-        });
-    </script>
+    <script src="{% static 'own/js/form-accordion.js' %}"></script>
+    <script src="{% static 'own/js/form-autocomplete.js' %}"></script>
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
@@ -219,22 +177,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>
+
     <script>
-        $(document).on('focus', '.autocomplete', function () {
-            $("#" + document.activeElement.id).autocomplete({
-                source: "/api/get_places/",
-                select: function (event, ui) { //item selected
-                    AutoCompleteSelectHandler(event, ui)
-                },
-                minLength: 2,
-            });
+        $(document).ready(function () {
+            //title = $(event.target).closest('.field').find('textarea.more-info');
+
+            $( "textarea.more-info")
+                .closest( ".field" )
+                .show();
+
+{#            alert($(".ii").find("textarea[style='display:block;']").attr('id'));#}
+{#            alert($(".materialize-textarea:hidden").attr('id'));#}
+
         });
-
-        function AutoCompleteSelectHandler(event, ui) {
-            var selectedObj = ui.item;
-        }
-
     </script>
 
+
+{#    <i class="fas fa-plus-circle fa-2x d-none"></i>#}
 {% endblock %}
 

@@ -104,11 +104,6 @@ i {
     font-weight: 400;
 }
 
-.login-box {
-    /*height: 80%;*/
-    align-items: center;
-    overflow: hidden;
-}
 
 .form-signin > div {
     padding: 1rem;
@@ -202,7 +197,7 @@ form table.table td{
 
 .signup-form ul, .helptext{
     font-size: small;
-    color: #0091ea;
+    color:#321911;
 }
 
 .delete-row {
@@ -376,4 +371,17 @@ a:hover, .underline-on-hover:hover {
     /*top: 0;*/
     /*left: 0;*/
     /*background: rgba(0, 0, 0, 0.5);*/
+}
+
+/*.font-blue {*/
+    /*color: #0091ea;*/
+/*}*/
+
+.login-a {
+    color: white;
+}
+
+.login-a:hover{
+    text-decoration: none!important;
+    color: white;
 }

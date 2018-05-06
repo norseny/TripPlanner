@@ -2,15 +2,64 @@
 {% load i18n %}
 
 {% block content %}
-    <div class="d-flex justify-content-center align-items-center h-100 w-100 md-form signup-form">
-  <div>
-  <h1>{% trans 'Sign up' %}</h1>
-  <form method="post" class="py-4">
-    {% csrf_token %}
-      {{ form.as_p }}
-    <button type="submit" class="btn">{% trans 'Sign up!' %}</button>
-  </form>
-  </div>
+    <div class="d-flex justify-content-center align-items-center w-100">
+        <div class="text-center md-form">
+            <h1 class="h3 mb-3 font-weight-normal">{% trans 'Sign up' %}</h1>
+            {% if form.errors %}
+                {#                todo: print errors#}
+            {% endif %}
+            <form class="md-form form-signin" method="post" class="py-4">
+                {% csrf_token %}
+
+                <div class="control-group">
+
+                    <label class="control-label sr-only" for="id_username">Username:</label>
+                    <input class="form-control" type="text" name="username" maxlength="150"
+                           autofocus="" id="id_username" required="" placeholder={% trans "Login" %}>
+                    <div class="text-left"><span class="helptext">
+                                            {% trans 'Required. 150 characters or fewer. Only letters, digits and @/./+/-/_.' %}</span></div>
+                </div>
+                <div class="control-group">
+                                        <label class="control-label sr-only" for="id_password1">Password:</label>
+                    <div class="controls">
+
+                        <input class="form-control" type="password" name="password1" id="id_password1"
+                               required="" placeholder={% trans "Password" %}>
+                    </div>
+                                    <ul class="helptext list-unstyled text-left">
+                                        <li>
+                                            {%  trans "Your password can't be too similar to your other personal information."%}</li>
+                                        <li>{%  trans "Your password must contain at least 8 characters."%}</li>
+                                        <li>{%  trans "Your password can't be a commonly used password."%}</li>
+                                        <li>{% trans "Your password can't be entirely numeric."%}</li>
+                                    </ul>
+
+                </div>
+                <div class="control-group">
+                                        <label class="control-label sr-only" for="id_password2">Password
+                                            confirmation:</label>
+
+                    <div class="controls">
+
+
+                        <input class="form-control" type="password" name="password2"
+                               id="id_password2" required="" placeholder="{% trans 'Repeat password' %}">
+                        <div class="text-left"><span class="helptext">
+                            {% trans 'Enter the same password as before, for verification reasons.' %}</span></div>
+                    </div>
+
+                </div>
+
+                {#      <button type="submit" class="btn">Sign up!</button>#}
+                {#  </form>#}
+
+
+{#                {{ form.as_p }}#}
+
+
+                <button type="submit" class="btn">{% trans 'Sign up!' %}</button>
+            </form>
+        </div>
     </div>
 
 {% endblock %}

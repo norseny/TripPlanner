@@ -65,7 +65,7 @@ msgstr "Login lub hasło są nieprawidłowe. Spróbuj ponownie."
 #: tripplanner/templates/register/login.html:18
 #: tripplanner/templates/tripplanner/trip_participants_list.html:19
 msgid "Username"
-msgstr "Nazwa użytkownika"
+msgstr "Login"
 
 #: tripplanner/templates/register/login.html:22
 #: tripplanner/templates/register/login.html:24
@@ -319,3 +319,30 @@ msgstr "Suma: "
 
 msgid "About Tripplanner"
 msgstr "O Tripplannerze"
+
+msgid "Username:"
+msgstr "Nazwa użytkownika:"
+
+msgid "Repeat password"
+msgstr "Powtórz hasło"
+
+msgid "Enter the same password as before, for verification reasons."
+msgstr "Wprowadź hasło ponownie, by potwierdzić spójność haseł."
+
+msgid "Required. 150 characters or fewer. Only letters, digits and @/./+/-/_."
+msgstr "Wymagany. 150 lub mniej znaków. Jedynie litery, cyfry i @/./+/-/_."
+
+#msgid "Your password can't be too similar to your other personal information."
+#msgstr "Twoje hasło nie może być zbyt podobne do twoich innych danych osobistych."
+
+msgid "Your password must contain at least 8 characters."
+msgstr "Twoje hasło musi zawierać co najmniej 8 znaków."
+
+#msgid "Your password can't be a commonly used password."
+#msgstr "Twoje hasło nie może być powszechnie używanym hasłem."
+
+#msgid "Your password can't be entirely numeric."
+#msgstr "Twoje hasło nie może składać się tylko z cyfr."
+
+msgid "New account created!"
+msgstr "Twoje konto zostało utworzone!"

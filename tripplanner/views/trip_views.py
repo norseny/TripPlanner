@@ -21,7 +21,6 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 import json
 
-
 group1 = [login_required, user_is_trip_creator]
 group2 = [login_required, user_is_trip_participant]
 
@@ -102,14 +101,12 @@ class TripWithAttributesCreate(CreateView):
             data['attractions'] = AttractionFormSet()
         return data
 
-
     def form_valid(self, form):
         context = self.get_context_data()
         journeys = context['journeys']
         accommodations = context['accommodations']
         attractions = context['attractions']
         with transaction.atomic():
-
 
             if attractions.is_valid() and accommodations.is_valid() and journeys.is_valid():
                 current_user = self.request.user
@@ -130,7 +127,7 @@ class TripWithAttributesCreate(CreateView):
                     attractions.save()
 
                 models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
-                                               attractions.cleaned_data)
+                                                   attractions.cleaned_data)
 
             else:
                 return self.form_invalid(form)
@@ -219,11 +216,12 @@ def validate_participant(request):
     }
     return JsonResponse(data)
 
+
 def add_participant(request):
     username = request.GET.get('username', None)
     trip_id = request.GET.get('tripId', None)
     trip = Trip.objects.get(pk=trip_id)
-    data = {'success':False}
+    data = {'success': False}
     if User.objects.filter(username__iexact=username).exists():
         if username not in list(trip.participants.values_list('username', flat=True).all()):
             user = User.objects.get(username=username)
@@ -236,7 +234,7 @@ def remove_participant(request):
     user_id = request.GET.get('userId', None)
     trip_id = request.GET.get('tripId', None)
     trip = Trip.objects.get(pk=trip_id)
-    data = {'success':False}
+    data = {'success': False}
     try:
         user = User.objects.get(pk=user_id)
         if user in list(trip.participants.all()):
@@ -290,14 +288,14 @@ def inspired(request):
             attraction_clone.trip_id = trip_clone.id
             attraction_clone.save()
 
-        messages.success(request, _('Here is your new trip! Change the name and fill in some fields.'))
+        messages.success(request, _(str('Here is your new trip! Change the name and fill in the fields.')))
 
         data = {
             'tripEditUrl': reverse_lazy('trip-update',
                                         kwargs={'pk': trip_clone.id}),
         }
     except:
-        pass  # todo: alert when name 'bla bla copy already exists'
+        data = {'error': _(str('You already have the trip with this name!'))}
 
     return JsonResponse(data)
 
@@ -327,52 +325,20 @@ class ImageUploadView(UpdateView):
 
 
 def get_places(request):
-  if request.is_ajax():
-    q = request.GET.get('term', '')
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+
+        json_data = open('tripplanner/data/sorted_cities.json')
+        jdictionary = json.load(json_data)
+        json_data.close()
+        results = find_in_city_json(q, jdictionary)
+        data = json.dumps(results)
+
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
 
 
-    results = []
-    # json_data = open('tripplanner/data/countries.min.json')
-    json_data = open('tripplanner/data/sorted_cities.json')
-
-    jdictionary = json.load(json_data)
-
-    json_data.close()
-
-    results = find_in_city_json(q, jdictionary)
-
-    data = json.dumps(results)
-
-
-  #   places = Journey.objects.filter(start_point__icontains=q)
-  #   results = []
-  #
-  #   for pl in places:
-  #     place_json = {}
-  #     place_json = pl.start_point #+ "," + pl.state
-  #     results.append(place_json)
-  #   data = json.dumps(results)
-  # else:
-  #   data = 'fail'
-
-
-  mimetype = 'application/json'
-  return HttpResponse(data, mimetype)
-
-
-def find_in_json(key, jdictionary):
-    results = []
-    for k, v in jdictionary.items():
-        if k.startswith(key):
-            results.append(k)
-        if isinstance(v, list):
-            for city in v:
-                if city.startswith(key):
-                    results.append(city+', '+k)
-    return results
-
-
-def find_in_city_json(key, jlist, c_code=''):
+def find_in_city_json(key, jlist):
     results = []
 
     for el in jlist:
@@ -387,38 +353,4 @@ def find_in_city_json(key, jlist, c_code=''):
         if len(results) >= 10:
             break
 
-    # results.sort()
-    # final = results[:10]
     return results
-
-#
-# def find_same_names_json(key, c_code, jlist):
-#     counter = 0
-#
-#     for el in jlist:
-#         for k, v in el.items():
-#             if k == 'name':
-#                 if v.startswith(key):
-#                     country_code = el.get('country')
-#                     if country_code == c_code:
-#                         counter += 1
-#                         if counter >=2:
-#                             return True
-#     return False
-
-
-# def sort_json():
-#     json_data = open('tripplanner/data/cities.json')
-#
-#     jlist = json.load(json_data)
-#
-#     json_data.close()
-#
-#     jsorted = sorted(jlist, key=lambda k: k['name'])
-#
-#     with open('tripplanner/data/sorted_cities.json', 'w') as fp:
-#         json.dump(jsorted, fp, indent=4, ensure_ascii=False)
-
-
-
-
