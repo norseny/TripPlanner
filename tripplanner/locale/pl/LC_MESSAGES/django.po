@@ -352,3 +352,15 @@ msgstr "Twoje konto zostało utworzone!"
 
 msgid "Log in to use this function!"
 msgstr "Zaloguj się, aby skorzystać z tej funkcji!"
+
+msgid "Description, max 1000 characters"
+msgstr "Opis, maksymalnie 1000 znaków"
+
+msgid "from"
+msgstr "od"
+
+msgid "from "
+msgstr "z "
+
+msgid "to"
+msgstr "do"

@@ -26,76 +26,75 @@
     </div>
 
     <div class="row mt-3 mb-5 mr-5 ml-5">
-    <div class="col-6 d-flex justify-content-center align-items-center pt-4">
-        <div class="no-a-underline">
-            <p class="details-main"><label>{% trans 'Description' %}:</label> {{ trip.more_info }} </p>
-            <p class="details-main"><label>{% trans 'Created by' %}:</label> {{ trip.created_by }} </p>
-            <p class="details-main">
-                <label>{% trans 'Start time' %}:</label> {{ trip.start_time|default_if_none:"" }} </p>
-            <p class="details-main"><label>{% trans 'End time' %}:</label> {{ trip.end_time|default_if_none:"" }}
-            </p>
-            <p class="details-main">
-                <label>{% trans 'Total Cost (PLN)' %}:</label> {{ trip.price|default_if_none:"" }} </p>
-            <div class="row justify-content-center align-items-center text-center mt-2">
-                <div class="col-6">
-                    <a href="{% url 'trip-participants' trip.pk %}"><span class="myicon">
+        <div class="col-6 d-flex justify-content-center align-items-center pt-4">
+            <div class="no-a-underline">
+                <p class="details-main"><label>{% trans 'Description' %}:</label> {{ trip.more_info }} </p>
+                <p class="details-main"><label>{% trans 'Created by' %}:</label> {{ trip.created_by }} </p>
+                <p class="details-main">
+                    <label>{% trans 'Start time' %}:</label> {{ trip.start_time|default_if_none:"" }} </p>
+                <p class="details-main"><label>{% trans 'End time' %}:</label> {{ trip.end_time|default_if_none:"" }}
+                </p>
+                <p class="details-main">
+                    <label>{% trans 'Total Cost (PLN)' %}:</label> {{ trip.price|default_if_none:"" }} </p>
+                <div class="row justify-content-center align-items-center text-center mt-2">
+                    <div class="col-6">
+                        <a href="{% url 'trip-participants' trip.pk %}"><span class="myicon">
                             <p><i class="fas fa-users fa-3x d-inline-block"></i></p>
                             <p>{% trans 'Trip participants' %}</p>
                         </span></a>
-                </div>
-                <div class="col-6">
-                    <a href="{% url 'trip-detail-pdf' trip.pk %}"><span class="myicon">
+                    </div>
+                    <div class="col-6">
+                        <a href="{% url 'trip-detail-pdf' trip.pk %}"><span class="myicon">
                             <p><i class="far fa-file-pdf fa-3x d-inline-block"></i></p>
                             <p>{% trans 'Pdf-file with details' %}</p>
                         </span></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-6 d-flex justify-content-center align-items-center text-center">
-        {% if user.id == trip.created_by_id %}
-            {% if trip.main_image %}
-                <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center no-a-underline">
-                    <img src='{{ trip.main_image.url }}'
-                         alt="Trip main photo"
-                         class="photo-img img-fluid mx-auto d-block">
-                    <a href="{% url 'upload-trip-img' trip.pk %}">
-                        <div class="overlay">
-                            <div class="photo-text-over myicon">
-                                <p><i class="far fa-image fa-5x d-inline-block"></i></p>
-                                <p>{% trans "Change main image" %}</p>
+        <div class="col-6 d-flex justify-content-center align-items-center text-center">
+            {% if user.id == trip.created_by_id %}
+                {% if trip.main_image %}
+                    <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center no-a-underline">
+                        <img src='{{ trip.main_image.url }}'
+                             alt="Trip main photo"
+                             class="photo-img img-fluid mx-auto d-block">
+                        <a href="{% url 'upload-trip-img' trip.pk %}">
+                            <div class="overlay">
+                                <div class="photo-text-over myicon">
+                                    <p><i class="far fa-image fa-5x d-inline-block"></i></p>
+                                    <p>{% trans "Change main image" %}</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            {% else %}
-                <div class="row h-100 justify-content-center align-items-center text-center no-a-underline">
-                    <a href="{% url 'upload-trip-img' trip.pk %}"><span class="myicon">
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="row h-100 justify-content-center align-items-center text-center no-a-underline">
+                        <a href="{% url 'upload-trip-img' trip.pk %}"><span class="myicon">
                                 <p>
                                     <i class="far fa-image fa-5x d-inline-block"></i>
                                     <i class="fas fa-plus fa-2x d-inline-block mb-5"></i>
                                 </p>
                                 <p>{% trans 'Add main image' %}</p>
                             </span></a>
-                </div>
-            {% endif %}
-        {% else %}
-            {% if trip.main_image %}
-                <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
-                    <img src='{{ trip.main_image.url }}' alt="img" class="photo-img img-fluid mx-auto
-                                                                               d-block">
-                </div>
+                    </div>
+                {% endif %}
             {% else %}
-                <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
-                <img src='../../../media/users_img/default-photo.jpeg' alt="img" class="photo-img
+                {% if trip.main_image %}
+                    <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
+                        <img src='{{ trip.main_image.url }}' alt="img" class="photo-img img-fluid mx-auto
+                                                                               d-block">
+                    </div>
+                {% else %}
+                    <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
+                        <img src='../../../media/users_img/default-photo.jpeg' alt="img" class="photo-img
                 img-fluid mx-auto
                                                                                d-block">
-                </div>
+                    </div>
+                {% endif %}
             {% endif %}
-        {% endif %}
         </div>
     </div>
-
 
     <div class="details-with-acc m-">
         <div class="accordion d-flex justify-content-center text-center align-items-center" id="trip-details"
@@ -105,52 +104,72 @@
             <i class="fas fa-angle-up fa-3x" id="icon-details-up-view"></i>
         </div>
         <div class="scrollable-horizontally" id="trip-details-table" style="display: block">
-            <table class="table table-details mb-0">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>{% trans 'Name' %}</th>
-                    <th class="text-center">{% trans 'Time' %}</th>
-                    <th>{% trans 'Start' %} - {% trans 'End' %}</th>
-                    <th>{% trans 'Means of transport' %}</th>
-                    <th>{% trans 'Address' %}</th>
-                    <th class="text-right">{% trans 'Price (PLN)' %}</th>
-                </tr>
-                </thead>
 
-                <tbody>
-                {% if all %}
-                    {% for el in all %}
-                        <tr>
-                            <td class="justify-content-center"><i class="{{ el|ret_icon }}"></i></td>
-                            <td>{{ el.name|default_if_none:"" }}</td>
-                            <td class="text-center">
-                                {{ el.start_time|date:"d.m.y H:i"|default_if_none:"" }}{{ el.end_time|date:" - d.m.y H:i"|default_if_none:"" }}</td>
-                            <td>{{ el.start_point|default_if_none:"" }}
-                                {% if el.start_point or el.end_point %}
-                                    -
-                                {% endif %}
-                                {{ el.end_point|default_if_none:"" }}</td>
-                            <td>{{ el.means_of_transport|default_if_none:"" }}</td>
-                            <td>{{ el.address|default_if_none:"" }}</td>
-                            <td class="text-right">{{ el.price|default_if_none:"" }}</td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="font-weight-bold text-right">
-                        {% trans 'Total: ' %}{{ trip.price|default_if_none:"" }}</td>
-                </tr>
-                </tfoot>
-            </table>
+            {% if trip.journey_set.all %}
+            <div><i class="brown-font fas fa-rocket"></i></div>
+            {% for el in trip.journey_set.all %}
+                <div class="row">
+                    <div class="col-2 py-1">{{ el.means_of_transport|default_if_none:"" }}</div>
+                    <div class="col-4 d-flex align-items-center"><span>
+                        {% if el.start_point %}
+                            {% trans 'from ' %}
+                        {% endif %}
+                        {{ el.start_point|default_if_none:"" }}
+                        {% if el.end_point %}
+                            {% trans 'to' %}
+                        {% endif %}
+                        {{ el.end_point|default_if_none:"" }}
+                    </span></div>
+                    <div class="col-4 text-center py-1">
+                        {% if el.start_time %}
+                            {% trans 'from' %}
+                        {% endif %}
+                        {{ el.start_time|date:" d.m.y (H:i) "|default_if_none:"" }}
+                        {% if el.end_time %}
+                            {% trans 'to' %}
+                        {% endif %}
+                        {{ el.end_time|date:"d.m.y (H:i)"|default_if_none:"" }}</div>
+                    <div class=" col-2 text-right py-1">{{ el.price|default_if_none:"" }}</div>
+                </div>
+                <div class="my-2 grey-border-bottom font-small">{{ el.more_info|default_if_none:"" }}</div>
+            {% endfor %}
+            <div class="text-right font-weight-400">{% trans 'Total: ' %}{{ total_cost_journeys }}&nbsp;PLN</div>
+        {% endif %}
+
+            {% if trip.accommodation_set.all %}
+                <div class="pt-3"><i class="brown-font fas fa-bed"></i></div>
+                {% for el in trip.accommodation_set.all %}
+                    <div class="row">
+                        <div class="col-2 py-1">{{ el.name|default_if_none:"" }}</div>
+                        <div class="col-4 py-1">{{ el.address|default_if_none:"" }}</div>
+                        <div class="col-4 text-center py-1">
+                            {{ el.start_time|date:"d.m.y (H:i)"|default_if_none:"" }}{{ el.end_time|date:" - d.m.y (H:i)"|default_if_none:"" }}</div>
+                        <div class=" col-2 text-right py-1">{{ el.price|default_if_none:"" }}</div>
+                    </div>
+                    <div class="my-2 grey-border-bottom"
+                    >{{ el.more_info|default_if_none:"" }}</div>
+                {% endfor %}
+                <div class="text-right font-weight-400">{% trans 'Total: ' %}{{ total_cost_accommodations }}&nbsp;PLN
+                </div>
+            {% endif %}
+
+
+            {% if trip.attraction_set.all %}
+                <div class="pt-3"><i class="brown-font fas fa-star"></i></div>
+                {% for el in trip.attraction_set.all %}
+                    <div class="row">
+                        <div class="col-2 py-1">{{ el.name|default_if_none:"" }}</div>
+                        <div class="col-4 py-1">{{ el.address|default_if_none:"" }}</div>
+                        <div class="col-4 text-center py-1">
+                            {{ el.start_time|date:"d.m.y (H:i)"|default_if_none:"" }}</div>
+                        <div class=" col-2 text-right py-1">{{ el.price|default_if_none:"" }}</div>
+                    </div>
+                    <div class="my-2 grey-border-bottom">{{ el.more_info|default_if_none:"" }}</div>
+                {% endfor %}
+                <div class="text-right font-weight-400">{% trans 'Total: ' %}{{ total_cost_attractions }}&nbsp;PLN</div>
+            {% endif %}
+
+
         </div>
 
     </div>

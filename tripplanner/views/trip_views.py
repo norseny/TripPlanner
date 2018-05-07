@@ -20,6 +20,8 @@ from django.contrib import messages
 
 from django.utils.translation import gettext as _
 import json
+from django.db.models import Sum
+
 
 group1 = [login_required, user_is_trip_creator]
 group2 = [login_required, user_is_trip_participant]
@@ -35,9 +37,9 @@ class TripList(ListView):
     def get_queryset(self):
         if self.request.user.is_authenticated:
             curr_user = User.objects.get(pk=self.request.user.id)
-            return Trip.objects.exclude(participants=curr_user.id)
+            return Trip.objects.exclude(participants=curr_user.id).order_by('pk')
         else:
-            return Trip.objects.all()
+            return Trip.objects.order_by('pk').all()
 
 
 @method_decorator(login_required, name='dispatch')
@@ -47,7 +49,7 @@ class MyTripList(ListView):
 
     def get_queryset(self):
         curr_user = User.objects.get(pk=self.request.user.id)
-        return Trip.objects.filter(participants=curr_user.id)
+        return Trip.objects.filter(participants=curr_user.id).order_by('pk')
 
 
 class TripDetail(DetailView):
@@ -56,13 +58,11 @@ class TripDetail(DetailView):
     def get_context_data(self, **kwargs):
         trip = kwargs['object']
 
-        all = list(trip.journey_set.all()) + list(trip.accommodation_set.all()) + list(trip.attraction_set.all())
-        filtered_rows = [x for x in all if x.start_time != None]
-        filtered_rows_leftouts = [x for x in all if x.start_time == None]
-        filtered_rows.sort(key=lambda x: x.start_time)
-        all_sorted = filtered_rows + filtered_rows_leftouts
         data = super(TripDetail, self).get_context_data(**kwargs)
-        data['all'] = all_sorted
+        data['total_cost_journeys'] = Journey.objects.filter(trip_id=trip.id).aggregate(Sum('price'))['price__sum']
+        data['total_cost_accommodations'] = Accommodation.objects.filter(trip_id=trip.id).aggregate(Sum('price'))['price__sum']
+        data['total_cost_attractions'] = Attraction.objects.filter(trip_id=trip.id).aggregate(Sum('price'))['price__sum']
+
 
         # arrows implementation
         trip_list = []
@@ -70,16 +70,16 @@ class TripDetail(DetailView):
             if trip.participants.get(id=self.request.user.id):
                 data['participant'] = True
                 trip_list = list(
-                    Trip.objects.filter(participants=self.request.user.id).values_list('id', flat=True).all())
+                    Trip.objects.filter(participants=self.request.user.id).values_list('id', flat=True).order_by('pk').all())
         except:
-            trip_list = list(Trip.objects.exclude(participants=self.request.user.id).values_list('id', flat=True).all())
+            trip_list = list(Trip.objects.exclude(participants=self.request.user.id).values_list('id', flat=True).order_by('pk').all())
 
         trip_count = len(trip_list)
         curr_trip_pos = trip_list.index(trip.id)
         if trip_count > 1:
-            if (curr_trip_pos >= 0) and (curr_trip_pos <= trip_count - 2):
+            if (curr_trip_pos >= 0) and (curr_trip_pos < trip_count - 1):
                 data['next_trip_id'] = trip_list[curr_trip_pos + 1]
-            if (curr_trip_pos >= 1) and (curr_trip_pos <= trip_count - 1):
+            if (curr_trip_pos >= 1) and (curr_trip_pos < trip_count):
                 data['prev_trip_id'] = trip_list[curr_trip_pos - 1]
 
         return data
@@ -188,7 +188,7 @@ class TripDelete(DeleteView):
     success_url = reverse_lazy('my-trip-list')
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(group2, name='dispatch')
 class TripParticipantsList(ListView):
     model = User
     template_name = 'tripplanner/trip_participants_list.html'

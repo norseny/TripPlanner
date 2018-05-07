@@ -18,14 +18,15 @@
                         </div>
                     {% else %}
                         <div class="d-flex justify-content-end align-items-center text-center m-2">
-
-                            <img
-                                    src='../../../media/users_img/default-photo.jpeg'
-                                    alt="Trip main photo" class="resize-img">
+                            <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
+                                <img
+                                        src='../../../media/users_img/default-photo.jpeg'
+                                        alt="Trip main photo" class="resize-img">
+                            </a>
                         </div>
                     {% endif %}
                 </div>
-                <div class="col-9"><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
+                <div class="col-9"><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">
                     {{ trip.name }}</a></div>
             </div>
         {% empty %}

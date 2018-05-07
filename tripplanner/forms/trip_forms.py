@@ -3,6 +3,7 @@ from django.forms import Form, ModelForm, inlineformset_factory, Textarea, TextI
 from tripplanner.models import *
 from django import forms
 
+
 dict_of_textinput_attrs_autocomplete = {'class': 'form-control form-control-sm autocomplete'}
 dict_of_textinput_attrs = {'class': 'form-control form-control-sm'}
 dict_of_datetime_range_attrs = {'class': 'datetimepicker-range form-control form-control-sm'}
@@ -20,14 +21,14 @@ class MyDateTimeField(forms.DateTimeField):
 
 
 class TripForm(ModelForm, Form):
+
     class Meta:
         model = Trip
-        # fields = ['name', 'description']
-        fields = ['name', 'more_info']
+        fields = ['name', 'description']
         exclude = ()
         widgets = {
-            # 'description': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
-            'more_info': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
+            'description': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
+            # 'more_info': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
             'name': TextInput(attrs=dict_of_textinput_attrs)
         }
 

@@ -397,3 +397,7 @@ a:hover, .underline-on-hover:hover {
 .brown-font{
     color: #321911
 }
+
+.grey-border-bottom {
+    border-bottom: 1px solid #dee2e6
+}

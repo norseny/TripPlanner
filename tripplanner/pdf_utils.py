@@ -92,10 +92,18 @@ class PdfPrint:
         ])
         table_data.append([Paragraph(_('Journeys'), styles['Categories']),'','','','','','',''])
         for journey in context['trip'].journey_set.all():
+            if isinstance(journey.start_time, datetime):
+                start_time = (journey.start_time).strftime('%d.%m.%Y (%H:%M)')
+            else:
+                start_time = ''
+            if isinstance(journey.end_time, datetime):
+                end_time = (journey.end_time).strftime('%d.%m.%Y (%H:%M)')
+            else:
+                end_time = ''
             table_data.append(
                 [Paragraph(formatTableCellData(journey.name), styles['MyNormal']),
-                 Paragraph(formatTableCellData(journey.start_time), styles['MyNormal']),
-                 Paragraph(formatTableCellData(journey.end_time), styles['MyNormal']),
+                 Paragraph(formatTableCellData(start_time), styles['MyNormal']),
+                 Paragraph(formatTableCellData(end_time), styles['MyNormal']),
                  Paragraph(formatTableCellData(journey.start_point), styles['MyNormal']),
                  Paragraph(formatTableCellData(journey.end_point), styles['MyNormal']),
                  Paragraph(formatTableCellData(journey.means_of_transport), styles['MyNormal']),
@@ -105,11 +113,22 @@ class PdfPrint:
             )
         table_data.append([Paragraph(_('Accommodations'), styles['Categories']),'','','','','','',''])
         for accommodation in context['trip'].accommodation_set.all():
+            if isinstance(accommodation.start_time, datetime):
+                start_time = (accommodation.start_time).strftime('%d.%m.%Y (%H:%M)')
+            else:
+                start_time = ''
+            if isinstance(accommodation.end_time, datetime):
+                end_time = (accommodation.end_time).strftime('%d.%m.%Y (%H:%M)')
+            else:
+                end_time = ''
+
             table_data.append(
                 [
                 Paragraph(formatTableCellData(accommodation.name), styles['MyNormal']),
-                Paragraph(formatTableCellData(accommodation.start_time), styles['MyNormal']),
-                Paragraph(formatTableCellData(accommodation.end_time), styles['MyNormal']),
+                Paragraph(formatTableCellData(start_time),
+                          styles['MyNormal']),
+                Paragraph(formatTableCellData(end_time),
+                                              styles['MyNormal']),
                 '',
                 '',
                 '',
@@ -119,9 +138,14 @@ class PdfPrint:
             )
         table_data.append([Paragraph(_('Attractions'), styles['Categories']),'','','','','','',''])
         for attraction in context['trip'].attraction_set.all():
+            if isinstance(attraction.start_time, datetime):
+                start_time = (attraction.start_time).strftime('%d.%m.%Y (%H:%M)')
+            else:
+                start_time = ''
             table_data.append(
                 [Paragraph(formatTableCellData(attraction.name), styles['MyNormal']),
-                 Paragraph(formatTableCellData(attraction.start_time), styles['MyNormal']),
+                 Paragraph(formatTableCellData(start_time),
+                                               styles['MyNormal']),
                  '',
                  '',
                  '',
