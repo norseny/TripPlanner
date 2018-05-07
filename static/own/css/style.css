@@ -385,3 +385,25 @@ a:hover, .underline-on-hover:hover {
     text-decoration: none!important;
     color: white;
 }
+
+.avatar-outer-div {
+    width: 100px;
+    height: 100px;
+}
+
+
+.resize-img {
+    width: 70px;
+    height: 70px;
+    -webkit-border-radius: 70px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 70px;
+    -moz-background-clip: padding;
+    border-radius: 70px;
+    background-clip: padding-box;
+    float: left;
+}
+
+.resize-img:hover {
+    opacity: 0.5;
+}

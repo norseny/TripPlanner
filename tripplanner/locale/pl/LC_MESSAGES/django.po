@@ -346,3 +346,6 @@ msgstr "Twoje hasło musi zawierać co najmniej 8 znaków."
 
 msgid "New account created!"
 msgstr "Twoje konto zostało utworzone!"
+
+msgid "Log in to use this function!"
+msgstr "Zaloguj się, aby skorzystać z tej funkcji!"

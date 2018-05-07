@@ -295,7 +295,10 @@ def inspired(request):
                                         kwargs={'pk': trip_clone.id}),
         }
     except:
-        data = {'error': _(str('You already have the trip with this name!'))}
+        if request.user.is_anonymous:
+            data = {'error': _(str('Log in to use this function!'))}
+        else:
+            data = {'error': _(str('You already have the trip with this name!'))}
 
     return JsonResponse(data)
 

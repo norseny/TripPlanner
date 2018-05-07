@@ -2,41 +2,33 @@
 {% load i18n %}
 {% block title %}{% endblock %}
 {% block content %}
-    <div class="justify-content-center align-items-center h-100 w-100">
-    <div>
-    <h1>{% trans 'My Trips'%}</h1>
-        <table class="table d-block">
-        <thead>
-        <tr>
-            <th>{% trans 'Name' %}</th>
-            <th>{% trans 'Description' %}</th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for trip in object_list %}
-                <tr>
-                    <td>{{ trip.name }}</td>
-                    <td>{{ trip.description }}</td>
+        <div class="ml-3 mr-4">
+        <h1 class="text-center">{% trans 'My Trips'%}</h1>
+        {% for trip in object_list %}
 
-                    <td><a href="{% url 'trip-detail' trip.pk %}">{% trans 'Details'%}</a></td> {# todo:ostylowac#}
-                    {% if user.id == trip.created_by_id %}
-                        <td><a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit'%}</a></td>
-                        <td><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete'%}</a></td>
-                    {% else %}
-                        <td></td>
-                        <td></td>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-2 avatar-outer-div">
+                    {% if trip.main_image %}
+                        <div class="d-flex justify-content-end align-items-center text-center m-2">
+                            <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
+                                <img
+                                        src='../../../{{ trip.main_image.url }}'
+                                        alt="Trip main photo" class="resize-img">
+                            </a>
+                        </div>
                     {% endif %}
-                </tr>
-            {% empty %}
-                <tr>
-                    <td>{% trans 'No trip yet.'%}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-        </table>
-            <p>
-            <a href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip'%}</a>
+                </div>
+                <div class="col-8"><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
+                    {{ trip.name }}</a></div>
+                <div class="col-1"><a href="{% url 'trip-update' trip.pk %}">{% trans 'Edit'%}</a></div>
+                <div class="col-1"><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete'%}</a></div>
+            </div>
+        {% empty %}
+            <p>{% trans 'No trip yet.' %}</p>
+        {% endfor %}
+
+        <p>
+            <a href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
         </p>
-    </div>
     </div>
 {% endblock %}
