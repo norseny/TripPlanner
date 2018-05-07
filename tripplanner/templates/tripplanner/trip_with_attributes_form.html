@@ -19,17 +19,19 @@
             </div>
 
             <div>
-                {{ field.errors }}
                 {{ field }}
+                {{ field.errors }}
             </div>
         {% endfor %}
 
         {#        <button type="button" class="accordion" data-toggle="collapse" data-target="#journeys" aria-controls="journeys">{% trans 'Journeys' %} + </button>#}
         <div class="form-with-acc">
-            <div class="accordion d-flex justify-content-center text-left align-items-center"
+            <div class="accordion d-flex justify-content-center align-items-center text-center"
                  data-toggle="collapse"
                  data-target="#journeys"
-                 aria-controls="journeys" id="journey-acc"><h2 class="pr-2 details-label">{% trans 'Journeys' %}</h2>
+                 aria-controls="journeys" id="journey-acc">
+                <i class="brown-font fas fa-rocket"></i>
+                <h2 class="mb-0 details-label">{% trans 'Journeys' %}</h2>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-journey"></i>
                 <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-journey"></i>
             </div>
@@ -66,9 +68,11 @@
         </div>
 
         <div class="form-with-acc">
-            <div class="accordion d-flex justify-content-center text-left align-items-center" data-toggle="collapse"
+            <div class="accordion d-flex justify-content-center align-items-center" data-toggle="collapse"
                  data-target="#accommodations" aria-controls="accommodations" id="accommodation-acc"
-            ><h2 class="pr-2 details-label">{% trans 'Accommodations' %}</h2>
+            >
+                <i class="brown-font fas fa-bed"></i>
+                <h2 class="details-label mb-0 ">{% trans 'Accommodations' %}</h2>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-accommodation"></i>
                 <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-accommodation"></i>
             </div>
@@ -108,9 +112,11 @@
         {#        </button>#}
         {#        <div>#}
         <div class="form-with-acc">
-            <div class="accordion d-flex justify-content-center text-left align-items-center" data-toggle="collapse"
+            <div class="accordion d-flex justify-content-center align-items-center" data-toggle="collapse"
                  data-target="#attractions" aria-controls="attractions" id="attraction-acc"
-            ><h2 class="pr-2 details-label">{% trans 'Attractions' %}</h2>
+            >
+                <i class="brown-font fas fa-star"></i>
+                <h2 class="mb-0 details-label">{% trans 'Attractions' %}</h2>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-attraction"></i>
                 <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-attraction"></i>
             </div>
@@ -151,7 +157,9 @@
 
         {% if form.initial|length > 0 %}
             <div><a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details' %}</a></div>
-            <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip'%}</a></div>
+            {% if user == trip.created_by %}
+                <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip'%}</a></div>
+            {% endif %}
         {% endif %}
 
         {# todo: flatpicker kasuje godzinę przy update#}

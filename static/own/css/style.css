@@ -12,7 +12,7 @@
 
 @media (min-width: 1280px) {
     .container {
-        max-width: 1140px;
+        max-width: 980px;
     }
 }
 
@@ -242,29 +242,15 @@ input[type=number] {
     /*border-bottom: solid 2px rgba(198, 187, 180, 0.55) !important;*/
     /*background: #d2c5bc;*/
     cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    outline: none;
-    transition: 0.4s;
+    /*padding: 18px;*/
+    /*width: 100%;*/
+    /*text-align: left;*/
+    /*outline: none;*/
+    /*transition: 0.4s;*/
 }
 
 .accordion {
-    /*border-top: solid 2px rgba(198, 187, 180, 0.55) !important;*/
-    /*border-bottom: solid 1px #c6bbb4 !important;*/
     cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    outline: none;
-    transition: 0.4s;
-    /*margin-top: .2rem;*/
-}
-
-.accordion:active, .accordion:hover {
-    /*background-color: #c6bbb4;*/
-    /*background-color: #321911;*/
-    /*background-color: black;*/
 }
 
 .details-label{
@@ -339,16 +325,16 @@ a:hover, .underline-on-hover:hover {
 
 /* Absolute Center  */
 .more-info {
-  position: fixed;
-  z-index: 999;
-  height: 15em;
-  width: 30em;
-  overflow: visible;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  /*position: fixed;*/
+  /*z-index: 999;*/
+  /*height: 15em;*/
+  /*width: 30em;*/
+  /*overflow: visible;*/
+  /*margin: auto;*/
+  /*top: 0;*/
+  /*left: 0;*/
+  /*bottom: 0;*/
+  /*right: 0;*/
 }
 
 /* Transparent Overlay */
@@ -406,4 +392,8 @@ a:hover, .underline-on-hover:hover {
 
 .resize-img:hover {
     opacity: 0.5;
+}
+
+.brown-font{
+    color: #321911
 }

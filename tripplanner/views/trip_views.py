@@ -55,6 +55,7 @@ class TripDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         trip = kwargs['object']
+
         all = list(trip.journey_set.all()) + list(trip.accommodation_set.all()) + list(trip.attraction_set.all())
         filtered_rows = [x for x in all if x.start_time != None]
         filtered_rows_leftouts = [x for x in all if x.start_time == None]
@@ -72,6 +73,7 @@ class TripDetail(DetailView):
                     Trip.objects.filter(participants=self.request.user.id).values_list('id', flat=True).all())
         except:
             trip_list = list(Trip.objects.exclude(participants=self.request.user.id).values_list('id', flat=True).all())
+
         trip_count = len(trip_list)
         curr_trip_pos = trip_list.index(trip.id)
         if trip_count > 1:
@@ -135,7 +137,7 @@ class TripWithAttributesCreate(CreateView):
         return super(TripWithAttributesCreate, self).form_valid(form)
 
 
-@method_decorator(group1, name='dispatch')
+@method_decorator(group2, name='dispatch')
 class TripWithAttributesUpdate(UpdateView):
     model = Trip
     form_class = TripForm

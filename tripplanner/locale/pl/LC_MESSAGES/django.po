@@ -317,8 +317,11 @@ msgstr "Nowa wycieczka"
 msgid "Total: "
 msgstr "Suma: "
 
-msgid "About Tripplanner"
-msgstr "O Tripplannerze"
+msgid "More info"
+msgstr "Więcej "
+
+msgid "About TripPlanner"
+msgstr "O TripPlannerze"
 
 msgid "Username:"
 msgstr "Nazwa użytkownika:"
