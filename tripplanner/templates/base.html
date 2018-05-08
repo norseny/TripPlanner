@@ -95,18 +95,25 @@
 
 
         <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'my-trip-list' %}">{% trans 'My Trip List' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
+                </li>
+            {% endif %}
             <li class="nav-item active">
-                <a class="nav-link" href="{% url 'trip-list' %}">{% trans 'All Trips List' %}
+                <a class="nav-link" href="{% url 'trip-list' %}">
+                    {% if user.is_anonymous %}
+                        {% trans 'All Trips List' %}
+                    {% else %}
+                        {% trans "Other Trips" %}
+                    {% endif %}
+
                 </a>
             </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'my-trip-list' %}">{% trans 'My Trip List' %}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
-            </li>
-            {% endif %}
             {#      <li class="nav-item dropdown">#}
             {#        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
             {#          Dropdown#}
@@ -154,7 +161,7 @@
                     <div class="col d-block">
                         {% if user.is_authenticated %}
                             <i class="fas fa-user"></i>
-{#                                        {% trans 'You are logged as' %}#}
+                            {#                                        {% trans 'You are logged as' %}#}
                             {{ user.username }}
                         {% endif %}
                     </div>
@@ -165,7 +172,7 @@
                         {% if user.is_anonymous %}
                             <a class="login-a btn btn-sm btn-primary" href="{% url 'login' %}">{% trans 'Log in' %}</a>
                         {% else %}
-                                <a class="login-a btn btn-sm btn-primary" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+                            <a class="login-a btn btn-sm btn-primary" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
                         {% endif %}
                     </div>
                 </div>
@@ -191,9 +198,10 @@
     <div class="container-fluid">
         <div class="text-center p-3 font-weight-bold">
             <p>Strona internetowa wykonana przez Beatę Piechowicz w ramach pracy licencjackiej pod kierunkiem dr Piotra
-            Jordana
-            Śliwińskiego.</p>
-            <p class="mb-0">Twórczyni nie ponosi odpowiedzialności za treści umieszczane w serwisie przez użytkowników.</p>
+                Jordana
+                Śliwińskiego.</p>
+            <p class="mb-0">Twórczyni nie ponosi odpowiedzialności za treści umieszczane w serwisie przez
+                użytkowników.</p>
         </div>
     </div>
 </footer>

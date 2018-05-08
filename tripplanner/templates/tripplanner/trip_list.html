@@ -3,7 +3,13 @@
 {% block title %}{% endblock %}
 {% block content %}
     <div class="ml-3 mr-4">
-        <h1 class="text-center">{% trans 'All Trips List' %}</h1>
+        <h1 class="text-center">
+            {% if user.is_anonymous %}
+                {% trans 'All Trips List' %}
+            {% else %}
+                {% trans "Other Trips" %}
+            {% endif %}
+        </h1>
         {% for trip in object_list %}
 
             <div class="row justify-content-center align-items-center">

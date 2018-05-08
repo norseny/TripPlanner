@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.db import transaction
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import ListView, DetailView
-from tripplanner.decorators import user_is_trip_creator, user_is_trip_participant
+from tripplanner.decorators import user_is_trip_creator, user_is_trip_participant, trip_is_not_private
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import render
@@ -37,7 +37,7 @@ class TripList(ListView):
     def get_queryset(self):
         if self.request.user.is_authenticated:
             curr_user = User.objects.get(pk=self.request.user.id)
-            return Trip.objects.exclude(participants=curr_user.id).order_by('pk')
+            return Trip.objects.exclude(participants=curr_user.id).exclude(private_trip=True).order_by('pk')
         else:
             return Trip.objects.order_by('pk').all()
 
@@ -52,6 +52,8 @@ class MyTripList(ListView):
         return Trip.objects.filter(participants=curr_user.id).order_by('pk')
 
 
+
+@method_decorator(trip_is_not_private, name='dispatch')
 class TripDetail(DetailView):
     model = Trip
 
@@ -72,7 +74,7 @@ class TripDetail(DetailView):
                 trip_list = list(
                     Trip.objects.filter(participants=self.request.user.id).values_list('id', flat=True).order_by('pk').all())
         except:
-            trip_list = list(Trip.objects.exclude(participants=self.request.user.id).values_list('id', flat=True).order_by('pk').all())
+            trip_list = list(Trip.objects.exclude(participants=self.request.user.id).exclude(private_trip=True).values_list('id', flat=True).order_by('pk').all())
 
         trip_count = len(trip_list)
         curr_trip_pos = trip_list.index(trip.id)

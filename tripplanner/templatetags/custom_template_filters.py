@@ -14,12 +14,12 @@ def truncate_chars(value):
     result = _(s3)
     return result
 
-@register.filter(name='ret_icon')
-def return_icon(value):
-    """ Returns relevant icons (fontsawesome class code) """
-    if str(value).startswith('Journey'):
-        return 'fas fa-rocket'
-    elif str(value).startswith('Accommodation'):
-        return 'fas fa-bed'
-    elif str(value).startswith('Attraction'):
-        return 'fas fa-star'
+# @register.filter(name='ret_icon')
+# def return_icon(value):
+#     """ Returns relevant icons (fontsawesome class code) """
+#     if str(value).startswith('Journey'):
+#         return 'fas fa-rocket'
+#     elif str(value).startswith('Accommodation'):
+#         return 'fas fa-bed'
+#     elif str(value).startswith('Attraction'):
+#         return 'fas fa-star'

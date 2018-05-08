@@ -81,6 +81,7 @@ h1 {
 
 .myicon:hover {
     color: #8b6b61;
+    cursor: pointer;
 }
 
 i {

@@ -7,7 +7,7 @@
         {% for trip in object_list %}
 
             <div class="row justify-content-center align-items-center">
-                <div class="col-3 avatar-outer-div">
+                <div class="col-2 avatar-outer-div">
                     {% if trip.main_image %}
                         <div class="d-flex justify-content-end align-items-center text-center m-2">
                             <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
@@ -26,11 +26,11 @@
                         </div>
                     {% endif %}
                 </div>
-                <div class="col-7"><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">
+                <div class="col-5"><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">
                     {{ trip.name }}</a></div>
-                <div class="col-1"><a class="myicon" href="{% url 'trip-update' trip.pk %}"><i class="far
+                <div class="col-2"><a class="myicon" href="{% url 'trip-update' trip.pk %}"><i class="far
                 fa-edit fa-2x"></i>{% trans 'Edit' %}</a></div>
-                <div class="col-1"><a class="myicon" href="{% url 'trip-delete' trip.pk %}"><i class=" far fa-trash-alt
+                <div class="col-2"><a class="myicon" href="{% url 'trip-delete' trip.pk %}"><i class=" far fa-trash-alt
                 fa-2x"></i>{% trans 'Delete' %}</a></div>
             </div>
         {% empty %}

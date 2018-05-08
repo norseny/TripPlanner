@@ -359,8 +359,14 @@ msgstr "Opis, maksymalnie 1000 znaków"
 msgid "from"
 msgstr "od"
 
-msgid "from "
-msgstr "z "
+msgid "from:"
+msgstr "z:"
 
 msgid "to"
 msgstr "do"
+
+msgid "Other Trips"
+msgstr "Pozostałe wycieczki"
+
+msgid "Private trip"
+msgstr "Wycieczka prywatna"
