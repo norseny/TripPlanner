@@ -370,3 +370,12 @@ msgstr "Pozostałe wycieczki"
 
 msgid "Private trip"
 msgstr "Wycieczka prywatna"
+
+msgid "Add to your favourites!"
+msgstr "Dodaj do ulubionych!"
+
+msgid "In your favourites"
+msgstr "W twoich ulubionych"
+
+msgid "Your favourite trips"
+msgstr "Twoje ulubione wycieczki"

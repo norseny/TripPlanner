@@ -27,7 +27,22 @@ $(document).ready(function () {
         a.prev().show();
         a.hide()
     });
+    $('#add-to-fav-btn').click(function () {
+        var tripId = {'tripId': trip_id};
 
+        $.ajax({
+            url: '/ajax/add-to-fav/',
+            data: tripId,
+            dataType: 'json',
+            success: function (data) {
+                if (data.success==true) {
+                    location.reload();
+                }else if (data.error) {
+                    alert(data.error)
+                }
+            }
+        });
+    });
 
 });
 

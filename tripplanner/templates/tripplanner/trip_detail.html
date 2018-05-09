@@ -19,11 +19,24 @@
         </div>
         <div class="col-1 text-right">
             {% if next_trip_id %}
-                <a class="myicon" href="{% url 'trip-detail' next_trip_id %}"><i
+                <a class="myicon" href="{% url 'trip-detail' next_trip_id %}"> <i
                         class="fas fa-angle-right fa-3x"></i></a>
             {% endif %}
         </div>
     </div>
+
+    {% if user.is_authenticated %}
+    {% if not participant %}
+        <div class="text-right mr-5">
+            {% if trip in user.profile.favourite_trips.all %}
+                <a href="{% url 'my-fav-trip-list'%}"><span class="brown-font font-weight-400">{% trans 'In your favourites'%} <i class="fas fa-heart"></i></span></a>
+            {% else %}
+                <button type="button" class="btn btn-sm d-inline-block" id="add-to-fav-btn">{% trans 'Add to your favourites!'%}
+                <i class="fas fa-heart"></i> </button>
+                {% endif %}
+        </div>
+    {% endif %}
+    {% endif %}
 
     <div class="row mt-3 mb-5 mr-5 ml-5">
         <div class="col-6 d-flex justify-content-center align-items-center pt-4">
@@ -112,7 +125,7 @@
                         <div class="col-1 py-1">{{ el.means_of_transport|default_if_none:"" }}</div>
                         <div class="col-4 pt-1">
                             {% if el.start_point %}
-                                <span class="text-nowrap">{% trans 'from:' %}{{ el.start_point }}</span>
+                                <span class="text-nowrap">{% trans 'from:' %} {{ el.start_point }}</span>
                             {% endif %}
                             {% if el.end_point %}
                                 <span class="text-nowrap">{% trans 'to' %}: {{ el.end_point }}</span>

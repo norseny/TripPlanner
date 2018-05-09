@@ -402,3 +402,7 @@ a:hover, .underline-on-hover:hover {
 .grey-border-bottom {
     border-bottom: 1px solid #dee2e6
 }
+
+.row > div {
+    overflow-x: visible;
+}

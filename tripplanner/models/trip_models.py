@@ -32,7 +32,7 @@ class Trip(BasicInfo):
     end_time = models.DateTimeField(null=True, blank=True)
     main_image = models.ImageField(upload_to='static/own/img/users_img', blank=True, null=True)
     private_trip = models.BooleanField(default=False)
-    participants = models.ManyToManyField(User)
+    participants = models.ManyToManyField(User) #todo: duration (timedelta start and endtime)
 
     def __str__(self):
         return self.name
@@ -89,3 +89,4 @@ class Accommodation(BasicInfo):
 class Attraction(BasicInfo):
     address = models.CharField(max_length=250, null=True, blank=True)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
+

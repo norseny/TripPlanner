@@ -23,6 +23,7 @@
                 {{ field.errors }} {# todo: more_info at the bottom #}
             </div>
         {% endfor %}
+
         <div class="form-with-acc">
             <div class="accordion d-flex justify-content-center align-items-center text-center"
                  data-toggle="collapse"
@@ -67,8 +68,7 @@
 
         <div class="form-with-acc">
             <div class="accordion d-flex justify-content-center align-items-center" data-toggle="collapse"
-                 data-target="#accommodations" aria-controls="accommodations" id="accommodation-acc"
-            >
+                 data-target="#accommodations" aria-controls="accommodations" id="accommodation-acc">
                 <i class="brown-font fas fa-bed"></i>
                 <h2 class="details-label mb-0 ">{% trans 'Accommodations' %}</h2>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-accommodation"></i>

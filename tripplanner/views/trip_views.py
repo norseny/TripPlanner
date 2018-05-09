@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.db import transaction
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from tripplanner.decorators import user_is_trip_creator, user_is_trip_participant, trip_is_not_private
 from django.contrib.auth.decorators import login_required
@@ -39,7 +39,7 @@ class TripList(ListView):
             curr_user = User.objects.get(pk=self.request.user.id)
             return Trip.objects.exclude(participants=curr_user.id).exclude(private_trip=True).order_by('pk')
         else:
-            return Trip.objects.order_by('pk').all()
+            return Trip.objects.exclude(private_trip=True).order_by('pk').all()
 
 
 @method_decorator(login_required, name='dispatch')
@@ -51,6 +51,13 @@ class MyTripList(ListView):
         curr_user = User.objects.get(pk=self.request.user.id)
         return Trip.objects.filter(participants=curr_user.id).order_by('pk')
 
+
+@method_decorator(login_required, name='dispatch')
+class MyFavTripList(ListView):
+    model = Trip
+
+    def get_queryset(self):
+        return Trip.objects.filter(profile__pk=self.request.user.id).order_by('pk')
 
 
 @method_decorator(trip_is_not_private, name='dispatch')
@@ -303,6 +310,19 @@ def inspired(request):
             data = {'error': _(str('Log in to use this function!'))}
         else:
             data = {'error': _(str('You already have the trip with this name!'))}
+
+    return JsonResponse(data)
+
+def add_to_fav(request):
+    trip_id = request.GET.get('tripId', None)
+    trip = Trip.objects.get(pk=trip_id)
+    data = {'success': False}
+
+    if trip_id:
+        request.user.profile.favourite_trips.add(trip)
+        data = {'success': True}
+    else:
+        data = {'error': _(str('This trip cannot be added to your favourites!'))}
 
     return JsonResponse(data)
 

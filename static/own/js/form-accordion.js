@@ -1,11 +1,11 @@
 $(document).ready(function () {
     $("#journey-acc").click(function () {
-        if ($('#icon-down-journey').is(':visible')) {
-            $("#icon-down-journey").hide();
-            $("#icon-up-journey").show();
-        } else {
-            $("#icon-down-journey").show();
+        if ($('#icon-up-journey').is(':visible')) {
             $("#icon-up-journey").hide();
+            $("#icon-down-journey").show();
+        } else {
+            $("#icon-up-journey").show();
+            $("#icon-down-journey").hide();
 
         }
     });
