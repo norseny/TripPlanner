@@ -71,7 +71,7 @@ class PdfPrint:
         # insert a blank space
         data.append(Spacer(1, 24))
 
-        data.append(Paragraph(_('Description') + ': ' + context['trip'].description, styles['MainInfo']))
+        (data.append(Paragraph(_('Description') + ': ' + context['trip'].description, styles['MainInfo']))) if context['trip'].description else ''
         data.append(Spacer(1, 12))
         data.append(Paragraph(_('Created by') + ': ' + str(context['trip'].created_by), styles['MainInfo']))
         data.append(Spacer(1, 12))
@@ -175,7 +175,7 @@ class PdfPrint:
 
 
 def formatTableCellData(data):
-    if data == None:
+    if not data:
         return ''
     else:
         if isinstance(data, datetime):

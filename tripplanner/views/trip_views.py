@@ -314,7 +314,7 @@ class TripDetailPdf(DetailView):
     def render_to_response(self, context, **response_kwargs):
         response = HttpResponse(content_type='application/pdf')
         today = date.today()
-        filename = _(context['trip'].name) + '_' + today.strftime('%d-%m-%Y')
+        filename = ((context['trip'].name).replace(' ', '-')) + '_' + today.strftime('%d-%m-%Y')
         response['Content-Disposition'] = \
             'attachement; filename={0}.pdf'.format(filename)
         buffer = BytesIO()
@@ -335,9 +335,13 @@ def get_places(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
 
-        json_data = open('tripplanner/data/sorted_cities.json')
-        jdictionary = json.load(json_data)
-        json_data.close()
+        #json_data = open('tripplanner/data/sorted_cities.json')
+        with open("tripplanner/data/sorted_cities.json", encoding='utf-8') as data_file:
+            jdictionary = json.load(data_file)
+
+
+        #jdictionary = json.load(json_data, encoding='utf-8')
+        #json_data.close()
         results = find_in_city_json(q, jdictionary)
         data = json.dumps(results)
 
