@@ -151,18 +151,34 @@ footer {
 }
 
 body {
-    background-image: url(../img/darkwood1a.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    /*background-image: url(../img/darkwood1a.jpg);*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: 100% 100%;*/
+    /*background: url(../img/darkwood1a.jpg) no-repeat center center fixed;*/
+    background: url(../img/darkwood3.jpg) no-repeat center center fixed;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    width: 100%;
+
 }
 
 body, html, main {
     /*min-height: 100%;*/
     min-height:100vh;
+    /*height:100%;*/
+    /*width:100%*/
 }
 
 h1, h2 {
     padding: 1rem;
+    /*font-family: 'Roboto Slab', sans-serif;*/
+}
+
+.font-slab {
+        font-family: 'Roboto Slab', sans-serif;
 }
 
 #trip-participants-h1 {

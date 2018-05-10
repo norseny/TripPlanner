@@ -64,6 +64,9 @@
     <link rel="stylesheet" href="{% static 'own/css/style.css' %}">
 
 
+{#    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,latin-ext' rel='stylesheet' type='text/css'>#}
+
+
     <script>
         $(document).ready(function () {
             $('li.active').removeClass('active');
@@ -78,10 +81,11 @@
 
 <body>
 
+
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="no-a-underline"><a class="navbar-brand minw-10" href="{% url 'tripplanner' %}">
         <div id="logo" class="d-flex align-items-center w-100 text-left">
-            <span class="mb-3 ml-2 d-inline-block" id="home">TripPlanner</span>
+            <span class="mb-3 ml-2 d-inline-block font-slab" id="home">TripPlanner</span>
         </div>
     </a>
     </div>
@@ -164,7 +168,7 @@
                     <div class="col d-block">
                         {% if user.is_authenticated %}
                             <i class="fas fa-user"></i>
-                            {#                                        {% trans 'You are logged as' %}#}
+                            {#{% trans 'You are logged as' %}#}
                             {{ user.username }}
                         {% endif %}
                     </div>
