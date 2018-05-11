@@ -377,5 +377,5 @@ msgstr "Dodaj do ulubionych!"
 msgid "In your favourites"
 msgstr "W twoich ulubionych"
 
-msgid "Your favourite trips"
-msgstr "Twoje ulubione wycieczki"
+msgid "My favourite trips"
+msgstr "Moje ulubione wycieczki"

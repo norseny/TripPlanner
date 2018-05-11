@@ -41,7 +41,7 @@
     <div class="row mt-3 mb-5 mr-5 ml-5">
         <div class="col-6 d-flex justify-content-center align-items-center pt-4">
             <div class="no-a-underline">
-                <p class="details-main"><label>{% trans 'Description' %}:</label> {{ trip.more_info }} </p>
+                <p class="details-main"><label>{% trans 'Description' %}:</label> {{ trip.description }} </p>
                 <p class="details-main"><label>{% trans 'Created by' %}:</label> {{ trip.created_by }} </p>
                 <p class="details-main">
                     <label>{% trans 'Start time' %}:</label> {{ trip.start_time|default_if_none:"" }} </p>
@@ -100,7 +100,11 @@
                     </div>
                 {% else %}
                     <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
-                        <img src='../../../media/users_img/default-photo.jpeg' alt="img" class="photo-img
+                        <img
+{#                                src='../../../media/users_img/default-photo.jpeg' #}
+                                src='../../../static/own/img/africa-1299545_640.png'
+
+                                alt="img" class="photo-img
                 img-fluid mx-auto
                                                                                d-block">
                     </div>

@@ -151,14 +151,13 @@
         </div>
 
         <div><input class="btn btn-primary" type="submit" value="{% trans 'Save' %}"/></div>
-        <div><a href="{% url 'my-trip-list' %}">{% trans 'Back to the List of My Trips' %}</a></div>
-
         {% if form.initial|length > 0 %}
-            <div><a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details' %}</a></div>
             {% if user == trip.created_by %}
                 <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip'%}</a></div>
             {% endif %}
+            <div><a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details' %}</a></div>
         {% endif %}
+        <div><a href="{% url 'my-trip-list' %}">{% trans 'Back to the List of My Trips' %}</a></div>
 
         {# todo: flatpicker kasuje godzinę przy update#}
         {#    todo: implementacja - gdy bład, to pokaż wszystkie tabby rozsuniete#}

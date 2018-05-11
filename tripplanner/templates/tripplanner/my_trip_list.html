@@ -7,9 +7,9 @@
         {% for trip in object_list %}
 
             <div class="row justify-content-center align-items-center">
-                <div class="col-2 avatar-outer-div">
+                <div class="col-3 avatar-outer-div">
                     {% if trip.main_image %}
-                        <div class="d-flex justify-content-end align-items-center text-center m-2">
+                        <div class="d-flex justify-content-center align-items-center text-center m-2">
                             <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
                                 <img
                                         src='{{ trip.main_image.url }}'
@@ -17,16 +17,18 @@
                             </a>
                         </div>
                     {% else %}
-                        <div class="d-flex justify-content-end align-items-center text-center m-2">
+                        <div class="d-flex justify-content-center align-items-center text-center m-2">
                             <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
                             <img
-                                    src='../../../media/users_img/default-photo.jpeg'
+{#                                    src='../../../media/users_img/default-photo.jpeg'#}
+                                    src='../../../static/own/img/africa-1299545_640_white.png'
+
                                     alt="Trip main photo" class="resize-img">
                             </a>
                         </div>
                     {% endif %}
                 </div>
-                <div class="col-5"><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">
+                <div class="col-4"><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">
                     {{ trip.name }}</a></div>
                 <div class="col-2"><a class="myicon" href="{% url 'trip-update' trip.pk %}"><i class="far
                 fa-edit fa-2x"></i>{% trans 'Edit' %}</a></div>

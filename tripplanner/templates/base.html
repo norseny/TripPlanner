@@ -84,8 +84,9 @@
 
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="no-a-underline"><a class="navbar-brand minw-10" href="{% url 'tripplanner' %}">
-        <div id="logo" class="d-flex align-items-center w-100 text-left">
-            <span class="mb-3 ml-2 d-inline-block font-slab" id="home">TripPlanner</span>
+        <div class="d-flex align-items-center w-100 text-left">
+            <img  id="logo" src="../../static/own/img/africa-1299545_640.png">
+            <span class="d-inline-block" id="home">TripPlanner</span>
         </div>
     </a>
     </div>
@@ -104,7 +105,7 @@
                     <a class="nav-link" href="{% url 'my-trip-list' %}">{% trans 'My Trip List' %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'my-fav-trip-list' %}">{% trans 'Your favourite trips' %}</a>
+                    <a class="nav-link" href="{% url 'my-fav-trip-list' %}">{% trans 'My favourite trips' %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"

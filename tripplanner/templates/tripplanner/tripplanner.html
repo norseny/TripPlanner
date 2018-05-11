@@ -21,8 +21,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'own/css/style2.css' %}">
 
-{#    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,latin-ext' rel='stylesheet'#}
-{#          type='text/css'>#}
+    {#    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,latin-ext' rel='stylesheet'#}
+    {#          type='text/css'>#}
 
 
 </head>
@@ -30,149 +30,132 @@
 <body>
 
 
-<div id="testowe-tlo2">
-    <div class="h-100 d-flex text-right align-items-center justify-content-end">
-        <div class="d-inline-block m-5">
+{#<div id="testowe-tlo2">#}
+{#    <div class="h-100 d-flex text-right align-items-center justify-content-end">#}
+{#        <div class="d-inline-block m-5">#}
+{##}
+{#           <h1 id="first-h1-tp" class="display-3">#}
+{#                Planujesz wycieczkę?#}
+{#                <span class="d-block">#}
+{#                    Poznaj <a href="#trip-attributes">TripPlanner</a>!#}
+{#                </span>#}
+{#           </h1>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
 
-           <h1 id="first-h1-tp" class="display-3">
-                Planujesz wycieczkę?
-                <span class="d-block">
-                    Poznaj <a href="#trip-attributes">TripPlanner</a>!
+<div id="home-first-bg">
+    <div class="h-100 w-100 d-flex text-right align-items-end justify-content-end" >
+        <h1 id="home-first-h1">
+{#            <div class="row m-2">#}
+{#                <div class="col-1 d-flex justify-content-center align-items-center">#}
+{#                    <img src="../../../static/own/img/africa-1299545_640_white.png" class="img-fluid"#}
+{#                         style="max-width: 100px;">#}
+{#                </div>#}
+{#                <div id="home-first-h1-main-text">#}
+                    Planujesz wycieczkę?
+                    <span class="d-block">
+                    Użyj <span class="font-weight-bold">
+                TripPlannera!</span>
                 </span>
-           </h1>
-        </div>
+{#                </div>#}
+        </h1>
+{#            </div>#}
+            <div class="row align-items-center m-2" id="home-first-h1-links-div">
+                <div class="col-6"><a href="#home-trip-attributes" class="a-on-dark text-capitalize">Zobacz więcej</a>
+                </div>
+                <div class="col-6">
+                    {% if user.is_anonymous %}
+                        <span class="d-block"><a href="{% url 'login' %}" class="a-on-dark">Zaloguj się</a></span>
+                        <span class="d-block"><a href="{% url 'signup' %}" class="a-on-dark">Zarejestruj się</a></span>
+                    {% else %}
+                        <span class="d-block text-center"><a href="{% url 'my-trip-list' %}" class="a-on-dark">Przejdź do swoich wycieczek</a></span>
+                    {% endif %}
+                </div>
+            </div>
     </div>
 </div>
 
 
-
-<div id="trip-attributes" class="m-5 p-4 d-flex justify-content-center text-center align-items-center h5-responsive">
+<div id="home-trip-attributes" class="mb-5 p-5 d-flex justify-content-center text-center align-items-center ">
     <article>
-        <p class="p-3 w-100"> W <span class="font-weight-bold">TripPlannerze</span> przechowasz informacje o:
-        <div class="row ">
-            <div class="col-4">
-                <i class="fas fa-rocket fa-4x"></i>
-                <span class="d-block small">podróżach</span>
+        <h2 class="h3-responsive w-100"> W <span class="font-weight-bold">
+            TripPlannerze</span> przechowasz
+            informacje o:
+            <div class="row p-5">
+                <div class="col-4">
+                    <i class="fas fa-rocket fa-3x p-1"></i>
+                    <span class="d-block small">podróżach</span>
+                </div>
+                <div class="col-4">
+                    <i class="fas fa-bed fa-3x p-1"></i>
+                    <span class="d-block small">zakwaterowaniu</span>
+                </div>
+                <div class="col-4">
+                    <i class="fas fa-camera fa-3x p-1"></i>
+                    <span class="d-block small">atrakcjach, np.&nbsp;muzeach lub zabytkach</span>
+                </div>
             </div>
-            <div class="col-4">
-                <i class="fas fa-bed fa-4x"></i>
-                <span class="d-block small">zakwaterowaniu</span>
-            </div>
-            <div class="col-4">
-                <i class="fas fa-camera fa-4x"></i>
-                <span class="d-block small">atrakcjach, np.&nbsp;muzeach lub zabytkach</span>
-            </div>
-        </div>
-        </p>
+        </h2>
+        <span class="d-block"><a href="#home-seeking-inspiration"><i class="fas fa-chevron-down fa-3x"></i></a></span>
     </article>
 </div>
 
 
-
-
-
-
-<div id="testowe-tlo3">
+<div id="home-seeking-inspiration">
     <div class="text-center">
-        <div class="d-inline-block m-5">
+        <div class="d-inline-block m-3">
 
-           <h2 class=" p-3">
-                <span class="d-block">A może szukasz inspiracji?</span>
-               <i class="far fa-smile fa-3x d-inline-block py-2"></i><i
-                            class="far fa-lightbulb  mb-5 d-inline-block"></i>
-               <span class="d-block">Przeglądaj wycieczki innych użytkowników </span>
-                   <span class="d-block">i używaj ich jako szablonów!</span>
-           </h2>
+            <h2 class="h3-responsive p-3">
+                <span class="d-block">...a może szukasz inspiracji?</span>
+                <span><i class="far fa-smile fa-3x d-inline-block py-2 mt-1"></i></span>
+                <span class=""><i class="far fa-lightbulb d-inline-block mb-5"></i></span>
+                <span class="d-block">Przeglądaj wycieczki innych użytkowników </span>
+                <span class="d-block">i używaj ich jako szablonów!</span>
+            </h2>
+            <span class="d-block"><a href="#testowe-tlo2"><i class="fas fa-chevron-down fa-3x"></i></a></span>
+
         </div>
     </div>
 </div>
 
-<div id="testowe-tlo">
-    <div class="text-right">
-        <div class="d-inline">
-            <br>
-            <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-            <h1 class="mr-5">Planujesz wycieczkę? <br>A może szukasz inspiracji? <br> Użyj <a href=
-                                                                                                      "{% url 'trip-list' %}"><span
-                    class="font-white">TripPlannera!</span></a></h1>
-
-            <br> <br> <br> <br> <br> <br> <br> <br> <br>
-            <p></p>
-        </div>
-    </div>
-</div>
 
 <div id="testowe-tlo2">
-    <div class="h-100 d-flex text-right align-items-center justify-content-end">
-        <div class="d-inline-block mr-5 pr-5 mb-4 text-left">
+    <div class="h-100 d-flex text-right justify-content-end">
+        <div class="d-inline-block mr-lg-5 pr-5 mt-4 text-left text-center">
 
-            <article class="w-75 d-inline-block mb-5 mr-5  h4-responsive bg-transparent-5">
-           <p class="text-center p-3">
-               <i class="fas fa-users fa-5x p-1"></i>
-            <span class="d-block small">Twórz plany wspólnie ze znajomymi</span>
-           </p>
-
-                <p class="text-center p-3">
-               <i class="fas fa-file-pdf fa-5x p-1"></i>
-            <span class="d-block small">Zapisz wycieczkę do pliku .pdf i&nbsp;korzystaj z notatek nawet
-                offline!</span>
+            <article class="w-75 d-inline-block mb-2 mr-lg-5 p-3 h3-responsive">
+                <p>
+                    <i class="fas fa-users fa-3x p-1"></i>
+                    <span class="d-block small">Twórz plany razem ze znajomymi</span>
                 </p>
 
-           </article>
+                <p>
+                    <i class="fas fa-file-pdf fa-3x p-1"></i>
+                    <span class="d-block small">Zapisz wycieczkę w pliku .pdf i&nbsp;korzystaj z notatek nawet
+                offline</span>
+                </p>
+            </article>
+            <span class="d-block mr-lg-5"><a href="#home-begin"><i class="fas fa-chevron-down fa-3x"></i></a></span>
+
         </div>
     </div>
 </div>
 
-{##}
-{#{% block title %}{% endblock %}#}
-{#{% block content %}#}
-{#    <div class="d-flex justify-content-center">#}
-{#    <div class="ml-5 mr-5 brown-font">#}
-{#        <h1 class="pb-3">{% trans 'About TripPlanner' %}</h1>#}
-{##}
-{#        <article>#}
-{#            <p class="mb-0">TripPlanner to miejsce, w którym możesz przechować plany dotyczące Twojej wycieczki. Informacje, które możesz tu&nbsp;zapisać, to:#}
-{#            <ul>#}
-{#                <li>#}
-{#                    <i class="fas fa-rocket "></i> podróże,#}
-{#                </li>#}
-{#                <li>#}
-{#                    <i class="fas fa-bed "></i> zakwaterowanie,#}
-{#                </li>#}
-{#                <li>#}
-{#                    <i class="fas fa-camera "></i> atrakcje, np.&nbsp;muzea lub zwiedzanie zabytków.#}
-{#                </li>#}
-{#            </ul>#}
-{#            </p>#}
-{#        </article>#}
-{##}
-{#        <article>#}
-{#            <p class="pt-3 pb-2">Zapisaną wycieczkę możesz współdzielić ze swoimi znajomymi&nbsp;-&nbsp;dodaj ich do#}
-{#                listy#}
-{#                współuczestników i&nbsp;wspólnie twórzcie <span class="text-nowrap">plany!<i#}
-{#                        class="fas fa-users fa-2x ml-2"></i></span></p>#}
-{##}
-{#            <p class="py-2">Po zapisaniu informacji, możesz je wyeksportować do pliku .pdf i&nbsp;korzystać z nich nawet offline&nbsp;-&nbsp;czy#}
-{#                to w&nbsp;formie wydruku, czy też na urządzeniu <span class="text-nowrap">mobilnym!<i#}
-{#                        class="far fa-file-pdf fa-2x ml-2"></i></span></p>#}
-{##}
-{##}
-{#            <p class="py-2"> Możesz również zainspirować się planami podróży innych użytkowników i&nbsp;utworzyć własny plan w&nbsp;oparciu#}
-{#                o&nbsp;<span class="text-nowrap">ich notatki!<i class="far fa-smile fa-2x ml-2"></i><i#}
-{#                        class="far fa-lightbulb mb-3"></i></span></p>#}
-{##}
-{#            <a class="nav-link" href="{% url 'trip-list' %}">Obejrzyj plany innych użytkowników#}
-{#            </a>#}
-{##}
-{#            <a class="nav-link" href="{% url 'trip-with-attributes-create' %}">Utwórz nową wycieczkę od podstaw#}
-{#            </a>#}
-{##}
-{#        </article>#}
-{#    </div>#}
-{#    </div>#}
-{##}
-{##}
-{#{% endblock %}#}
+
+<div id="home-begin" class="mb-5 p-5 d-flex justify-content-center text-center align-items-center ">
+    <div class="h-100">
+        <div class="d-inline">
+            <h2 class="h2-responsive">Zaczynamy?</h2>
+            <div class="row h3-responsive text-center align-items-center justify-content-center">
+                <div class="col-6"><a href="{% url 'trip-list' %}">Zobacz wycieczki innych użytkowników</a></div>
+                {% if user.is_anonymous %}
+                    <div class="col-6"><a href="{% url 'signup' %}">Zarejestruj się</a></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <footer>

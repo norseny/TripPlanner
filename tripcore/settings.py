@@ -125,11 +125,9 @@ USE_L10N = False
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/generated') # todo: sort out
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/generated')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
@@ -140,7 +138,7 @@ MEDIA_URL = '/media/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/' # default: /accounts/profile/
+LOGIN_REDIRECT_URL = '/my-trips' # default: /accounts/profile/
 
 
 DATETIME_INPUT_FORMATS = [

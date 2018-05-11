@@ -32,10 +32,9 @@
 }
 
 #logo {
-    width: 50px;
-    height: 90px;
-    background-image: url(../img/logo3.png);
-    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    float: left;
 }
 
 
@@ -390,19 +389,19 @@ a:hover, .underline-on-hover:hover {
 }
 
 .avatar-outer-div {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
 }
 
 
 .resize-img {
-    width: 70px;
-    height: 70px;
-    -webkit-border-radius: 70px;
+    width: 150px;
+    height: 150px;
+    -webkit-border-radius: 100px;
     -webkit-background-clip: padding-box;
-    -moz-border-radius: 70px;
+    -moz-border-radius: 100px;
     -moz-background-clip: padding;
-    border-radius: 70px;
+    border-radius: 100px;
     background-clip: padding-box;
     float: left;
 }
@@ -421,4 +420,10 @@ a:hover, .underline-on-hover:hover {
 
 .row > div {
     overflow-x: visible;
+}
+
+.one-trip-in-list {
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
 }
