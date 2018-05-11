@@ -19,7 +19,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'own/css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'own/css/style-home.css' %}">
 
     {#    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,latin-ext' rel='stylesheet'#}
     {#          type='text/css'>#}
@@ -45,55 +45,51 @@
 {#</div>#}
 
 <div id="home-first-bg">
-    <div class="h-100 w-100 d-flex text-right align-items-end justify-content-end" >
-        <h1 id="home-first-h1">
-{#            <div class="row m-2">#}
-{#                <div class="col-1 d-flex justify-content-center align-items-center">#}
-{#                    <img src="../../../static/own/img/africa-1299545_640_white.png" class="img-fluid"#}
-{#                         style="max-width: 100px;">#}
-{#                </div>#}
-{#                <div id="home-first-h1-main-text">#}
-                    Planujesz wycieczkę?
+    <div class="h-100 w-100 d-flex text-right align-items-end justify-content-end align-items-xl-center flex-column">
+        <div id="home-1-text-container" class="h2-responsive">
+                <h1 id="home-first-h1-main-text">Planujesz wycieczkę?
                     <span class="d-block">
-                    Użyj <span class="font-weight-bold">
-                TripPlannera!</span>
-                </span>
-{#                </div>#}
-        </h1>
-{#            </div>#}
-            <div class="row align-items-center m-2" id="home-first-h1-links-div">
-                <div class="col-6"><a href="#home-trip-attributes" class="a-on-dark text-capitalize">Zobacz więcej</a>
+                    Użyj
+                        <span class="font-weight-bold">
+                TripPlannera!
+                        </span>
+                    </span>
+                </h1>
+            <div class="row align-items-center mt-4" id="home-first-h1-links-div">
+                <div class="col-6"><a href="#home-trip-attributes" class="a-on-dark">Dowiedz się więcej</a>
                 </div>
                 <div class="col-6">
                     {% if user.is_anonymous %}
                         <span class="d-block"><a href="{% url 'login' %}" class="a-on-dark">Zaloguj się</a></span>
-                        <span class="d-block"><a href="{% url 'signup' %}" class="a-on-dark">Zarejestruj się</a></span>
+
+                        <span class="d-block mt-4"><a href="{% url 'signup' %}" class="a-on-dark">Zarejestruj się</a></span>
                     {% else %}
                         <span class="d-block text-center"><a href="{% url 'my-trip-list' %}" class="a-on-dark">Przejdź do swoich wycieczek</a></span>
                     {% endif %}
                 </div>
             </div>
+        </div>
     </div>
 </div>
 
 
-<div id="home-trip-attributes" class="mb-5 p-5 d-flex justify-content-center text-center align-items-center ">
+<div id="home-trip-attributes" class="p-5 d-flex justify-content-center text-center align-items-center ">
     <article>
-        <h2 class="h3-responsive w-100"> W <span class="font-weight-bold">
+        <h2 class="h2-responsive w-100 mt-5"> W <span class="font-weight-bold">
             TripPlannerze</span> przechowasz
-            informacje o:
-            <div class="row p-5">
-                <div class="col-4">
+            informacje&nbsp;o:
+            <div class="row p-1">
+                <div class="col-md-4 p-4">
                     <i class="fas fa-rocket fa-3x p-1"></i>
-                    <span class="d-block small">podróżach</span>
+                    <span class="d-block small">podróżach,</span>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4 p-4">
                     <i class="fas fa-bed fa-3x p-1"></i>
-                    <span class="d-block small">zakwaterowaniu</span>
+                    <span class="d-block small">zakwaterowaniu,</span>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4 p-4">
                     <i class="fas fa-camera fa-3x p-1"></i>
-                    <span class="d-block small">atrakcjach, np.&nbsp;muzeach lub zabytkach</span>
+                    <span class="d-block small">atrakcjach.</span>
                 </div>
             </div>
         </h2>
@@ -104,57 +100,71 @@
 
 <div id="home-seeking-inspiration">
     <div class="text-center">
-        <div class="d-inline-block m-3">
+        <div class="d-inline-block m-3 mt-3">
 
-            <h2 class="h3-responsive p-3">
+            <h2 class="h2-responsive">
                 <span class="d-block">...a może szukasz inspiracji?</span>
-                <span><i class="far fa-smile fa-3x d-inline-block py-2 mt-1"></i></span>
-                <span class=""><i class="far fa-lightbulb d-inline-block mb-5"></i></span>
-                <span class="d-block">Przeglądaj wycieczki innych użytkowników </span>
-                <span class="d-block">i używaj ich jako szablonów!</span>
+                <span class="d-inline-block py-3"><i class="far fa-smile fa-3x d-inline-block"></i><i class="far fa-lightbulb d-inline-block"></i></span>
+                <span class="d-block small">Przeglądaj wycieczki innych użytkowników </span>
+                <span class="d-block small">i używaj ich jako szablonów!</span>
             </h2>
-            <span class="d-block"><a href="#testowe-tlo2"><i class="fas fa-chevron-down fa-3x"></i></a></span>
+            <span class="d-block mt-2"><a href="#home-trip-attributes2"><i class="fas fa-chevron-down fa-3x"></i></a></span>
 
         </div>
     </div>
 </div>
 
 
-<div id="testowe-tlo2">
-    <div class="h-100 d-flex text-right justify-content-end">
-        <div class="d-inline-block mr-lg-5 pr-5 mt-4 text-left text-center">
-
-            <article class="w-75 d-inline-block mb-2 mr-lg-5 p-3 h3-responsive">
-                <p>
+<div id="home-trip-attributes2" class="p-5 d-flex justify-content-center text-center align-items-center">
+    <article>
+        <h2 class="h2-responsive w-100 mt-5">
+            Możesz też:
+            <div class="row p-1">
+                <div class="col-md-6 p-4">
                     <i class="fas fa-users fa-3x p-1"></i>
-                    <span class="d-block small">Twórz plany razem ze znajomymi</span>
-                </p>
-
-                <p>
+                    <span class="d-block small">tworzyć plany razem ze znajomymi,</span>
+                </div>
+                <div class="col-md-6 p-4">
                     <i class="fas fa-file-pdf fa-3x p-1"></i>
-                    <span class="d-block small">Zapisz wycieczkę w pliku .pdf i&nbsp;korzystaj z notatek nawet
-                offline</span>
-                </p>
-            </article>
-            <span class="d-block mr-lg-5"><a href="#home-begin"><i class="fas fa-chevron-down fa-3x"></i></a></span>
-
-        </div>
-    </div>
+                    <span class="d-block small mt-2">zapisać wycieczkę w&nbsp;pliku .pdf i&nbsp;korzystać z&nbsp;notatek
+                        offline!</span>
+                </div>
+            </div>
+        </h2>
+            <span class="d-block">
+                <a href="#home-writing-bg"><i class="fas fa-chevron-down fa-3x"></i></a>
+            </span>
+    </article>
 </div>
 
 
-<div id="home-begin" class="mb-5 p-5 d-flex justify-content-center text-center align-items-center ">
-    <div class="h-100">
-        <div class="d-inline">
-            <h2 class="h2-responsive">Zaczynamy?</h2>
-            <div class="row h3-responsive text-center align-items-center justify-content-center">
-                <div class="col-6"><a href="{% url 'trip-list' %}">Zobacz wycieczki innych użytkowników</a></div>
+<div id="home-writing-bg" class="text-center">
+<div class="w-100">
+    <article class="h2-responsive" id="home-begin-art">
+<h2 class="p-5">Zaczynamy planować?</h2>
                 {% if user.is_anonymous %}
-                    <div class="col-6"><a href="{% url 'signup' %}">Zarejestruj się</a></div>
+                    <div class="my-4">
+                    <a class="my-4" href="{% url 'signup' %}">Zarejestruj się</a>
+                    </div>
                 {% endif %}
-            </div>
-        </div>
-    </div>
+                    <div class="my-4">
+                    <a href="{% url 'trip-list' %}">Zobacz istniejące wycieczki</a>
+                </div>
+    </article>
+</div>
+
+{#    <div class="h-100">#}
+{#        <div class="d-inline">#}
+{#            <h2 class="h2-responsive">Zaczynamy?</h2>#}
+{#            <div class="row h3-responsive text-center align-items-center justify-content-center">#}
+{#                <div class="col-6"><a href="{% url 'trip-list' %}">Zobacz wycieczki innych użytkowników</a></div>#}
+{#                {% if user.is_anonymous %}#}
+{#                    <div class="col-6"><a href="{% url 'signup' %}">Zarejestruj się</a></div>#}
+{#                {% endif %}#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
 </div>
 
 
