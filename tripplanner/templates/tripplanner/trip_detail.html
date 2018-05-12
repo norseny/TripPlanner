@@ -7,76 +7,121 @@
 {% block title %}{% endblock %}
 {% block content %}
 
-    <div class="row d-flex justify-content-center align-items-center m-3">
-        <div class="col-1 text-left justify-content-center align-items-center">
-            {% if prev_trip_id %}
-                <a class="myicon" href="{% url 'trip-detail' prev_trip_id %}"><i
+    <div class="row m-0 d-flex justify-content-center align-items-center my-lg-4 m-sm-3">
+        {% if prev_trip_id %}
+            <div class="col-1 p-0 text-left">
+                <a href="{% url 'trip-detail' prev_trip_id %}"><i
                         class="fas fa-angle-left fa-3x"></i></a>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
         <div class="col-10 text-center">
-            <h1>{{ trip.name }} </h1>
+            <h1 class="h1-responsive">{{ trip.name }} </h1>
         </div>
-        <div class="col-1 text-right">
-            {% if next_trip_id %}
+        {% if next_trip_id %}
+            <div class="col-1 p-0 text-right">
+
                 <a class="myicon" href="{% url 'trip-detail' next_trip_id %}"> <i
                         class="fas fa-angle-right fa-3x"></i></a>
-            {% endif %}
-        </div>
+            </div>
+
+        {% endif %}
     </div>
 
     {% if user.is_authenticated %}
-    {% if not participant %}
-        <div class="text-right mr-5">
-            {% if trip in user.profile.favourite_trips.all %}
-                <a href="{% url 'my-fav-trip-list'%}"><span class="brown-font font-weight-400">{% trans 'In your favourites'%} <i class="fas fa-heart"></i></span></a>
-            {% else %}
-                <button type="button" class="btn btn-sm d-inline-block" id="add-to-fav-btn">{% trans 'Add to your favourites!'%}
-                <i class="fas fa-heart"></i> </button>
+        {% if not participant %}
+            <div class="text-right mr-5">
+                {% if trip in user.profile.favourite_trips.all %}
+                    <a href="{% url 'my-fav-trip-list' %}"><span
+                            class="font-weight-400">{% trans 'In your favourites' %} <i
+                            class="fas fa-heart"></i></span></a>
+                {% else %}
+                    <button type="button" class="btn btn-sm d-inline-block"
+                            id="add-to-fav-btn">{% trans 'Add to your favourites!' %}
+                        <i class="fas fa-heart"></i></button>
                 {% endif %}
-        </div>
-    {% endif %}
+            </div>
+        {% endif %}
     {% endif %}
 
-    <div class="row mt-3 mb-5 mr-5 ml-5">
-        <div class="col-6 d-flex justify-content-center align-items-center pt-4">
-            <div class="no-a-underline">
-                <p class="details-main"><label>{% trans 'Description' %}:</label> {{ trip.description }} </p>
-                <p class="details-main"><label>{% trans 'Created by' %}:</label> {{ trip.created_by }} </p>
-                <p class="details-main">
-                    <label>{% trans 'Start time' %}:</label> {{ trip.start_time|default_if_none:"" }} </p>
-                <p class="details-main"><label>{% trans 'End time' %}:</label> {{ trip.end_time|default_if_none:"" }}
-                </p>
-                <p class="details-main">
-                    <label>{% trans 'Total Cost (PLN)' %}:</label> {{ trip.price|default_if_none:"" }} </p>
-                <div class="row justify-content-center align-items-center text-center mt-2">
+    <div class="d-md-none w-100 text-center my-3">
+        {% if user.id == trip.created_by_id %}
+            {% if trip.main_image %}
+                <img src='{{ trip.main_image.url }}'
+                     alt="Trip main photo"
+                     class="img-fluid d-inline-block">
+            {% else %}
+                <a href="{% url 'upload-trip-img' trip.pk %}"><span class="myicon">
+                                <div>
+                                    <i class="far fa-image fa-5x d-inline-block"></i>
+                                    <i class="fas fa-plus fa-2x d-inline-block mb-5"></i>
+                                </div>
+                                <div>{% trans 'Add main image' %}</div>
+                            </span></a>
+            {% endif %}
+        {% else %}
+            {% if trip.main_image %}
+                <img src='{{ trip.main_image.url }}' alt="img" class="img-fluid
+                                                                         ">
+            {% else %}
+                <img
+                        src='../../../static/own/img/africa-1299545_640.png'
+                        alt="Trip main img" class="img-fluid">
+            {% endif %}
+        {% endif %}
+    </div>
+
+
+
+    <div class="row w-100 m-0 my-4 mb-md-5">
+        <div class="col-md-6 d-flex justify-content-center align-items-center my-md-4">
+            <section>
+                <div>
+                    <label>{% trans 'Description' %}:</label> {{ trip.description }}
+                </div>
+                <div>
+                    <label>{% trans 'Created by' %}:</label> {{ trip.created_by }}
+                </div>
+                <div>
+                    <label>{% trans 'Start time' %}:</label> {{ trip.start_time|default_if_none:"" }} </div>
+                <div><label>{% trans 'End time' %}:</label> {{ trip.end_time|default_if_none:"" }}
+                </div>
+                <div>
+                    <label>{% trans 'Total Cost (PLN)' %}:</label> {{ trip.price|default_if_none:"" }} </div>
+                <div class="row justify-content-center align-items-center text-center mt-3 mt-md-5">
                     <div class="col-6">
-                        <a href="{% url 'trip-participants' trip.pk %}"><span class="myicon">
-                            <p><i class="fas fa-users fa-3x d-inline-block"></i></p>
-                            <p>{% trans 'Trip participants' %}</p>
-                        </span></a>
+                        <a href="{% url 'trip-participants' trip.pk %}">
+                            {#                            <span class="myicon">#}
+                            <div><i class="fas fa-users fa-3x d-inline-block"></i></div>
+                            {% trans 'Trip participants' %}
+                            {#                        </span>#}
+                        </a>
                     </div>
                     <div class="col-6">
-                        <a href="{% url 'trip-detail-pdf' trip.pk %}"><span class="myicon">
-                            <p><i class="far fa-file-pdf fa-3x d-inline-block"></i></p>
-                            <p>{% trans 'Pdf-file with details' %}</p>
-                        </span></a>
+                        <a href="{% url 'trip-detail-pdf' trip.pk %}">
+                            {#                            <span>#}
+                            <div><i class="far fa-file-pdf fa-3x d-inline-block"></i></div>
+                            {#                            <div>#}
+                            {% trans 'Pdf-file with details' %}
+                            {#                    </div>#}
+                            {#                        </span>#}
+                        </a>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-        <div class="col-6 d-flex justify-content-center align-items-center text-center">
+
+        <div class="col-sm-6 d-none d-sm-flex justify-content-center align-items-center text-center w-100">
             {% if user.id == trip.created_by_id %}
                 {% if trip.main_image %}
-                    <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center no-a-underline">
+                    <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
                         <img src='{{ trip.main_image.url }}'
                              alt="Trip main photo"
                              class="photo-img img-fluid mx-auto d-block">
                         <a href="{% url 'upload-trip-img' trip.pk %}">
                             <div class="overlay">
-                                <div class="photo-text-over myicon">
-                                    <p><i class="far fa-image fa-5x d-inline-block"></i></p>
-                                    <p>{% trans "Change main image" %}</p>
+                                <div class="photo-text-over">
+                                    <div><i class="far fa-image fa-5x d-inline-block"></i></div>
+                                    <div id="change-main-image">{% trans "Change main image" %}</div>
                                 </div>
                             </div>
                         </a>
@@ -84,11 +129,11 @@
                 {% else %}
                     <div class="row h-100 justify-content-center align-items-center text-center no-a-underline">
                         <a href="{% url 'upload-trip-img' trip.pk %}"><span class="myicon">
-                                <p>
+                                <div>
                                     <i class="far fa-image fa-5x d-inline-block"></i>
                                     <i class="fas fa-plus fa-2x d-inline-block mb-5"></i>
-                                </p>
-                                <p>{% trans 'Add main image' %}</p>
+                                </div>
+                                <div>{% trans 'Add main image' %}</div>
                             </span></a>
                     </div>
                 {% endif %}
@@ -101,7 +146,6 @@
                 {% else %}
                     <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
                         <img
-{#                                src='../../../media/users_img/default-photo.jpeg' #}
                                 src='../../../static/own/img/africa-1299545_640.png'
 
                                 alt="img" class="photo-img
@@ -113,15 +157,15 @@
         </div>
     </div>
 
-    <div class="details-with-acc m-">
-        <div class="accordion d-flex justify-content-center text-center align-items-center" id="trip-details"
-             onclick="openCloseDetails(event, 'trip-details-table')">
-            <h2><span class="d-inline-block details-label">{% trans "Trip's Details" %}</span></h2>
+    <div class="details-with-acc">
+        <div class="accordion d-flex justify-content-center text-center align-items-center my-4" id="trip-details"
+             onclick="openCloseDetails(event, 'trip-details-table')"
+        >
+            <h2 class="d-inline-block details-label h2-responsive pr-2">{% trans "Trip's Details" %}</h2>
             <i class="fas fa-angle-down fa-3x" id="icon-details-down-view"></i>
             <i class="fas fa-angle-up fa-3x" id="icon-details-up-view"></i>
         </div>
         <div class="scrollable-horizontally" id="trip-details-table" style="display: block">
-
             {% if trip.journey_set.all %}
                 <div><i class="brown-font fas fa-rocket"></i></div>
                 {% for el in trip.journey_set.all %}
@@ -148,19 +192,19 @@
                     {% if el.more_info %}
 
                         {% if el.more_info|length < 50 %}
-                            <div class="my-2 grey-border-bottom  font-small">{{ el.more_info }}</div>
+                            <div class="my-2 grey-border-bottom font-small">{{ el.more_info }}</div>
                         {% else %}
                             <div class="my-2 grey-border-bottom  font-small d-flex">
                                 {{ el.more_info|truncatewords:"5"|slice:"-3" }}
                                 <div class="d-inline-block pb-1 pl-1">
                                 <span class="icon-show-more position-absolute h5">
-                                    <i class="fas fa-ellipsis-h myicon"></i>
+                                    <i class="fas fa-ellipsis-h"></i>
                                 </span>
                                 </div>
                             </div>
                             <div class="my-2 grey-border-bottom more-info-to-show font-small"
                                  style="display: none">{{ el.more_info }}
-                                <span class="icon-show-less myicon h5"><i class="fas fa-caret-left"></i></span>
+                                <span class="icon-show-less h5"><i class="fas fa-caret-left"></i></span>
                             </div>
                         {% endif %}
                     {% endif %}
@@ -253,34 +297,31 @@
 
     </div>
 
-    <div class="m-5 no-a-underline">
+    <div class="m-4 my-md-5">
         {% if  participant %}
-            <div class="row w-100 justify-content-center text-center details-main-icons m-1">
-
-                <div class="col-3">
-                    <a href="{% url 'trip-update' trip.pk %}"><span class="myicon">
-                            <p><i class="far fa-edit fa-3x d-inline-block"></i></p>
-                            <p>{% trans 'Edit' %}</p>
-                        </span></a>
+            <div class="row w-100 m-0 justify-content-center text-center">
+                <div class="col-6">
+                    <a href="{% url 'trip-update' trip.pk %}">
+                        <div><i class="far fa-edit fa-3x"></i></div>
+                        {% trans 'Edit' %}
+                    </a>
                 </div>
                 {% if user.id == trip.created_by_id %}
-                    <div class="col-3">
-                        <a href="{% url 'trip-delete' trip.pk %}"><span class="myicon">
-                            <p><i class="far fa-trash-alt fa-3x d-inline-block"></i></p>
-                            <p>{% trans 'Delete' %}</p>
-                        </span></a>
+                    <div class="col-6">
+                        <a href="{% url 'trip-delete' trip.pk %}">
+                            <div><i class="far fa-trash-alt fa-3x"></i></div>
+                            {% trans 'Delete' %}
+                        </a>
                     </div>
                 {% endif %}
             </div>
         {% else %}
-            <div class="row h-100 w-100 align-items-center text-center details-main-icons">
-                <div class="col-12 d-inline-block">
-                    <a id="inspired" href=#><span class="myicon">
-                    <p><i class="far fa-smile fa-5x d-inline-block"></i><i
-                            class="far fa-lightbulb fa-3x d-inline-block mb-5"></i></p>
-                    <p>{% trans 'Inspired? Plan a similar trip!' %}</p>
-                </span></a>
-                </div>
+            <div class="text-center">
+                <a id="inspired" class=" d-inline-block w-50" href=#>
+                    <div class="py-3"><i class="far fa-smile fa-5x"></i><i
+                            class="far fa-lightbulb fa-2x d-inline-block mb-5"></i></div>
+                {% trans 'Inspired? Plan a similar trip!' %}
+                </a>
             </div>
         {% endif %}
     </div>
@@ -292,5 +333,6 @@
 
     <script>const trip_id = '{{ trip.id }}'</script>
     <script src="{% static 'own/js/detail-view.js' %}"></script>
+{#    <script src="{% static 'own/js/smooth-scroll.js' %}"></script>#}
 
 {% endblock %}

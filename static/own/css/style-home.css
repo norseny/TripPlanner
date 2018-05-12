@@ -38,7 +38,8 @@ html, main, body {
 }
 
 #home-begin-art {
-    margin-top: 8rem;
+    /*margin-top: 8rem;*/
+    margin-left: 3rem;
 }
 
 
@@ -63,7 +64,7 @@ html, main, body {
 @media (min-width: 768px) {
 
     #home-begin-art {
-        margin-top: 8rem;
+        /*margin-top: 8rem;*/
         margin-left: 8rem;
 
     }
@@ -80,9 +81,6 @@ html, main, body {
 #home-first-h1-links-div {
     font-size: 2rem;
 }
-
-
-
 }
 
  /*Large devices (desktops, 992px and up)*/
@@ -99,7 +97,9 @@ html, main, body {
     margin-bottom: 6rem;
     margin-right: 0;
 }
-
+    #home-begin-art {
+    margin-left: 20rem;
+}
 }
 
 
@@ -172,7 +172,7 @@ a {
 }
 
 a:hover {
-    font-weight: 400;
+    font-weight: 500; /* todo: check */
     color: #0091ea;
     border-bottom: 3px solid #0091ea;
 }

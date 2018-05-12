@@ -30,7 +30,7 @@ class Trip(BasicInfo):
     description = models.TextField(null=True, max_length=250, blank=True)
     created_by = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
     end_time = models.DateTimeField(null=True, blank=True)
-    main_image = models.ImageField(upload_to='static/own/img/users_img', blank=True, null=True)
+    main_image = models.ImageField(upload_to='users_img', blank=True, null=True)
     private_trip = models.BooleanField(default=False)
     participants = models.ManyToManyField(User) #todo: duration (timedelta start and endtime)
 

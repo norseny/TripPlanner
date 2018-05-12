@@ -47,14 +47,14 @@
 <div id="home-first-bg">
     <div class="h-100 w-100 d-flex text-right align-items-end justify-content-end align-items-xl-center flex-column">
         <div id="home-1-text-container" class="h2-responsive">
-                <h1 id="home-first-h1-main-text">Planujesz wycieczkę?
-                    <span class="d-block">
+            <h1 id="home-first-h1-main-text">Planujesz wycieczkę?
+                <span class="d-block">
                     Użyj
                         <span class="font-weight-bold">
                 TripPlannera!
                         </span>
                     </span>
-                </h1>
+            </h1>
             <div class="row align-items-center mt-4" id="home-first-h1-links-div">
                 <div class="col-6"><a href="#home-trip-attributes" class="a-on-dark">Dowiedz się więcej</a>
                 </div>
@@ -62,7 +62,8 @@
                     {% if user.is_anonymous %}
                         <span class="d-block"><a href="{% url 'login' %}" class="a-on-dark">Zaloguj się</a></span>
 
-                        <span class="d-block mt-4"><a href="{% url 'signup' %}" class="a-on-dark">Zarejestruj się</a></span>
+                        <span class="d-block mt-4"><a href="{% url 'signup' %}"
+                                                      class="a-on-dark">Zarejestruj się</a></span>
                     {% else %}
                         <span class="d-block text-center"><a href="{% url 'my-trip-list' %}" class="a-on-dark">Przejdź do swoich wycieczek</a></span>
                     {% endif %}
@@ -73,12 +74,12 @@
 </div>
 
 
-<div id="home-trip-attributes" class="p-5 d-flex justify-content-center text-center align-items-center ">
+<div id="home-trip-attributes" class="p-5 d-flex justify-content-center text-center align-items-center">
     <article>
-        <h2 class="h2-responsive w-100 mt-5"> W <span class="font-weight-bold">
+        <h2 class="h2-responsive w-100"> W <span class="font-weight-bold">
             TripPlannerze</span> przechowasz
             informacje&nbsp;o:
-            <div class="row p-1">
+            <div class="row">
                 <div class="col-md-4 p-4">
                     <i class="fas fa-rocket fa-3x p-1"></i>
                     <span class="d-block small">podróżach,</span>
@@ -104,11 +105,13 @@
 
             <h2 class="h2-responsive">
                 <span class="d-block">...a może szukasz inspiracji?</span>
-                <span class="d-inline-block py-3"><i class="far fa-smile fa-3x d-inline-block"></i><i class="far fa-lightbulb d-inline-block"></i></span>
+                <span class="d-inline-block py-3"><i class="far fa-smile fa-3x d-inline-block"></i><i
+                        class="far fa-lightbulb d-inline-block"></i></span>
                 <span class="d-block small">Przeglądaj wycieczki innych użytkowników </span>
                 <span class="d-block small">i używaj ich jako szablonów!</span>
             </h2>
-            <span class="d-block mt-2"><a href="#home-trip-attributes2"><i class="fas fa-chevron-down fa-3x"></i></a></span>
+            <span class="d-block mt-2"><a href="#home-trip-attributes2"><i
+                    class="fas fa-chevron-down fa-3x"></i></a></span>
 
         </div>
     </div>
@@ -117,7 +120,7 @@
 
 <div id="home-trip-attributes2" class="p-5 d-flex justify-content-center text-center align-items-center">
     <article>
-        <h2 class="h2-responsive w-100 mt-5">
+        <h2 class="h2-responsive w-100">
             Możesz też:
             <div class="row p-1">
                 <div class="col-md-6 p-4">
@@ -131,7 +134,7 @@
                 </div>
             </div>
         </h2>
-            <span class="d-block">
+        <span class="d-block">
                 <a href="#home-writing-bg"><i class="fas fa-chevron-down fa-3x"></i></a>
             </span>
     </article>
@@ -139,32 +142,19 @@
 
 
 <div id="home-writing-bg" class="text-center">
-<div class="w-100">
-    <article class="h2-responsive" id="home-begin-art">
-<h2 class="p-5">Zaczynamy planować?</h2>
-                {% if user.is_anonymous %}
-                    <div class="my-4">
+    <div class="w-100 d-flex justify-content-center align-items-start">
+        <article class="h2-responsive " id="home-begin-art">
+            <h2 class="p-5">Zaczynamy planować?</h2>
+            {% if user.is_anonymous %}
+                <div class="my-4">
                     <a class="my-4" href="{% url 'signup' %}">Zarejestruj się</a>
-                    </div>
-                {% endif %}
-                    <div class="my-4">
-                    <a href="{% url 'trip-list' %}">Zobacz istniejące wycieczki</a>
                 </div>
-    </article>
-</div>
-
-{#    <div class="h-100">#}
-{#        <div class="d-inline">#}
-{#            <h2 class="h2-responsive">Zaczynamy?</h2>#}
-{#            <div class="row h3-responsive text-center align-items-center justify-content-center">#}
-{#                <div class="col-6"><a href="{% url 'trip-list' %}">Zobacz wycieczki innych użytkowników</a></div>#}
-{#                {% if user.is_anonymous %}#}
-{#                    <div class="col-6"><a href="{% url 'signup' %}">Zarejestruj się</a></div>#}
-{#                {% endif %}#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-
+            {% endif %}
+            <div class="my-4">
+                <a href="{% url 'trip-list' %}">Zobacz istniejące wycieczki</a>
+            </div>
+        </article>
+    </div>
 </div>
 
 
@@ -172,7 +162,7 @@
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script src="{% static 'own/js/tripplanner.js' %}"></script>
+    <script src="{% static 'own/js/smooth-scroll.js' %}"></script>
 
 </footer>
 </body>

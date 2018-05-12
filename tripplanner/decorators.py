@@ -36,10 +36,10 @@ def trip_is_not_private(function):
     def wrap(request, *args, **kwargs):
         trip = Trip.objects.get(pk=kwargs['pk'])
         if trip.private_trip:
-            if not trip.created_by == request.user:
-                raise PermissionDenied
-            else:
+            if request.user in trip.participants.all():
                 return function(request, *args, **kwargs)
+            else:
+                raise PermissionDenied
         else:
             return function(request, *args, **kwargs)
 

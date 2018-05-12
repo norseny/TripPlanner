@@ -8,17 +8,6 @@
     {% load staticfiles %}
     {% load i18n %}
 
-    <!-- Font Awesome -->
-
-    {#<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">#}
-
-
-    {#    <link rel="stylesheet" href="{% static 'libs/fontawesome-5.0.10/web-fonts-with-css/css/fontawesome.min.css' %}">#}
-
-    {#<!-- Bootstrap core CSS -->#}
-    {#<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">#}
-    {#<!-- Material Design Bootstrap -->#}
-    {#<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">#}
 
 
     <!-- Font Awesome -->
@@ -26,51 +15,52 @@
             integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
             crossorigin="anonymous"></script>
 
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
-
-
-    {# local: uncomment for ubuntu #}
-    {#    <link rel="stylesheet" href="{% static 'libs/mdb/css/bootstrap.min.css' %}">#}
-    {#    <link rel="stylesheet" href="{% static 'libs/mdb/css/mdb.min.css' %}">#}
-
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+{#    <!-- JQuery -->#}
+{#    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
+{##}
+{#    <!-- Bootstrap tooltips -->#}
+{#    <script type="text/javascript"#}
+{#            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>#}
+{#    <!-- Bootstrap core JavaScript -->#}
+{#    <script type="text/javascript"#}
+{#            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>#}
+{#    <!-- MDB core JavaScript -->#}
+{#    <script type="text/javascript"#}
+{#            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>#}
+{##}
+{#    <!-- Bootstrap core CSS -->#}
+{#    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">#}
+{#    <!-- Material Design Bootstrap -->#}
+{#    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">#}
 
 
-    {#    <script type="text/javascript" src="{% static 'libs/mdb/js/mdb.min.js' %}"></script>#}
 
-    {#    <link type="text/javascript" src="{% static 'libs/mdb/js/jquery-3.2.1.min.js' %}">#}
-    {#    <link type="text/javascript" src="{% static 'libs/mdb/js/jquery.min.js' %}">#}
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
 
-    {#    <link type="text/javascript" src="{% static 'libs/mdb/js/popper.min.js' %}">#}
-    {#    <link type="text/javascript" src="{% static 'libs/mdb/js/bootstrap.min.js' %}">#}
-    {#    <link type="text/javascript" src="{% static 'libs/mdb/js/mdb.min.js' %}">#}
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+
 
 
     <link rel="stylesheet" href="{% static 'own/css/style.css' %}">
-
-
-{#    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,latin-ext' rel='stylesheet' type='text/css'>#}
-
 
     <script>
         $(document).ready(function () {
             $('li.active').removeClass('active');
             $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+            $('.lang').click(function () {
+                $('#lang-input').click()
+                }
+            )
         });
     </script>
 
@@ -122,20 +112,6 @@
 
                 </a>
             </li>
-            {#      <li class="nav-item dropdown">#}
-            {#        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-            {#          Dropdown#}
-            {#        </a>#}
-            {#        <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
-            {#          <a class="dropdown-item" href="#">Action</a>#}
-            {#          <a class="dropdown-item" href="#">Another action</a>#}
-            {#          <div class="dropdown-divider"></div>#}
-            {#          <a class="dropdown-item" href="#">Something else here</a>#}
-            {#        </div>#}
-            {#      </li>#}
-            {#      <li class="nav-item">#}
-            {#        <a class="nav-link disabled" href="#">Disabled</a>#}
-            {#      </li>#}
         </ul>
 
 
@@ -144,12 +120,12 @@
         {#            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
         {#        </form>#}
 
-        <div class="d-flex justify-content-center align-items-center">
+{#        <div class="d-flex justify-content-center align-items-center">#}
 
-            <div class="d-inline-block maxw-40">
-                <form class="form-inline m-0 p-0" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+{#            <div class="d-inline">#}
+                <form class="form-inline mr-2" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                    <select name="language" class="custom-select">
+                    <select name="language" class="custom-select" style="max-width: 90px">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
@@ -160,31 +136,27 @@
                             </option>
                         {% endfor %}
                     </select>
-                    <input class="btn btn-sm btn-primary d-inline-block" type="submit" value="{% trans 'Change' %}"/>
+                    <input class="btn btn-sm pr-3 pl-3" id="lang-input" type="submit" value="{% trans 'Change'%}"/>
                 </form>
-            </div>
 
-            <div class="d-block pl-3">
-                <div class="row justify-content-center align-items-center text-center">
-                    <div class="col d-block">
-                        {% if user.is_authenticated %}
-                            <i class="fas fa-user"></i>
-                            {#{% trans 'You are logged as' %}#}
-                            {{ user.username }}
-                        {% endif %}
+            {% if user.is_authenticated %}
+            <div class="dropdown h-100 align-left">
+                    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>{{ user.username }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">{% trans 'My profile' %}</a>
+                      <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col d-block">
-                        {% if user.is_anonymous %}
-                            <a class="login-a btn btn-sm btn-primary" href="{% url 'login' %}">{% trans 'Log in' %}</a>
-                        {% else %}
-                            <a class="login-a btn btn-sm btn-primary" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
-                        {% endif %}
-                    </div>
-                </div>
             </div>
+            {% else %}
+                <a class="" href="{% url 'login' %}" role="button"><i class="fas fa-user"></i>{% trans 'Log in' %}
+                </a>
+            {% endif %}
+
+
+
 
         </div>
     </div>
@@ -197,7 +169,7 @@
         {% endfor %}
     </ul>
 {% endif %}
-<div class="container lg-col-12 my-3">
+<div class="container my-3">
     {% block content %}{% endblock %}
 </div>
 

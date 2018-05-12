@@ -60,3 +60,9 @@ function openCloseDetails(evt, id) {
     }
     evt.currentTarget.className += " active";
 }
+
+// $( "#trip-details" ).click(function() {
+//   $( "#trip-details-table" ).slideToggle( "slow", function() {
+//     // Animation complete.
+//   });
+// });
