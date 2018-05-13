@@ -15,18 +15,41 @@ $(document).ready(function () {
             }
         });
     });
+    // $(".icon-show-more").click(function () {
+    //     var a;
+    //     a = $(this).closest("div.d-flex");
+    //     a.next().show();
+    //     a.css("cssText", "display: none !important;");
+    // });
+    // $(".icon-show-less").click(function () {
+    //     var a;
+    //     a = $(this).closest("div.more-info-to-show");
+    //     a.prev().show();
+    //     a.hide()
+    // });
     $(".icon-show-more").click(function () {
         var a;
-        a = $(this).closest("div.d-flex");
-        a.next().show();
+        a = $(this).closest("div.truncated-info");
         a.css("cssText", "display: none !important;");
+        a.next().slideToggle( "slow");
     });
     $(".icon-show-less").click(function () {
         var a;
         a = $(this).closest("div.more-info-to-show");
-        a.prev().show();
-        a.hide()
+        a.slideToggle( "slow");
+        a.prev().show()
     });
+        $("#show-trip-details").click(function () {
+        // $('#icon-details-down-view:visible').hide();
+        // $('#icon-details-down-view:hidden').show();
+        // $('#icon-details-up-view:hidden').show();
+        // $('#icon-details-up-view:visible').hide();
+        $('#trip-details-table').slideToggle( "slow");
+    });
+
+
+
+
     $('#add-to-fav-btn').click(function () {
         var tripId = {'tripId': trip_id};
 
@@ -50,12 +73,10 @@ function openCloseDetails(evt, id) {
     var myvar;
     myvar = document.getElementById(id);
     if (myvar.style.display == "block") {
-        myvar.style.display = "none";
-        document.getElementById("icon-details-down-view").style.display = "block";
+        document.getElementById("icon-details-down-view").style.display = "inline-block";
         document.getElementById("icon-details-up-view").style.display = "none";
     } else {
-        myvar.style.display = "block";
-        document.getElementById("icon-details-up-view").style.display = "block";
+        document.getElementById("icon-details-up-view").style.display = "inline-block";
         document.getElementById("icon-details-down-view").style.display = "none";
     }
     evt.currentTarget.className += " active";

@@ -2,15 +2,15 @@
 {% load i18n %}
 {% block title %}{% endblock %}
 {% block content %}
-    <div class="ml-3 mr-4">
-        <h1 class="text-center">{% trans 'My Trips' %}</h1>
+    <div>
+        <h1 class="my-3 text-center">{% trans 'My Trips' %}</h1>
         {% for trip in object_list %}
 
-            <div class="row justify-content-center align-items-center">
-                <div class="col-3 avatar-outer-div">
+            <div class="row justify-content-center align-items-center my-3">
+                <div class="col-3 d-flex jus justify-content-center align-items-center ">
                     {% if trip.main_image %}
                         <div class="d-flex justify-content-center align-items-center text-center m-2">
-                            <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
+                            <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block no-a-underline-on-hover">
                                 <img
                                         src='{{ trip.main_image.url }}'
                                         alt="Trip main photo" class="resize-img">
@@ -18,11 +18,8 @@
                         </div>
                     {% else %}
                         <div class="d-flex justify-content-center align-items-center text-center m-2">
-                            <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
-                            <img
-{#                                    src='../../../media/users_img/default-photo.jpeg'#}
-                                    src='../../../static/own/img/africa-1299545_640_white.png'
-
+                            <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block no-a-underline-on-hover">
+                                <img src='../../../static/own/img/africa-1299545_640_white.png'
                                     alt="Trip main photo" class="resize-img">
                             </a>
                         </div>
@@ -40,7 +37,7 @@
         {% endfor %}
 
         <p>
-            <a href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
+            <a class="d-inline-block mt-3 ml-3" href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
         </p>
     </div>
 {% endblock %}

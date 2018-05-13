@@ -1,5 +1,28 @@
+.container {
+    padding: 1rem;
+    min-height: 74.5vh;
+}
+
 .img-fluid {
     max-height: 250px;
+}
+
+.resize-img {
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius: 50px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 50px;
+    -moz-background-clip: padding;
+    border-radius: 50px;
+    background-clip: padding-box;
+    float: left;
+}
+
+
+#trip-avatar-text-container{
+    width: 200px;
+    height:200px;
 }
 
 
@@ -10,23 +33,36 @@
 }
 
 @media (min-width: 768px) {
-
+.resize-img {
+    width: 150px;
+    height: 150px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    float: left;
+}
 
 }
 
 
 @media (min-width: 992px) {
     .container {
-        max-width: 920px;
+        max-width: 90%;
     }
     .img-fluid {
         max-height: 500px;
 }
+    #trip-description-col{
+      min-height: 300px;
+    }
 }
 
 @media (min-width: 1280px) {
     .container {
-        max-width: 980px;
+        max-width: 80%;
+        padding-left: 5rem;
+        padding-right: 5rem;
+
     }
 }
 
@@ -38,12 +74,6 @@
     width: 100%;
     height: 100%;
 }
-
-
-/*.details-with-acc{*/
-    /*border-top: solid 1px #0091ea;*/
-    /*border-bottom: solid 1px #0091ea;*/
-/*}*/
 
 .details-with-acc{
     border-top: solid 1px #321911;
@@ -73,9 +103,6 @@
     /*margin-top: 3%;*/
 /*}*/
 
-#icon-details-down-view{
-    display: none;
-}
 
 
 #icon-up-accommodation, #icon-up-attraction, #icon-down-journey{
@@ -91,7 +118,13 @@
 
 h1 {
     color: #321911;
+    margin: 2rem
 }
+
+h2 {
+    margin: 1rem;
+}
+
 
 /*.myicon {*/
     /*color: #321911;*/
@@ -117,6 +150,7 @@ a {
     color: #0091ea;
     text-decoration: none;
     /*border-bottom: 1px solid rgba(0, 0, 0, 0.50);*/
+
 }
 
 a:hover, #change-main-image, #icon-details-down-view:hover, #icon-details-up-view:hover, .details-label:hover{
@@ -242,10 +276,7 @@ form table.table td{
     padding-bottom: 0;
 }
 
-.container {
-    padding: 1rem;
-    min-height: 74.5vh;
-}
+
 
 .scrollable-horizontally {
     overflow-x: auto
@@ -297,16 +328,8 @@ input[type=number] {
     width: 90px;
 }
 
-#trip-details {
-    /*border-top: solid 2px rgba(198, 187, 180, 0.55) !important;*/
-    /*border-bottom: solid 2px rgba(198, 187, 180, 0.55) !important;*/
-    /*background: #d2c5bc;*/
+#show-trip-details {
     cursor: pointer;
-    /*padding: 18px;*/
-    /*width: 100%;*/
-    /*text-align: left;*/
-    /*outline: none;*/
-    /*transition: 0.4s;*/
 }
 
 .accordion {
@@ -378,8 +401,8 @@ input[type=number] {
     text-decoration: underline!important;
 }
 
-.no-a-underline a:hover{
-    text-decoration: none!important;
+.no-a-underline-on-hover:hover{
+    border: none!important;
 }
 
 
@@ -432,23 +455,11 @@ input[type=number] {
     color: white;
 }
 
-.avatar-outer-div {
-    width: 200px;
-    height: 200px;
-}
+/*.avatar-outer-div {*/
+    /*width: 200px;*/
+    /*height: 200px;*/
+/*}*/
 
-
-.resize-img {
-    width: 150px;
-    height: 150px;
-    -webkit-border-radius: 100px;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 100px;
-    -moz-background-clip: padding;
-    border-radius: 100px;
-    background-clip: padding-box;
-    float: left;
-}
 
 .resize-img:hover {
     opacity: 0.5;
@@ -476,3 +487,4 @@ input[type=number] {
     right: 0;
     left: auto;
 }
+

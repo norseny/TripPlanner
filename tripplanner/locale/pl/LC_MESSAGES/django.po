@@ -379,3 +379,21 @@ msgstr "W twoich ulubionych"
 
 msgid "My favourite trips"
 msgstr "Moje ulubione wycieczki"
+
+msgid "user added to favourites"
+msgstr "użytkownik dodał do ulubionych"
+
+msgid "users added to favourites"
+msgstr "użytkownicy dodali do ulubionych"
+
+msgid "My profile"
+msgstr "Mój profil"
+
+msgid "Location"
+msgstr "Lokalizacja"
+
+msgid "About me"
+msgstr "O mnie"
+
+msgid "Edit profile info"
+msgstr "Edycja profilu"

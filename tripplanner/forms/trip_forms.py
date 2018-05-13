@@ -1,4 +1,5 @@
-from django.forms import Form, ModelForm, inlineformset_factory, Textarea, TextInput, Select, NumberInput, CheckboxInput
+from django.forms import Form, ModelForm, inlineformset_factory, Textarea, TextInput, Select, NumberInput, \
+    CheckboxInput, EmailInput
 
 from tripplanner.models import *
 from django import forms
@@ -107,3 +108,18 @@ class ImageUploadForm(ModelForm):
     class Meta:
         model = Trip
         fields = ['main_image']
+
+
+
+class ProfileForm(ModelForm, Form):
+    class Meta:
+        model = Profile
+        fields = ['email', 'location','about_me' ]
+        exclude = ()
+        widgets = {
+            'about_me': Textarea(attrs={'rows': '10', 'cols': '20', 'class': 'materialize-textarea form-control form-control-sm p-2'}),
+            # 'more_info': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
+            'location': TextInput(attrs=dict_of_textinput_attrs),
+            'email': EmailInput(attrs=dict_of_textinput_attrs)
+
+        }

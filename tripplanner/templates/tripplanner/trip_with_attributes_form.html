@@ -7,15 +7,15 @@
 {% block content %}
 
     {% if form.initial|length > 0 %}
-        <h1>{% trans "Edit Trip" %}</h1>
+        <h1 class="my-3">{% trans "Edit Trip" %}</h1>
     {% else %}
-        <h1>{% trans "New Trip" %}</h1>
+        <h1 class="my-3">{% trans "New Trip" %}</h1>
     {% endif %}
 
     <form class="" action="" method="post">{% csrf_token %}
         {% for field in form %}
             <div>
-                <span> {% trans field.label %} </span>
+                {% trans field.label %}
             </div>
 
             <div>

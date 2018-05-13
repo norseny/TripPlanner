@@ -8,6 +8,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^$', views.tripplanner, name='tripplanner'),
     url(r'^trips$', (views.TripList.as_view()), name='trip-list'),
+    url(r'^profile/(?P<pk>[0-9]+)/$', (views.ProfileDetail.as_view()), name='profile'),
+    url(r'profile/(?P<pk>[0-9]+)/edit/$', views.ProfileUpdate.as_view(), name='profile-update'),
     url(r'my-trips$', (views.MyTripList.as_view()), name='my-trip-list'),
     url(r'my-fav-trips$', (views.MyFavTripList.as_view()), name='my-fav-trip-list'),
     url(r'trip/(?P<pk>[0-9]+)/$', views.TripDetail.as_view(), name='trip-detail'),

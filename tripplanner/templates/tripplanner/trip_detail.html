@@ -20,28 +20,44 @@
         {% if next_trip_id %}
             <div class="col-1 p-0 text-right">
 
-                <a class="myicon" href="{% url 'trip-detail' next_trip_id %}"> <i
+                <a class="" href="{% url 'trip-detail' next_trip_id %}"> <i
                         class="fas fa-angle-right fa-3x"></i></a>
             </div>
-
         {% endif %}
     </div>
 
-    {% if user.is_authenticated %}
-        {% if not participant %}
-            <div class="text-right mr-5">
-                {% if trip in user.profile.favourite_trips.all %}
-                    <a href="{% url 'my-fav-trip-list' %}"><span
-                            class="font-weight-400">{% trans 'In your favourites' %} <i
-                            class="fas fa-heart"></i></span></a>
-                {% else %}
-                    <button type="button" class="btn btn-sm d-inline-block"
-                            id="add-to-fav-btn">{% trans 'Add to your favourites!' %}
-                        <i class="fas fa-heart"></i></button>
+
+    <div class="row">
+        <div class="col-6">
+            {% if user.is_authenticated %}
+                {% if not participant %}
+                    {% if trip in user.profile.favourite_trips.all %}
+                        <a href="{% url 'my-fav-trip-list' %}"><span
+                                class="font-weight-400">{% trans 'In your favourites' %} <i
+                                class="fas fa-heart"></i></span></a>
+                    {% else %}
+                        <button type="button" class="btn btn-sm d-inline-block"
+                                id="add-to-fav-btn">{% trans 'Add to your favourites!' %}
+                            <i class="fas fa-heart"></i></button>
+                    {% endif %}
+
                 {% endif %}
-            </div>
-        {% endif %}
-    {% endif %}
+            {% endif %}
+        </div>
+        <div class="col-6 text-right">
+            {% with users_liked=trip.profile_set.count %}
+                {% if users_liked > 0 %}
+                    {% if users_liked == 1 %}
+                        {{ users_liked }} {% trans 'user added to favourites' %}
+                    {% else %}
+                        {{ trip.profile_set.count }} {% trans 'users added to favourites' %}
+                    {% endif %}
+                {% endif %}
+            {% endwith %}
+
+
+        </div>
+    </div>
 
     <div class="d-md-none w-100 text-center my-3">
         {% if user.id == trip.created_by_id %}
@@ -50,7 +66,7 @@
                      alt="Trip main photo"
                      class="img-fluid d-inline-block">
             {% else %}
-                <a href="{% url 'upload-trip-img' trip.pk %}"><span class="myicon">
+                <a href="{% url 'upload-trip-img' trip.pk %}"><span class="">
                                 <div>
                                     <i class="far fa-image fa-5x d-inline-block"></i>
                                     <i class="fas fa-plus fa-2x d-inline-block mb-5"></i>
@@ -73,13 +89,14 @@
 
 
     <div class="row w-100 m-0 my-4 mb-md-5">
-        <div class="col-md-6 d-flex justify-content-center align-items-center my-md-4">
+        <div class="col-md-6 d-flex justify-content-center align-items-center my-md-4" id="trip-description-col">
             <section>
                 <div>
                     <label>{% trans 'Description' %}:</label> {{ trip.description }}
                 </div>
                 <div>
-                    <label>{% trans 'Created by' %}:</label> {{ trip.created_by }}
+                    <label>{% trans 'Created by' %}:</label> <a href="{% url 'profile' trip.created_by_id %}">
+                    {{ trip.created_by }}</a>
                 </div>
                 <div>
                     <label>{% trans 'Start time' %}:</label> {{ trip.start_time|default_if_none:"" }} </div>
@@ -87,30 +104,29 @@
                 </div>
                 <div>
                     <label>{% trans 'Total Cost (PLN)' %}:</label> {{ trip.price|default_if_none:"" }} </div>
-                <div class="row justify-content-center align-items-center text-center mt-3 mt-md-5">
-                    <div class="col-6">
-                        <a href="{% url 'trip-participants' trip.pk %}">
-                            {#                            <span class="myicon">#}
-                            <div><i class="fas fa-users fa-3x d-inline-block"></i></div>
-                            {% trans 'Trip participants' %}
-                            {#                        </span>#}
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <a href="{% url 'trip-detail-pdf' trip.pk %}">
-                            {#                            <span>#}
-                            <div><i class="far fa-file-pdf fa-3x d-inline-block"></i></div>
-                            {#                            <div>#}
-                            {% trans 'Pdf-file with details' %}
-                            {#                    </div>#}
-                            {#                        </span>#}
-                        </a>
-                    </div>
-                </div>
+                {% if user.is_authenticated %}
+                    {% if participant %}
+                        <div class="row justify-content-center align-items-center text-center mt-3 mt-md-5">
+                            <div class="col-6">
+                                <a href="{% url 'trip-participants' trip.pk %}">
+                                    <div><i class="fas fa-users fa-3x d-inline-block"></i></div>
+                                    {% trans 'Trip participants' %}
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{% url 'trip-detail-pdf' trip.pk %}">
+                                    <div><i class="far fa-file-pdf fa-3x d-inline-block"></i></div>
+                                    {% trans 'Pdf-file with details' %}
+
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
             </section>
         </div>
 
-        <div class="col-sm-6 d-none d-sm-flex justify-content-center align-items-center text-center w-100">
+        <div class="d-none d-md-flex col-sm-6 justify-content-center align-items-center text-center w-100">
             {% if user.id == trip.created_by_id %}
                 {% if trip.main_image %}
                     <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
@@ -128,7 +144,7 @@
                     </div>
                 {% else %}
                     <div class="row h-100 justify-content-center align-items-center text-center no-a-underline">
-                        <a href="{% url 'upload-trip-img' trip.pk %}"><span class="myicon">
+                        <a href="{% url 'upload-trip-img' trip.pk %}"><span class="">
                                 <div>
                                     <i class="far fa-image fa-5x d-inline-block"></i>
                                     <i class="fas fa-plus fa-2x d-inline-block mb-5"></i>
@@ -158,98 +174,182 @@
     </div>
 
     <div class="details-with-acc">
-        <div class="accordion d-flex justify-content-center text-center align-items-center my-4" id="trip-details"
-             onclick="openCloseDetails(event, 'trip-details-table')"
-        >
+        <div class="d-flex justify-content-center text-center align-items-center my-4">
+            <span id="show-trip-details" onclick="openCloseDetails(event, 'trip-details-table')">
             <h2 class="d-inline-block details-label h2-responsive pr-2">{% trans "Trip's Details" %}</h2>
-            <i class="fas fa-angle-down fa-3x" id="icon-details-down-view"></i>
+            <i class="fas fa-angle-down fa-3x" id="icon-details-down-view" style="display: none"></i>
             <i class="fas fa-angle-up fa-3x" id="icon-details-up-view"></i>
+            </span>
         </div>
-        <div class="scrollable-horizontally" id="trip-details-table" style="display: block">
-            {% if trip.journey_set.all %}
-                <div><i class="brown-font fas fa-rocket"></i></div>
-                {% for el in trip.journey_set.all %}
-                    <div class="row align-items-center">
-                        <div class="col-1 py-1">{{ el.means_of_transport|default_if_none:"" }}</div>
-                        <div class="col-4 pt-1">
-                            {% if el.start_point %}
-                                <span class="text-nowrap">{% trans 'from:' %} {{ el.start_point }}</span>
-                            {% endif %}
-                            {% if el.end_point %}
-                                <span class="text-nowrap">{% trans 'to' %}: {{ el.end_point }}</span>
-                            {% endif %}
-                        </div>
-                        <div class="col-5 text-center py-1">
-                            {% if el.start_time %}
-                                <span class="text-nowrap">{% trans 'from' %}: {{ el.start_time|date:"d/m/y (H:i)" }}</span>
-                            {% endif %}
-                            {% if el.end_time %}
-                                <span class="text-nowrap">{% trans 'to' %}: {{ el.end_time|date:"d/m/y (H:i)" }}</span>
-                            {% endif %}
-                        </div>
-                        <div class=" col-2 text-right py-1">{{ el.price|default_if_none:"" }}</div>
-                    </div>
-                    {% if el.more_info %}
+        <div class="scrollable-horizontally pt-0 mr-lg-5 ml-lg-5 " id="trip-details-table" style="display: block">
 
-                        {% if el.more_info|length < 50 %}
-                            <div class="my-2 grey-border-bottom font-small">{{ el.more_info }}</div>
-                        {% else %}
-                            <div class="my-2 grey-border-bottom  font-small d-flex">
-                                {{ el.more_info|truncatewords:"5"|slice:"-3" }}
-                                <div class="d-inline-block pb-1 pl-1">
+            {% if trip.journey_set.all %}
+                <i class="brown-font fas fa-rocket"></i>
+                {% for el in trip.journey_set.all %}
+
+                    <div class="d-md-none">
+                        <ul class="p-1 m-0">
+                            <li>{{ el.means_of_transport|default_if_none:"" }}</li>
+                            <li>
+                                {% if el.start_point %}
+                                    <span class="text-nowrap">{% trans 'from:' %} {{ el.start_point }}</span>
+                                {% endif %}
+                                {% if el.end_point %}
+                                    <span class="text-nowrap">{% trans 'to' %}: {{ el.end_point }}</span>
+                                {% endif %}
+                            </li>
+                            <li>
+                                {% if el.start_time %}
+                                    <span class="text-nowrap">{% trans 'from' %}: {{ el.start_time|date:"d/m/y (H:i)" }}</span>
+                                {% endif %}
+                                {% if el.end_time %}
+                                    <span class="text-nowrap">{% trans 'to' %}: {{ el.end_time|date:"d/m/y (H:i)" }}</span>
+                                {% endif %}
+                            </li>
+                            <li>{{ el.price|default_if_none:"" }}</li>
+                            <div class="font-small grey-border-bottom">
+                                {% if el.more_info|length < 50 %}
+                                    {{ el.more_info|default_if_none:"" }}
+                                {% else %}
+                                    <div class="truncated-info">
+                                        {{ el.more_info|truncatewords:"3"|slice:"-3" }}
+                                        <span class="icon-show-more position-absolute p-1 h5">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </span>
+                                    </div>
+                                    <div class="more-info-to-show"
+                                         style="display: none">{{ el.more_info }}
+                                        <span class="icon-show-less position-absolute pl-1 h4">
+                                                <i class="fas fa-caret-left"></i>
+                                            </span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="d-none d-md-block">
+                        <div class="row align-items-center">
+                            <div class="col-2 py-1">{{ el.means_of_transport|default_if_none:"" }}</div>
+                            <div class="col-3 col-lg-4 pt-1">
+                                {% if el.start_point %}
+                                    <span class="text-nowrap">{% trans 'from:' %} {{ el.start_point }}</span>
+                                {% endif %}
+                                {% if el.end_point %}
+                                    <span class="text-nowrap">{% trans 'to' %}: {{ el.end_point }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="col-5 text-center py-1">
+                                {% if el.start_time %}
+                                    <span class="text-nowrap">{% trans 'from' %}: {{ el.start_time|date:"d/m/y (H:i)" }}</span>
+                                {% endif %}
+                                {% if el.end_time %}
+                                    <span class="text-nowrap">{% trans 'to' %}: {{ el.end_time|date:"d/m/y (H:i)" }}</span>
+                                {% endif %}
+                            </div>
+                            <div class=" col-2 col-lg-1 text-right py-1">{{ el.price|default_if_none:"" }}</div>
+                        </div>
+                        {% if el.more_info %}
+
+                            {% if el.more_info|length < 50 %}
+                                <div class="my-2 grey-border-bottom font-small">{{ el.more_info }}</div>
+                            {% else %}
+                                <div class="my-2 grey-border-bottom font-small truncated-info d-flex">
+                                    {{ el.more_info|truncatewords:"5"|slice:"-3" }}
+                                    <div class="d-inline-block pb-1 pl-1">
                                 <span class="icon-show-more position-absolute h5">
                                     <i class="fas fa-ellipsis-h"></i>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="my-2 grey-border-bottom more-info-to-show font-small"
-                                 style="display: none">{{ el.more_info }}
-                                <span class="icon-show-less h5"><i class="fas fa-caret-left"></i></span>
-                            </div>
+                                <div class="my-2 grey-border-bottom more-info-to-show font-small"
+                                     style="display: none">{{ el.more_info }}
+                                    <span class="icon-show-less h5"><i class="fas fa-caret-left"></i></span>
+                                </div>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
+                    </div>
+
                 {% endfor %}
                 {% if total_cost_journeys %}
-                    <div class="text-right font-weight-400">{% trans 'Total' %} PLN: {{ total_cost_journeys }}</div>
+                    <div class="text-right font-weight-400 ">{% trans 'Total' %}{{ total_cost_journeys }}</div>
                 {% endif %}
             {% endif %}
 
 
             {% if trip.accommodation_set.all %}
-                <div class="pt-3"><i class="brown-font fas fa-bed"></i></div>
+                <i class="brown-font fas fa-bed"></i>
                 {% for el in trip.accommodation_set.all %}
-                    <div class="row">
-                        <div class="col-2 py-1">{{ el.name|default_if_none:"" }}</div>
-                        <div class="col-3 py-1">{{ el.address|default_if_none:"" }}</div>
-                        <div class="col-5 text-center py-1">
-                            {% if el.start_time %}
-                                <span class="text-nowrap">{% trans 'from' %}: {{ el.start_time|date:"d/m/y (H:i)" }}</span>
-                            {% endif %}
-                            {% if el.end_time %}
-                                <span class="text-nowrap">{% trans 'to' %}: {{ el.end_time|date:"d/m/y (H:i)" }}</span>
-                            {% endif %}
-                        </div>
-                        <div class=" col-2 text-right py-1">{{ el.price|default_if_none:"" }}</div>
-                    </div>
-                    {% if el.more_info %}
 
-                        {% if el.more_info|length < 50 %}
-                            <div class="my-2 grey-border-bottom  font-small">{{ el.more_info }}</div>
-                        {% else %}
-                            <div class="my-2 grey-border-bottom  font-small d-flex">
-                                {{ el.more_info|truncatewords:"5"|slice:"-3" }}
-                                <div class="d-inline-block pb-1 pl-1">
+                    <div class="d-md-none">
+                        <ul class="p-1 m-0">
+                            <li>{{ el.name|default_if_none:"" }}</li>
+                            <li>{{ el.address|default_if_none:"" }}</li>
+                            <li>
+                                {% if el.start_time %}
+                                    <span class="text-nowrap">{% trans 'from' %}: {{ el.start_time|date:"d/m/y (H:i)" }}</span>
+                                {% endif %}
+                                {% if el.end_time %}
+                                    <span class="text-nowrap">{% trans 'to' %}: {{ el.end_time|date:"d/m/y (H:i)" }}</span>
+                                {% endif %}
+                            </li>
+                            <li>{{ el.price|default_if_none:"" }}</li>
+                            <div class="font-small grey-border-bottom">
+                                {% if el.more_info|length < 50 %}
+                                    {{ el.more_info|default_if_none:"" }}
+                                {% else %}
+                                    <div class="truncated-info">
+                                        {{ el.more_info|truncatewords:"3"|slice:"-3" }}
+                                        <span class="icon-show-more position-absolute p-1 h5">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </span>
+                                    </div>
+                                    <div class="more-info-to-show"
+                                         style="display: none">{{ el.more_info }}
+                                        <span class="icon-show-less position-absolute pl-1 h4">
+                                                <i class="fas fa-caret-left"></i>
+                                            </span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </ul>
+                    </div>
+
+
+                    <div class="d-none d-md-block">
+                        <div class="row">
+                            <div class="col-2 py-1">{{ el.name|default_if_none:"" }}</div>
+                            <div class="col-3 col-lg-4 py-1">{{ el.address|default_if_none:"" }}</div>
+                            <div class="col-5 text-center py-1">
+                                {% if el.start_time %}
+                                    <span class="text-nowrap">{% trans 'from' %}: {{ el.start_time|date:"d/m/y (H:i)" }}</span>
+                                {% endif %}
+                                {% if el.end_time %}
+                                    <span class="text-nowrap">{% trans 'to' %}: {{ el.end_time|date:"d/m/y (H:i)" }}</span>
+                                {% endif %}
+                            </div>
+                            <div class=" col-2 col-lg-1 text-right py-1">{{ el.price|default_if_none:"" }}</div>
+                        </div>
+                        {% if el.more_info %}
+                            {% if el.more_info|length < 50 %}
+                                <div class="my-2 grey-border-bottom  font-small">{{ el.more_info }}</div>
+                            {% else %}
+                                <div class="my-2 grey-border-bottom  font-small truncated-info d-flex">
+                                    {{ el.more_info|truncatewords:"5"|slice:"-3" }}
+                                    <div class="d-inline-block pb-1 pl-1">
                                 <span class="icon-show-more position-absolute h5">
-                                    <i class="fas fa-ellipsis-h myicon"></i>
+                                    <i class="fas fa-ellipsis-h "></i>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="my-2 grey-border-bottom more-info-to-show font-small"
-                                 style="display: none">{{ el.more_info }}
-                                <span class="icon-show-less myicon h5"><i class="fas fa-caret-left"></i></span>
-                            </div>
+                                <div class="my-2 grey-border-bottom more-info-to-show font-small"
+                                     style="display: none">{{ el.more_info }}
+                                    <span class="icon-show-less myicon h5"><i class="fas fa-caret-left"></i></span>
+                                </div>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
+                    </div>
+
                 {% endfor %}
                 {% if total_cost_accommodations %}
                     <div class="text-right font-weight-400">{% trans 'Total' %}
@@ -261,31 +361,61 @@
             {% if trip.attraction_set.all %}
                 <div class="pt-3"><i class="brown-font fas fa-camera"></i></div>
                 {% for el in trip.attraction_set.all %}
-                    <div class="row">
-                        <div class="col-2 py-1">{{ el.name|default_if_none:"" }}</div>
-                        <div class="col-4 py-1">{{ el.address|default_if_none:"" }}</div>
-                        <div class="col-4 text-center py-1">
-                            {{ el.start_time|date:"d.m.y (H:i)"|default_if_none:"" }}</div>
-                        <div class=" col-2 text-right py-1">{{ el.price|default_if_none:"" }}</div>
+                    <div class="d-md-none">
+                        <ul class="p-1 m-0">
+                            <li>{{ el.name|default_if_none:"" }}</li>
+                            <li>{{ el.address|default_if_none:"" }}</li>
+                            <li>{{ el.start_time|date:"d.m.y (H:i)"|default_if_none:"" }}</li>
+                            <li>{{ el.price|default_if_none:"" }}</li>
+                            <div class="font-small grey-border-bottom">
+                                {% if el.more_info|length < 50 %}
+                                    {{ el.more_info|default_if_none:"" }}
+                                {% else %}
+                                    <div class="truncated-info">
+                                        {{ el.more_info|truncatewords:"3"|slice:"-3" }}
+                                        <span class="icon-show-more p-1 h5">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </span>
+                                    </div>
+                                    <div class="more-info-to-show"
+                                         style="display: none">{{ el.more_info }}
+                                        <span class="icon-show-less position-absolute pl-1 h4"><i
+                                                class="fas fa-caret-left"></i></span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </ul>
                     </div>
-                    {% if el.more_info %}
-                        {% if el.more_info|length < 50 %}
-                            <div class="my-2 grey-border-bottom  font-small">{{ el.more_info }}</div>
-                        {% else %}
-                            <div class="my-2 grey-border-bottom  font-small d-flex">
-                                {{ el.more_info|truncatewords:"5"|slice:"-3" }}
-                                <div class="d-inline-block pb-1 pl-1">
+
+
+                    <div class="d-none d-md-block">
+                        <div class="row">
+                            <div class="col-2 py-1">{{ el.name|default_if_none:"" }}</div>
+                            <div class="col-4 py-1">{{ el.address|default_if_none:"" }}</div>
+                            <div class="col-4 text-center py-1">
+                                {{ el.start_time|date:"d.m.y (H:i)"|default_if_none:"" }}</div>
+                            <div class=" col-2 text-right py-1">{{ el.price|default_if_none:"" }}</div>
+                        </div>
+                        {% if el.more_info %}
+                            {% if el.more_info|length < 50 %}
+                                <div class="my-2 grey-border-bottom  font-small">{{ el.more_info }}</div>
+                            {% else %}
+                                <div class="my-2 grey-border-bottom font-small truncated-info d-flex">
+                                    {{ el.more_info|truncatewords:"5"|slice:"-3" }}
+                                    <div class="d-inline-block pb-1 pl-1">
                                     <span class="icon-show-more position-absolute h5">
-                                        <i class="fas fa-ellipsis-h myicon"></i>
+                                        <i class="fas fa-ellipsis-h "></i>
                                     </span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="my-2 grey-border-bottom more-info-to-show font-small"
-                                 style="display: none">{{ el.more_info }}
-                                <span class="icon-show-less myicon h5"><i class="fas fa-caret-left"></i></span>
-                            </div>
+                                <div class="my-2 grey-border-bottom more-info-to-show font-small"
+                                     style="display: none">{{ el.more_info }}
+                                    <span class="icon-show-less  h5"><i class="fas fa-caret-left"></i></span>
+                                </div>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
+                    </div>
+
                 {% endfor %}
                 {% if total_cost_attractions %}
                     <div class="text-right font-weight-400">{% trans 'Total' %} PLN: {{ total_cost_attractions }}</div>
@@ -316,11 +446,12 @@
                 {% endif %}
             </div>
         {% else %}
-            <div class="text-center">
-                <a id="inspired" class=" d-inline-block w-50" href=#>
-                    <div class="py-3"><i class="far fa-smile fa-5x"></i><i
-                            class="far fa-lightbulb fa-2x d-inline-block mb-5"></i></div>
-                {% trans 'Inspired? Plan a similar trip!' %}
+            <div class="row w-100 m-0 justify-content-center text-center">
+                <a id="inspired" class=" d-inline-block" href=#>
+                    <div class="col-12 py-3"><i class="far fa-smile fa-5x"></i><i
+                            class="far fa-lightbulb fa-2x d-inline-block mb-5"></i>
+                    </div>
+                    {% trans 'Inspired? Plan a similar trip!' %}
                 </a>
             </div>
         {% endif %}
@@ -333,6 +464,6 @@
 
     <script>const trip_id = '{{ trip.id }}'</script>
     <script src="{% static 'own/js/detail-view.js' %}"></script>
-{#    <script src="{% static 'own/js/smooth-scroll.js' %}"></script>#}
+    {#    <script src="{% static 'own/js/smooth-scroll.js' %}"></script>#}
 
 {% endblock %}

@@ -2,8 +2,8 @@
 {% load i18n %}
 {% block title %}{% endblock %}
 {% block content %}
-    <div class="ml-3 mr-4">
-        <h1 class="text-center">
+    <div class="h-100">
+        <h1 class="my-3 mb-4 text-center">
             {% if user.is_anonymous %}
                 {% trans 'All Trips List' %}
             {% else %}
@@ -14,71 +14,50 @@
                 {% endif %}
             {% endif %}
         </h1>
-    <div class="ml-lg-5">
-        {% for trip in object_list %}
-
-{#            <div class="row justify-content-center align-items-center">#}
-{#                <div class="col-3 avatar-outer-div">#}
-{#                    {% if trip.main_image %}#}
-{#                        <div class="d-flex justify-content-end align-items-center text-center m-2">#}
-{#                            <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">#}
-{#                                <img#}
-{#                                        src='{{ trip.main_image.url }}'#}
-{#                                        alt="Trip main photo" class="resize-img">#}
-{#                            </a>#}
-{#                        </div>#}
-{#                    {% else %}#}
-{#                        <div class="d-flex justify-content-end align-items-center text-center m-2">#}
-{#                            <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">#}
-{#                                <img#}
-{#                                        src='../../../media/users_img/default-photo.jpeg'#}
-{#                                        alt="Trip main photo" class="resize-img">#}
-{#                            </a>#}
-{#                        </div>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#                <div class="col-9"><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">#}
-{#                    {{ trip.name }}</a></div>#}
-{#            </div>#}
-
-            <div class="d-inline-block one-trip-in-list pr-3 pl-3">
-            <div class="d-inline-block align-items-center w-100">
-                <div class="avatar-outer-div w-100 d-flex justify-content-center align-items-center">
-                    {% if trip.main_image %}
-                        <div class="d-flex justify-content-center align-items-center text-center p-2">
-                            <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
-                                <img
-                                        src='{{ trip.main_image.url }}'
-                                        alt="Trip main photo" class="resize-img">
-                            </a>
+        <div class="my-lg-3 d-flex flex-wrap justify-content-center  alignalign-items-center">
+            {% for trip in object_list %}
+                <div class="d-inline-block m-md-3 my-md-4" id="trip-avatar-text-container">
+                        <div class="d-flex justify-content-center align-items-center">
+                            {% if trip.main_image %}
+                                <div class="d-flex justify-content-center align-items-center text-center p-2">
+                                    <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block no-a-underline-on-hover">
+                                        <img
+                                                src='{{ trip.main_image.url }}'
+                                                alt="Trip main photo" class="resize-img">
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="d-flex justify-content-center align-items-center text-center p-2">
+                                    <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block no-a-underline-on-hover">
+                                        <img
+                                                src='../../../static/own/img/africa-1299545_640.png'
+                                                alt="Trip main photo" class="resize-img">
+                                    </a>
+                                </div>
+                            {% endif %}
                         </div>
-                    {% else %}
-                        <div class="d-flex justify-content-center align-items-center text-center p-2">
-                            <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
-                                <img
-{#                                        src='../../../media/users_img/default-photo.jpeg'#}
-                                                                        src='../../../static/own/img/africa-1299545_640.png'
-
-                                        alt="Trip main photo" class="resize-img">
-                            </a>
+                        <div class="row text-center align-items-center">
+                            <div class="col-md-10 col-9 d-inline">
+                                <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">
+                                {{ trip.name }}
+                                </a>
+                            </div>
+                            {% if trip.profile_set.count > 0 %}
+                                <div class="col-md-2 col-3">
+    {#                                <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">#}
+                                    {{ trip.profile_set.count }} <i class="fas fa-heart d-inline"></i>
+    {#                                </a>#}
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
                 </div>
-            <div class="row text-center align-items-center">
-                <div class="col-10 d-inline "><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">
-                    {{ trip.name }}</a></div>
-                <div class="col-2"><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">
-                    {{ trip.id }} <i class="fas fa-heart d-inline"></i></a></div>
-            </div>
-            </div>
-            </div>
-        {% empty %}
-            <p>{% trans 'No trip yet.' %}</p>
-        {% endfor %}
-    </div>
+            {% empty %}
+                <p>{% trans 'No trip yet.' %}</p>
+            {% endfor %}
+        </div>
 
         <p>
-            <a href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
+            <a class="d-inline-block mt-3 ml-3" href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
         </p>
     </div>
 {% endblock %}

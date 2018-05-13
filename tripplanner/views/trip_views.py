@@ -72,7 +72,6 @@ class TripDetail(DetailView):
         data['total_cost_accommodations'] = Accommodation.objects.filter(trip_id=trip.id).aggregate(Sum('price'))['price__sum']
         data['total_cost_attractions'] = Attraction.objects.filter(trip_id=trip.id).aggregate(Sum('price'))['price__sum']
 
-
         # arrows implementation
         trip_list = []
         try:
@@ -385,3 +384,17 @@ def find_in_city_json(key, jlist):
             break
 
     return results
+
+
+@method_decorator(login_required, name='dispatch')
+class ProfileDetail(DetailView):
+    model = Profile
+
+    def get_context_data(self, **kwargs):
+        data = super(ProfileDetail, self).get_context_data(**kwargs)
+        data['created_trips'] = Trip.objects.filter(created_by_id=self.kwargs['pk']).exclude(private_trip=True).order_by('pk')
+        return data
+
+class ProfileUpdate(UpdateView):
+    model = Profile
+    form_class = ProfileForm
