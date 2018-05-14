@@ -21,7 +21,7 @@
 
             <div>
                 {{ field }}
-                {{ field.errors }} {# todo: more_info at the bottom #}
+                {{ field.errors }}
             </div>
         {% endfor %}
 
@@ -32,7 +32,7 @@
                       data-target="#journeys"
                       aria-controls="journeys" id="journey-acc">
                     <i class="fas fa-rocket"></i>
-                <h2 class="mb-0 details-label d-inline">{% trans 'Journeys' %}</h2>
+                <h2 class="mb-0 details-label d-inline h2-responsive">{% trans 'Journeys' %}</h2>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form" id="icon-down-journey"></i>
                 <i class="fas fa-angle-up fa-3x icon-details-up-form" id="icon-up-journey"></i></span>
             </div>
@@ -73,7 +73,7 @@
                 <span class="d-inline-block span-toggle my-1" data-toggle="collapse"
                       data-target="#accommodations" aria-controls="accommodations" id="accommodation-acc">
                 <i class="fas fa-bed"></i>
-                <h2 class="details-label mb-0 d-inline">{% trans 'Accommodations' %}</h2>
+                <h2 class="details-label mb-0 d-inline h2-responsive">{% trans 'Accommodations' %}</h2>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-accommodation"></i>
                 <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-accommodation"></i>
                     </span>
@@ -114,7 +114,7 @@
                 <span class="d-inline-block span-toggle my-1" data-toggle="collapse"
                  data-target="#attractions" aria-controls="attractions" id="attraction-acc">
                 <i class="fas fa-camera"></i>
-                <h2 class="details-label d-inline">{% trans 'Attractions' %}</h2>
+                <h2 class="details-label d-inline h2-responsive">{% trans 'Attractions' %}</h2>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-attraction"></i>
                 <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-attraction"></i>
                     </span>
