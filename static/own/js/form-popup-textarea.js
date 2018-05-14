@@ -1,59 +1,24 @@
 $(document).ready(function () {
 
-
-    //title = $(event.target).closest('.field').find('textarea.more-info');
-
-    var moreInfoTextarea = $("textarea.more-info");
-    moreInfoTextarea.hide();
-    moreInfoTextarea.closest(".field").append( "" +
-        // moreInfoTextarea.closest(".field").replace( "" +
-
-        // "<span class='d-block text-center add-more-info-button-icon'><i class=\"fas fa-plus-circle fa-2x\"></i></span>" +
-        "<form class=\"textarea-form\"method=\"post\" action=\"/#\">\n" +
-        "<input type=\"hidden\" name=\"html\" value=\"&lt;p&gt;Your data has been deleted&lt/p&gt;\" />\n" +
-        "<button type=\"submit\" class='button-more-info w-100'>\n" +
-        "<span class=\"d-block text-center add-more-info-button-icon\">" +
-        "<i class=\"fas fa-plus-circle fa-2x\">" +
-        "</i></span>\n" +
-        "   </button>\n" +
-        "</form>");
-
+    moreInfoButtonVisibility();
 
     $('.button-more-info').click(function () {
         $('#overlay-whole-page').show();
-
         var divContainer = $(this).closest("div.field");
         var moreInfoTextareaFound = divContainer.children(":first");
         var textAreaInputText = moreInfoTextareaFound.val();
-
-        // var moreInfoTextareaFound = divContainer.next(".textarea.more-info")
-        // var moreInfoTextareaFound = divContainer.firstChild;
-        // var moreInfoTextareaFound = divContainer.find(".textarea.more-info");
-
-        // alert(moreInfoTextareaFound.attr('id'));
-        // alert(moreInfoTextareaFound.val());
-        // alert(textAreaInputText);
-
-        // var divo = $('#' + moreInfoTextareaFound.attr('id')).closest("div.field");
-
-        // divo.addClass('current-div');
-
-
-        // var parentEls = $('#' + moreInfoTextareaFound.attr('id')).parents('div.field')
-
         var timestamp = new Date().getUTCMilliseconds();
-
         divContainer.append("<div class=\"confirmBox\" style=\"display: none\">\n" +
-        "    <textarea id=\"" + timestamp + "\"class=\"materialize-textarea form-control form-control-sm more-info\" rows=\"10\" cols=\"65\"></textarea>\n" +
-        "    <div class=\"message\"></div>\n" +
-        "    <span class=\"yes btn btn-sm\">Proceed</span>\n" +
-        "    <span class=\"no btn btn-sm\">Cancel</span>\n" +
-        "</div>"
+            "    <textarea id=\"" + timestamp + "\"class=\"materialize-textarea form-control form-control-sm more-info\" rows=\"10\" cols=\"65\"></textarea>\n" +
+            "    <div class=\"message\"></div>\n" +
+            "    <span class=\"yes btn btn-sm\">Proceed</span>\n" +
+            "    <span class=\"no btn btn-sm\">Cancel</span>\n" +
+            "</div>"
         );
-
-        $('#'+ timestamp).val(textAreaInputText);
+        $('#' + timestamp).val(textAreaInputText);
 
     });
+
 
 });
 
@@ -76,10 +41,7 @@ $(function () {
             //form.submit();
             var confirmBox = $(".confirmBox");
             var moreInfoNewTextareaFound = confirmBox.children(":first");
-
             var textAreaNewInputText = moreInfoNewTextareaFound.val();
-
-
             var divContainer = $(this).closest("div.field");
             var moreInfoTextareaFound = divContainer.children(":first");
             moreInfoTextareaFound.val(textAreaNewInputText);
@@ -92,3 +54,18 @@ $(function () {
         });
     });
 });
+
+function moreInfoButtonVisibility() {
+
+    var moreInfoTextarea = $("textarea.more-info");
+    moreInfoTextarea.hide();
+    moreInfoTextarea.closest(".field").append("" +
+        "<form class=\"textarea-form\"method=\"post\" action=\"/#\">\n" +
+        "<input type=\"hidden\" name=\"html\" value=\"&lt;p&gt;Your data has been deleted&lt/p&gt;\" />\n" +
+        "<button type=\"submit\" class='button-more-info w-100'>\n" +
+        "<span class=\"d-block text-center add-more-info-button-icon\">" +
+        "<i class=\"fas fa-plus-circle fa-2x\">" +
+        "</i></span>\n" +
+        "   </button>\n" +
+        "</form>");
+}

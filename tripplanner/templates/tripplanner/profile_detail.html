@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load custom_template_filters %}
+{% block title %}{% endblock %}
+{% block content %}
+    <article class="my-3">
+        <h1 class="text-center my-3">{{ profile.user.username }}</h1>
+        <section>
+        <p>
+{#            <div><label>{% trans 'Last login:' %}</label> {{ profile.user.last_login|date:"d.m.y (H:i)" }}</div>#}
+            <div><label>{% trans 'Admin:' %}</label> {{ profile.user.is_superuser }}</div>
+{#            <div><label>{% trans 'Date joined:' %}</label> {{ profile.user.date_joined|date:"d.m.y (H:i)" }}</div>#}
+        </p>
+        <p>
+{#            <div><label>{% trans 'First name:' %}</label> {{ profile.user.first_name }}</div>#}
+{#            <div><label>{% trans 'Last name:' %}</label> {{ profile.user.last_name }}</div>#}
+            <div><label>{% trans 'Email:' %}</label> {{ profile.user.email }}</div>
+            <div><label>{% trans 'About me:' %}</label> {{ profile.about_me }}</div>
+            <div><label>{% trans 'Location:' %}</label> {{ profile.location }}</div>
+        </p>
+        {% if user.id == profile.user.id %}
+                    <a href="{% url 'profile-update' user.pk %}">
+                        <i class="far fa-edit fa-2x"></i>
+                        {% trans 'Edit' %}
+                    </a>
+        {% endif %}
+        <p>
+            <div><label>{% trans 'Trips created by user' %}:</label> ({{ created_trips.count }})</div>
+        <ul>
+            {% for trip in created_trips %}
+                 <li><a href="{% url 'trip-detail' trip.id %}">{{ trip.name }}</a></li>
+            {% endfor %}
+        </ul>
+        </p>
+        <p>
+            <div><label>{% trans 'Favourite trips' %}:</label></div>
+        <ul>
+            {% for trip in profile.favourite_trips.all %}
+                 <li><a href="{% url 'trip-detail' trip.id %}">{{ trip.name }}</a></li>
+            {% endfor %}
+        </ul>
+        </p>
+        </section>
+    </article>
+
+
+
+{% endblock %}

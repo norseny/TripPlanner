@@ -86,7 +86,7 @@ class AttractionForm(ModelForm):
             'address': TextInput(attrs=dict_of_textinput_attrs),
             'price': NumberInput(attrs=dict_of_textinput_attrs),
             'more_info': Textarea(
-                attrs={'rows': 2, 'cols': '65', 'class': 'materialize-textarea form-control form-control-sm'}),
+                attrs={'rows': 2, 'cols': '65', 'class': 'materialize-textarea form-control form-control-sm more-info'}),
 
         }
         exclude = ()
