@@ -45,8 +45,8 @@
 {#</div>#}
 
 <div id="home-first-bg">
-    <div class="h-100 w-100 d-flex text-right align-items-end justify-content-end align-items-xl-center flex-column">
-        <div id="home-1-text-container" class="h2-responsive">
+    <div class="h-100 w-100 d-flex align-items-end justify-content-end align-items-xl-center flex-column">
+        <div id="home-1-text-container" class="text-center p-2">
             <h1 id="home-first-h1-main-text">Planujesz wycieczkę?
                 <span class="d-block">
                     Użyj
@@ -55,17 +55,15 @@
                         </span>
                     </span>
             </h1>
-            <div class="row align-items-center mt-4" id="home-first-h1-links-div">
+            <div class="row align-items-center mt-4 p-3" id="home-first-h1-links-div">
                 <div class="col-6"><a href="#home-trip-attributes" class="a-on-dark">Dowiedz się więcej</a>
                 </div>
                 <div class="col-6">
                     {% if user.is_anonymous %}
-                        <span class="d-block"><a href="{% url 'login' %}" class="a-on-dark">Zaloguj się</a></span>
-
-                        <span class="d-block mt-4"><a href="{% url 'signup' %}"
-                                                      class="a-on-dark">Zarejestruj się</a></span>
+                        <span class="d-block"><a href="{% url 'login' %}">Zaloguj się</a></span>
+                        <span class="d-block mt-4"><a href="{% url 'signup' %}">Zarejestruj się</a></span>
                     {% else %}
-                        <span class="d-block text-center"><a href="{% url 'my-trip-list' %}" class="a-on-dark">Przejdź do swoich wycieczek</a></span>
+                        <span class="d-block"><a href="{% url 'my-trip-list' %}">Przejdź do swoich wycieczek</a></span>
                     {% endif %}
                 </div>
             </div>

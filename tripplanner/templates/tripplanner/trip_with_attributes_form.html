@@ -5,6 +5,7 @@
 {% block title %}{% endblock %}
 
 {% block content %}
+    <div id="overlay-whole-page"></div>
 
     {% if form.initial|length > 0 %}
         <h1 class="my-3">{% trans "Edit Trip" %}</h1>
@@ -25,14 +26,15 @@
         {% endfor %}
 
         <div class="form-with-acc">
-            <div class="accordion d-flex justify-content-center align-items-center text-center"
-                 data-toggle="collapse"
-                 data-target="#journeys"
-                 aria-controls="journeys" id="journey-acc">
-                <i class="brown-font fas fa-rocket"></i>
-                <h2 class="mb-0 details-label">{% trans 'Journeys' %}</h2>
-                <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-journey"></i>
-                <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-journey"></i>
+            <div class="d-flex justify-content-center align-items-center text-center">
+                <span class="d-inline-block span-toggle my-1"
+                      data-toggle="collapse"
+                      data-target="#journeys"
+                      aria-controls="journeys" id="journey-acc">
+                    <i class="fas fa-rocket"></i>
+                <h2 class="mb-0 details-label d-inline">{% trans 'Journeys' %}</h2>
+                <i class="fas fa-angle-down fa-3x icon-details-down-form" id="icon-down-journey"></i>
+                <i class="fas fa-angle-up fa-3x icon-details-up-form" id="icon-up-journey"></i></span>
             </div>
             <div class="collapse show scrollable-horizontally" id="journeys">
                 <table class="table">
@@ -67,12 +69,14 @@
         </div>
 
         <div class="form-with-acc">
-            <div class="accordion d-flex justify-content-center align-items-center" data-toggle="collapse"
-                 data-target="#accommodations" aria-controls="accommodations" id="accommodation-acc">
-                <i class="brown-font fas fa-bed"></i>
-                <h2 class="details-label mb-0 ">{% trans 'Accommodations' %}</h2>
+            <div class="d-flex justify-content-center align-items-center">
+                <span class="d-inline-block span-toggle my-1" data-toggle="collapse"
+                      data-target="#accommodations" aria-controls="accommodations" id="accommodation-acc">
+                <i class="fas fa-bed"></i>
+                <h2 class="details-label mb-0 d-inline">{% trans 'Accommodations' %}</h2>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-accommodation"></i>
                 <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-accommodation"></i>
+                    </span>
             </div>
             <div class="collapse scrollable-horizontally" id="accommodations">
                 <table class="table">
@@ -105,18 +109,15 @@
             </div>
         </div>
 
-        {#        <button type="button" class="accordion" data-toggle="collapse"#}
-        {#                data-target="#attractions">{% trans 'Attractions' %} +#}
-        {#        </button>#}
-        {#        <div>#}
         <div class="form-with-acc">
-            <div class="accordion d-flex justify-content-center align-items-center" data-toggle="collapse"
-                 data-target="#attractions" aria-controls="attractions" id="attraction-acc"
-            >
-                <i class="brown-font fas fa-camera"></i>
-                <h2 class="mb-0 details-label">{% trans 'Attractions' %}</h2>
+            <div class="d-flex justify-content-center align-items-center">
+                <span class="d-inline-block span-toggle my-1" data-toggle="collapse"
+                 data-target="#attractions" aria-controls="attractions" id="attraction-acc">
+                <i class="fas fa-camera"></i>
+                <h2 class="details-label d-inline">{% trans 'Attractions' %}</h2>
                 <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-attraction"></i>
                 <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-attraction"></i>
+                    </span>
             </div>
             <div class="collapse scrollable-horizontally" id="attractions">
                 <table class="table">
@@ -153,13 +154,12 @@
         <div><input class="btn btn-primary" type="submit" value="{% trans 'Save' %}"/></div>
         {% if form.initial|length > 0 %}
             {% if user == trip.created_by %}
-                <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip'%}</a></div>
+                <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip' %}</a></div>
             {% endif %}
             <div><a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details' %}</a></div>
         {% endif %}
         <div><a href="{% url 'my-trip-list' %}">{% trans 'Back to the List of My Trips' %}</a></div>
 
-        {# todo: flatpicker kasuje godzinę przy update#}
         {#    todo: implementacja - gdy bład, to pokaż wszystkie tabby rozsuniete#}
         {#        </div>#}
 
@@ -175,6 +175,7 @@
     <script src="{% static 'own/js/add_trip_attribute.js' %}"></script>
     <script src="{% static 'own/js/form-accordion.js' %}"></script>
     <script src="{% static 'own/js/form-autocomplete.js' %}"></script>
+    <script src="{% static 'own/js/form-popup-textarea.js' %}"></script>
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
@@ -187,21 +188,5 @@
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/pl.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            //title = $(event.target).closest('.field').find('textarea.more-info');
-
-            $( "textarea.more-info")
-                .closest( ".field" )
-                .show();
-
-{#            alert($(".ii").find("textarea[style='display:block;']").attr('id'));#}
-{#            alert($(".materialize-textarea:hidden").attr('id'));#}
-
-        });
-    </script>
-
-
-{#    <i class="fas fa-plus-circle fa-2x d-none"></i>#}
 {% endblock %}
 
