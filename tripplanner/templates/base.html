@@ -72,7 +72,7 @@
     <div class="no-a-underline"><a class="navbar-brand minw-10" href="{% url 'tripplanner' %}">
         <div class="d-flex align-items-center w-100 text-left">
             <img id="logo" src="../../static/own/img/africa-1299545_640.png">
-            <span class="d-inline-block" id="home">TripPlanner</span>
+            <span class="d-inline-block" id="home">TPlanner</span>
         </div>
     </a>
     </div>
@@ -82,40 +82,41 @@
     </button>
 
 
-    <div class="collapse navbar-collapse pr-3 pl-3" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse pr-xl-3 pl-xl-3" id="navbarSupportedContent">
 
-    <div class="mx-auto">
-        <div class="row justify-content-center align-items-center text-center mb-2 p-2" style="height: 30px">
+        <div class="mx-auto pr-1">
+        {% if user.is_authenticated %}
+            <div class="row justify-content-center align-items-center text-center mb-2 p-2 h-30px">
                 <b>{% trans 'TRIPS' %}</b>
-        </div>
-        <div class="row justify-content-center align-items-center text-center mb-1" style="height: 30px">
-        <ul class="navbar-nav mr-auto">
-{#        <ul>#}
-                {% if user.is_authenticated %}
-                    <li class="nav-item" style="width: 150px">
-                        <a class="nav-link" href="{% url 'my-trip-list' %}">{% trans 'Mine' %}</a>
-                    </li>
-                    <li class="nav-item" style="width: 150px">
-                        <a class="nav-link" href="{% url 'my-fav-trip-list' %}">{% trans 'My favourite' %}</a>
-                    </li>
-                    <li class="nav-item" style="width: 150px">
-                        <a class="nav-link"
-                           href="{% url 'trip-with-attributes-create' %}">{% trans 'Create new' %}</a>
-                    </li>
-                {% endif %}
-                <li class="nav-item active" style="width: 150px">
-                    <a class="nav-link" href="{% url 'trip-list' %}">
-                        {% if user.is_anonymous %}
-                            {% trans 'All' %}
-                        {% else %}
-                            {% trans "Other users'" %}
-                        {% endif %}
+            </div>
+        {% endif %}
+            <div class="row justify-content-center align-items-center text-center mb-1 h-30px">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item w-140px">
+                            <a class="nav-link" href="{% url 'my-trip-list' %}">{% trans 'Mine' %}</a>
+                        </li>
+                        <li class="nav-item w-140px">
+                            <a class="nav-link" href="{% url 'my-fav-trip-list' %}">{% trans 'My favourite' %}</a>
+                        </li>
+                        <li class="nav-item w-140px">
+                            <a class="nav-link"
+                               href="{% url 'trip-with-attributes-create' %}">{% trans 'Create new' %}</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item active w-140px">
+                        <a class="nav-link" href="{% url 'trip-list' %}">
+                            {% if user.is_anonymous %}
+                                {% trans 'All trips' %}
+                            {% else %}
+                                {% trans "Other users'" %}
+                            {% endif %}
 
-                    </a>
-                </li>
-        </ul>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-</div>
 
         {#        <form class="form-inline my-2 my-lg-0">#}
         {#            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">#}
@@ -125,9 +126,10 @@
         {#        <div class="d-flex justify-content-center align-items-center">#}
 
         {#            <div class="d-inline">#}
-        <form class="form-inline mr-2" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+    <div class="align-right">
+        <form class="form-inline mr-xl-2" action="{% url 'set_language' %}" method="post">{% csrf_token %}
             <input name="next" type="hidden" value="{{ redirect_to }}"/>
-            <select name="language" class="custom-select" style="max-width: 90px">
+            <select name="language" class="custom-select mw-90px">
                 {% get_current_language as LANGUAGE_CODE %}
                 {% get_available_languages as LANGUAGES %}
                 {% get_language_info_list for LANGUAGES as languages %}
@@ -140,12 +142,13 @@
             </select>
             <input class="btn btn-sm pr-3 pl-3" id="lang-input" type="submit" value="{% trans 'Change' %}"/>
         </form>
+    </div>
 
         {% if user.is_authenticated %}
-            <div class="dropdown h-100 align-left mr-xl-5 ml-3">
-                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            <div class="dropdown h-100 align-left mr-xl-5 ml-xl-1">
+                <a class="dropdown-toggle btn btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"></i>{{ user.username }}
+                    <i class="fas fa-user"></i> {{ user.username }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{% url 'profile' user.id %}">{% trans 'My profile' %}</a>
@@ -154,12 +157,9 @@
                 </div>
             </div>
         {% else %}
-            <a class="" href="{% url 'login' %}" role="button"><i class="fas fa-user"></i>{% trans 'Log in' %}
+            <a class="btn btn-sm" href="{% url 'login' %}" role="button"><i class="fas fa-user"></i> {% trans 'Log in' %}
             </a>
         {% endif %}
-
-
-    </div>
     </div>
 </nav>
 

@@ -19,6 +19,7 @@ from django.http import HttpResponseRedirect
 from tripplanner import views
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
 urlpatterns = [
     url(r'^tripplanner/', include('tripplanner.urls')),

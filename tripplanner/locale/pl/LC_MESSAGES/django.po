@@ -422,8 +422,8 @@ msgstr "Moje ulubione"
 msgid "Create new"
 msgstr "Stwórz nową"
 
-msgid "All"
-msgstr "Wszystkie"
+msgid "All trips"
+msgstr "Wszystkie wycieczki"
 
 msgid "Other users'"
 msgstr "Pozostałe"

@@ -8,7 +8,11 @@
                 {% csrf_token %}
                 <h1 class="h3 font-weight-normal">{% trans 'Sign up' %}</h1>
                 {% if form.errors %}
-                    {#                todo: print errors#}
+                    <div class="text-left">
+                        {% for key, value in form.errors.items %}
+                            <span class="error-style helptext">{{ value }}</span>
+                        {% endfor %}
+                    </div>
                 {% endif %}
 
                 <div class="control-group">

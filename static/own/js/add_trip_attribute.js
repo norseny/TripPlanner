@@ -25,7 +25,9 @@ function addFormsets() {
         addText: '<span class="form-plus-minus-js ">+</span>' + addNewRow,
         deleteText: '<span class="form-plus-minus-js">-</span>',
         prefix: 'journey_set',
-        added: datepickerCallback()
+        added: datepickerCallback(),
+        added2: moreInfoButtonVisibility()
+
     });
 
     $('.formset_row2').formset({
@@ -33,12 +35,16 @@ function addFormsets() {
         deleteText: '<span class="form-plus-minus-js">-</span>',
         prefix: 'accommodation_set',
         added: datepickerCallback(),
+        added2: moreInfoButtonVisibility()
+
     });
 
     $('.formset_row3').formset({
         addText: '<span class="form-plus-minus-js">+</span>' + addNewRow,
         deleteText: '<span class="form-plus-minus-js">-</span>',
         prefix: 'attraction_set',
-        added: datepickerCallback()
+        added: datepickerCallback(),
+        added2: moreInfoButtonVisibility()
+
     });
 }
