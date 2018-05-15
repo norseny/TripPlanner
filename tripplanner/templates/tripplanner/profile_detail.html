@@ -6,20 +6,26 @@
 {% load custom_template_filters %}
 {% block title %}{% endblock %}
 {% block content %}
-    <article class="my-3">
-        <h1 class="text-center my-3">{{ profile.user.username }}</h1>
+    <article class="my-3 m-md-5 ml-4">
+        <h1 class="text-center my-3 mb-md-4">{{ profile.user.username }}</h1>
         <section>
+        <div class="w-100 d-md-flex justify-content-md-center align-items-md-top">
+        <div class="d-md-inline-block pr-md-5">
         <p>
-{#            <div><label>{% trans 'Last login:' %}</label> {{ profile.user.last_login|date:"d.m.y (H:i)" }}</div>#}
-            <div><label>{% trans 'Admin:' %}</label> {{ profile.user.is_superuser }}</div>
-{#            <div><label>{% trans 'Date joined:' %}</label> {{ profile.user.date_joined|date:"d.m.y (H:i)" }}</div>#}
+            <div><label>{% trans 'Admin' %}:</label>
+                {% if profile.user.is_superuser %}
+                    {% trans 'Yes' %}
+                {% else %}
+                    {% trans 'No' %}
+                {% endif %}
+
+            </div>
         </p>
+
         <p>
-{#            <div><label>{% trans 'First name:' %}</label> {{ profile.user.first_name }}</div>#}
-{#            <div><label>{% trans 'Last name:' %}</label> {{ profile.user.last_name }}</div>#}
-            <div><label>{% trans 'Email:' %}</label> {{ profile.user.email }}</div>
-            <div><label>{% trans 'About me:' %}</label> {{ profile.about_me }}</div>
-            <div><label>{% trans 'Location:' %}</label> {{ profile.location }}</div>
+            <div><label>{% trans 'Email' %}:</label> {{ profile.user.email }}</div>
+            <div><label>{% trans 'About me' %}:</label> {{ profile.about_me }}</div>
+            <div><label>{% trans 'Location' %}:</label> {{ profile.location }}</div>
         </p>
         {% if user.id == profile.user.id %}
                     <a href="{% url 'profile-update' user.pk %}">
@@ -27,14 +33,7 @@
                         {% trans 'Edit' %}
                     </a>
         {% endif %}
-        <p>
-            <div><label>{% trans 'Trips created by user' %}:</label> ({{ created_trips.count }})</div>
-        <ul>
-            {% for trip in created_trips %}
-                 <li><a href="{% url 'trip-detail' trip.id %}">{{ trip.name }}</a></li>
-            {% endfor %}
-        </ul>
-        </p>
+
         <p>
             <div><label>{% trans 'Favourite trips' %}:</label></div>
         <ul>
@@ -43,6 +42,20 @@
             {% endfor %}
         </ul>
         </p>
+        </div>
+
+       <div class="d-md-inline-block pl-md-5">
+        <p>
+            <div><label>{% trans 'Trips created by user' %}:</label> ({{ created_trips.count }})</div>
+        <ul>
+            {% for trip in created_trips %}
+                 <li><a href="{% url 'trip-detail' trip.id %}">{{ trip.name }}</a></li>
+            {% endfor %}
+        </ul>
+        </p>
+        </div>
+
+        </div>
         </section>
     </article>
 

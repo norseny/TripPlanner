@@ -37,13 +37,13 @@
                             {% endif %}
                         </div>
                         <div class="row text-center align-items-center">
-                            <div class="col-md-10 col-9 d-inline">
+                            <div class=" col-9 d-inline">
                                 <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">
                                 {{ trip.name }}
                                 </a>
                             </div>
                             {% if trip.profile_set.count > 0 %}
-                                <div class="col-md-2 col-3">
+                                <div class=" col-3 text-center">
     {#                                <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">#}
                                     {{ trip.profile_set.count }} <i class="fas fa-heart d-inline"></i>
     {#                                </a>#}

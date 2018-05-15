@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static %}
 {% block title %}{% endblock %}
 {% block content %}
-    <h1 id="trip-participants-h1">{{ trip.name }}</h1>
-    <h2>{% trans 'Trip participants' %}</h2>
+    <div class="d-flex align-items-center justify-content-center m-5 mt-0 w-100">
+        <div>
+        <h1 class="h1-responsive mt-2">{{ trip.name }}</h1>
+
+
+    <h2 class="h2-responsive">{% trans 'Trip participants' %}</h2>
     <ul>
         {% for participant in user_list %}
             <li><a href="{% url 'profile' participant.id %}">{{ participant.username }}</a></li>
@@ -20,18 +25,22 @@
     </ul>
 
     {% if trip.created_by_id == user.id %}
-        <form class="md-form" method="post"> {# todo: half of the screen displaying only #}
+        <form class="md-form" method="post">
             {% csrf_token %}
-            <h2>{% trans 'Add new participant' %}</h2>
+            <h2 class="h2-responsive">{% trans 'Add new participant' %}</h2>
+            <div>
+                <span id="check_icon" style="visibility: hidden"></span>
+            </div>
             <input class="form-control new-participant" type="text" id="username" name="username"
                    placeholder={% trans "Username" %}>
             <button class="verify-new-participant btn" type="button">{% trans 'Find' %}</button>
-            <span id="check_icon" style="visibility: hidden"></span>
             <div>
                 <button class="btn" id='add-button' style="display: none" type="button">{% trans 'Add' %}</button>
             </div>
         </form>
     {% endif %}
+    </div>
+    </div>
 
     <a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details' %}</a>
 
@@ -40,83 +49,6 @@
 {% endblock %}
 
 {% block js %}
-
-    <script>
-    var input = '';
-
-        $(document).ready(function () {
-            $(".verify-new-participant").click(function () {
-                var form = $('.md-form');
-                var tripId = {'tripId': '{{trip.id}}'};
-
-                data = form.serialize() + '&' + $.param(tripId);
-
-                $.ajax({
-                    url: '/ajax/validate-participant',
-                    data: data,
-                    dataType: 'json',
-                    success: function (data) {
-                        $('#check_icon').show();
-                        $('#check_icon').css('visibility', 'visible');
-                        $('#check_icon').css('font-style', 'italic');
-                        if (data.exists) {
-                            $('#check_icon').css('color', '#4caf50');
-                            $('#check_icon').html("<i class='fas fa-check fa-2x green-text' aria-hidden='true'><\/i>" +
-                                data.message_text);
-                            $('#add-button').show();
-                            $('.verify-new-participant').hide()
-                            input = $('.new-participant');
-                        }
-                        else {
-                            $('#check_icon').css('color', '#f44336');
-                            $('#check_icon').html("<i class='fas fa-times fa-2x red-text' aria-hidden='true'><\/i>" + data
-                                .message_error);
-                        }
-                    }
-                });
-            });
-
-            $("#add-button").click(function () {
-                var form = $('.md-form');
-                var tripId = {'tripId': '{{trip.id}}'};
-
-                data = form.serialize() + '&' + $.param(tripId);
-
-                $.ajax({
-                    url: '/ajax/add-participant',
-                    data: data,
-                    dataType: 'json',
-                    success: function (data) {
-                        if(data.success == true){
-                            location.reload();
-                        }
-                    }
-                });
-            });
-
-            $(".new-participant").on("change keyup", function() {
-                $('.verify-new-participant').show()
-                if ( $(this).val() != input ) {
-                    $("#add-button").hide();
-                    $('#check_icon').hide();
-                }
-            });
-
-        });
-
-        function removeParticipant(userId)
-            {
-                $.ajax({
-                    url: '/ajax/remove-participant',
-                    data:  "userId=" + userId + "&tripId=" + {{trip.id}},
-                    dataType: 'json',
-                    success: function (data) {
-                        if(data.success == true){
-                            location.reload();
-                        }
-                    }
-                });
-            }
-    </script>
-
+    <script>const trip_id = '{{ trip.id }}'</script>
+    <script src="{% static 'own/js/participants.js' %}"></script>
 {% endblock %}

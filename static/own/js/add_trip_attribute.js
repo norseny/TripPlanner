@@ -22,22 +22,22 @@ function addFormsets() {
         };
 
         $('.formset_row1').formset({
-        addText: '<span class="font-size-bigger ">+</span>' + addNewRow,
-        deleteText: '<span class="font-size-bigger">-</span>',
+        addText: '<span class="form-plus-minus-js ">+</span>' + addNewRow,
+        deleteText: '<span class="form-plus-minus-js">-</span>',
         prefix: 'journey_set',
         added: datepickerCallback()
     });
 
     $('.formset_row2').formset({
-        addText: '<span class="font-size-bigger">+</span>' + addNewRow,
-        deleteText: '<span class="font-size-bigger">-</span>',
+        addText: '<span class="form-plus-minus-js">+</span>' + addNewRow,
+        deleteText: '<span class="form-plus-minus-js">-</span>',
         prefix: 'accommodation_set',
         added: datepickerCallback(),
     });
 
     $('.formset_row3').formset({
-        addText: '<span class="font-size-bigger">+</span>' + addNewRow,
-        deleteText: '<span class="font-size-bigger">-</span>',
+        addText: '<span class="form-plus-minus-js">+</span>' + addNewRow,
+        deleteText: '<span class="form-plus-minus-js">-</span>',
         prefix: 'attraction_set',
         added: datepickerCallback()
     });

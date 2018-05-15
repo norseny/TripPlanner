@@ -9,17 +9,14 @@ $(document).ready(function () {
         var textAreaInputText = moreInfoTextareaFound.val();
         var timestamp = new Date().getUTCMilliseconds();
         divContainer.append("<div class=\"confirmBox\" style=\"display: none\">\n" +
-            "    <textarea id=\"" + timestamp + "\"class=\"materialize-textarea form-control form-control-sm more-info\" rows=\"10\" cols=\"65\"></textarea>\n" +
+            "    <textarea id=\"" + timestamp + "\"class=\"materialize-textarea form-control form-control-sm more-info\" rows=\"11\" cols=\"65\"></textarea>\n" +
             "    <div class=\"message\"></div>\n" +
-            "    <span class=\"yes btn btn-sm\">Proceed</span>\n" +
-            "    <span class=\"no btn btn-sm\">Cancel</span>\n" +
+            "    <span class=\"yes btn btn-sm\">" + saveText + "</span>\n" +
+            "    <span class=\"no btn btn-sm\">"+ cancelText +"</span>\n" +
             "</div>"
         );
         $('#' + timestamp).val(textAreaInputText);
-
     });
-
-
 });
 
 function doConfirm(msg, yesFn, noFn) {
@@ -37,7 +34,7 @@ $(function () {
     $("form.textarea-form").submit(function (e) {
         e.preventDefault();
         var form = this;
-        doConfirm("Are you sure?", function yes() {
+        doConfirm("", function yes() {
             //form.submit();
             var confirmBox = $(".confirmBox");
             var moreInfoNewTextareaFound = confirmBox.children(":first");
@@ -56,12 +53,11 @@ $(function () {
 });
 
 function moreInfoButtonVisibility() {
-
     var moreInfoTextarea = $("textarea.more-info");
     moreInfoTextarea.hide();
     moreInfoTextarea.closest(".field").append("" +
         "<form class=\"textarea-form\"method=\"post\" action=\"/#\">\n" +
-        "<input type=\"hidden\" name=\"html\" value=\"&lt;p&gt;Your data has been deleted&lt/p&gt;\" />\n" +
+        // "<input type=\"hidden\" name=\"html\" value=\"&lt;p&gt;Your data has been deleted&lt/p&gt;\" />\n" +
         "<button type=\"submit\" class='button-more-info w-100'>\n" +
         "<span class=\"d-block text-center add-more-info-button-icon\">" +
         "<i class=\"fas fa-plus-circle fa-2x\">" +

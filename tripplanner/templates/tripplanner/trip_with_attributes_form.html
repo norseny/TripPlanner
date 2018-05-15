@@ -174,7 +174,13 @@
 
 {% block js %}
     <script>const language_code = '{{ request.LANGUAGE_CODE }}';</script>
-    <script>const addNewRow = '<span class="underline-on-hover">{% trans 'Add new row' %}</span>'</script>
+    <script>const addNewRow = '{% trans 'Add new row' %}'</script>
+    <script>
+        const saveText = '{% trans 'Save' %}';
+        const cancelText = '{% trans 'Cancel' %}'
+    </script>
+
+
 
     <script src="{% static 'libs/formset/jquery.formset.js' %}"></script>
     <script src="{% static 'own/js/add_trip_attribute.js' %}"></script>

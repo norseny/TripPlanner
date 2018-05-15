@@ -9,7 +9,6 @@
     {% load i18n %}
 
 
-
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
             integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
@@ -34,21 +33,20 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
 
 
-{##}
-{#<!-- Bootstrap core CSS -->#}
-{#<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">#}
-{#<!-- Material Design Bootstrap -->#}
-{#<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">#}
-{##}
-{#<!-- JQuery -->#}
-{#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
-{#<!-- Bootstrap tooltips -->#}
-{#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>#}
-{#<!-- Bootstrap core JavaScript -->#}
-{#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>#}
-{#<!-- MDB core JavaScript -->#}
-{#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>#}
-
+    {##}
+    {#<!-- Bootstrap core CSS -->#}
+    {#<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">#}
+    {#<!-- Material Design Bootstrap -->#}
+    {#<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">#}
+    {##}
+    {#<!-- JQuery -->#}
+    {#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
+    {#<!-- Bootstrap tooltips -->#}
+    {#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>#}
+    {#<!-- Bootstrap core JavaScript -->#}
+    {#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>#}
+    {#<!-- MDB core JavaScript -->#}
+    {#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>#}
 
 
     <link rel="stylesheet" href="{% static 'own/css/style.css' %}">
@@ -58,7 +56,7 @@
             $('li.active').removeClass('active');
             $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
             $('.lang').click(function () {
-                $('#lang-input').click()
+                    $('#lang-input').click()
                 }
             )
         });
@@ -73,7 +71,7 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="no-a-underline"><a class="navbar-brand minw-10" href="{% url 'tripplanner' %}">
         <div class="d-flex align-items-center w-100 text-left">
-            <img  id="logo" src="../../static/own/img/africa-1299545_640.png">
+            <img id="logo" src="../../static/own/img/africa-1299545_640.png">
             <span class="d-inline-block" id="home">TripPlanner</span>
         </div>
     </a>
@@ -84,79 +82,84 @@
     </button>
 
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse pr-3 pl-3" id="navbarSupportedContent">
 
-
+    <div class="mx-auto">
+        <div class="row justify-content-center align-items-center text-center mb-2 p-2" style="height: 30px">
+                <b>{% trans 'TRIPS' %}</b>
+        </div>
+        <div class="row justify-content-center align-items-center text-center mb-1" style="height: 30px">
         <ul class="navbar-nav mr-auto">
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'my-trip-list' %}">{% trans 'My Trip List' %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'my-fav-trip-list' %}">{% trans 'My favourite trips' %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
-                </li>
-            {% endif %}
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'trip-list' %}">
-                    {% if user.is_anonymous %}
-                        {% trans 'All Trips List' %}
-                    {% else %}
-                        {% trans "Other Trips" %}
-                    {% endif %}
+{#        <ul>#}
+                {% if user.is_authenticated %}
+                    <li class="nav-item" style="width: 150px">
+                        <a class="nav-link" href="{% url 'my-trip-list' %}">{% trans 'Mine' %}</a>
+                    </li>
+                    <li class="nav-item" style="width: 150px">
+                        <a class="nav-link" href="{% url 'my-fav-trip-list' %}">{% trans 'My favourite' %}</a>
+                    </li>
+                    <li class="nav-item" style="width: 150px">
+                        <a class="nav-link"
+                           href="{% url 'trip-with-attributes-create' %}">{% trans 'Create new' %}</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item active" style="width: 150px">
+                    <a class="nav-link" href="{% url 'trip-list' %}">
+                        {% if user.is_anonymous %}
+                            {% trans 'All' %}
+                        {% else %}
+                            {% trans "Other users'" %}
+                        {% endif %}
 
-                </a>
-            </li>
+                    </a>
+                </li>
         </ul>
-
+        </div>
+</div>
 
         {#        <form class="form-inline my-2 my-lg-0">#}
         {#            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">#}
         {#            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
         {#        </form>#}
 
-{#        <div class="d-flex justify-content-center align-items-center">#}
+        {#        <div class="d-flex justify-content-center align-items-center">#}
 
-{#            <div class="d-inline">#}
-                <form class="form-inline mr-2" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                    <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                    <select name="language" class="custom-select" style="max-width: 90px">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
-                                    selected{% endif %}>
-                                {{ language.name_local }} ({{ language.code }})
-                            </option>
-                        {% endfor %}
-                    </select>
-                    <input class="btn btn-sm pr-3 pl-3" id="lang-input" type="submit" value="{% trans 'Change'%}"/>
-                </form>
+        {#            <div class="d-inline">#}
+        <form class="form-inline mr-2" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}"/>
+            <select name="language" class="custom-select" style="max-width: 90px">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                            selected{% endif %}>
+                        {{ language.name_local }} ({{ language.code }})
+                    </option>
+                {% endfor %}
+            </select>
+            <input class="btn btn-sm pr-3 pl-3" id="lang-input" type="submit" value="{% trans 'Change' %}"/>
+        </form>
 
-            {% if user.is_authenticated %}
-            <div class="dropdown h-100 align-left mr-5 ml-3">
-                    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>{{ user.username }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="{% url 'profile' user.id %}">{% trans 'My profile' %}</a>
-                      <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
-                    </div>
-            </div>
-            {% else %}
-                <a class="" href="{% url 'login' %}" role="button"><i class="fas fa-user"></i>{% trans 'Log in' %}
+        {% if user.is_authenticated %}
+            <div class="dropdown h-100 align-left mr-xl-5 ml-3">
+                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i>{{ user.username }}
                 </a>
-            {% endif %}
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'profile' user.id %}">{% trans 'My profile' %}</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+                </div>
+            </div>
+        {% else %}
+            <a class="" href="{% url 'login' %}" role="button"><i class="fas fa-user"></i>{% trans 'Log in' %}
+            </a>
+        {% endif %}
 
 
-
-
-        </div>
+    </div>
     </div>
 </nav>
 

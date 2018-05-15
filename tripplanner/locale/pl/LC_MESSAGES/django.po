@@ -384,7 +384,7 @@ msgid "user added to favourites"
 msgstr "użytkownik dodał do ulubionych"
 
 msgid "users added to favourites"
-msgstr "użytkownicy dodali do ulubionych"
+msgstr "użytkownicy mają wycieczkę w ulubionych"
 
 msgid "My profile"
 msgstr "Mój profil"
@@ -397,3 +397,33 @@ msgstr "O mnie"
 
 msgid "Edit profile info"
 msgstr "Edycja profilu"
+
+msgid "Cancel"
+msgstr "Anuluj"
+
+msgid "Favourite trips"
+msgstr "Ulubione wycieczki"
+
+msgid "Trips created by user"
+msgstr "Wycieczki stworzone przez użytkownika"
+
+msgid "Back to Profile"
+msgstr "Powrót do profilu"
+
+msgid "TRIPS"
+msgstr "WYCIECZKI"
+
+msgid "Mine"
+msgstr "Moje"
+
+msgid "My favourite"
+msgstr "Moje ulubione"
+
+msgid "Create new"
+msgstr "Stwórz nową"
+
+msgid "All"
+msgstr "Wszystkie"
+
+msgid "Other users'"
+msgstr "Pozostałe"

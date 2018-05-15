@@ -146,6 +146,11 @@ h2 {
     text-decoration: underline;
 }
 
+.add-row {
+    color: #0091ea!important;
+    font-size: 1rem;
+}
+
 a {
     color: #0091ea;
     text-decoration: none;
@@ -159,7 +164,8 @@ a:hover, #change-main-image,
 .details-label:hover,
 /*.icon-details-down-form:hover, */
 /*.icon-details-up-form:hover */
-.add-more-info-button-icon:hover
+.add-more-info-button-icon:hover,
+.add-row:hover
 {
     font-weight: 500; /* todo: check */
     /*color: #0091ea;*/
@@ -167,6 +173,19 @@ a:hover, #change-main-image,
     border-bottom: 3px solid #0091ea;
 }
 
+a.nav-link:hover{
+    border: 2px solid #0091ea;
+}
+
+#navbarDropdown {
+    font-size: 1.25rem;
+}
+
+.delete-row {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
 
 i {
     font-style: normal;
@@ -284,9 +303,6 @@ body, html, main {
         font-family: 'Roboto Slab', sans-serif;
 }
 
-#trip-participants-h1 {
-    margin-top: 3%;
-}
 
 .navbar.navbar-light .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-light .navbar-nav .nav-item.active>.nav-link{
         background-color: rgba(0, 145, 234, 0.4);
@@ -317,9 +333,6 @@ form table.table td{
     color:#321911;
 }
 
-.delete-row {
-    padding-left: 1.25rem
-}
 
 label {
     font-weight: 400;
@@ -336,9 +349,9 @@ label {
     padding: .25rem;
 }
 
-.font-size-bigger {
+.form-plus-minus-js {
     font-size: 2.5rem;
-    color: #321911;
+    color: #0091ea;
     font-weight: 400;
 }
 
@@ -367,8 +380,8 @@ input[type=number] {
     /*color: #321911;*/
 }
 
-#icon-details-down-view, #icon-details-up-view, .icon-details-down-form, .icon-details-up-form  {
-    color: #0091ea;;
+#icon-details-down-view, #icon-details-up-view, .icon-details-down-form, .icon-details-up-form, form-js-icon  {
+    color: #0091ea;
 }
 
 .details-label:hover{
@@ -424,54 +437,14 @@ input[type=number] {
     padding: .25rem;
 }
 
-.underline-on-hover:hover {
-    text-decoration: underline!important;
-}
+/*.underline-on-hover:hover {*/
+    /*text-decoration: underline!important;*/
+/*}*/
 
 .no-a-underline-on-hover:hover{
     border: none!important;
 }
 
-
-/* Absolute Center  */
-.more-info {
-  /*position: fixed;*/
-  /*z-index: 999;*/
-  /*height: 15em;*/
-  /*width: 30em;*/
-  /*overflow: visible;*/
-  /*margin: auto;*/
-  /*top: 0;*/
-  /*left: 0;*/
-  /*bottom: 0;*/
-  /*right: 0;*/
-}
-
-/* Transparent Overlay */
-.more-info:before {
-    /*content: '';*/
-    /*display: block;*/
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*background-color: rgba(0, 0, 0, 0.58);*/
-    /*}*/
-
-    /*content: " ";*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*position: fixed;*/
-    /*z-index: -1;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    /*background: rgba(0, 0, 0, 0.5);*/
-}
-
-/*.font-blue {*/
-    /*color: #0091ea;*/
-/*}*/
 
 .login-a {
     color: white;
@@ -481,12 +454,6 @@ input[type=number] {
     text-decoration: none!important;
     color: white;
 }
-
-/*.avatar-outer-div {*/
-    /*width: 200px;*/
-    /*height: 200px;*/
-/*}*/
-
 
 .resize-img:hover {
     opacity: 0.5;
@@ -518,8 +485,7 @@ input[type=number] {
 .confirmBox
 {
    display:none;
-    background-color: #f8f9fa;
-    border-radius: 5px;
+    background-color: white;
     border: 1px solid #aaa;
     position: fixed;
     width: 40rem;
@@ -528,7 +494,7 @@ input[type=number] {
     margin-left: -20rem;
     top: 50%;
     left: 50%;
-    padding: 1rem 1rem 2rem;
+    padding: 1rem;
     box-sizing: border-box;
     text-align: center;
     z-index: 999;
