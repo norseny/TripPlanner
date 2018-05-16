@@ -3,13 +3,18 @@
 
 {% block title %}{% endblock %}
 {% block content %}
-    <h1>{% trans 'Confirm' %}</h1>
-    <div>
-        <form action="" method="post">{% csrf_token %}
-            <p>{% trans 'Are you sure you want to delete '%}"{{ object }}"?</p>
-            <input class="btn btn-primary" type="submit" value="{% trans 'I confirm' %}"/>
-            <div><a href="{% url 'trip-detail' trip.pk %}">{% trans "Trip's Details" %}</a></div>
-            <div><a href="{% url 'my-trip-list' %}">{% trans 'Back to the List of My Trips' %}</a></div>
-        </form>
-    </div>
+        <div class="ml-5">
+            <h1 class="h1-responsive ml-0">{% trans 'Confirm' %}</h1>
+            <div>
+                <form action="" method="post">{% csrf_token %}
+                    <p>{% trans 'Are you sure you want to delete ' %}"{{ object }}"?</p>
+                    <input class="btn btn-primary" type="submit" value="{% trans 'I confirm' %}"/>
+                </form>
+            </div>
+
+            <div class="mt-4">
+                <a href="{% url 'trip-detail' trip.pk %}">{% trans "Trip's Details" %}</a></div>
+            <div>
+                <a href="{% url 'my-trip-list' %}">{% trans 'Back to the List of My Trips' %}</a></div>
+        </div>
 {% endblock %}

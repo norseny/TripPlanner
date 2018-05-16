@@ -76,21 +76,62 @@
         </div>
     </a>
     </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContentCust"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
 
-    <div class="collapse navbar-collapse pr-xl-3 pl-xl-3" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContentCust">
+
+        <ul class="navbar-nav mx-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link nav-link-sm" href="{% url 'my-trip-list' %}">{% trans 'My trips' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-sm" href="{% url 'my-fav-trip-list' %}">{% trans 'My favourite trips' %}</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link nav-link-sm"
+                       href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
+                </li>
+            {% endif %}
+            <li class="nav-item active">
+                <a class="nav-link nav-link-sm" href="{% url 'trip-list' %}">
+                    {% if user.is_anonymous %}
+                        {% trans 'All trips' %}
+                    {% else %}
+                        {% trans "Other users' trips" %}
+                    {% endif %}
+                </a>
+            </li>
+          <li><div class="dropdown-divider"></div></li>
+            {% if user.is_authenticated %}
+        <li class="nav-item ">
+            <a class="nav-link nav-link-sm" href="{% url 'profile' user.id %}"><i class="fas fa-user"></i> {% trans 'My profile' %}</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link nav-link-sm" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+                </li>
+            {% else %}
+                <li class="nav-item ">
+                    <a class="nav-link nav-link-sm" href="{% url 'login' %}"><i class="fas fa-user"></i> {% trans 'Log in' %}</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
+
+    <div class="collapse navbar-collapse pr-xl-1 pl-xl-1">
 
         <div class="mx-auto pr-1">
-        {% if user.is_authenticated %}
-            <div class="row justify-content-center align-items-center text-center mb-2 p-2 h-30px">
-                <b>{% trans 'TRIPS' %}</b>
-            </div>
-        {% endif %}
-            <div class="row justify-content-center align-items-center text-center mb-1 h-30px">
+            {% if user.is_authenticated %}
+                <div class="row justify-content-center align-items-center text-center mb-2 p-2 h-30px ml-xl-5">
+                    <b>{% trans 'TRIPS' %}</b>
+                </div>
+            {% endif %}
+            <div class="row justify-content-center align-items-center text-center mb-1 h-30px ml-xl-5">
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                         <li class="nav-item w-140px">
@@ -111,7 +152,6 @@
                             {% else %}
                                 {% trans "Other users'" %}
                             {% endif %}
-
                         </a>
                     </li>
                 </ul>
@@ -126,26 +166,27 @@
         {#        <div class="d-flex justify-content-center align-items-center">#}
 
         {#            <div class="d-inline">#}
-    <div class="align-right">
-        <form class="form-inline mr-xl-2" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-            <input name="next" type="hidden" value="{{ redirect_to }}"/>
-            <select name="language" class="custom-select mw-90px">
-                {% get_current_language as LANGUAGE_CODE %}
-                {% get_available_languages as LANGUAGES %}
-                {% get_language_info_list for LANGUAGES as languages %}
-                {% for language in languages %}
-                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
-                            selected{% endif %}>
-                        {{ language.name_local }} ({{ language.code }})
-                    </option>
-                {% endfor %}
-            </select>
-            <input class="btn btn-sm pr-3 pl-3" id="lang-input" type="submit" value="{% trans 'Change' %}"/>
-        </form>
-    </div>
+        <div class="align-right">
+            <form class="form-inline lang-form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                <select name="language" class="custom-select mw-90px lang-form-el">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                selected{% endif %}>
+                            {{ language.name_local }} ({{ language.code }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <input class="btn btn-sm pr-3 pl-3 lang-form-el" id="lang-input" type="submit"
+                       value="{% trans 'Change' %}"/>
+            </form>
+        </div>
 
         {% if user.is_authenticated %}
-            <div class="dropdown h-100 align-left mr-xl-5 ml-xl-1">
+            <div class="dropdown h-100 align-left ml-xl-1">
                 <a class="dropdown-toggle btn btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"></i> {{ user.username }}
@@ -157,10 +198,12 @@
                 </div>
             </div>
         {% else %}
-            <a class="btn btn-sm" href="{% url 'login' %}" role="button"><i class="fas fa-user"></i> {% trans 'Log in' %}
+            <a class="btn btn-sm" href="{% url 'login' %}" role="button"><i
+                    class="fas fa-user"></i> {% trans 'Log in' %}
             </a>
         {% endif %}
     </div>
+
 </nav>
 
 {% if messages %}

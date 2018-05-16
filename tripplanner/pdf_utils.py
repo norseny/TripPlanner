@@ -75,7 +75,7 @@ class PdfPrint:
         data.append(Spacer(1, 12))
         data.append(Paragraph(_('Created by') + ': ' + str(context['trip'].created_by), styles['MainInfo']))
         data.append(Spacer(1, 12))
-        data.append(Paragraph(_('Total Cost (PLN)') + ': ' + str(context['trip'].price), styles['MainInfo']))
+        data.append(Paragraph(_('Total Cost') + ': ' + str(context['trip'].price), styles['MainInfo']))
         data.append(Spacer(1, 24))
 
         table_data = []
@@ -88,7 +88,7 @@ class PdfPrint:
             Paragraph(_('End point'), styles['TableHeader']),
             Paragraph(_('Means of transport'), styles['TableHeader']),
             Paragraph(_('Address'), styles['TableHeader']),
-            Paragraph(_('Price (PLN)'), styles['TableHeader'])
+            Paragraph(_('Cost'), styles['TableHeader'])
         ])
         table_data.append([Paragraph(_('Journeys'), styles['Categories']),'','','','','','',''])
         for journey in context['trip'].journey_set.all():

@@ -147,7 +147,6 @@
                                         {{ field }}
                                     </div>
                                     <div class="error-style">{{ field.errors.as_text }}</div>
-                                    {# todo: gdy kopiuje sie wiersz, to bledy tez #}
                                 </td>
                             {% endfor %}
                         </tr>
@@ -159,13 +158,13 @@
         <div><input class="btn btn-primary" type="submit" value="{% trans 'Save' %}"/></div>
         {% if form.initial|length > 0 %}
             {% if user == trip.created_by %}
-                <div><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip' %}</a></div>
+                <div class="mt-3"><a href="{% url 'trip-delete' trip.pk %}">{% trans 'Delete the trip' %}</a></div>
             {% endif %}
             <div><a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details' %}</a></div>
         {% endif %}
         <div><a href="{% url 'my-trip-list' %}">{% trans 'Back to the List of My Trips' %}</a></div>
 
-        {#    todo: implementacja - gdy bład, to pokaż wszystkie tabby rozsuniete#}
+        {#    todo: implementacja - gdy bład, to pokaż wszystkie taby rozsuniete#}
         {#        </div>#}
 
     </form>
@@ -180,19 +179,14 @@
         const cancelText = '{% trans 'Cancel' %}'
     </script>
 
-
-
     <script src="{% static 'libs/formset/jquery.formset.js' %}"></script>
     <script src="{% static 'own/js/add_trip_attribute.js' %}"></script>
     <script src="{% static 'own/js/form-accordion.js' %}"></script>
     <script src="{% static 'own/js/form-autocomplete.js' %}"></script>
     <script src="{% static 'own/js/form-popup-textarea.js' %}"></script>
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

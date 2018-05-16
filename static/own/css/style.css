@@ -19,17 +19,56 @@
     float: left;
 }
 
-
 #trip-avatar-text-container{
     width: 200px;
     height:200px;
 }
 
+#name-under-avatar {
+    width: 200px;
+}
+
+.participants-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.icon-remove {
+    display: inline-block;
+    width: 3rem;
+}
+
+.nav-link{
+    font-weight: bold;
+    background-color: rgba(0, 145, 234, 0.4);
+}
+
+.nav-link-sm {
+    background-color: transparent;
+}
+
+.icon-remove:hover {
+    border-bottom: solid;
+    cursor: pointer;
+ }
+
+#remove-img-icon {
+  width: 100px;
+}
+
+.dropdown-divider {
+    border-top: 1px solid black;
+}
 
 @media (max-width: 576px) {
     .container {
         max-width: 90%;
     }
+
 }
 
 @media (min-width: 768px) {
@@ -40,6 +79,9 @@
     -moz-border-radius: 100px;
     border-radius: 100px;
     float: left;
+}
+    #participants-container {
+    width: 500px;
 }
 
 }
@@ -55,6 +97,21 @@
     #trip-description-col{
       min-height: 300px;
     }
+    #navbarSupportedContentCust {
+        display: none!important;
+    }
+
+}
+
+@media (min-width:992px) and (max-width:1045px){
+    .lang-form-el {
+        max-width: 100%!important;
+        width: 100%;
+    }
+    .lang-form {
+        padding-left: 1rem!important;
+
+    }
 }
 
 @media (min-width: 1280px) {
@@ -63,6 +120,9 @@
         padding-left: 3rem;
         padding-right: 3rem;
 
+    }
+    #navbarSupportedContentCust {
+        display: none!important;
     }
 }
 
@@ -178,7 +238,7 @@ a:hover, #change-main-image,
 }
 
 a.nav-link:hover{
-    border: 2px solid #0091ea;
+    border: 2px solid;
 }
 
 .h-30px{
@@ -321,7 +381,9 @@ body, html, main {
 
 
 .navbar.navbar-light .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-light .navbar-nav .nav-item.active>.nav-link{
+        border: 2px solid;
         background-color: rgba(0, 145, 234, 0.4);
+
 
 }
 
@@ -514,12 +576,9 @@ input[type=number] {
     box-sizing: border-box;
     text-align: center;
     z-index: 999;
-
-
 }
 
-.confirmBox .message
-{
+.confirmBox .message {
     text-align: left;
     margin-bottom: 8px;
 }
@@ -533,4 +592,4 @@ input[type=number] {
     width: 100%;
     height: 100%;
     display: none;
-}​
+}

@@ -36,20 +36,13 @@
                                 </div>
                             {% endif %}
                         </div>
-                        <div class="row text-center align-items-center">
-                            <div class=" col-9 d-inline">
-                                <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">
-                                {{ trip.name }}
-                                </a>
-                            </div>
+                        <span class="text-center d-inline-block" id="name-under-avatar">
+                                <a href="{% url 'trip-detail' trip.pk %}">
+                                {{ trip.name }}</a>
                             {% if trip.profile_set.count > 0 %}
-                                <div class=" col-3 text-center">
-    {#                                <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">#}
-                                    {{ trip.profile_set.count }} <i class="fas fa-heart d-inline"></i>
-    {#                                </a>#}
-                                </div>
+                                    {{ trip.profile_set.count }}<i class="fas fa-heart d-inline"></i>
                             {% endif %}
-                        </div>
+                            </span>
                 </div>
             {% empty %}
                 <p>{% trans 'No trip yet.' %}</p>

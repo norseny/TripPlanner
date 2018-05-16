@@ -7,7 +7,7 @@
 {% block title %}{% endblock %}
 {% block content %}
 
-    <div class="row m-0 d-flex justify-content-center align-items-center my-lg-4 m-sm-3">
+    <div class="row m-0 d-flex justify-content-center align-items-center mt-lg-4 m-sm-3">
         {% if prev_trip_id %}
             <div class="col-1 p-0 text-left">
                 <a href="{% url 'trip-detail' prev_trip_id %}"><i
@@ -27,7 +27,7 @@
     </div>
 
 
-    <div class="row">
+    <div class="row mr-md-4 ml-md-4">
         <div class="col-6">
             {% if user.is_authenticated %}
                 {% if not participant %}
@@ -88,7 +88,7 @@
 
 
 
-    <div class="row w-100 m-0 my-4 mb-md-5">
+    <div class="row w-100 m-0 mt-lg-2 my-4 mb-md-5">
         <div class="col-md-6 d-flex justify-content-center align-items-center my-md-4" id="trip-description-col">
             <section>
                 <div>
@@ -103,7 +103,7 @@
                 <div><label>{% trans 'End time' %}:</label> {{ trip.end_time|default_if_none:"" }}
                 </div>
                 <div>
-                    <label>{% trans 'Total Cost (PLN)' %}:</label> {{ trip.price|default_if_none:"" }} </div>
+                    <label>{% trans 'Total Cost' %}:</label> {{ trip.price|default_if_none:"" }} </div>
                 {% if user.is_authenticated %}
                     {% if participant %}
                         <div class="row justify-content-center align-items-center text-center mt-3 mt-md-5">
@@ -274,7 +274,8 @@
 
                 {% endfor %}
                 {% if total_cost_journeys %}
-                    <div class="text-right font-weight-400 ">{% trans 'Total' %}{{ total_cost_journeys }}</div>
+                    <div class="text-right font-weight-400 ">{% trans 'Total' %} {{ total_cost_journeys }}
+                        {{ trip.currency }}</div>
                 {% endif %}
             {% endif %}
 
@@ -354,8 +355,7 @@
 
                 {% endfor %}
                 {% if total_cost_accommodations %}
-                    <div class="text-right font-weight-400">{% trans 'Total' %}
-                        PLN: {{ total_cost_accommodations }}</div>
+                    <div class="text-right font-weight-400">{% trans 'Total' %} {{ total_cost_accommodations }} {{ trip.currency }}</div>
                 {% endif %}
             {% endif %}
 
@@ -420,7 +420,8 @@
 
                 {% endfor %}
                 {% if total_cost_attractions %}
-                    <div class="text-right font-weight-400">{% trans 'Total' %} PLN: {{ total_cost_attractions }}</div>
+                    <div class="text-right font-weight-400">{% trans 'Total' %} {{ total_cost_attractions }}
+                        {{ trip.currency }}</div>
                 {% endif %}
             {% endif %}
 
@@ -466,6 +467,5 @@
 
     <script>const trip_id = '{{ trip.id }}'</script>
     <script src="{% static 'own/js/detail-view.js' %}"></script>
-    {#    <script src="{% static 'own/js/smooth-scroll.js' %}"></script>#}
 
 {% endblock %}

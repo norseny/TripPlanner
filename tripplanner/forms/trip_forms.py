@@ -23,14 +23,15 @@ class MyDateTimeField(forms.DateTimeField):
 class TripForm(ModelForm, Form):
     class Meta:
         model = Trip
-        fields = ['name', 'description', 'private_trip']
+        fields = ['name', 'description', 'private_trip', 'currency']
         exclude = ()
         widgets = {
             'description': Textarea(attrs={'rows': 2, 'cols': '65', 'class': 'materialize-textarea form-control '
                                                                              'form-control-sm'}),
             # 'more_info': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
             'name': TextInput(attrs=dict_of_textinput_attrs),
-            'private_trip': CheckboxInput(attrs={'class': 'form-check',})
+            'private_trip': CheckboxInput(attrs={'class': 'form-check',}),
+            'currency': TextInput({'class': 'form-control form-control-sm', 'style' : 'width:20%'}),
 
         }
 

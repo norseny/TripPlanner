@@ -24,8 +24,8 @@ $(document).ready(function () {
                     myinput = $('.new-participant');
                 }
                 else {
-                    $('#check_icon').css('color', '#f44336');
-                    $('#check_icon').html("<i class='fas fa-times fa-2x red-text' aria-hidden='true'><\/i>" + data
+                    $('#check_icon').css('color', '#bf0000');
+                    $('#check_icon').html("<i class='fas fa-times fa-2x' aria-hidden='true'><\/i>" + data
                         .message_error);
                     myinput = $('.new-participant');
                 }

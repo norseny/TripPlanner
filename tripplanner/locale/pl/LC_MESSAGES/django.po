@@ -25,10 +25,10 @@ msgid "Home"
 msgstr "Strona Główna"
 
 #: tripplanner/templates/base.html:59
-msgid "All Trips List"
+msgid "All trips"
 msgstr "Wszystkie wycieczki"
 
-msgid "My Trip List"
+msgid "My trips"
 msgstr "Moje wycieczki"
 
 
@@ -46,7 +46,7 @@ msgstr "Jesteś zalogowany jako"
 
 #: tripplanner/templates/base.html:92
 #: tripplanner/templates/register/login.html:28
-msgid "Log in"
+msgid "Log in "
 msgstr "Zaloguj"
 
 #: tripplanner/templates/base.html:94
@@ -54,7 +54,7 @@ msgid "Logout"
 msgstr "Wyloguj"
 
 #: tripplanner/templates/register/login.html:8
-msgid "Log in to Trip Planner"
+msgid "Log in"
 msgstr "Logowanie"
 
 #: tripplanner/templates/register/login.html:10
@@ -118,6 +118,9 @@ msgstr "Czas zakończenia"
 #: tripplanner/templates/tripplanner/trip_detail.html:44
 msgid "Price (PLN)"
 msgstr "Koszt (PLN)"
+
+msgid "Cost"
+msgstr "Koszt"
 
 #: tripplanner/templates/tripplanner/trip_detail.html:32
 msgid "Trip's Details"
@@ -267,7 +270,7 @@ msgid "You have been successfully logged out."
 msgstr "Wylogowywanie zakończone powodzeniem."
 
 msgid "Price"
-msgstr "Koszt (PLN)"
+msgstr "Koszt"
 
 msgid "Polish"
 msgstr "Polski"
@@ -281,8 +284,8 @@ msgstr "Plik .pdf ze szczegółami"
 msgid "Back to Trip Details"
 msgstr "Powrót do szczegółów wycieczki"
 
-msgid "Total Cost (PLN)"
-msgstr "Koszt całkowity (PLN)"
+msgid "Total Cost"
+msgstr "Koszt całkowity"
 
 msgid "Inspired? Plan a similar trip!"
 msgstr "Zainspirowany? Zaplanuj podobną wycieczkę!"
@@ -422,8 +425,20 @@ msgstr "Moje ulubione"
 msgid "Create new"
 msgstr "Stwórz nową"
 
-msgid "All trips"
-msgstr "Wszystkie wycieczki"
-
 msgid "Other users'"
 msgstr "Pozostałe"
+
+msgid "Other users' trips"
+msgstr "Pozostałe wycieczki"
+
+msgid "Image removed"
+msgstr "Zdjęcie usunięto"
+
+msgid "Select a file"
+msgstr "Wybierz plik"
+
+msgid "Main image"
+msgstr "Zdjęcie główne"
+
+msgid "Currency"
+msgstr "Waluta"

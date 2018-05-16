@@ -3,37 +3,44 @@
 {% load static %}
 {% block title %}{% endblock %}
 {% block content %}
-    <div class="d-flex align-items-center justify-content-center m-5 mt-0 w-100">
-        <div>
-        <h1 class="h1-responsive mt-2">{{ trip.name }}</h1>
+    <div class="d-flex align-items-center justify-content-center m-md-5 mt-0" >
+        <div id="participants-container">
+        <h1 class="h1-responsive mt-2 ml-0">{{ trip.name }}</h1>
 
-
-    <h2 class="h2-responsive">{% trans 'Trip participants' %}</h2>
-    <ul>
+    <h2 class="h2-responsive ml-0">{% trans 'Trip participants' %}</h2>
+    <ul class="h5-responsive participants-list" >
         {% for participant in user_list %}
-            <li><a href="{% url 'profile' participant.id %}">{{ participant.username }}</a></li>
+            <li>
+            <span class="error-style icon-remove">
             {% if trip.created_by_id == user.id  %}
                 {% if participant.id != user.id %}
-                    <span class="error-style" onclick="removeParticipant('{{ participant.id }}')">Remove</span>
+                    <span class="cursor-pointer" onclick="removeParticipant('{{ participant.id }}')"><i
+                            class="fas fa-user-times"></i></span>
                 {% endif %}
             {% else %}
                 {% if participant.id == user.id %}
-                    <span class="error-style" onclick="removeParticipant('{{ participant.id }}')">Remove</span>
+                    <span class="cursor-pointer " onclick="removeParticipant('{{ participant.id }}')"><i
+                            class="fas fa-user-times"></i></span>
                 {% endif %}
             {% endif %}
+            </span>
+            <a href="{% url 'profile' participant.id %}">{{ participant.username }}</a>
+            </li>
         {% endfor %}
     </ul>
 
     {% if trip.created_by_id == user.id %}
         <form class="md-form" method="post">
             {% csrf_token %}
-            <h2 class="h2-responsive">{% trans 'Add new participant' %}</h2>
+            <h2 class="h2-responsive ml-0">{% trans 'Add new participant' %}</h2>
             <div>
                 <span id="check_icon" style="visibility: hidden"></span>
             </div>
             <input class="form-control new-participant" type="text" id="username" name="username"
                    placeholder={% trans "Username" %}>
+            <div>
             <button class="verify-new-participant btn" type="button">{% trans 'Find' %}</button>
+            </div>
             <div>
                 <button class="btn" id='add-button' style="display: none" type="button">{% trans 'Add' %}</button>
             </div>
@@ -43,8 +50,6 @@
     </div>
 
     <a href="{% url 'trip-detail' trip.pk %}">{% trans 'Back to Trip Details' %}</a>
-
-
 
 {% endblock %}
 
