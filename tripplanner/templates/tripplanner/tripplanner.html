@@ -60,10 +60,10 @@
                 </div>
                 <div class="col-6">
                     {% if user.is_anonymous %}
-                        <span class="d-block"><a href="{% url 'login' %}">Zaloguj się</a></span>
-                        <span class="d-block mt-4"><a href="{% url 'signup' %}">Zarejestruj się</a></span>
+                        <span class="d-block"><a href="{% url 'login' %}" class="a-on-dark">Zaloguj się</a></span>
+                        <span class="d-block mt-4"><a href="{% url 'signup' %}" class="a-on-dark">Zarejestruj się</a></span>
                     {% else %}
-                        <span class="d-block"><a href="{% url 'my-trip-list' %}">Przejdź do swoich wycieczek</a></span>
+                        <span class="d-block"><a href="{% url 'my-trip-list' %}" class="a-on-dark">Przejdź do swoich wycieczek</a></span>
                     {% endif %}
                 </div>
             </div>
@@ -79,37 +79,38 @@
             informacje&nbsp;o:
             <div class="row">
                 <div class="col-md-4 p-4">
-                    <i class="fas fa-rocket fa-3x p-1"></i>
+                    <span class="fas fa-rocket fa-3x p-1"></span>
                     <span class="d-block small">podróżach,</span>
                 </div>
                 <div class="col-md-4 p-4">
-                    <i class="fas fa-bed fa-3x p-1"></i>
+                    <span class="fas fa-bed fa-3x p-1"></span>
                     <span class="d-block small">zakwaterowaniu,</span>
                 </div>
                 <div class="col-md-4 p-4">
-                    <i class="fas fa-camera fa-3x p-1"></i>
+                    <span class="fas fa-camera fa-3x p-1"></span>
                     <span class="d-block small">atrakcjach.</span>
                 </div>
             </div>
         </h2>
-        <span class="d-block"><a href="#home-seeking-inspiration"><i class="fas fa-chevron-down fa-3x"></i></a></span>
+        <span class="d-block"><a href="#home-seeking-inspiration"><span class="fas fa-chevron-down
+        fa-3x"></span></a></span>
     </article>
 </div>
 
 
 <div id="home-seeking-inspiration">
-    <div class="text-center">
-        <div class="d-inline-block m-3 mt-3">
+    <div class="text-center" id="seeking-insp-txt">
+        <div class="d-inline-block m-3 mt-5">
 
             <h2 class="h2-responsive">
                 <span class="d-block">...a może szukasz inspiracji?</span>
-                <span class="d-inline-block py-3"><i class="far fa-smile fa-3x d-inline-block"></i><i
-                        class="far fa-lightbulb d-inline-block"></i></span>
+                <span class="far fa-smile fa-3x py-2 pr-0 mr-0"></span>
+                <span class="far fa-lightbulb"></span>
                 <span class="d-block small">Przeglądaj wycieczki innych użytkowników </span>
                 <span class="d-block small">i używaj ich jako szablonów!</span>
             </h2>
-            <span class="d-block mt-2"><a href="#home-trip-attributes2"><i
-                    class="fas fa-chevron-down fa-3x"></i></a></span>
+            <span class="d-block mt-2"><a href="#home-trip-attributes2"><span
+                    class="fas fa-chevron-down fa-3x"></span></a></span>
 
         </div>
     </div>
@@ -122,18 +123,18 @@
             Możesz też:
             <div class="row p-1">
                 <div class="col-md-6 p-4">
-                    <i class="fas fa-users fa-3x p-1"></i>
+                    <span class="fas fa-users fa-3x p-1"></span>
                     <span class="d-block small">tworzyć plany razem ze znajomymi,</span>
                 </div>
                 <div class="col-md-6 p-4">
-                    <i class="fas fa-file-pdf fa-3x p-1"></i>
+                    <span class="fas fa-file-pdf fa-3x p-1"></span>
                     <span class="d-block small mt-2">zapisać wycieczkę w&nbsp;pliku .pdf i&nbsp;korzystać z&nbsp;notatek
                         offline!</span>
                 </div>
             </div>
         </h2>
         <span class="d-block">
-                <a href="#home-writing-bg"><i class="fas fa-chevron-down fa-3x"></i></a>
+                <a href="#home-writing-bg"><span class="fas fa-chevron-down fa-3x"></span></a>
             </span>
     </article>
 </div>
@@ -161,6 +162,53 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="{% static 'own/js/smooth-scroll.js' %}"></script>
+
+    <script>
+
+$(document).ready( function() {
+    $("#seeking-insp-txt").hide(); //hide your div initially
+{#    var topOfOthDiv = $("#home-seeking-inspiration").offset().top;#}
+{#    $(window).scroll(function() {#}
+{#        if($(window).scrollTop() > topOfOthDiv) { //scrolled past the other div?#}
+{#            $("#seeking-insp-txt").show(); //reached the desired point -- show div#}
+{#        }#}
+{#        else{#}
+{#            $("#seeking-insp-txt").hide(); //else above the desired point -- hide div#}
+{#        }#}
+{#    });#}
+ });
+
+var findMiddleElement = (function(docElm){
+    var viewportHeight = docElm.clientHeight,
+        // here i'm using pre-cached DIV elements, but you can use anything you want.
+        // Cases where elements are generated dynamically are more CPU intense ofc.
+        elements = $('div');
+
+    return function(e){
+        var middleElement;
+        if( e && e.type === 'resize' )
+            viewportHeight = docElm.clientHeight;
+
+        elements.each(function(){
+            var pos = this.getBoundingClientRect().top;
+            // if an element is more or less in the middle of the viewport
+            if( pos > viewportHeight/2.5 && pos < viewportHeight/1.5 ){
+                middleElement = this;
+                if (middleElement.id === 'home-seeking-inspiration'){
+                    $("#seeking-insp-txt").show();
+                }
+                return false; // stop iteration
+            }
+        });
+
+        console.log(middleElement);
+    }
+})(document.documentElement);
+
+$(window).on('scroll resize', findMiddleElement);
+
+
+    </script>
 
 </footer>
 </body>

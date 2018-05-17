@@ -4,8 +4,8 @@ $(document).ready(function () {
     mycheckbox.hide();
     mycheckbox.before(
         "<span class=\"error-style icon-remove mt-4 cursor-pointer\"\n\" + id=\"remove-img-icon\">\n" +
-        "<i class=\"fas fa-times-circle fa-2x\">\n" +
-        "</i>"+ removeLbl +"</span>");
+        "<span class=\"fas fa-times-circle fa-2x\">\n" +
+        "</span>"+ removeLbl +"</span>");
     $("label[for=\"main_image-clear_id\"]").hide();
 
     $("#remove-img-icon").click(function () {

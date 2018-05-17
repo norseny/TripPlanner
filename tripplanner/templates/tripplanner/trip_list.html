@@ -40,7 +40,7 @@
                                 <a href="{% url 'trip-detail' trip.pk %}">
                                 {{ trip.name }}</a>
                             {% if trip.profile_set.count > 0 %}
-                                    {{ trip.profile_set.count }}<i class="fas fa-heart d-inline"></i>
+                                    {{ trip.profile_set.count }}<span class="fas fa-heart d-inline"></span>
                             {% endif %}
                             </span>
                 </div>

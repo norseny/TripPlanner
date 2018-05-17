@@ -17,7 +17,7 @@ $(document).ready(function () {
                 $('#check_icon').css('font-style', 'italic');
                 if (data.exists) {
                     $('#check_icon').css('color', '#4caf50');
-                    $('#check_icon').html("<i class='fas fa-check fa-2x green-text' aria-hidden='true'><\/i>" +
+                    $('#check_icon').html("<span class='fas fa-check fa-2x green-text' aria-hidden='true'><\/span>" +
                         data.message_text);
                     $('#add-button').show();
                     $('.verify-new-participant').hide()
@@ -25,7 +25,7 @@ $(document).ready(function () {
                 }
                 else {
                     $('#check_icon').css('color', '#bf0000');
-                    $('#check_icon').html("<i class='fas fa-times fa-2x' aria-hidden='true'><\/i>" + data
+                    $('#check_icon').html("<span class='fas fa-times fa-2x' aria-hidden='true'><\/span>" + data
                         .message_error);
                     myinput = $('.new-participant');
                 }

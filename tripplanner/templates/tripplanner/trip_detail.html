@@ -10,8 +10,8 @@
     <div class="row m-0 d-flex justify-content-center align-items-center mt-lg-4 m-sm-3">
         {% if prev_trip_id %}
             <div class="col-1 p-0 text-left">
-                <a href="{% url 'trip-detail' prev_trip_id %}"><i
-                        class="fas fa-angle-left fa-3x"></i></a>
+                <a href="{% url 'trip-detail' prev_trip_id %}"><span
+                        class="fas fa-angle-left fa-3x"></span></a>
             </div>
         {% endif %}
         <div class="col-10 text-center">
@@ -20,8 +20,8 @@
         {% if next_trip_id %}
             <div class="col-1 p-0 text-right">
 
-                <a class="" href="{% url 'trip-detail' next_trip_id %}"> <i
-                        class="fas fa-angle-right fa-3x"></i></a>
+                <a class="" href="{% url 'trip-detail' next_trip_id %}"> <span
+                        class="fas fa-angle-right fa-3x"></span></a>
             </div>
         {% endif %}
     </div>
@@ -33,12 +33,12 @@
                 {% if not participant %}
                     {% if trip in user.profile.favourite_trips.all %}
                         <a href="{% url 'my-fav-trip-list' %}"><span
-                                class="font-weight-400">{% trans 'In your favourites' %} <i
-                                class="fas fa-heart"></i></span></a>
+                                class="font-weight-400">{% trans 'In your favourites' %} <span
+                                class="fas fa-heart"></span></span></a>
                     {% else %}
                         <button type="button" class="btn btn-sm d-inline-block"
                                 id="add-to-fav-btn">{% trans 'Add to your favourites!' %}
-                            <i class="fas fa-heart"></i></button>
+                            <span class="fas fa-heart"></span></button>
                     {% endif %}
 
                 {% endif %}
@@ -68,8 +68,8 @@
             {% else %}
                 <a href="{% url 'upload-trip-img' trip.pk %}"><span class="">
                                 <span class="d-block">
-                                    <i class="far fa-image fa-5x d-inline-block"></i>
-                                    <i class="fas fa-plus fa-2x d-inline-block mb-5"></i>
+                                    <span class="far fa-image fa-5x d-inline-block"></span>
+                                    <span class="fas fa-plus fa-2x d-inline-block mb-5"></span>
                                 </span>
                                 <span class="d-block">{% trans 'Add main image' %}</span>
                             </span></a>
@@ -109,13 +109,13 @@
                         <div class="row justify-content-center align-items-center text-center mt-3 mt-md-5">
                             <div class="col-6">
                                 <a href="{% url 'trip-participants' trip.pk %}">
-                                    <div><i class="fas fa-users fa-3x d-inline-block"></i></div>
+                                    <div><span class="fas fa-users fa-3x d-inline-block"></span></div>
                                     {% trans 'Trip participants' %}
                                 </a>
                             </div>
                             <div class="col-6">
                                 <a href="{% url 'trip-detail-pdf' trip.pk %}">
-                                    <div><i class="far fa-file-pdf fa-3x d-inline-block"></i></div>
+                                    <div><span class="far fa-file-pdf fa-3x d-inline-block"></span></div>
                                     {% trans 'Pdf-file with details' %}
 
                                 </a>
@@ -136,7 +136,7 @@
                         <a href="{% url 'upload-trip-img' trip.pk %}">
                             <div class="overlay">
                                 <div class="photo-text-over">
-                                    <div><i class="far fa-image fa-5x d-inline-block"></i></div>
+                                    <div><span class="far fa-image fa-5x d-inline-block"></span></div>
                                     <div id="change-main-image">{% trans "Change main image" %}</div>
                                 </div>
                             </div>
@@ -146,8 +146,8 @@
                     <div class="row h-100 justify-content-center align-items-center text-center no-a-underline">
                         <a href="{% url 'upload-trip-img' trip.pk %}"><span class="">
                                 <span class="d-block">
-                                    <i class="far fa-image fa-5x d-inline-block"></i>
-                                    <i class="fas fa-plus fa-2x d-inline-block mb-5"></i>
+                                    <span class="far fa-image fa-5x d-inline-block"></span>
+                                    <span class="fas fa-plus fa-2x d-inline-block mb-5"></span>
                                 </span>
                                 <span class="d-block">{% trans 'Add main image' %}</span>
                             </span></a>
@@ -178,8 +178,8 @@
             <div class="d-inline" id="show-trip-details" onclick="openCloseDetails(event,
             'trip-details-table')">
             <h2 class="d-inline-block details-label h2-responsive pr-2">{% trans "Trip's Details" %}</h2>
-            <i class="fas fa-angle-down fa-3x" id="icon-details-down-view" style="display: none"></i>
-            <i class="fas fa-angle-up fa-3x" id="icon-details-up-view"></i>
+            <span class="fas fa-angle-down fa-3x" id="icon-details-down-view" style="display: none"></span>
+            <span class="fas fa-angle-up fa-3x" id="icon-details-up-view"></span>
             </div>
         </div>
         <div class="
@@ -187,7 +187,7 @@
         pt-0 mr-lg-5 ml-lg-5 " id="trip-details-table" style="display: block">
 
             {% if trip.journey_set.all %}
-                <i class="brown-font fas fa-rocket"></i>
+                <span class="brown-font fas fa-rocket"></span>
                 {% for el in trip.journey_set.all %}
 
                     <div class="d-md-none">
@@ -218,13 +218,13 @@
                                     <div class="truncated-info">
                                         {{ el.more_info|truncatewords:"3"|slice:"-3" }}
                                         <span class="icon-show-more position-absolute p-1 h5">
-                                                <i class="fas fa-ellipsis-h"></i>
+                                                <span class="fas fa-ellipsis-h"></span>
                                             </span>
                                     </div>
                                     <div class="more-info-to-show"
                                          style="display: none">{{ el.more_info }}
                                         <span class="icon-show-less position-absolute pl-1 h4">
-                                                <i class="fas fa-caret-left"></i>
+                                                <span class="fas fa-caret-left"></span>
                                             </span>
                                     </div>
                                 {% endif %}
@@ -262,13 +262,13 @@
                                     {{ el.more_info|truncatewords:"5"|slice:"-3" }}
                                     <div class="d-inline-block pb-1 pl-1">
                                 <span class="icon-show-more position-absolute h5">
-                                    <i class="fas fa-ellipsis-h"></i>
+                                    <span class="fas fa-ellipsis-h"></span>
                                 </span>
                                     </div>
                                 </div>
                                 <div class="my-2 grey-border-bottom more-info-to-show font-small"
                                      style="display: none">{{ el.more_info }}
-                                    <span class="icon-show-less h5"><i class="fas fa-caret-left"></i></span>
+                                    <span class="icon-show-less h5"><span class="fas fa-caret-left"></span></span>
                                 </div>
                             {% endif %}
                         {% endif %}
@@ -283,7 +283,7 @@
 
 
             {% if trip.accommodation_set.all %}
-                <i class="brown-font fas fa-bed"></i>
+                <span class="brown-font fas fa-bed"></span>
                 {% for el in trip.accommodation_set.all %}
 
                     <div class="d-md-none">
@@ -307,13 +307,13 @@
                                     <span class="d-block truncated-info">
                                         {{ el.more_info|truncatewords:"3"|slice:"-3" }}
                                         <span class="icon-show-more position-absolute p-1 h5">
-                                                <i class="fas fa-ellipsis-h"></i>
+                                                <span class="fas fa-ellipsis-h"></span>
                                             </span>
                                     </span>
                                     <span class="d-block more-info-to-show"
                                          style="display: none">{{ el.more_info }}
                                         <span class="icon-show-less position-absolute pl-1 h4">
-                                                <i class="fas fa-caret-left"></i>
+                                                <span class="fas fa-caret-left"></span>
                                         </span>
                                     </span>
                                 {% endif %}
@@ -344,13 +344,13 @@
                                     {{ el.more_info|truncatewords:"5"|slice:"-3" }}
                                     <div class="d-inline-block pb-1 pl-1">
                                 <span class="icon-show-more position-absolute h5">
-                                    <i class="fas fa-ellipsis-h "></i>
+                                    <span class="fas fa-ellipsis-h "></span>
                                 </span>
                                     </div>
                                 </div>
                                 <div class="my-2 grey-border-bottom more-info-to-show font-small"
                                      style="display: none">{{ el.more_info }}
-                                    <span class="icon-show-less myicon h5"><i class="fas fa-caret-left"></i></span>
+                                    <span class="icon-show-less myicon h5"><span class="fas fa-caret-left"></span></span>
                                 </div>
                             {% endif %}
                         {% endif %}
@@ -364,7 +364,7 @@
 
 
             {% if trip.attraction_set.all %}
-                <div class="pt-3"><i class="brown-font fas fa-camera"></i></div>
+                <div class="pt-3"><span class="brown-font fas fa-camera"></span></div>
                 {% for el in trip.attraction_set.all %}
                     <div class="d-md-none">
                         <ul class="p-1 m-0">
@@ -380,13 +380,13 @@
                                     <span class="d-block truncated-info">
                                         {{ el.more_info|truncatewords:"3"|slice:"-3" }}
                                         <span class="icon-show-more p-1 h5">
-                                    <i class="fas fa-ellipsis-h"></i>
+                                    <span class="fas fa-ellipsis-h"></span>
                                 </span>
                                     </span>
                                     <span class="d-block more-info-to-show"
                                          style="display: none">{{ el.more_info }}
-                                        <span class="icon-show-less position-absolute pl-1 h4"><i
-                                                class="fas fa-caret-left"></i></span>
+                                        <span class="icon-show-less position-absolute pl-1 h4"><span
+                                                class="fas fa-caret-left"></span></span>
                                     </span>
                                 {% endif %}
                             </span>
@@ -410,13 +410,13 @@
                                     {{ el.more_info|truncatewords:"5"|slice:"-3" }}
                                     <div class="d-inline-block pb-1 pl-1">
                                     <span class="icon-show-more position-absolute h5">
-                                        <i class="fas fa-ellipsis-h "></i>
+                                        <span class="fas fa-ellipsis-h "></span>
                                     </span>
                                     </div>
                                 </div>
                                 <div class="my-2 grey-border-bottom more-info-to-show font-small"
                                      style="display: none">{{ el.more_info }}
-                                    <span class="icon-show-less  h5"><i class="fas fa-caret-left"></i></span>
+                                    <span class="icon-show-less  h5"><span class="fas fa-caret-left"></span></span>
                                 </div>
                             {% endif %}
                         {% endif %}
@@ -439,14 +439,14 @@
             <div class="row w-100 m-0 justify-content-center text-center">
                 <div class="col-6">
                     <a href="{% url 'trip-update' trip.pk %}">
-                        <div><i class="far fa-edit fa-3x"></i></div>
+                        <div><span class="far fa-edit fa-3x"></span></div>
                         {% trans 'Edit' %}
                     </a>
                 </div>
                 {% if user.id == trip.created_by_id %}
                     <div class="col-6">
                         <a href="{% url 'trip-delete' trip.pk %}">
-                            <div><i class="far fa-trash-alt fa-3x"></i></div>
+                            <div><span class="far fa-trash-alt fa-3x"></span></div>
                             {% trans 'Delete' %}
                         </a>
                     </div>
@@ -455,8 +455,8 @@
         {% else %}
             <div class="row w-100 m-0 justify-content-center text-center">
                 <a id="inspired" class=" d-inline-block" href=#>
-                    <div class="col-12 py-3"><i class="far fa-smile fa-5x"></i><i
-                            class="far fa-lightbulb fa-2x d-inline-block mb-5"></i>
+                    <div class="col-12 py-3"><span class="far fa-smile fa-5x"></span><span
+                            class="far fa-lightbulb fa-2x d-inline-block mb-5"></span>
                     </div>
                     {% trans 'Inspired? Plan a similar trip!' %}
                 </a>

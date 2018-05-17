@@ -58,8 +58,8 @@ function moreInfoButtonVisibility() {
             // "<form class=\"textarea-form\"method=\"post\" action=\"/#\">\n" +
             // "<button type=\"submit\" class='button-more-info w-100'>\n" +
             "<span class=\"d-block text-center add-more-info-button-icon\">" +
-            "<i class=\"fas fa-plus-circle fa-2x\">" +
-            "</i></span>");
+            "<span class=\"fas fa-plus-circle fa-2x\">" +
+            "</span></span>");
         // "   </button>\n" +
         // "</form>");
     }

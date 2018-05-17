@@ -44,7 +44,6 @@
 .user-in-navbar, .navbar-right-el {
     font-size: 1rem;
     padding: .5rem;
-    border-right: solid #0091ea 2px;
     border-left: solid #0091ea 2px;
     height: 40px;
     margin: 2px;
@@ -58,12 +57,38 @@
 }
 
 
-.nav-link {
+/*.nav-link {*/
+    /*color: black;*/
+    /*font-weight: bold;*/
+    /*border-left: solid #0091ea 2px;*/
+/*}*/
+
+#nav-all-trips {
+    color: black;
+    font-weight: bold;
+    border: none;
+    width: auto;
+}
+
+#nav-trip-with-attributes-create, #nav-my-fav-list, #nav-my-trip-list {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
     color: black;
     font-weight: bold;
     border-right: solid #0091ea 2px;
-    border-left: solid #0091ea 2px;
 }
+
+#nav-o-users-trips {
+    color: black;
+    font-weight: bold;
+}
+
+/*.navbar-nav:last-child {*/
+    /*color: black;*/
+    /*font-weight: bold;*/
+    /*border-right: solid #0091ea 2px;*/
+/*}*/
 
 .nav-link-sm {
     background-color: transparent;
@@ -347,7 +372,7 @@ nav, #navbar-change-lang {
 }
 
 #navbar-change-lang {
-    border-top: solid 2px white;
+    border-top: solid 1px black;
     height: 60px;
 }
 
@@ -409,10 +434,10 @@ body, html, main {
 
 
 .navbar.navbar-light .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-light .navbar-nav .nav-item.active>.nav-link{
-        /*border: 2px solid;*/
-        background-color: rgba(0, 145, 234, 0.4);
-
-
+    background-color: transparent;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-size: 90%;
 }
 
 .table td, .table th{

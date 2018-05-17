@@ -14,13 +14,13 @@
             <span class="error-style icon-remove">
             {% if trip.created_by_id == user.id  %}
                 {% if participant.id != user.id %}
-                    <span class="cursor-pointer" onclick="removeParticipant('{{ participant.id }}')"><i
-                            class="fas fa-user-times"></i></span>
+                    <span class="cursor-pointer" onclick="removeParticipant('{{ participant.id }}')"><span
+                            class="fas fa-user-times"></span></span>
                 {% endif %}
             {% else %}
                 {% if participant.id == user.id %}
-                    <span class="cursor-pointer " onclick="removeParticipant('{{ participant.id }}')"><i
-                            class="fas fa-user-times"></i></span>
+                    <span class="cursor-pointer " onclick="removeParticipant('{{ participant.id }}')"><span
+                            class="fas fa-user-times"></span></span>
                 {% endif %}
             {% endif %}
             </span>

@@ -111,30 +111,10 @@ html, main, body {
     }
 }
 
-/*@media (max-width: 850px) {*/
-/*#home-first-h1{*/
-/*margin-bottom: 5rem;*/
-/*margin-right: 5rem;*/
-/*}*/
-/*#home-first-h1-links-div {*/
-/*font-size: 40%;*/
-/*}*/
-/*}*/
-
-/*@media (min-width: 992px) {*/
-/*#home-first-h1{*/
-/*margin-bottom: 4rem;*/
-/*margin-right: 10rem;*/
-/*}*/
-/*#home-first-h1-links-div {*/
-/*font-size: 60%;*/
-/*}*/
-/*}*/
-
 #home-first-bg {
     /*background: url(../img/test4kopia.jpg) no-repeat center center fixed;*/
-    /*background: url(../img/1bgv3akopia.png) no-repeat center center fixed;*/
-    background: url(../img/1bgv3anar.png) no-repeat center center fixed;
+    background: url(../img/desk-photos2.png) no-repeat center center fixed;
+    /*background: url(../img/1bgv3anar.png) no-repeat center center fixed;*/
     color: white;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -168,17 +148,20 @@ html, main, body {
 }
 
 a {
-    color: deepskyblue;
-    /*text-decoration: none;*/
-    /*border-bottom: 1px solid rgba(0, 0, 0, 0.50);*/
+    color: #0091ea;
 }
 
 .a-on-dark {
-    /*border-bottom: 1px solid rgba(255, 255, 255, 0.5);*/
+    border-bottom: 2px solid #0091ea;;
+    color: white;
+}
+
+.a-on-dark:hover {
+    font-weight: bold;
 }
 
 a:hover {
-    font-weight: 500; /* todo: check */
+    font-weight: bold;
     color: #0091ea;
     border-bottom: 3px solid #0091ea;
 }
