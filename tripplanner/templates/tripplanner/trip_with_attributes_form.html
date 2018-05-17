@@ -13,7 +13,7 @@
         <h1 class="my-3">{% trans "New Trip" %}</h1>
     {% endif %}
 
-    <form class="" action="" method="post">{% csrf_token %}
+    <form action="trip-with-attributes-create" method="post">{% csrf_token %}
         {% for field in form %}
             <div>
                 {% trans field.label %}
@@ -27,130 +27,136 @@
 
         <div class="form-with-acc">
             <div class="d-flex justify-content-center align-items-center text-center">
-                <span class="d-inline-block span-toggle my-1"
-                      data-toggle="collapse"
-                      data-target="#journeys"
-                      aria-controls="journeys" id="journey-acc">
+                <div class="d-inline-block span-toggle my-1"
+                     data-toggle="collapse"
+                     data-target="#journeys"
+                     aria-controls="journeys" id="journey-acc">
                     <i class="fas fa-rocket"></i>
-                <h2 class="mb-0 details-label d-inline h2-responsive">{% trans 'Journeys' %}</h2>
-                <i class="fas fa-angle-down fa-3x icon-details-down-form" id="icon-down-journey"></i>
-                <i class="fas fa-angle-up fa-3x icon-details-up-form" id="icon-up-journey"></i></span>
+                    <h2 class="mb-0 details-label d-inline h2-responsive">{% trans 'Journeys' %}</h2>
+                    <i class="fas fa-angle-down fa-3x icon-details-down-form" id="icon-down-journey"></i>
+                    <i class="fas fa-angle-up fa-3x icon-details-up-form" id="icon-up-journey"></i></div>
             </div>
             <div class="collapse show scrollable-horizontally" id="journeys">
                 <table class="table">
-                    {{ journeys.management_form }}
-                    {% for form in journeys.forms %}
-                        {% if forloop.first %}
-                            <thead>
-                            <tr>
-                                {% for field in form.visible_fields %}
-                                    <th>{% trans field.label|capfirst %}</th>
-                                {% endfor %}
-                            </tr>
-                            </thead>
-                        {% endif %}
-                        <tr class="{% cycle row1 row2 %} formset_row1">
-                            {% for field in form.visible_fields %}
-                                <td>
-                                    {% if forloop.first %}
-                                        {% for hidden in form.hidden_fields %}
-                                            {{ hidden }}
+                    <thead>
+                    <tr>
+                        <th>
+                            {{ journeys.management_form }}
+                            {% for form in journeys.forms %}
+                                {% if forloop.first %}
+                                    </th></tr>
+                                    <tr>
+                                        {% for field in form.visible_fields %}
+                                            <th>{% trans field.label|capfirst %}</th>
                                         {% endfor %}
-                                    {% endif %}
-                                    <div class="field">
-                                        {{ field }}
-                                    </div>
-                                    <div class="error-style">{{ field.errors.as_text }}</div>
-                                </td>
+                                    </tr>
+                                    </thead>
+                                {% endif %}
+                                <tr class="{% cycle row1 row2 %} formset_row1">
+                                    {% for field in form.visible_fields %}
+                                        <td>
+                                            {% if forloop.first %}
+                                                {% for hidden in form.hidden_fields %}
+                                                    {{ hidden }}
+                                                {% endfor %}
+                                            {% endif %}
+                                            <div class="field">
+                                                {{ field }}
+                                            </div>
+                                            <div class="error-style">{{ field.errors.as_text }}</div>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
                             {% endfor %}
-                        </tr>
-                    {% endfor %}
                 </table>
             </div>
         </div>
 
         <div class="form-with-acc">
             <div class="d-flex justify-content-center align-items-center">
-                <span class="d-inline-block span-toggle my-1"  data-toggle="collapse"
-                      data-target="#accommodations" aria-controls="accommodations" id="accommodation-acc">
-                <i class="fas fa-bed"></i>
-                <h2 class="details-label mb-0 d-inline h2-responsive">{% trans 'Accommodations' %}</h2>
-                <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-accommodation"></i>
-                <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-accommodation"></i>
-                    </span>
+                <div class="d-inline-block span-toggle my-1" data-toggle="collapse"
+                     data-target="#accommodations" aria-controls="accommodations" id="accommodation-acc">
+                    <i class="fas fa-bed"></i>
+                    <h2 class="details-label mb-0 d-inline h2-responsive">{% trans 'Accommodations' %}</h2>
+                    <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-accommodation"></i>
+                    <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-accommodation"></i>
+                </div>
             </div>
             <div class="collapse scrollable-horizontally" id="accommodations">
                 <table class="table">
-                    {{ accommodations.management_form }}
-                    {% for form in accommodations.forms %}
-                        {% if forloop.first %}
-                            <thead>
-                            <tr>
-                                {% for field in form.visible_fields %}
-                                    <th>{% trans field.label|capfirst %}</th>
-                                {% endfor %}
-                            </tr>
-                            </thead>
-                        {% endif %}
-                        <tr class="{% cycle row1 row2 %} formset_row2">
-                            {% for field in form.visible_fields %}
-                                <td>
-                                    {% if forloop.first %}
-                                        {% for hidden in form.hidden_fields %}
-                                            {{ hidden }}
+                    <thead>
+                    <tr>
+                        <th>
+                            {{ accommodations.management_form }}
+                            {% for form in accommodations.forms %}
+                                {% if forloop.first %}
+                                    </th></tr>
+                                    <tr>
+                                        {% for field in form.visible_fields %}
+                                            <th>{% trans field.label|capfirst %}</th>
                                         {% endfor %}
-                                    {% endif %}
-                                    <div class="field">
-                                        {{ field }}
-                                    </div>
-                                    <div class="error-style">{{ field.errors.as_text }}</div>
-                                </td>
+                                    </tr>
+                                    </thead>
+                                {% endif %}
+                                <tr class="{% cycle row1 row2 %} formset_row2">
+                                    {% for field in form.visible_fields %}
+                                        <td>
+                                            {% if forloop.first %}
+                                                {% for hidden in form.hidden_fields %}
+                                                    {{ hidden }}
+                                                {% endfor %}
+                                            {% endif %}
+                                            <div class="field">
+                                                {{ field }}
+                                            </div>
+                                            <div class="error-style">{{ field.errors.as_text }}</div>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
                             {% endfor %}
-                        </tr>
-                    {% endfor %}
                 </table>
             </div>
         </div>
 
         <div class="form-with-acc">
             <div class="d-flex justify-content-center align-items-center">
-                <span class="d-inline-block span-toggle my-1" data-toggle="collapse"
-                 data-target="#attractions" aria-controls="attractions" id="attraction-acc">
-                <i class="fas fa-camera"></i>
-                <h2 class="details-label d-inline h2-responsive">{% trans 'Attractions' %}</h2>
-                <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-attraction"></i>
-                <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-attraction"></i>
-                    </span>
+                <div class="d-inline-block span-toggle my-1" data-toggle="collapse"
+                     data-target="#attractions" aria-controls="attractions" id="attraction-acc">
+                    <i class="fas fa-camera"></i>
+                    <h2 class="details-label d-inline h2-responsive">{% trans 'Attractions' %}</h2>
+                    <i class="fas fa-angle-down fa-3x icon-details-down-form myicon" id="icon-down-attraction"></i>
+                    <i class="fas fa-angle-up fa-3x icon-details-up-form myicon" id="icon-up-attraction"></i>
+                </div>
             </div>
             <div class="collapse scrollable-horizontally" id="attractions">
-                <table class="table">
-                    {{ attractions.management_form }}
-                    {% for form in attractions.forms %}
-                        {% if forloop.first %}
-                            <thead>
-                            <tr>
-                                {% for field in form.visible_fields %}
-                                    <th>{% trans field.label|capfirst %}</th>
-                                {% endfor %}
-                            </tr>
-                            </thead>
-                        {% endif %}
-                        <tr class="{% cycle row1 row2 %} formset_row3">
+                {{ attractions.management_form }}
+                {% for form in attractions.forms %}
+                    {% if forloop.first %}
+                        <table class="table">
+                        <thead>
+                        <tr>
                             {% for field in form.visible_fields %}
-                                <td>
-                                    {% if forloop.first %}
-                                        {% for hidden in form.hidden_fields %}
-                                            {{ hidden }}
-                                        {% endfor %}
-                                    {% endif %}
-                                    <div class="field">
-                                        {{ field }}
-                                    </div>
-                                    <div class="error-style">{{ field.errors.as_text }}</div>
-                                </td>
+                                <th>{% trans field.label|capfirst %}</th>
                             {% endfor %}
                         </tr>
-                    {% endfor %}
+                        </thead>
+                    {% endif %}
+                    <tr class="{% cycle row1 row2 %} formset_row3">
+                        {% for field in form.visible_fields %}
+                            <td>
+                                {% if forloop.first %}
+                                    {% for hidden in form.hidden_fields %}
+                                        <span>{{ hidden }}</span>
+                                    {% endfor %}
+                                {% endif %}
+                                <div class="field">
+                                    {{ field }}
+                                </div>
+                                <div class="error-style">{{ field.errors.as_text }}</div>
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
                 </table>
             </div>
         </div>

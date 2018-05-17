@@ -41,14 +41,37 @@
     display: inline-block;
     width: 3rem;
 }
+.user-in-navbar, .navbar-right-el {
+    font-size: 1rem;
+    padding: .5rem;
+    border-right: solid #0091ea 2px;
+    border-left: solid #0091ea 2px;
+    height: 40px;
+    margin: 2px;
+}
 
-.nav-link{
+.user-in-navbar:hover, .navbar-right-el:hover {
     font-weight: bold;
-    background-color: rgba(0, 145, 234, 0.4);
+    border: solid#0091ea 2px;
+    padding-bottom: 3px;
+    color: black;
+}
+
+
+.nav-link {
+    color: black;
+    font-weight: bold;
+    border-right: solid #0091ea 2px;
+    border-left: solid #0091ea 2px;
 }
 
 .nav-link-sm {
     background-color: transparent;
+}
+
+
+.font-black {
+    color: black;
 }
 
 .icon-remove:hover {
@@ -104,14 +127,14 @@
 }
 
 @media (min-width:992px) and (max-width:1045px){
-    .lang-form-el {
-        max-width: 100%!important;
-        width: 100%;
-    }
-    .lang-form {
-        padding-left: 1rem!important;
+    /*.lang-form-el {*/
+        /*max-width: 100%!important;*/
+        /*width: 100%;*/
+    /*}*/
+    /*.lang-form {*/
+        /*padding-left: 1rem!important;*/
 
-    }
+    /*}*/
 }
 
 @media (min-width: 1280px) {
@@ -238,7 +261,7 @@ a:hover, #change-main-image,
 }
 
 a.nav-link:hover{
-    border: 2px solid;
+    border: 2px solid #0091ea;
 }
 
 .h-30px{
@@ -319,8 +342,13 @@ th, td {
 }
 
 
-nav {
+nav, #navbar-change-lang {
     background: rgba(245, 245, 245, 0.48);
+}
+
+#navbar-change-lang {
+    border-top: solid 2px white;
+    height: 60px;
 }
 
 footer {
@@ -381,7 +409,7 @@ body, html, main {
 
 
 .navbar.navbar-light .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-light .navbar-nav .nav-item.active>.nav-link{
-        border: 2px solid;
+        /*border: 2px solid;*/
         background-color: rgba(0, 145, 234, 0.4);
 
 

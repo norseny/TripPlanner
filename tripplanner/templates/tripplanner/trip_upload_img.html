@@ -9,7 +9,7 @@
     <div>
     <h1 class="h1-responsive ml-0">{{ trip.name }}</h1>
     <h2 class="h2-responsive ml-0">{% trans 'Main image' %}</h2>
-        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <form action="upload-trip-img" method="post" enctype="multipart/form-data">{% csrf_token %}
         {% for field in form %}
                 <div>
                     {{ field.errors }}
