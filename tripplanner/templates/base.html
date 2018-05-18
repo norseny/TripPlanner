@@ -85,11 +85,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContentCust">
         <ul class="navbar-nav mx-auto">
             {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link nav-link-sm" href="{% url 'my-trip-list' %}">{% trans 'My trips' %}</a>
+                <li class="nav-item d-inline-block h-100">
+                    <a class="nav-link nav-link-sm d-inline-block h-100" href="{% url 'my-trip-list' %}">{% trans 'My trips' %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-sm"
+                    <a class="nav-link nav-link-sm d-inline-block"
                        href="{% url 'my-fav-trip-list' %}">{% trans 'My favourite trips' %}</a>
                 </li>
                 <li class="nav-item ">

@@ -28,10 +28,6 @@ $(document).ready(function () {
         a.prev().show()
     });
         $("#show-trip-details").click(function () {
-        // $('#icon-details-down-view:visible').hide();
-        // $('#icon-details-down-view:hidden').show();
-        // $('#icon-details-up-view:hidden').show();
-        // $('#icon-details-up-view:visible').hide();
         $('#trip-details-table').slideToggle( "slow");
     });
 

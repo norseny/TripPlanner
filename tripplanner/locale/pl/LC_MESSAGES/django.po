@@ -476,7 +476,7 @@ msgstr "miejscach zakwaterowania,"
 msgid "journeys,"
 msgstr "podróżach,"
 
-msgid "TripPlanner is a website allowing you to store information about your trips. Save information about your planned:"
+msgid "TripPlanner is a website allowing you to store information about your trips. Save information about:"
 msgstr "TripPlanner to serwis, w którym przechowasz informacje dotyczące wycieczek. Zapisuj informacje o swoich:"
 
 msgid "Go to your trips"
@@ -490,3 +490,15 @@ msgstr "Planujesz wycieczkę?"
 
 msgid "Use"
 msgstr "Poznaj"
+
+msgid "You can also:"
+msgstr "Możesz też:"
+
+msgid "Your image size cannot exceed 2 MB"
+msgstr "Rozmiar pliku nie może być większy niż 2 MB"
+
+msgid "Couldn't read uploaded image"
+msgstr "Wczytanie pliku niemożliwe"
+
+msgid "Image file too large"
+msgstr "Rozmiar pliku przekracza 2 MB"

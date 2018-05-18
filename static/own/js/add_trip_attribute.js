@@ -26,7 +26,7 @@ function addFormsets() {
         deleteText: '<span class="form-plus-minus-js">-</span>',
         prefix: 'journey_set',
         added: datepickerCallback(),
-        added2: moreInfoButtonVisibility()
+        added2: newInfoButtonAndTexarea()
 
     });
 
@@ -34,8 +34,8 @@ function addFormsets() {
         addText: '<span class="form-plus-minus-js">+</span>' + addNewRow,
         deleteText: '<span class="form-plus-minus-js">-</span>',
         prefix: 'accommodation_set',
-        added: datepickerCallback(),
-        added2: moreInfoButtonVisibility()
+        added: datepickerCallback()
+        // added2: newInfoButtonAndTexarea()
 
     });
 
@@ -43,8 +43,8 @@ function addFormsets() {
         addText: '<span class="form-plus-minus-js">+</span>' + addNewRow,
         deleteText: '<span class="form-plus-minus-js">-</span>',
         prefix: 'attraction_set',
-        added: datepickerCallback(),
-        added2: moreInfoButtonVisibility()
+        added: datepickerCallback()
+        // added2: newInfoButtonAndTexarea()
 
     });
 }

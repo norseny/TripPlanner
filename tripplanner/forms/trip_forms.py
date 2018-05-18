@@ -1,5 +1,7 @@
 from django.forms import Form, ModelForm, inlineformset_factory, Textarea, TextInput, Select, NumberInput, \
     CheckboxInput, EmailInput
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
 
 from tripplanner.models import *
 from django import forms
@@ -109,6 +111,15 @@ class ImageUploadForm(ModelForm):
     class Meta:
         model = Trip
         fields = ['main_image']
+
+    def clean_main_image(self):
+        main_image = self.cleaned_data.get('main_image', False)
+        if main_image:
+            if main_image._size > 2*1024*1024:
+                raise ValidationError(_(str("Image file too large")))
+            return main_image
+        else:
+            raise ValidationError(_(str("Couldn't read uploaded image")))
 
 
 

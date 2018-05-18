@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from tripplanner.models import trip_models
+from django.urls import reverse
+
 
 
 class Profile(models.Model):
@@ -11,6 +13,9 @@ class Profile(models.Model):
     location = models.CharField(max_length=30, blank=True)
     email = models.EmailField(blank=True)
     favourite_trips = models.ManyToManyField(trip_models.Trip)
+
+    def get_absolute_url(self):
+        return reverse('profile', kwargs={'pk': self.pk})
 
 
 @receiver(post_save, sender=User)

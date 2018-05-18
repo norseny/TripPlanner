@@ -6,7 +6,7 @@
         <h1>{% trans 'Edit profile info' %}</h1>
         <h2>{{ profile.user.username }}</h2>
 
-        <form action="profile-update" method="post">{% csrf_token %}
+        <form action="" method="post">{% csrf_token %}
             {% for field in form %}
                 <div>
                     {% trans field.label %}

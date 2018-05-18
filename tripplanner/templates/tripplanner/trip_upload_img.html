@@ -9,16 +9,18 @@
     <div>
     <h1 class="h1-responsive ml-0">{{ trip.name }}</h1>
     <h2 class="h2-responsive ml-0">{% trans 'Main image' %}</h2>
-        <form action="upload-trip-img" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <p>{% trans 'Your image size cannot exceed 2 MB' %}</p>
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
         {% for field in form %}
                 <div>
-                    {{ field.errors }}
+                    <span class="error-style">{{ field.errors }}</span>
                     {{ field }}
                 </div>
         {% endfor %}
         <div class="mt-4">
+            <a href="{% url 'trip-detail' trip.pk %}" class="no-a-underline-on-hover"><span class="btn btn-primary">{% trans 'Cancel' %}</span></a>
             <input class="btn btn-primary" type="submit" value="{% trans 'Save' %}"/>
-            <a href="{% url 'trip-detail' trip.pk %}" class="no-a-underline-on-hover"><span class="btn btn-primary">{% trans 'Cancel' %}</span></a></div>
+        </div>
 
         </form>
 </div>
