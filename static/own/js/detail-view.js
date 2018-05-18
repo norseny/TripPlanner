@@ -15,18 +15,6 @@ $(document).ready(function () {
             }
         });
     });
-    // $(".icon-show-more").click(function () {
-    //     var a;
-    //     a = $(this).closest("div.d-flex");
-    //     a.next().show();
-    //     a.css("cssText", "display: none !important;");
-    // });
-    // $(".icon-show-less").click(function () {
-    //     var a;
-    //     a = $(this).closest("div.more-info-to-show");
-    //     a.prev().show();
-    //     a.hide()
-    // });
     $(".icon-show-more").click(function () {
         var a;
         a = $(this).closest("div.truncated-info");

@@ -40,6 +40,38 @@ html, main, body {
 #home-begin-art {
     /*margin-top: 8rem;*/
     margin-left: 3rem;
+    margin-top: 7rem;
+}
+
+#cog-home {
+    background-color: rgba(0, 0, 0, 0.3);
+    display: block;
+    position: fixed!important;
+    /*bottom: 50%;*/
+    bottom: 2rem;
+    right: 0;
+    color: white;
+}
+
+#cog-home:hover{
+    color: #0091ea;
+    cursor: pointer;
+}
+
+#change-lang-home {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed!important;
+    /*bottom: 50%;*/
+    bottom: 2rem;
+    right: 0;
+}
+
+#lang-form{
+    width: 120px;
+}
+
+#lang-input-home {
+    background-color: #321911;
 }
 
 /*Small devices (landscape phones, 576px and up)*/
@@ -91,6 +123,11 @@ html, main, body {
     }
     #home-first-h1-main-text {
         font-size: 4rem;
+    }
+    #home-trip-attributes-main-txt {
+        margin-left: 15rem;
+        margin-right: 15rem;
+        margin-bottom: 5rem;
     }
 }
 

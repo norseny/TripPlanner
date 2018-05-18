@@ -21,49 +21,59 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'own/css/style-home.css' %}">
 
-    {#    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,latin-ext' rel='stylesheet'#}
-    {#          type='text/css'>#}
-
-
 </head>
 
 <body>
 
+<div id="cog-home" class="p-2">
+    <span class="fas fa-cog "></span>
+</div>
 
-{#<div id="testowe-tlo2">#}
-{#    <div class="h-100 d-flex text-right align-items-center justify-content-end">#}
-{#        <div class="d-inline-block m-5">#}
-{##}
-{#           <h1 id="first-h1-tp" class="display-3">#}
-{#                Planujesz wycieczkę?#}
-{#                <span class="d-block">#}
-{#                    Poznaj <a href="#trip-attributes">TripPlanner</a>!#}
-{#                </span>#}
-{#           </h1>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
+
+<div class="text-center" id="change-lang-home" style="display: none">
+                  <div class="d-inline-block p-2">
+                      <form class="form-inline lang-form d-inline-block" id="lang-form" action="{% url 'set_language' %}"
+                            method="post">{% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                        <select name="language" class="custom-select w-100">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                        selected{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input class="btn btn-sm d-inline w-100 m-0 mt-1" id="lang-input-home" type="submit"
+                               value="{% trans 'Change' %}"/>
+                    </form>
+          </div>
+</div>
+
+
 
 <div id="home-first-bg">
     <div class="h-100 w-100 d-flex align-items-end justify-content-end align-items-xl-center flex-column">
         <div id="home-1-text-container" class="text-center p-2">
-            <h1 id="home-first-h1-main-text">Planujesz wycieczkę?
+            <h1 id="home-first-h1-main-text">{% trans "Planning a trip?" %}
                 <span class="d-block">
-                    Użyj
+                    {% trans "Use" %}
                         <span class="font-weight-bold">
-                TripPlannera!
+                TripPlanner!
                         </span>
                     </span>
             </h1>
-            <div class="row align-items-center mt-4 p-3" id="home-first-h1-links-div">
-                <div class="col-6"><a href="#home-trip-attributes" class="a-on-dark">Dowiedz się więcej</a>
+            <div class="row align-items-center mt-4 p-lg-3 w-100" id="home-first-h1-links-div">
+                <div class="col-6 p-0"><a href="#home-trip-attributes" class="a-on-dark">{% trans "Find out more" %}</a>
                 </div>
-                <div class="col-6">
+                <div class="col-6 p-0">
                     {% if user.is_anonymous %}
-                        <span class="d-block"><a href="{% url 'login' %}" class="a-on-dark">Zaloguj się</a></span>
-                        <span class="d-block mt-4"><a href="{% url 'signup' %}" class="a-on-dark">Zarejestruj się</a></span>
+                        <span class="d-block"><a href="{% url 'login' %}" class="a-on-dark">{% trans 'Log in' %}</a></span>
+                        <span class="d-block mt-4"><a href="{% url 'signup' %}" class="a-on-dark">{% trans 'Register' %}</a></span>
                     {% else %}
-                        <span class="d-block"><a href="{% url 'my-trip-list' %}" class="a-on-dark">Przejdź do swoich wycieczek</a></span>
+                        <span class="d-block"><a href="{% url 'my-trip-list' %}" class="a-on-dark">{% trans "Go to your trips" %}</a></span>
                     {% endif %}
                 </div>
             </div>
@@ -74,21 +84,20 @@
 
 <div id="home-trip-attributes" class="p-5 d-flex justify-content-center text-center align-items-center">
     <article>
-        <h2 class="h2-responsive w-100"> W <span class="font-weight-bold">
-            TripPlannerze</span> przechowasz
-            informacje&nbsp;o:
+        <h2 class="h2-responsive w-100">
+            <span class="d-inline-block" id="home-trip-attributes-main-txt">{% trans "TripPlanner is a website allowing you to store information about your trips. Save information about your planned:" %}</span>
             <div class="row">
                 <div class="col-md-4 p-4">
                     <span class="fas fa-rocket fa-3x p-1"></span>
-                    <span class="d-block small">podróżach,</span>
+                    <span class="d-inline-block small w-100 text-center">{% trans "journeys," %}</span>
                 </div>
                 <div class="col-md-4 p-4">
                     <span class="fas fa-bed fa-3x p-1"></span>
-                    <span class="d-block small">zakwaterowaniu,</span>
+                    <span class="d-inline-block small w-100 text-center">{% trans "accommodations," %}</span>
                 </div>
                 <div class="col-md-4 p-4">
                     <span class="fas fa-camera fa-3x p-1"></span>
-                    <span class="d-block small">atrakcjach.</span>
+                    <span class="d-inline-block small w-100 text-center">{% trans "attractions." %}</span>
                 </div>
             </div>
         </h2>
@@ -103,11 +112,11 @@
         <div class="d-inline-block m-3 mt-4">
 
             <h2 class="h2-responsive mt-3">
-                <span class="d-block mb-2">...a może szukasz inspiracji?</span>
+                <span class="d-block mb-2">{% trans "Looking for inspiration?" %}</span>
                 <span class="far fa-smile fa-3x py-2 pr-0 mr-0"></span>
                 <span class="far fa-lightbulb"></span>
-                <span class="d-block small mt-2">Przeglądaj wycieczki innych użytkowników </span>
-                <span class="d-block small">i używaj ich jako szablonów!</span>
+                <span class="d-block small mt-2">{% trans "Browse other people's trips" %} </span>
+                <span class="d-block small">{% trans "and use them as templates!" %}</span>
             </h2>
             <span class="d-block mt-2"><a href="#home-trip-attributes2"><span
                     class="fas fa-chevron-down fa-3x"></span></a></span>
@@ -124,12 +133,11 @@
             <div class="row p-1">
                 <div class="col-md-6 p-4">
                     <span class="fas fa-users fa-3x p-1"></span>
-                    <span class="d-block small">tworzyć plany razem ze znajomymi,</span>
+                    <span class="d-block small">{% trans "make plans with your friends," %}</span>
                 </div>
                 <div class="col-md-6 p-4">
                     <span class="fas fa-file-pdf fa-3x p-1"></span>
-                    <span class="d-block small mt-2">zapisać wycieczkę w&nbsp;pliku .pdf i&nbsp;korzystać z&nbsp;notatek
-                        offline!</span>
+                    <span class="d-block small mt-2">{% trans "save the trip to .pdf and use your notes offline!"%}</span>
                 </div>
             </div>
         </h2>
@@ -142,15 +150,15 @@
 
 <div id="home-writing-bg" class="text-center">
     <div class="w-100 d-flex justify-content-center align-items-start">
-        <article class="h2-responsive " id="home-begin-art">
-            <h2 class="p-5">Zaczynamy planować?</h2>
+        <article class="h2-responsive" id="home-begin-art">
+            <h2 class="p-5">{% trans 'Ready to start planning?' %}</h2>
             {% if user.is_anonymous %}
                 <div class="my-4">
-                    <a class="my-4" href="{% url 'signup' %}">Zarejestruj się</a>
+                    <a class="my-4" href="{% url 'signup' %}">{% trans 'Register' %}</a>
                 </div>
             {% endif %}
             <div class="my-4">
-                <a href="{% url 'trip-list' %}">Zobacz istniejące wycieczki</a>
+                <a href="{% url 'trip-list' %}">{% trans 'See existing trips' %}</a>
             </div>
         </article>
     </div>
@@ -162,6 +170,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="{% static 'own/js/smooth-scroll.js' %}"></script>
+    <script src="{% static 'own/js/home.js' %}"></script>
+
 
 </footer>
 </body>

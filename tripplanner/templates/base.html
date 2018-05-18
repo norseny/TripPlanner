@@ -138,14 +138,14 @@
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                         <li class="nav-item w-140px">
-                            <a class="nav-link" id="nav-my-trip-list" href="{% url 'my-trip-list' %}">{% trans 'Mine' %}</a>
+                            <a class="nav-link" href="{% url 'my-trip-list' %}"><span id="nav-my-trip-list">{% trans 'Mine' %}</span></a>
                         </li>
                         <li class="nav-item w-140px">
-                            <a class="nav-link" id="nav-my-fav-list" href="{% url 'my-fav-trip-list' %}">{% trans 'My favourite' %}</a>
+                            <a class="nav-link" href="{% url 'my-fav-trip-list' %}"><span id="nav-my-fav-list">{% trans 'My favourite' %}</span></a>
                         </li>
                         <li class="nav-item w-140px">
-                            <a class="nav-link" id="nav-trip-with-attributes-create"
-                               href="{% url 'trip-with-attributes-create' %}">{% trans 'Create new' %}</a>
+                            <a class="nav-link"
+                               href="{% url 'trip-with-attributes-create' %}"><span id="nav-trip-with-attributes-create">{% trans 'Create new' %}</span></a>
                         </li>
                     {% endif %}
                     <li class="nav-item active w-140px">

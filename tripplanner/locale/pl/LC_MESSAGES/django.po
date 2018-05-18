@@ -84,6 +84,9 @@ msgstr "Rejestracja"
 msgid "Sign up!"
 msgstr "Zarejestruj!"
 
+msgid "Register"
+msgstr "Zarejestruj się"
+
 #: tripplanner/templates/tripplanner/trip_confirm_delete.html:6
 msgid "Confirm"
 msgstr "Potwierdź"
@@ -442,3 +445,48 @@ msgstr "Zdjęcie główne"
 
 msgid "Currency"
 msgstr "Waluta"
+
+msgid "Ready to start planning?"
+msgstr "Zaczynamy planować?"
+
+msgid "See existing trips"
+msgstr "Zobacz istniejące wycieczki"
+
+msgid "save the trip to .pdf and use your notes offline!"
+msgstr "zapisać wycieczkę w pliku .pdf i korzystać z notatek offline!"
+
+msgid "make plans with your friends,"
+msgstr "tworzyć plany razem ze znajomymi,"
+
+msgid "and use them as templates!"
+msgstr "i używaj ich jako szablonów!"
+
+msgid "Browse other people's trips"
+msgstr "Przeglądaj wycieczki innych użytkowników"
+
+msgid "Looking for inspiration?"
+msgstr "A może szukasz inspiracji?"
+
+msgid "attractions."
+msgstr "atrakcjach."
+
+msgid "accommodations,"
+msgstr "miejscach zakwaterowania,"
+
+msgid "journeys,"
+msgstr "podróżach,"
+
+msgid "TripPlanner is a website allowing you to store information about your trips. Save information about your planned:"
+msgstr "TripPlanner to serwis, w którym przechowasz informacje dotyczące wycieczek. Zapisuj informacje o swoich:"
+
+msgid "Go to your trips"
+msgstr "Przejdź do swoich wycieczek"
+
+msgid "Find out more"
+msgstr "Dowiedz się więcej"
+
+msgid "Planning a trip?"
+msgstr "Planujesz wycieczkę?"
+
+msgid "Use"
+msgstr "Poznaj"
