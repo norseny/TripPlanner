@@ -50,18 +50,7 @@
 
 
     <link rel="stylesheet" href="{% static 'own/css/style.css' %}">
-
-    <script>
-        $(document).ready(function () {
-            $('li.active').removeClass('active');
-            $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
-            $('.lang').click(function () {
-                    $('#lang-input').click()
-                }
-            )
-        });
-    </script>
-
+    <script src="{% static 'own/js/base.js' %}"></script>
     {% block js %}{% endblock %}
 
 
@@ -198,7 +187,8 @@
 {#    </button>#}
 {#    <div class="collapse navbar-collapse" id="navbarSupportedContentCust">#}
 
-        <div><a href="#" class="navbar-right-el font-black d-inline-block"> <span class="fas fa-search"></span></a></div>
+        <div><a href="#" class="navbar-right-el font-black d-inline-block"> <span class="fas fa-search" data-toggle="collapse"
+                     data-target="#navbar-search" aria-controls="navbar-search" ></span></a></div>
         <div>
 
 
@@ -253,6 +243,13 @@
                                value="{% trans 'Change' %}"/>
                     </form>
           </div>
+</div>
+
+<div class="text-center collapse p-2" id="navbar-search">
+    <input type="text" id="input-search" placeholder="{% trans 'City, ex.: Warszawa' %}" class="form-control form-control-sm d-inline-block">
+    <span class="btn btn-sm" id="search-btn">
+        {% trans 'Search' %}
+    </span>
 </div>
 
 {% if messages %}

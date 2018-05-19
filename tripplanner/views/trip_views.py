@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.db import transaction
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from tripplanner.decorators import user_is_trip_creator, user_is_trip_participant, trip_is_not_private
+from tripplanner.decorators import user_is_trip_creator, user_is_trip_participant, trip_is_not_private, logged_user_is_profile_user
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import render
@@ -25,6 +25,7 @@ from django.db.models import Sum
 
 group1 = [login_required, user_is_trip_creator]
 group2 = [login_required, user_is_trip_participant]
+group3 = [login_required, logged_user_is_profile_user]
 
 
 def tripplanner(request):
@@ -37,8 +38,10 @@ class TripList(ListView):
     def get_queryset(self):
         if self.request.user.is_authenticated:
             curr_user = User.objects.get(pk=self.request.user.id)
+            self.request.session['list_view'] = 'logged_other_trips'
             return Trip.objects.exclude(participants=curr_user.id).exclude(private_trip=True).order_by('pk')
         else:
+            self.request.session['list_view'] = 'not_logged_all_trips'
             return Trip.objects.exclude(private_trip=True).order_by('pk').all()
 
 
@@ -49,6 +52,7 @@ class MyTripList(ListView):
 
     def get_queryset(self):
         curr_user = User.objects.get(pk=self.request.user.id)
+        self.request.session['list_view'] = 'logged_my_trips'
         return Trip.objects.filter(participants=curr_user.id).order_by('pk')
 
 
@@ -57,6 +61,7 @@ class MyFavTripList(ListView):
     model = Trip
 
     def get_queryset(self):
+        self.request.session['list_view'] = 'logged_my_fav_trips'
         return Trip.objects.filter(profile__pk=self.request.user.id).order_by('pk')
 
 
@@ -74,13 +79,31 @@ class TripDetail(DetailView):
 
         # arrows implementation
         trip_list = []
-        try:
-            if trip.participants.get(id=self.request.user.id):
-                data['participant'] = True
-                trip_list = list(
-                    Trip.objects.filter(participants=self.request.user.id).values_list('id', flat=True).order_by('pk').all())
-        except:
-            trip_list = list(Trip.objects.exclude(participants=self.request.user.id).exclude(private_trip=True).values_list('id', flat=True).order_by('pk').all())
+
+        if 'list_view' not in self.request.session:
+            self.request.session['list_view'] = 'not_logged_all_trips'
+
+        if self.request.session['list_view'] == 'logged_other_trips':
+            trip_list = list(Trip.objects.exclude(participants=self.request.user.id).exclude(private_trip=True).values_list('id',flat=True).order_by('pk').all())
+        elif self.request.session['list_view'] == 'logged_my_trips':
+            trip_list = list(Trip.objects.filter(participants=self.request.user.id).values_list('id',flat=True).order_by('pk').all())
+        elif self.request.session['list_view'] == 'logged_my_fav_trips':
+            trip_list = list(Trip.objects.filter(profile__pk=self.request.user.id).values_list('id',flat=True).order_by('pk').all())
+        elif self.request.session['list_view'] == 'searched_trips':
+            trip_list = self.request.session['searched_results']
+        else: #not_logged_all_trips
+            trip_list = list(Trip.objects.all())
+
+
+        # try:
+        #     if trip.participants.get(id=self.request.user.id):
+        #         data['participant'] = True
+        #         trip_list = list(
+        #             Trip.objects.filter(participants=self.request.user.id).values_list('id', flat=True).order_by('pk').all())
+        # except:
+        #     trip_list = list(Trip.objects.exclude(participants=self.request.user.id).exclude(private_trip=True).values_list('id', flat=True).order_by('pk').all())
+
+
 
         trip_count = len(trip_list)
         curr_trip_pos = trip_list.index(trip.id)
@@ -354,13 +377,9 @@ def get_places(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
 
-        #json_data = open('tripplanner/data/sorted_cities.json')
         with open("tripplanner/data/sorted_cities.json", encoding='utf-8') as data_file:
             jdictionary = json.load(data_file)
 
-
-        #jdictionary = json.load(json_data, encoding='utf-8')
-        #json_data.close()
         results = find_in_city_json(q, jdictionary)
         data = json.dumps(results)
 
@@ -395,6 +414,21 @@ class ProfileDetail(DetailView):
         data['created_trips'] = Trip.objects.filter(created_by_id=self.kwargs['pk']).exclude(private_trip=True).order_by('pk')
         return data
 
+
+@method_decorator(group3, name='dispatch')
 class ProfileUpdate(UpdateView):
     model = Profile
     form_class = ProfileForm
+
+
+class SearchedTripList(ListView):
+    template_name = 'tripplanner/trip_list.html'
+
+    def get_queryset(self):
+        j_start = list(Journey.objects.filter(start_point__icontains=self.kwargs['query']).values_list('trip_id', flat=True).all())
+        j_end = list(Journey.objects.filter(end_point__icontains=self.kwargs['query']).values_list('trip_id', flat=True).all())
+        trips_set = sorted(set(j_start + j_end))
+        self.request.session['list_view'] = 'searched_trips'
+        self.request.session['searched_results'] = trips_set
+
+        return Trip.objects.filter(pk__in=trips_set)

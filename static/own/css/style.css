@@ -380,13 +380,17 @@ th, td {
 }
 
 
-nav, #navbar-change-lang {
+nav, #navbar-change-lang, #navbar-search {
     background: rgba(245, 245, 245, 0.48);
 }
 
-#navbar-change-lang {
+#navbar-change-lang, #navbar-search {
     border-top: solid 1px black;
     height: 60px;
+}
+
+#input-search {
+    max-width: 200px;
 }
 
 footer {

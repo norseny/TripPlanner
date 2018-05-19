@@ -461,7 +461,7 @@ msgstr "tworzyć plany razem ze znajomymi,"
 msgid "and use them as templates!"
 msgstr "i używaj ich jako szablonów!"
 
-msgid "Browse other people's trips"
+msgid "Browse other users' trips"
 msgstr "Przeglądaj wycieczki innych użytkowników"
 
 msgid "Looking for inspiration?"
@@ -488,8 +488,8 @@ msgstr "Dowiedz się więcej"
 msgid "Planning a trip?"
 msgstr "Planujesz wycieczkę?"
 
-msgid "Use"
-msgstr "Poznaj"
+msgid "is there for you!"
+msgstr "to coś dla Ciebie!"
 
 msgid "You can also:"
 msgstr "Możesz też:"
@@ -505,3 +505,12 @@ msgstr "Rozmiar pliku przekracza 2 MB"
 
 msgid "Category/ No."
 msgstr "Kategoria/ Numer"
+
+msgid "City, ex.: Warszawa"
+msgstr "Miasto, np. Warszawa"
+
+msgid "Search results"
+msgstr "Wyniki wyszukiwania"
+
+msgid "Trips found for keyword"
+msgstr "Wycieczki znalezione dla hasła"

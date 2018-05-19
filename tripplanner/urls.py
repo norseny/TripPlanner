@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'trip/(?P<pk>[0-9]+)/pdf$', views.TripDetailPdf.as_view(), name='trip-detail-pdf'),
     url(r'trip/(?P<pk>[0-9]+)/upload-img$', views.ImageUploadView.as_view(), name='upload-trip-img'),
     url(r'^autocomplete/get_places/', views.get_places, name='get-places'),
+    url(r'^trip/search/(?P<query>[\w ]+)/', views.SearchedTripList.as_view(), name='trips_search'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

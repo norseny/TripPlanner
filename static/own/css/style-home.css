@@ -26,7 +26,7 @@ html, main, body {
 
 #home-first-h1-main-text {
     font-size: 2.5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 1rem;
 }
 
 #home-first-h1-links-div {
@@ -83,7 +83,6 @@ html, main, body {
 
     #home-first-h1-main-text {
         font-size: 3.5rem;
-        margin-bottom: 3rem;
     }
 
     #home-first-h1-links-div {
@@ -107,7 +106,6 @@ html, main, body {
 
     #home-first-h1-main-text {
         font-size: 4rem;
-        margin-bottom: 3rem;
     }
 
     #home-first-h1-links-div {
@@ -118,7 +116,7 @@ html, main, body {
 /*Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
     #home-1-text-container {
-        margin-bottom: 7rem;
+        margin-bottom: 4rem;
         margin-right: 5rem;
     }
     #home-first-h1-main-text {
@@ -134,7 +132,7 @@ html, main, body {
 /*Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
     #home-1-text-container {
-        margin-bottom: 5rem;
+        margin-bottom: 3rem;
         margin-right: 0;
         padding-left: 20rem!important;
     }
@@ -144,7 +142,7 @@ html, main, body {
     }
 
     #home-first-h1-main-text {
-        font-size: 5rem;
+        font-size: 4.5rem;
     }
 }
 
