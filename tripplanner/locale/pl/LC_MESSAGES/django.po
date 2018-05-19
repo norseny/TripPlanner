@@ -465,7 +465,7 @@ msgid "Browse other people's trips"
 msgstr "Przeglądaj wycieczki innych użytkowników"
 
 msgid "Looking for inspiration?"
-msgstr "A może szukasz inspiracji?"
+msgstr "Szukasz inspiracji?"
 
 msgid "attractions."
 msgstr "atrakcjach."
@@ -502,3 +502,6 @@ msgstr "Wczytanie pliku niemożliwe"
 
 msgid "Image file too large"
 msgstr "Rozmiar pliku przekracza 2 MB"
+
+msgid "Category/ No."
+msgstr "Kategoria/ Numer"

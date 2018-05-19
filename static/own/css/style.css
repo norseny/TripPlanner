@@ -50,8 +50,9 @@
 }
 
 .user-in-navbar:hover, .navbar-right-el:hover {
-    font-weight: bold;
+    /*font-weight: bold;*/
     border: solid#0091ea 2px;
+    border-radius: 20px;
     padding-bottom: 3px;
     color: black;
 }
@@ -89,6 +90,11 @@
 
 .nav-link-sm {
     background-color: transparent;
+}
+
+.nav-link, .user-in-navbar, .navbar-right-el {
+    border: 2px solid transparent;
+    font-weight: bold;
 }
 
 
@@ -268,6 +274,10 @@ a {
 
 }
 
+.details-label {
+    border-bottom: 3px solid transparent;
+}
+
 a:hover, #change-main-image,
 /*#icon-details-down-view:hover, */
 /*#icon-details-up-view:hover, */
@@ -442,6 +452,8 @@ body, html, main {
     /*font-size: 90%;*/
     /*border: solid #0091ea;*/
     border-radius: 20px;
+    border: 2px solid transparent;
+
 }
 
 .table td, .table th{
