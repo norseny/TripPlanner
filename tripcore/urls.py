@@ -19,7 +19,8 @@ from django.http import HttpResponseRedirect
 from tripplanner import views
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
+from django.conf.urls.static import static
+import tripcore
 
 urlpatterns = [
     url(r'^tripplanner/', include('tripplanner.urls')),
@@ -30,4 +31,4 @@ urlpatterns = [
     url(r'^logout/$', login_required(auth_views.logout), {'next_page': 'login'}, name='logout'),
     url(r'^signup/$', views.signup, name='signup'),
     url('i18n/', include('django.conf.urls.i18n')),
-]
+] + static(tripcore.settings.MEDIA_URL, document_root=tripcore.settings.MEDIA_ROOT)

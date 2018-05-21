@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% load i18n %}
 {% block title %}{% endblock %}
 {% block content %}
@@ -41,7 +43,7 @@
                                 <a href="{% url 'trip-detail' trip.pk %}"
                                    class="d-inline-block no-a-underline-on-hover">
                                     <img
-                                            src='../../../static/own/img/africa-1299545_640.png'
+                                            src="{% static '/own/img/africa-1299545_640.png'%}"
                                             alt="Trip main photo" class="resize-img">
                                 </a>
                             </div>

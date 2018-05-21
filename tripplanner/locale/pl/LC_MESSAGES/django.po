@@ -488,8 +488,8 @@ msgstr "Dowiedz się więcej"
 msgid "Planning a trip?"
 msgstr "Planujesz wycieczkę?"
 
-msgid "is there for you!"
-msgstr "to coś dla Ciebie!"
+msgid "will help you!"
+msgstr "Ci w tym pomoże!"
 
 msgid "You can also:"
 msgstr "Możesz też:"

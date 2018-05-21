@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static %}
+
 {% block title %}{% endblock %}
 {% block content %}
     <div>
@@ -19,7 +21,7 @@
                     {% else %}
                         <div class="d-flex justify-content-center align-items-center text-center m-2">
                             <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block no-a-underline-on-hover">
-                                <img src='../../../static/own/img/africa-1299545_640_white.png'
+                                <img src="{% static '/own/img/africa-1299545_640.png'%}"
                                     alt="Trip main photo" class="resize-img">
                             </a>
                         </div>

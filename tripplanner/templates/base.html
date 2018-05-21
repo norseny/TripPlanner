@@ -5,7 +5,7 @@
 
     <title>Trip Planner</title> {#todo: na pewno tak?#}
 
-    {% load staticfiles %}
+    {% load static %}
     {% load i18n %}
 
 
@@ -60,7 +60,7 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="no-a-underline"><a class="navbar-brand minw-10" href="{% url 'tripplanner' %}">
         <div class="d-flex align-items-center w-100 text-left">
-            <img id="logo" src="../../static/own/img/africa-1299545_640.png" alt="Website logo">
+            <img id="logo" src="{% static '/own/img/africa-1299545_640.png'%}" alt="Website logo">
             <span class="d-inline-block" id="home">TPlanner</span>
         </div>
     </a>

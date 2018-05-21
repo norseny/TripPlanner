@@ -21,7 +21,8 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 import json
 from django.db.models import Sum
-
+import tripcore
+import os
 
 group1 = [login_required, user_is_trip_creator]
 group2 = [login_required, user_is_trip_participant]
@@ -95,14 +96,11 @@ class TripDetail(DetailView):
             trip_list = list(Trip.objects.all())
 
 
-        # try:
-        #     if trip.participants.get(id=self.request.user.id):
-        #         data['participant'] = True
-        #         trip_list = list(
-        #             Trip.objects.filter(participants=self.request.user.id).values_list('id', flat=True).order_by('pk').all())
-        # except:
-        #     trip_list = list(Trip.objects.exclude(participants=self.request.user.id).exclude(private_trip=True).values_list('id', flat=True).order_by('pk').all())
-
+        try:
+            if trip.participants.get(id=self.request.user.id):
+                data['participant'] = True
+        except:
+            pass
 
 
         trip_count = len(trip_list)
@@ -377,6 +375,7 @@ def get_places(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
 
+        # with open(os.path.join(tripcore.settings.STATIC_URL, '/own/data/sorted_cities.json', encoding='utf-8')) as data_file:
         with open("tripplanner/data/sorted_cities.json", encoding='utf-8') as data_file:
             jdictionary = json.load(data_file)
 

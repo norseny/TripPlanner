@@ -100,12 +100,13 @@ html, main, body {
     }
 
     #home-1-text-container {
-        margin-bottom: 6rem;
-        /*margin-right: 4rem;*/
+        margin-bottom: 7rem;
+        margin-right: 4rem;
+        max-width: 700px;
     }
 
     #home-first-h1-main-text {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
 
     #home-first-h1-links-div {
@@ -116,11 +117,12 @@ html, main, body {
 /*Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
     #home-1-text-container {
-        margin-bottom: 4rem;
+        margin-bottom: 8rem;
         margin-right: 5rem;
+        max-width: 1500px;
     }
     #home-first-h1-main-text {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
     #home-trip-attributes-main-txt {
         margin-left: 15rem;
@@ -132,9 +134,10 @@ html, main, body {
 /*Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
     #home-1-text-container {
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         margin-right: 0;
         padding-left: 20rem!important;
+        /*max-width: 1200px;*/
     }
 
     #home-begin-art {
@@ -142,7 +145,10 @@ html, main, body {
     }
 
     #home-first-h1-main-text {
-        font-size: 4.5rem;
+        font-size: 4rem;
+    }
+    #home-first-h1-links-div {
+        height: 200px;
     }
 }
 
