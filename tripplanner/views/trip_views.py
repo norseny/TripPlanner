@@ -93,7 +93,7 @@ class TripDetail(DetailView):
         elif self.request.session['list_view'] == 'searched_trips':
             trip_list = self.request.session['searched_results']
         else: #not_logged_all_trips
-            trip_list = list(Trip.objects.exclude(private_trip=True).all())
+            trip_list = list(Trip.objects.exclude(private_trip=True).values_list('id',flat=True).order_by('pk').all())
 
 
         try:
