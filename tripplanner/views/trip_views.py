@@ -409,6 +409,7 @@ class ProfileDetail(DetailView):
     model = Profile
 
     def get_context_data(self, **kwargs):
+        self.request.session['list_view'] = 'not_logged_all_trips'
         data = super(ProfileDetail, self).get_context_data(**kwargs)
         data['created_trips'] = Trip.objects.filter(created_by_id=self.kwargs['pk']).exclude(private_trip=True).order_by('pk')
         return data
