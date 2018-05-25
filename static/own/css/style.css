@@ -111,6 +111,10 @@ footer {
     cursor: pointer;
  }
 
+/*.fa-heart {*/
+    /*color: #830000;*/
+/*}*/
+
 #remove-img-icon {
   width: 100px;
 }
@@ -123,13 +127,38 @@ footer {
     font-size: .75rem;
 }
 
+@media (min-width:100px) and (max-width: 576px) {
+    .font-very-small{
+        font-size: 80%!important;
+    }
+    footer{
+        overflow: hidden;
+        padding: 0;
+    }
+    footer p{
+        padding: 0;
+    }
+    .myicon {
+        font-size: 70%;
+        padding-left: 5%;
+    }
+    .confirmBox {
+    width: 18rem!important;
+    height: 22rem!important;
+    margin-top: -11rem!important;
+    margin-left: -9rem!important;
+    top: 50%;
+    left: 50%;
+    }
+}
+
+
 @media (max-width: 576px) {
     .container {
         max-width: 90%;
     }
 
 }
-
 
 .icon-under-detail-main-text{
     width: 160px;

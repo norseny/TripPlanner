@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <title>Trip Planner</title> {#todo: na pewno tak?#}
 
     {% load static %}
     {% load i18n %}
 
+    <title>TripPlanner{% trans '- plan your trip!' %}</title>
+    <meta charset="UTF-8">
+
+    <meta name="description" content="{% trans 'TripPlanner will help you keep all your trip notes together!' %}">
+    <meta name="keywords" content="Trip, Wycieczka, Plan, Wyjazd, Podróż">
+    <meta name="author" content="Beata Piechowicz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
             integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
             crossorigin="anonymous"></script>
-
     <!-- JQuery -->
     <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <!-- Bootstrap tooltips -->
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -255,13 +253,10 @@
 
 <footer class="m-0 p-0 w-100">
     <div class="row justify-content-center m-0 p-0 align-items-center text-center h-100">
-        <div class="col-10 m-0 p-0 font-small font-weight-400">
-            <p class="m-0">Strona internetowa wykonana w ramach pracy licencjackiej na kierunku elektroniczne przetwarzanie informacji pod
-                kierunkiem dr Piotra
-                Jordana
-                Śliwińskiego.</p>
-            <p class="m-0">Administracja nie ponosi odpowiedzialności za treści umieszczane w serwisie przez
-                użytkowników.</p>
+        <div class="col-10 m-0 p-0 font-very-small font-weight-400">
+{#            <p class="m-0">Strona internetowa wykonana w ramach pracy licencjackiej na kierunku elektroniczne przetwarzanie informacji.</p>#}
+{#            <p class="m-0">Administracja nie ponosi odpowiedzialności za treści umieszczane w serwisie przez#}
+{#                użytkowników.</p>#}
             <p class="m-0">{% trans 'Copyright © 2018 Beata Piechowicz. All Rights Reserved.' %}</p>
         </div>
     </div>

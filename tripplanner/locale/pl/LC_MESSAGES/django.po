@@ -468,16 +468,16 @@ msgid "Looking for inspiration?"
 msgstr "Szukasz inspiracji?"
 
 msgid "attractions."
-msgstr "atrakcjach."
+msgstr "atrakcje."
 
 msgid "accommodations,"
-msgstr "miejscach zakwaterowania,"
+msgstr "miejsca zakwaterowania,"
 
 msgid "journeys,"
-msgstr "podróżach,"
+msgstr "podróże,"
 
-msgid "TripPlanner is a website allowing you to store information about your trips. Save information about:"
-msgstr "TripPlanner to serwis, w którym przechowasz informacje dotyczące wycieczek. Zapisuj informacje o swoich:"
+msgid "TripPlanner is a website allowing you to store information about your trips. Save your:"
+msgstr "TripPlanner to serwis, w którym przechowasz informacje dotyczące wycieczek. Zapisuj swoje:"
 
 msgid "Go to your trips"
 msgstr "Przejdź do swoich wycieczek"
@@ -517,3 +517,9 @@ msgstr "Wycieczki znalezione dla hasła"
 
 msgid "Copyright © 2018 Beata Piechowicz. All Rights Reserved."
 msgstr "Copyright © 2018 Beata Piechowicz. Wszystkie prawa zastrzeżone."
+
+msgid "- plan your trip!"
+msgstr "- zaplanuj swoją wycieczkę!"
+
+msgid "TripPlanner will help you keep all your trip notes together!"
+msgstr "Dzięki TripPlannerowi przechowasz wszystkie swoje plany wycieczkowe w jednym miejscu!"

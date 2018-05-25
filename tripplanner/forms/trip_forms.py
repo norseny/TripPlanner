@@ -112,14 +112,14 @@ class ImageUploadForm(ModelForm):
         model = Trip
         fields = ['main_image']
 
-    def clean_main_image(self):
-        main_image = self.cleaned_data.get('main_image', False)
-        if main_image:
-            if main_image._size > 2*1024*1024:
-                raise ValidationError(_(str("Image file too large")))
-            return main_image
-        else:
-            raise ValidationError(_(str("Couldn't read uploaded image")))
+    # def clean_main_image(self):
+    #     main_image = self.cleaned_data.get('main_image', False)
+    #     if main_image:
+    #         if main_image._size > 2*1024*1024:
+    #             raise ValidationError(_(str("Image file too large")))
+            # return main_image
+        # else:
+        #     raise ValidationError(_(str("Couldn't read uploaded image")))
 
 
 

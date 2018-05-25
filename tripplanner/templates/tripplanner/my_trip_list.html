@@ -9,7 +9,7 @@
         {% for trip in object_list %}
 
             <div class="row justify-content-center align-items-center my-3">
-                <div class="col-3 d-flex jus justify-content-center align-items-center ">
+                <div class="col-sm-3 col-4 d-flex jus justify-content-center align-items-center ">
                     {% if trip.main_image %}
                         <div class="d-flex justify-content-center align-items-center text-center m-2">
                             <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block no-a-underline-on-hover">
@@ -21,25 +21,30 @@
                     {% else %}
                         <div class="d-flex justify-content-center align-items-center text-center m-2">
                             <a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block no-a-underline-on-hover">
-                                <img src="{% static '/own/img/defaultpicture.jpg'%}"
-                                    alt="Trip main photo" class="resize-img">
+                                <img src="{% static '/own/img/defaultpicture.jpg' %}"
+                                     alt="Trip main photo" class="resize-img">
                             </a>
                         </div>
                     {% endif %}
                 </div>
-                <div class="col-4"><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block myicon">
+                <div class="col-sm-4 col-3"><a href="{% url 'trip-detail' trip.pk %}" class="d-inline-block">
                     {{ trip.name }}</a></div>
-                <div class="col-2"><a href="{% url 'trip-update' trip.pk %}"><span class="far
+                <div class="col-2 myicon"><a href="{% url 'trip-update' trip.pk %}"><span class="far
                 fa-edit fa-2x"></span>{% trans 'Edit' %}</a></div>
-                <div class="col-2"><a href="{% url 'trip-delete' trip.pk %}"><span class=" far fa-trash-alt
-                fa-2x"></span>{% trans 'Delete' %}</a></div>
+                <div class="col-2 myicon">
+                    {% if trip.created_by == user %}
+                        <a href="{% url 'trip-delete' trip.pk %}"><span class=" far fa-trash-alt
+                fa-2x"></span>{% trans 'Delete' %}</a>
+                    {% endif %}
+                </div>
             </div>
         {% empty %}
             <p>{% trans 'No trip yet.' %}</p>
         {% endfor %}
 
         <p>
-            <a class="d-inline-block mt-3 ml-3" href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
+            <a class="d-inline-block mt-3 ml-3"
+               href="{% url 'trip-with-attributes-create' %}">{% trans 'Create a new trip' %}</a>
         </p>
     </div>
 {% endblock %}

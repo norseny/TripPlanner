@@ -17,14 +17,20 @@ $(document).ready(function () {
     });
     $(".icon-show-more").click(function () {
         var a;
-        a = $(this).closest("div.truncated-info");
+        a = $(this).closest(".truncated-info");
         a.css("cssText", "display: none !important;");
         a.next().slideToggle( "slow");
+        var nextel = a.next();
+        var iconLess = nextel.find(".icon-show-less");
+        iconLess.css("cssText", "display: inline-block !important;");
     });
     $(".icon-show-less").click(function () {
         var a;
-        a = $(this).closest("div.more-info-to-show");
+        $(this).hide();
+        a = $(this).closest(".more-info-to-show");
+        $(this).css("cssText", "display: none !important;");
         a.slideToggle( "slow");
+        // a.css("cssText", "display: none !important;");
         a.prev().show()
     });
         $("#show-trip-details").click(function () {
