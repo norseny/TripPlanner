@@ -514,3 +514,6 @@ msgstr "Wyniki wyszukiwania"
 
 msgid "Trips found for keyword"
 msgstr "Wycieczki znalezione dla hasła"
+
+msgid "Copyright © 2018 Beata Piechowicz. All Rights Reserved."
+msgstr "Copyright © 2018 Beata Piechowicz. Wszystkie prawa zastrzeżone."

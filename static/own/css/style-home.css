@@ -47,7 +47,6 @@ html, main, body {
     background-color: rgba(0, 0, 0, 0.3);
     display: block;
     position: fixed!important;
-    /*bottom: 50%;*/
     bottom: 2rem;
     right: 0;
     color: white;
@@ -61,7 +60,6 @@ html, main, body {
 #change-lang-home {
     background-color: rgba(0, 0, 0, 0.3);
     position: fixed!important;
-    /*bottom: 50%;*/
     bottom: 2rem;
     right: 0;
 }
@@ -74,11 +72,25 @@ html, main, body {
     background-color: #321911;
 }
 
+#home-logo-container {
+    width: 200px;
+    height: 50px;
+    padding-top: 0;
+    position: relative;
+    top: -.5rem;
+    left: 0;
+}
+
+#middle-logo-div {
+    position: relative;
+    top: -1rem;
+    left: 0;
+}
+
 /*Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {
     #home-1-text-container {
-        margin-bottom: 8rem;
-        /*margin-right: 2rem;*/
+        margin-bottom: 5rem;
     }
 
     #home-first-h1-main-text {
@@ -88,19 +100,22 @@ html, main, body {
     #home-first-h1-links-div {
         font-size: 2rem;
     }
+    #home-logo-container {
+        width: 250px;
+        height: 50px;
+    }
 }
 
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
 
     #home-begin-art {
-        /*margin-top: 8rem;*/
         margin-left: 8rem;
 
     }
 
     #home-1-text-container {
-        margin-bottom: 7rem;
+        margin-bottom: 6rem;
         margin-right: 4rem;
         max-width: 700px;
     }
@@ -111,6 +126,11 @@ html, main, body {
 
     #home-first-h1-links-div {
         font-size: 2rem;
+    }
+    #home-logo-container {
+        width: 300px;
+        height: 60px;
+        top: -1rem
     }
 }
 
@@ -129,12 +149,16 @@ html, main, body {
         margin-right: 15rem;
         margin-bottom: 5rem;
     }
+    #home-logo-container {
+        width: 400px;
+        height: 70px;
+    }
 }
 
 /*Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
     #home-1-text-container {
-        margin-bottom: 2rem;
+        margin-bottom: 4rem;
         margin-right: 0;
         padding-left: 20rem!important;
         /*max-width: 1200px;*/
@@ -148,14 +172,15 @@ html, main, body {
         font-size: 4rem;
     }
     #home-first-h1-links-div {
-        height: 200px;
+        /*height: 200px;*/
     }
 }
 
 #home-first-bg {
     /*background: url(../img/test4kopia.jpg) no-repeat center center fixed;*/
-    background: url(../img/desk-photos2.png) no-repeat center center fixed;
-    /*background: url(../img/1bgv3anar.png) no-repeat center center fixed;*/
+    background: url(../img/desk-photos3.png) no-repeat center center fixed;
+    /*background-color: black;*/
+    /*background: url(../img/1bgv3anarrow.png) no-repeat center center fixed;*/
     color: white;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -175,7 +200,7 @@ html, main, body {
 }
 
 #home-seeking-inspiration {
-    background: url(../img/tlo2popr.jpg) no-repeat center center fixed;
+    background: url(../img/tlo2popr-min.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

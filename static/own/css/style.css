@@ -1,6 +1,11 @@
 .container {
     padding: 1rem;
-    min-height: 74.5vh;
+    /*min-height: 74.5vh;*/
+    min-height: calc(100vh - 100px);
+}
+
+footer {
+  height: 70px;
 }
 
 .img-fluid {
@@ -19,12 +24,12 @@
     float: left;
 }
 
-#trip-avatar-text-container{
+.trip-avatar-text-container{
     width: 200px;
     height:200px;
 }
 
-#name-under-avatar {
+.name-under-avatar {
     width: 200px;
 }
 
@@ -52,17 +57,16 @@
 .user-in-navbar:hover, .navbar-right-el:hover {
     /*font-weight: bold;*/
     border: solid#0091ea 2px;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     padding-bottom: 3px;
     color: black;
 }
 
 
 .nav-link {
-        /*background-color: rgba(0, 145, 234, 0.31);*/
-    /*color: black;*/
-    /*font-weight: bold;*/
-    /*border-left: solid #0091ea 2px;*/
+    padding-top: .25rem!important;
+    padding-bottom: .25rem!important;
+
 }
 
 #nav-all-trips {
@@ -103,7 +107,7 @@
 }
 
 .icon-remove:hover {
-    text-decoration: underline;
+    border-bottom: solid 2px #bf0000;
     cursor: pointer;
  }
 
@@ -113,6 +117,10 @@
 
 .dropdown-divider {
     border-top: 1px solid black;
+}
+
+footer {
+    font-size: .75rem;
 }
 
 @media (max-width: 576px) {
@@ -139,6 +147,9 @@
     #participants-container {
     width: 700px;
 }
+    footer {
+        font-size: 0.75rem;
+}
 
 }
 
@@ -150,13 +161,15 @@
     .img-fluid {
         max-height: 500px;
 }
-    #trip-description-col{
+    #trip-description-col {
       min-height: 300px;
     }
     #navbarSupportedContentCust {
         display: none!important;
     }
-
+        footer {
+        font-size: 1rem;
+}
 }
 
 @media (min-width:992px) and (max-width:1045px){
@@ -196,9 +209,9 @@
     border-bottom: solid 1px #321911;
 }
 
-#logo {
-    width: 40px;
-    height: 40px;
+.logo-container {
+    width: 170px;
+    height: 80px;
     float: left;
 }
 
@@ -299,7 +312,7 @@ a:hover, #change-main-image,
 
 a.nav-link:hover{
     border: 2px solid #0091ea;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
 }
 
 .h-30px{
@@ -417,27 +430,25 @@ footer {
     font-weight: bold;
 }
 
+body, html, main {
+    min-height:100vh;
+    margin: 0;
+}
+
+
 body {
     /*background-image: url(../img/darkwood1a.jpg);*/
     /*background-repeat: no-repeat;*/
     /*background-size: 100% 100%;*/
     /*background: url(../img/darkwood1a.jpg) no-repeat center center fixed;*/
     background: url(../img/darkwood3.jpg) no-repeat center center fixed;
-
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     width: 100%;
-
 }
 
-body, html, main {
-    /*min-height: 100%;*/
-    min-height:100vh;
-    /*height:100%;*/
-    /*width:100%*/
-}
 
 /*h1, h2 {*/
     /*padding: 1rem;*/
@@ -455,7 +466,7 @@ body, html, main {
     /*text-transform: uppercase;*/
     /*font-size: 90%;*/
     /*border: solid #0091ea;*/
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     border: 2px solid transparent;
 
 }
@@ -507,7 +518,7 @@ label {
 }
 
 .nav-item {
-    padding: 2px;
+    /*padding: 2px;*/
 }
 
 .error-style {
@@ -640,8 +651,8 @@ input[type=number] {
     border: 1px solid #aaa;
     position: fixed;
     width: 40rem;
-    height: 20rem;
-    margin-top: -10rem;
+    height: 21rem;
+    margin-top: -10.5rem;
     margin-left: -20rem;
     top: 50%;
     left: 50%;

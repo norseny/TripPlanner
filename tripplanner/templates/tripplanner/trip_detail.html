@@ -76,12 +76,12 @@
             {% endif %}
         {% else %}
             {% if trip.main_image %}
-                <img src='{{ trip.main_image.url }}' alt="Default trip photo" class="img-fluid
+                <img src='{{ trip.main_image.url }}' alt="Trip image" class="img-fluid
                                                                          ">
             {% else %}
                 <img
-                        src="{% static '/own/img/africa-1299545_640.png'%}"
-                        alt="Default trip photo" class="img-fluid">
+                        src="{% static '/own/img/defaultpicture.jpg'%}"
+                        alt="Default trip photo - website logo" class="img-fluid">
             {% endif %}
         {% endif %}
     </div>
@@ -89,7 +89,7 @@
 
 
     <div class="row w-100 m-0 mt-lg-2 my-4 mb-md-5">
-        <div class="col-md-6 d-flex justify-content-center align-items-center my-md-4" id="trip-description-col">
+        <div class="col-md-5 d-flex justify-content-center align-items-center my-md-4" id="trip-description-col">
             <section>
                 <div>
                     <label>{% trans 'Description' %}:</label> {{ trip.description }}
@@ -126,7 +126,7 @@
             </section>
         </div>
 
-        <div class="d-none d-md-flex col-sm-6 justify-content-center align-items-center text-center w-100">
+        <div class="d-none d-md-flex col-md-7 justify-content-center align-items-center text-center w-100">
             {% if user.id == trip.created_by_id %}
                 {% if trip.main_image %}
                     <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
@@ -162,9 +162,9 @@
                 {% else %}
                     <div class="photo-container h-100 w-100 justify-content-center align-items-center text-center">
                         <img
-                                src="{% static '/own/img/africa-1299545_640.png'%}"
+                                src="{% static '/own/img/defaultpicture.jpg'%}"
 
-                                alt="img" class="photo-img
+                                alt="Default image - website logo" class="photo-img
                 img-fluid mx-auto
                                                                                d-block">
                     </div>

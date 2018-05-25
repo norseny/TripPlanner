@@ -12,8 +12,6 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
             integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
             crossorigin="anonymous"></script>
-
-
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -57,20 +55,20 @@
     <div class="h-100 w-100 d-flex align-items-end justify-content-end align-items-xl-center flex-column">
         <div id="home-1-text-container" class="text-center p-2">
             <h1 id="home-first-h1-main-text">{% trans "Planning a trip?" %}
-                <span class="d-block">
-                        <span class="font-weight-bold">
-                TripPlanner
+                <span class="d-block align-bottom" id="logo-and-parttext">
+                        <span class="d-inline-block text-center justify-content-center align-items-center" id="home-logo-container">
+                <img class="img-fluid" src="{% static '/own/img/logow.png'%}" alt="Website logo">
                         </span>
                     {% trans "will help you!" %}
                     </span>
             </h1>
-            <div class="row align-items-center mt-5 p-lg-3 pr-lg-0 mr-lg-0 w-100" id="home-first-h1-links-div">
-                <div class="col-6 p-0"><a href="#home-trip-attributes" class="a-on-dark">{% trans "Find out more" %}</a>
+            <div class="row align-items-center mt-4 p-lg-3 pr-lg-0 mr-lg-0 w-100" id="home-first-h1-links-div">
+                <div class="col-5 p-0"><a href="#home-trip-attributes" class="a-on-dark">{% trans "Find out more" %}</a>
                 </div>
-                <div class="col-6 p-0">
+                <div class="col-7 p-0">
                     {% if user.is_anonymous %}
-                        <span class="d-block"><a href="{% url 'login' %}" class="a-on-dark">{% trans 'Log in' %}</a></span>
-                        <span class="d-block mt-4"><a href="{% url 'signup' %}" class="a-on-dark">{% trans 'Register' %}</a></span>
+                        <span class="d-block"><a  href="{% url 'login' %}" class="a-on-dark text-nowrap">{% trans 'Log in' %}</a> /
+                        <a href="{% url 'signup' %}" class="a-on-dark text-nowrap">{% trans 'Register' %}</a></span>
                     {% else %}
                         <span class="d-block"><a href="{% url 'my-trip-list' %}" class="a-on-dark">{% trans "Go to your trips" %}</a></span>
                     {% endif %}
@@ -85,20 +83,20 @@
     <article>
         <h2 class="h2-responsive w-100">
             <span class="d-inline-block" id="home-trip-attributes-main-txt">{% trans "TripPlanner is a website allowing you to store information about your trips. Save information about:" %}</span>
-            <div class="row">
-                <div class="col-md-4 p-4">
+            <span class="row">
+                <span class="col-md-4 p-4">
                     <span class="fas fa-rocket fa-3x p-1"></span>
                     <span class="d-inline-block small w-100 text-center">{% trans "journeys," %}</span>
-                </div>
-                <div class="col-md-4 p-4">
+                </span>
+                <span class="col-md-4 p-4">
                     <span class="fas fa-bed fa-3x p-1"></span>
                     <span class="d-inline-block small w-100 text-center">{% trans "accommodations," %}</span>
-                </div>
-                <div class="col-md-4 p-4">
+                </span>
+                <span class="col-md-4 p-4">
                     <span class="fas fa-camera fa-3x p-1"></span>
                     <span class="d-inline-block small w-100 text-center">{% trans "attractions." %}</span>
-                </div>
-            </div>
+                </span>
+            </span>
         </h2>
         <span class="d-block" id="link-to-home-seeking-inspiration"><a href="#home-seeking-inspiration"><span class="fas fa-chevron-down
         fa-3x"></span></a></span>
@@ -129,16 +127,16 @@
     <article>
         <h2 class="h2-responsive w-100">
             {% trans "You can also:" %}
-            <div class="row p-1">
-                <div class="col-md-6 p-4">
+            <span class="row p-1">
+                <span class="col-md-6 p-4">
                     <span class="fas fa-users fa-3x p-1"></span>
                     <span class="d-block small">{% trans "make plans with your friends," %}</span>
-                </div>
-                <div class="col-md-6 p-4">
+                </span>
+                <span class="col-md-6 p-4">
                     <span class="fas fa-file-pdf fa-3x p-1"></span>
                     <span class="d-block small mt-2">{% trans "save the trip to .pdf and use your notes offline!"%}</span>
-                </div>
-            </div>
+                </span>
+            </span>
         </h2>
         <span class="d-block">
                 <a href="#home-writing-bg"><span class="fas fa-chevron-down fa-3x"></span></a>

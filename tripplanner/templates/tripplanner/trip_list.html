@@ -7,7 +7,7 @@
     <div class="h-100">
         {% if user.is_anonymous %}
             {% if view.request.path == '/trips' %}
-                <h1 class="my-3 mb-4 text-center h1-responsive">{% trans 'All Trips List' %}</h1>
+                <h1 class="my-3 mb-4 text-center h1-responsive">{% trans 'All trips' %}</h1>
             {% else %}
                 <h1 class="my-3 mb-4 text-center h1-responsive">{% trans 'Search results' %}</h1>
                 <h2 class="text-center h2-responsive">{% trans "Trips found for keyword" %}
@@ -27,7 +27,7 @@
         {% endif %}
         <div class="my-lg-3 d-flex flex-wrap justify-content-center align-items-center">
             {% for trip in object_list %}
-                <div class="d-inline-block m-md-3 my-md-4" id="trip-avatar-text-container">
+                <div class="d-inline-block m-md-3 my-md-4 trip-avatar-text-container">
                     <div class="d-flex justify-content-center align-items-center">
                         {% if trip.main_image %}
                             <div class="d-flex justify-content-center align-items-center text-center p-2">
@@ -43,13 +43,13 @@
                                 <a href="{% url 'trip-detail' trip.pk %}"
                                    class="d-inline-block no-a-underline-on-hover">
                                     <img
-                                            src="{% static '/own/img/africa-1299545_640.png'%}"
+                                            src="{% static '/own/img/defaultpicture.jpg'%}"
                                             alt="Trip main photo" class="resize-img">
                                 </a>
                             </div>
                         {% endif %}
                     </div>
-                    <span class="text-center d-inline-block" id="name-under-avatar">
+                    <span class="text-center d-inline-block name-under-avatar">
                                 <a href="{% url 'trip-detail' trip.pk %}">
                                 {{ trip.name }}</a>
                         {% if trip.profile_set.count > 0 %}
