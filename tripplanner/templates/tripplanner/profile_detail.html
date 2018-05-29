@@ -48,12 +48,25 @@
 
                     <div class=" pl-md-5 col-md-6">
                         <p>
-                        <div><label>{% trans 'Trips created by user' %}:</label> ({{ created_trips.count }})</div>
+                        <div>
+
+                        {% if user.id == profile.user.id %}
+                            <label>{% trans 'Trips created by user' %}:</label>
+                        ({{ created_trips_me.count }})</div>
+                        <ul>
+                            {% for trip in created_trips_me %}
+                                <li><a href="{% url 'trip-detail' trip.id %}">{{ trip.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                            <label>{% trans 'Public trips created by user' %}:</label>
+                        ({{ created_trips.count }})</div>
                         <ul>
                             {% for trip in created_trips %}
                                 <li><a href="{% url 'trip-detail' trip.id %}">{{ trip.name }}</a></li>
                             {% endfor %}
                         </ul>
+                        {% endif %}
                         </p>
                     </div>
 

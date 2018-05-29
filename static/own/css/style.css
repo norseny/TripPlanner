@@ -1,8 +1,8 @@
 .container {
     padding: 1rem;
-    /*min-height: 74.5vh;*/
     min-height: calc(100vh - 100px);
 }
+
 
 footer {
   height: 70px;
@@ -26,7 +26,7 @@ footer {
 
 .trip-avatar-text-container{
     width: 200px;
-    height:200px;
+    height:150px;
 }
 
 .name-under-avatar {
@@ -85,6 +85,10 @@ footer {
 #nav-o-users-trips {
     color: black;
     font-weight: bold;
+}
+
+.create-new-nav {
+    border-left: solid 1px;
 }
 
 .icon-show-more:hover, .icon-show-less:hover {
@@ -533,6 +537,23 @@ label {
 .trip-form {
     padding: .5rem 0;
 
+}
+
+#login, #signup {
+    /*min-width: 300px;*/
+    /*max-width: 400px;*/
+    width: 300px;
+}
+
+.footer-about{
+    border-bottom: solid 3px #0091ea;
+}
+
+.footer-about:hover{
+    font-size: 150%;
+    color: black;
+    border: solid 3px #0091ea;
+    padding: 5px;
 }
 
 .table td {

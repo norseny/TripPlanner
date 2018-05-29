@@ -37,14 +37,15 @@ class TripForm(ModelForm, Form):
 
         }
 
-
 class JourneyForm(ModelForm):
     start_time = MyDateTimeField(required=False)
     end_time = MyDateTimeField(required=False)
 
     class Meta:
         model = Journey
-        fields = ['means_of_transport', 'name', 'start_point', 'end_point', 'start_time', 'end_time', 'price',
+        fields = ['means_of_transport', 'name', 'start_point', 'end_point', 'start_time', 'end_time',
+                  # 'date',
+                  'price',
                   'more_info']
         widgets = {
             'means_of_transport': Select(attrs={'class': 'custom-select form-control-sm'}),
@@ -54,7 +55,6 @@ class JourneyForm(ModelForm):
             'more_info': Textarea(
                 attrs={'rows': 2, 'cols': '65', 'class': 'materialize-textarea form-control form-control-sm '
                                                          'more-info'}),
-
         }
         exclude = ('name',)
 

@@ -6,7 +6,7 @@
 
     <meta charset="UTF-8">
 
-        <title>TripPlanner{% trans '- plan your trip!' %}</title>
+    <title>TripPlanner {% trans '– plan your trip!' %}</title>
     <meta charset="UTF-8">
 
     <meta name="description" content="{% trans 'TripPlanner will help you keep all your trip notes together!' %}">
@@ -14,6 +14,19 @@
     <meta name="author" content="Beata Piechowicz">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119901972-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-119901972-1');
+    </script>
 
 
     <!-- Font Awesome -->
@@ -25,6 +38,7 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'own/css/style-home.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'own/img/favicon.ico' %}">
 
 </head>
 
@@ -36,36 +50,71 @@
 
 
 <div class="text-center" id="change-lang-home" style="display: none">
-                  <div class="d-inline-block p-2">
-                      <form class="form-inline lang-form d-inline-block" id="lang-form" action="{% url 'set_language' %}"
-                            method="post">{% csrf_token %}
-                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                        <select name="language" class="custom-select w-100">
-                            {% get_current_language as LANGUAGE_CODE %}
-                            {% get_available_languages as LANGUAGES %}
-                            {% get_language_info_list for LANGUAGES as languages %}
-                            {% for language in languages %}
-                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
-                                        selected{% endif %}>
-                                    {{ language.name_local }} ({{ language.code }})
-                                </option>
-                            {% endfor %}
-                        </select>
-                        <input class="btn btn-sm d-inline w-100 m-0 mt-1" id="lang-input-home" type="submit"
-                               value="{% trans 'Change' %}"/>
-                    </form>
-          </div>
+    <div class="d-inline-block p-2">
+        <form class="form-inline lang-form d-inline-block" id="lang-form" action="{% url 'set_language' %}"
+              method="post">{% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}"/>
+            <select name="language" class="custom-select w-100">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                            selected{% endif %}>
+                        {{ language.name_local }} ({{ language.code }})
+                    </option>
+                {% endfor %}
+            </select>
+            <input class="btn btn-sm d-inline w-100 m-0 mt-1" id="lang-input-home" type="submit"
+                   value="{% trans 'Change' %}"/>
+        </form>
+    </div>
 </div>
 
 
+{#<div id="home-first-bg">#}
+{#    <div class="h-100 w-100 d-flex align-items-end justify-content-end align-items-xl-center flex-column">#}
+{#        <div id="home-1-text-container" class="text-center p-2">#}
+{#            <h1 id="home-first-h1-main-text">{% trans "Planning a trip?" %}#}
+{#                <span class="d-block align-bottom" id="logo-and-parttext">#}
+{#                        <span class="d-inline-block text-center justify-content-center align-items-center"#}
+{#                              id="home-logo-container">#}
+{#                <img class="img-fluid" src="{% static '/own/img/logow.png' %}" alt="Website logo">#}
+{#                        </span>#}
+{#                    {% trans "will help you!" %}#}
+{#                    </span>#}
+{#            </h1>#}
+{#            <div class="row align-items-center mt-4 p-lg-3 pr-lg-0 mr-lg-0 w-100" id="home-first-h1-links-div">#}
+{#                <div class="col-5 p-0"><a href="#home-trip-attributes" class="a-on-dark">{% trans "Find out more" %}</a>#}
+{#                </div>#}
+{#                <div class="col-7 p-0">#}
+{#                    {% if user.is_anonymous %}#}
+{#                        <span class="d-block"><a href="{% url 'login' %}"#}
+{#                                                 class="a-on-dark text-nowrap">{% trans 'Log in' %}</a> /#}
+{#                        <a href="{% url 'signup' %}" class="a-on-dark text-nowrap">{% trans 'Register' %}</a></span>#}
+{#                    {% else %}#}
+{#                        <span class="d-block"><a href="{% url 'my-trip-list' %}"#}
+{#                                                 class="a-on-dark">{% trans "Go to your trips" %}</a></span>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
 
 <div id="home-first-bg">
-    <div class="h-100 w-100 d-flex align-items-end justify-content-end align-items-xl-center flex-column">
+    <div class="h-100 w-100 d-flex
+{#    align-items-end#}
+    justify-content-end
+{#    align-items-xl-center#}
+align-items-start
+    flex-column">
         <div id="home-1-text-container" class="text-center p-2">
             <h1 id="home-first-h1-main-text">{% trans "Planning a trip?" %}
                 <span class="d-block align-bottom" id="logo-and-parttext">
-                        <span class="d-inline-block text-center justify-content-center align-items-center" id="home-logo-container">
-                <img class="img-fluid" src="{% static '/own/img/logow.png'%}" alt="Website logo">
+                        <span class="d-inline-block text-center justify-content-center align-items-center"
+                              id="home-logo-container">
+                <img class="img-fluid" src="{% static '/own/img/logow.png' %}" alt="Website logo">
                         </span>
                     {% trans "will help you!" %}
                     </span>
@@ -75,10 +124,12 @@
                 </div>
                 <div class="col-7 p-0">
                     {% if user.is_anonymous %}
-                        <span class="d-block"><a  href="{% url 'login' %}" class="a-on-dark text-nowrap">{% trans 'Log in' %}</a> /
+                        <span class="d-block"><a href="{% url 'login' %}"
+                                                 class="a-on-dark text-nowrap">{% trans 'Log in' %}</a> /
                         <a href="{% url 'signup' %}" class="a-on-dark text-nowrap">{% trans 'Register' %}</a></span>
                     {% else %}
-                        <span class="d-block"><a href="{% url 'my-trip-list' %}" class="a-on-dark">{% trans "Go to your trips" %}</a></span>
+                        <span class="d-block"><a href="{% url 'my-trip-list' %}"
+                                                 class="a-on-dark">{% trans "Go to your trips" %}</a></span>
                     {% endif %}
                 </div>
             </div>
@@ -90,7 +141,9 @@
 <div id="home-trip-attributes" class="p-sm-5 d-flex justify-content-center text-center align-items-center">
     <article>
         <h2 class="h2-responsive w-100" id="attributes-1-container-h2">
-            <span class="d-inline-block" id="home-trip-attributes-main-txt">{% trans "TripPlanner is a website allowing you to store information about your trips. Save your:" %}</span>
+            <span class="d-inline-block"
+                  id="home-trip-attributes-main-txt">
+                {% trans "In TripPlanner you can store information about your trips. Save:" %}</span>
             <span class="row">
                 <span class="col-md-4 p-sm-4">
                     <span class="fas fa-rocket fa-3x p-1"></span>
@@ -142,7 +195,7 @@
                 </span>
                 <span class="col-md-6 p-4">
                     <span class="fas fa-file-pdf fa-3x p-1"></span>
-                    <span class="d-block small mt-2">{% trans "save the trip to .pdf and use your notes offline!"%}</span>
+                    <span class="d-block small mt-2">{% trans "save the trip to .pdf and use your notes offline!" %}</span>
                 </span>
             </span>
         </h2>

@@ -22,6 +22,7 @@ from django.utils.translation import gettext as _
 import json
 from django.db.models import Sum
 
+
 group1 = [login_required, user_is_trip_creator]
 group2 = [login_required, user_is_trip_participant]
 group3 = [login_required, logged_user_is_profile_user]
@@ -29,6 +30,10 @@ group3 = [login_required, logged_user_is_profile_user]
 
 def tripplanner(request):
     return render(request, 'tripplanner/tripplanner.html')
+
+
+def about_tripplanner(request):
+    return render(request, 'tripplanner/about_tripplanner.html')
 
 
 class TripList(ListView):
@@ -189,7 +194,6 @@ class TripWithAttributesUpdate(UpdateView):
         attractions = context['attractions']
         with transaction.atomic():
             if attractions.is_valid() and accommodations.is_valid() and journeys.is_valid():
-                form.instance.created_by = self.request.user
                 self.object = form.save()
 
                 if journeys.is_valid():
@@ -408,6 +412,7 @@ class ProfileDetail(DetailView):
     def get_context_data(self, **kwargs):
         self.request.session['list_view'] = 'not_logged_all_trips'
         data = super(ProfileDetail, self).get_context_data(**kwargs)
+        data['created_trips_me'] = Trip.objects.filter(created_by_id=self.kwargs['pk']).order_by('pk')
         data['created_trips'] = Trip.objects.filter(created_by_id=self.kwargs['pk']).exclude(private_trip=True).order_by('pk')
         return data
 

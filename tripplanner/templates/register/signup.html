@@ -4,7 +4,7 @@
 {% block content %}
     <div class="h-100 w-100">
         <div class="d-flex justify-content-center align-items-center">
-            <div class="text-center">
+            <div class="text-center" id="signup">
                 <form class="md-form form-signin py-3" method="post">
                     {% csrf_token %}
                     <h1 class="h3 font-weight-normal">{% trans 'Sign up' %}</h1>
@@ -21,9 +21,9 @@
                         <label class="control-label sr-only" for="id_username">Username:</label>
                         <input class="form-control" type="text" name="username" maxlength="150"
                                autofocus="" id="id_username" required="" placeholder={% trans "Login" %}>
-                        <div class="text-left"><span class="helptext">
-                                            {% trans 'Required. 150 characters or fewer. Only letters, digits and @/./+/-/_.' %}</span>
-                        </div>
+                        {#                        <div class="text-left"><span class="helptext">#}
+                        {#                                            {% trans 'Required. 150 characters or fewer. Only letters, digits and @/./+/-/_.' %}</span>#}
+                        {#                        </div>#}
                     </div>
                     <div class="control-group">
                         <label class="control-label sr-only" for="id_password1">Password:</label>
@@ -32,13 +32,13 @@
                             <input class="form-control" type="password" name="password1" id="id_password1"
                                    required="" placeholder={% trans "Password" %}>
                         </div>
-                        <ul class="helptext list-unstyled text-left">
-                            <li>
-                                {% trans "Your password can't be too similar to your other personal information." %}</li>
-                            <li>{% trans "Your password must contain at least 8 characters." %}</li>
-                            <li>{% trans "Your password can't be a commonly used password." %}</li>
-                            <li>{% trans "Your password can't be entirely numeric." %}</li>
-                        </ul>
+                        {#                        <ul class="helptext list-unstyled text-left">#}
+                        {#                            <li>#}
+                        {#                                {% trans "Your password can't be too similar to your other personal information." %}</li>#}
+                        {#                            <li>{% trans "Your password must contain at least 8 characters." %}</li>#}
+                        {#                            <li>{% trans "Your password can't be a commonly used password." %}</li>#}
+                        {#                            <li>{% trans "Your password can't be entirely numeric." %}</li>#}
+                        {#                        </ul>#}
 
                     </div>
                     <div class="control-group">
@@ -50,22 +50,19 @@
 
                             <input class="form-control" type="password" name="password2"
                                    id="id_password2" required="" placeholder="{% trans 'Repeat password' %}">
-                            <div class="text-left"><span class="helptext">
-                            {% trans 'Enter the same password as before, for verification reasons.' %}</span></div>
+                            {#                            <div class="text-left"><span class="helptext">#}
+                            {#                            {% trans 'Enter the same password as before, for verification reasons.' %}</span></div>#}
+                            {#                        </div>#}
                         </div>
 
                     </div>
 
-                    {#      <button type="submit" class="btn">Sign up!</button>#}
-                    {#  </form>#}
-
-
-                    {#                {{ form.as_p }}#}
-
-
-                    <button type="submit" class="btn">{% trans 'Sign up!' %}</button>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">{% trans 'Sign up!' %}</button>
                 </form>
+                            <p class="font-small">{% trans "By signing up or otherwise using the TripPlanner service, you acknowledge that you have read and understood the" %}
+                    <a href="{% url 'about-tripplanner' %}">{% trans 'agreements' %}</a>.</p>
             </div>
+
         </div>
     </div>
 

@@ -239,7 +239,7 @@ msgstr "Zapisz"
 
 #: tripplanner/templates/tripplanner/trip_with_attributes_form.html:117
 msgid "Back to the List of My Trips"
-msgstr "Powrót do listy moich wycieczek"
+msgstr "Wróć do listy moich wycieczek"
 
 #: tripplanner/templates/tripplanner/trip_with_attributes_form.html:127
 msgid "Add new row"
@@ -285,7 +285,7 @@ msgid "Pdf-file with details"
 msgstr "Plik .pdf ze szczegółami"
 
 msgid "Back to Trip Details"
-msgstr "Powrót do szczegółów wycieczki"
+msgstr "Wróć do szczegółów wycieczki"
 
 msgid "Total Cost"
 msgstr "Koszt całkowity"
@@ -381,7 +381,7 @@ msgid "Add to your favourites!"
 msgstr "Dodaj do ulubionych!"
 
 msgid "In your favourites"
-msgstr "W twoich ulubionych"
+msgstr "W moich ulubionych"
 
 msgid "My favourite trips"
 msgstr "Moje ulubione wycieczki"
@@ -390,7 +390,7 @@ msgid "user added to favourites"
 msgstr "użytkownik dodał do ulubionych"
 
 msgid "users added to favourites"
-msgstr "użytkownicy mają wycieczkę w ulubionych"
+msgstr "użytkownicy lubią tę wycieczkę"
 
 msgid "My profile"
 msgstr "Mój profil"
@@ -414,7 +414,7 @@ msgid "Trips created by user"
 msgstr "Wycieczki stworzone przez użytkownika"
 
 msgid "Back to Profile"
-msgstr "Powrót do profilu"
+msgstr "Wróć do profilu"
 
 msgid "TRIPS"
 msgstr "WYCIECZKI"
@@ -453,13 +453,13 @@ msgid "See existing trips"
 msgstr "Zobacz istniejące wycieczki"
 
 msgid "save the trip to .pdf and use your notes offline!"
-msgstr "zapisać wycieczkę w pliku .pdf i korzystać z notatek offline!"
+msgstr "zapisać wycieczkę w pliku .pdf i&nbsp;korzystać z&nbsp;notatek offline!"
 
 msgid "make plans with your friends,"
-msgstr "tworzyć plany razem ze znajomymi,"
+msgstr "tworzyć plany razem ze&nbsp;znajomymi,"
 
 msgid "and use them as templates!"
-msgstr "i używaj ich jako szablonów!"
+msgstr "i&nbsp;używaj ich jako szablonów!"
 
 msgid "Browse other users' trips"
 msgstr "Przeglądaj wycieczki innych użytkowników"
@@ -476,11 +476,11 @@ msgstr "miejsca zakwaterowania,"
 msgid "journeys,"
 msgstr "podróże,"
 
-msgid "TripPlanner is a website allowing you to store information about your trips. Save your:"
-msgstr "TripPlanner to serwis, w którym przechowasz informacje dotyczące wycieczek. Zapisuj swoje:"
+msgid "In TripPlanner you can store information about your trips. Save:"
+msgstr "TripPlanner to serwis, w&nbsp;którym przechowasz informacje dotyczące wycieczek. Zapisuj swoje:"
 
 msgid "Go to your trips"
-msgstr "Przejdź do swoich wycieczek"
+msgstr "Przejdź do&nbsp;swoich wycieczek"
 
 msgid "Find out more"
 msgstr "Dowiedz się więcej"
@@ -489,7 +489,7 @@ msgid "Planning a trip?"
 msgstr "Planujesz wycieczkę?"
 
 msgid "will help you!"
-msgstr "Ci w tym pomoże!"
+msgstr "Ci&nbsp;w&nbsp;tym pomoże!"
 
 msgid "You can also:"
 msgstr "Możesz też:"
@@ -518,8 +518,23 @@ msgstr "Wycieczki znalezione dla hasła"
 msgid "Copyright © 2018 Beata Piechowicz. All Rights Reserved."
 msgstr "Copyright © 2018 Beata Piechowicz. Wszystkie prawa zastrzeżone."
 
-msgid "- plan your trip!"
-msgstr "- zaplanuj swoją wycieczkę!"
+msgid "– plan your trip!"
+msgstr "– zaplanuj swoją wycieczkę!"
 
 msgid "TripPlanner will help you keep all your trip notes together!"
 msgstr "Dzięki TripPlannerowi przechowasz wszystkie swoje plany wycieczkowe w jednym miejscu!"
+
+msgid "Public trips created by user"
+msgstr "Wycieczki publiczne stworzone przez użytkownika"
+
+msgid "About the website"
+msgstr "O stronie"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "By signing up or otherwise using the TripPlanner service, you acknowledge that you have read and understood the"
+msgstr "Rejestrując się w serwisie, oświadczasz, że zapoznałeś się z"
+
+msgid "agreements"
+msgstr "regulaminem"

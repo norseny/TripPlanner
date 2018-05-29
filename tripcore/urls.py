@@ -24,6 +24,7 @@ import tripcore
 
 urlpatterns = [
     url(r'^tripplanner/', include('tripplanner.urls')),
+    url(r'^piechowicz/tripplanner/', include('tripplanner.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'', include('tripplanner.urls')),
     url(r'^$', lambda r: HttpResponseRedirect('tripplanner/')),

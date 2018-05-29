@@ -48,7 +48,7 @@ html, main, body {
     display: block;
     position: fixed!important;
     bottom: 2rem;
-    right: 0;
+    left: 0;
     color: white;
 }
 
@@ -61,7 +61,7 @@ html, main, body {
     background-color: rgba(0, 0, 0, 0.3);
     position: fixed!important;
     bottom: 2rem;
-    right: 0;
+    left: 0;
 }
 
 #lang-form{
@@ -91,6 +91,7 @@ html, main, body {
 @media (min-width:100px) and (max-width: 576px) {
     #home-1-text-container{
         margin-bottom: 20%;
+        margin-left: 1rem;
     }
 
     #home-first-h1-main-text{
@@ -121,7 +122,8 @@ html, main, body {
 /*Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {
     #home-1-text-container {
-        margin-bottom: 5rem;
+        margin-bottom: 3rem;
+        margin-left: 1rem;
     }
 
     #home-first-h1-main-text {
@@ -147,7 +149,7 @@ html, main, body {
 
     #home-1-text-container {
         margin-bottom: 4rem;
-        margin-right: 2rem;
+        margin-left: 2rem;
         max-width: 700px;
     }
 
@@ -169,7 +171,7 @@ html, main, body {
 @media (min-width: 992px) {
     #home-1-text-container {
         margin-bottom: 5rem;
-        margin-right: 2rem;
+        margin-left: 5rem;
         max-width: 1500px;
     }
     #home-first-h1-main-text {
@@ -189,10 +191,11 @@ html, main, body {
 /*Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
     #home-1-text-container {
-        margin-bottom: 4rem;
+        margin-bottom: 3.5rem;
         margin-right: 0;
-        padding-left: 20rem!important;
-        /*max-width: 1200px;*/
+        /*padding-left: 20rem!important;*/
+        margin-left: 7rem;
+
     }
 
     #home-begin-art {
@@ -209,7 +212,9 @@ html, main, body {
 
 #home-first-bg {
     /*background: url(../img/test4kopia.jpg) no-repeat center center fixed;*/
-    background: url(../img/desk-photos3.png) no-repeat center center fixed;
+    /*background: url(../img/desk-photos3.png) no-repeat center center fixed;*/
+    background: url(../img/desk-photos3lv3.png) no-repeat center center fixed;
+
     /*background-color: black;*/
     /*background: url(../img/1bgv3anarrow.png) no-repeat center center fixed;*/
     color: white;

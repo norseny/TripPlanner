@@ -15,7 +15,7 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             messages.success(request, _(str('New account created!')))
-            return redirect('/tripplanner/trips')
+            return redirect('/my-trips')
     else:
         form = UserCreationForm()
     return render(request, 'register/signup.html', {'form': form})

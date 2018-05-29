@@ -13,7 +13,7 @@
         <h1 class="my-3">{% trans "New Trip" %}</h1>
     {% endif %}
 
-    <form action="" method="post">{% csrf_token %}
+    <form action="#" method="post">{% csrf_token %}
         {% for field in form %}
             <div>
                 {% trans field.label %}

@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load custom_template_filters %}
+{% block title %}{% endblock %}
+{% block content %}
+    <article class="my-3 m-md-5">
+        <h1 class="text-center my-3 mb-md-4 h1-responsive">{% trans "About the website" %}</h1>
+        <section>
+            <p>Serwis stanowi integralną część pracy licencjackiej (kierunek: elektroniczne przetwarzanie informacji),
+                przygotowanej pod kierunkiem dr Piotra Jordana Śliwińskiego na Wydziale Zarządzania i Komunikacji
+                Społecznej Uniwersytetu Jagiellońskiego.</p>
+        </section>
+        <h2 class="h2-responsive text-center mb-4">Regulamin serwisu</h2>
+        <section>
+            <h3 class="h3-responsive text-center">1. Postanowienia ogólne</h3>
+            <ol>
+                <li>Niniejszy Regulamin określa zasady funkcjonowania oraz warunki korzystania z serwisu TripPlanner,
+                    zwanego dalej Serwisem. Regulamin definiuje prawa i obowiązki korzystających z niego Użytkowników
+                    oraz administratora Serwisu w zakresie świadczenia usług drogą elektroniczną.
+                </li>
+                <li>„Serwis” oznacza witrynę internetową znajdującą się pod adresem
+                    leszczyna.wzks.uj.edu.pl:5017/piechowicz/tripplanner wraz ze wszelkimi jej podstronami.
+                </li>
+                <li>„Użytkownikiem” jest każda osoba, która odwiedza witryny skupione w ramach Serwisu.</li>
+                <li> Administrator zastrzega sobie prawo do ograniczenia dostępu do niektórych treści lub funkcji
+                    serwisu wedle przyjętych przez siebie kryteriów, w szczególności uzależnienia ich od zarejestrowania
+                    konta.
+                </li>
+                <li>Prawem właściwym dla wszelkich stosunków prawnych wynikających z niniejszego Regulaminu jest prawo
+                    polskie. Spory
+                    rozstrzygane będą przez polskie sądy właściwe dla danej sprawy.
+                </li>
+                <li>Działanie Serwisu podlega prawu polskiemu. Spory wynikłe z korzystania z serwisu rozstrzygane będą
+                    przez polskie
+                    sądy właściwe dla danej sprawy.
+                </li>
+                <li>W kwestiach nieuregulowanych niniejszym regulaminem zastosowanie znajdują przepisy polskiego prawa,
+                    w szczególności
+                    kodeksu cywilnego i innych ustaw.
+                </li>
+                <li>Regulamin Serwisu dostępny jest dla wszystkich Użytkowników pod adresem leszczyna.wzks.uj.edu
+                    .pl:5017/piechowicz/tripplanner/regulamin
+                </li>
+                <li>Serwis świadczy usługi drogą internetową.</li>
+                </ol>
+                <h3 class="h3-responsive text-center">2. Warunki techniczne korzystania z serwisu</h3>
+            <ol>
+            <li>Do korzystania z Serwisu niezbędne jest posiadanie urządzenia elektronicznego (np. komputer,
+                    telefon, tablet,
+                    telewizor i inne) wyposażonego w możliwie aktualną przeglądarkę internetową. Serwis nie ponosi
+                    odpowiedzialności jeżeli urządzenie Użytkownika nie jest w stanie prawidłowo emitować treści.
+                </li>
+                <li> Dostęp do niektórych funkcji Serwisu może być uzależniony od instalacji dodatkowych wtyczek
+                    zewnętrznych pozwalających na obsługę standardów takich jak Flash, JavaScript i innych.
+                </li>
+            </ol>
+            <h3 class="h3-responsive text-center">3. Prawo autorskie</h3>
+            <ol>
+                <li>Wszelkie treści opublikowane w ramach Serwisu podlegają ochronie prawnoautorskiej. Prawa autorskie
+                    przysługują Serwisowi i/lub twórcom treści.
+                </li>
+                <li>Zabronione jest kopiowanie i rozpowszechnianie treści Serwisu w zakresie przekraczającym tzw.
+                    dozwolony użytek zdefiniowany przez ustawę o prawie autorskim i prawach pokrewnych z dn. 4 lutego
+                    1994 roku.
+                </li>
+                <li> Użytkownik dokonujący publikacji treści w serwisie TripPlanner oświadcza, że posiada pełne prawo do
+                    wszelkich publikowanych przez siebie treści – w szczególności do tekstów i grafik lub też materiały
+                    multimedialne zostały wykorzystane w ramach odpowiednich licencji i we właściwy sposób ich
+                    pochodzenie zostało oznaczone.
+                </li>
+                <li>Użytkownik oświadcza, że bierze na siebie pełną odpowiedzialność wynikającą z tytułu naruszenia
+                    przez niego praw autorskich w wyniku publikacji treści w Serwisie.
+                </li>
+                <li>Zamieszczenie jakichkolwiek materiałów w Serwisie jest równoznaczne z ich publicznym udostępnieniem.
+                    Użytkownik zachowuje pełnię praw autorskich do publikowanych przez siebie treści, publikacji
+                    dokonuje dobrowolnie i nieodpłatnie, publikacja może być w każdej chwili przez niego odwołana
+                    po dokonaniu stosownego zgłoszenia do Administratora.
+                </li>
+                <li>Administrator oświadcza, iż nie ponosi odpowiedzialności za ewentualne naruszenia praw autorskich
+                    przez jego Użytkowników, jednocześnie oferując pełną współpracę w zakresie eliminowania tych treści
+                    zgodnie z dyspozycją art. 14 ustawy o świadczeniu usług drogą elektroniczną z dn. 18 lipca 2002
+                    roku.
+                </li>
+            </ol>
+                <h3 class="h3-responsive text-center">4. Prawa i obowiązki użytkownika</h3>
+            <ol>
+            <li> Użytkownikiem Serwisu może być osoba fizyczna, osoba prawna oraz jednostka organizacyjna nie
+                    posiadająca osobowości prawnej, której ustawa przyznaje zdolność prawną, prowadząca we własnym
+                    imieniu działalność gospodarczą lub zawodową.
+                </li>
+                <li>Użytkownik staje się Użytkownikiem Zarejestrowanym w chwili założenia konta w Serwisie. Każdy
+                    Użytkownik Zarejestrowany jest równocześnie Użytkownikiem.
+                </li>
+                <li> Użytkownik serwisu może występować jako osoba fizyczna lub osoba prawna, jeżeli po zweryfikowaniu
+                    swojej tożsamości reprezentuje stanowisko któregoś z podmiotów gospodarczych zainteresowanych
+                    uczestnictwem w dyskusji.
+                </li>
+                <li>Korzystający z serwisu Użytkownicy zobowiązani są do przestrzegania niniejszego Regulaminu oraz
+                    przepisów polskiego prawa.
+                </li>
+                <li>Użytkownik ma prawo do korzystania z serwisu poprzez przeglądanie i lekturę jego zasobów z
+                    wyłączeniem treści, do których dostęp Administrator ogranicza wedle przyjętych przez siebie
+                    kryteriów.
+                </li>
+                <li>Użytkownik zobowiązuje się do przestrzegania przepisów prawa oraz dobrych obyczajów, m.in. poprzez
+                    powstrzymywanie się od publikacji treści naruszających dobra osobiste lub uczucia innych
+                    Użytkowników, treści powszechnie uznawanych za wulgarne, dyskryminujące, obsceniczne, poufne,
+                    naruszające granice dobrego smaku i inne treści, które w ocenie Administratora zostaną uznane za
+                    niewłaściwe.
+                </li>
+                <li>Użytkownik zobowiązuje się do powstrzymania od wszelkich praktyk, które mogłyby narazić techniczne i
+                    merytoryczne aspekty funkcjonowania serwisu, w szczególności od spamowania, nieuzgodnionych działań
+                    reklamowych, zachowań, które mogą zostać uznane za celowe próby destabilizacji technicznego zaplecza
+                    Serwisu (ataki DDoS).
+                </li>
+                <li> Administrator zastrzega sobie prawo do usuwania treści, które będą naruszały niniejszy Regulamin,
+                    jak również nieuwzględnione w nim powszechnie obowiązujące w życiu społecznym wartości.
+                </li>
+                <li> Administrator zastrzega sobie prawo do blokowania dostępu do Serwisu lub określonych funkcji
+                    Serwisu Użytkownikom, którzy nagminnie będą łamali postanowienia Regulaminu, w szczególności poprzez
+                    usuwanie lub blokadę kont Użytkowników Zarejestrowanych.
+                </li>
+                <li> Administrator zastrzega prawo do usunięcia konta Użytkownika Zarejestrowanego, jeśli ten nie
+                    logował się na nie na przestrzeni jednego roku.
+                </li>
+                <li> W przypadku łamania przepisów prawa przez Użytkowników lub działania na szkodę Serwisu,
+                    Administrator zastrzega sobie prawo do podjęcia stosownych działań prawnych, jak również
+                    udostępniania niezbędnych danych zainteresowanym organom ścigania.
+                </li>
+                <li> Administrator zastrzega sobie prawo do stosowania sankcji wskazanych w pkt. 9 niniejszego działu
+                    bez potrzeby argumentowania swoich decyzji.
+                </li>
+                </ol>
+                <h3 class="h3-responsive text-center">5. Dane osobowe i ochrona prywatności</h3>
+            <ol>
+            <li>Wraz z uzyskaniem statusu Użytkownika Zarejestrowanego, Użytkownik wyraża zgodę na przetwarzanie
+                    przez Administratora udostępnionych przez siebie danych osobowych w celu realizacji usług
+                    świadczonych przez Serwis, w ramach i z uwzględnieniem zastrzeżeń niniejszego regulaminu.
+                </li>
+                <li>Użytkownik Zarejestrowany zgadza się na publiczne emitowanie udostępnionych przez niego danych w
+                    ramach utworzenia tzw. profilu użytkownika.
+                </li>
+                <li>Użytkownikowi Zarejestrowanemu przysługuje prawo wglądu do dotyczących go danych osobowych oraz
+                    prawo do ich weryfikacji, modyfikacji lub usunięcia z wyłączeniem danych pozyskiwanych automatycznie
+                    przez infrastrukturę Serwisu.
+                </li>
+                <li>Administratorem danych osobowych jest Administrator Serwisu działający zgodnie z przepisami ustawy z
+                    dn. 29 sierpnia 1997 roku o ochronie danych osobowych oraz ustawy z dn. 18 lipca 2002 roku o
+                    świadczeniu usług drogą elektroniczną.
+                </li>
+                <li>Użytkownik Zarejestrowany wyraża zgodę na przetwarzanie i wykorzystywanie danych osobowych przez
+                    Administratora do celów własnych w okolicznościach uzasadnionych potrzebą wysłania Użytkownikowi
+                    powiadomień o istotnych kwestiach związanych z funkcjonowaniem Serwisu.
+                </li>
+                <li>Pliki cookies gromadzone w ramach Serwisu wykorzystywane są w realizowaniu celów funkcjonalnych
+                    witryny dla wygody Użytkownika, pomagają również w realizowaniu celów statystycznych, reklamowych i
+                    społecznościowych.
+                </li>
+            </ol>
+                <h3 class="h3-responsive text-center">6. Postanowienia końcowe</h3>
+            <ol>
+            <li>Niniejszy regulamin zaczyna obowiązywać z chwilą ogłoszenia go w serwisie.</li>
+                <li>Data ostatniej aktualizacji regulaminu: 27 maja 2018 roku.</li>
+                <li>Korzystanie z Serwisu, zarówno przez Użytkownika, jak i Użytkownika Zarejestrowanego jest
+                    równoznaczne z akceptacją regulaminu.
+                </li>
+            </ol>
+
+            <p>Regulamin serwisu został stworzony na podstawie <a href="https://bezprawnik
+            .pl/regulamin-serwisu/">regulaminu serwisu Bezprawnik.pl</a></p>
+        </section>
+    </article>
+
+
+
+{% endblock %}

@@ -10,7 +10,7 @@
     <h1 class="h1-responsive ml-0">{{ trip.name }}</h1>
     <h2 class="h2-responsive ml-0">{% trans 'Main image' %}</h2>
     <p>{% trans 'Your image size cannot exceed 2 MB' %}</p>
-        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <form action="#" method="post" enctype="multipart/form-data">{% csrf_token %}
         {% for field in form %}
                 <div>
                     <span class="error-style">{{ field.errors }}</span>
