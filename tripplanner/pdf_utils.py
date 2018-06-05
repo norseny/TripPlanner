@@ -45,6 +45,11 @@ class PdfPrint:
 
         # add custom paragraph style
         styles.add(ParagraphStyle(
+            name="Title_Roboto", fontName='RobotoBold',
+            fontSize=20,
+            alignment=TA_CENTER,
+        ))
+        styles.add(ParagraphStyle(
             name="MainInfo", fontName='RobotoBold',
             fontSize=12
         ))
@@ -67,10 +72,9 @@ class PdfPrint:
 
         # list used for elements added into document
         data = []
-        # data.append(Spacer(1, 4))
-        data.append(Paragraph(title, styles['Title']))
+        data.append(Paragraph(title, styles['Title_Roboto']))
         # insert a blank space
-        data.append(Spacer(1, 12))
+        data.append(Spacer(1, 24))
 
         (data.append(Paragraph(_('Description') + ': ' + context['trip'].description, styles['MainInfo']))) if context[
             'trip'].description else ''
@@ -106,7 +110,6 @@ class PdfPrint:
             table_data.append(
                 [
                     Paragraph(str(i + 1), styles['MyNormal']),
-                    # Paragraph(formatTableCellData(journey.name), styles['MyNormal']),
                     '',
                     Paragraph(formatTableCellData(start_time), styles['MyNormal']),
                     Paragraph(formatTableCellData(end_time), styles['MyNormal']),
