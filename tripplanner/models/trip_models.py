@@ -19,7 +19,7 @@ class MeansOfTransport(models.Model):
 
 
 class BasicInfo(models.Model):
-    start_time = models.DateField(null=True, blank=True)
+    start_time = models.DateTimeField(null=True, blank=True)
     price = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True)
     name = models.CharField(null=True, blank=True, max_length=50)
     more_info = models.TextField(null=True, max_length=1000, blank=True)
@@ -31,7 +31,7 @@ class Trip(BasicInfo):
     name = models.CharField(max_length=50, unique=True, null=False, blank=False)
     description = models.TextField(null=True, max_length=250, blank=True)
     created_by = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
-    end_time = models.DateField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
     main_image = models.ImageField(upload_to='users_img', blank=True, null=True)
     private_trip = models.BooleanField(default=False)
     currency = models.TextField(max_length=10, default='PLN')
@@ -76,7 +76,7 @@ class Trip(BasicInfo):
 class Journey(BasicInfo):
     start_point = models.CharField(max_length=250, null=True, blank=True)
     end_point = models.CharField(max_length=250, null=True, blank=True)
-    end_time = models.DateField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
 
     means_of_transport = models.ForeignKey(MeansOfTransport, on_delete=models.SET_NULL, null=True, blank=True)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
@@ -85,7 +85,7 @@ class Journey(BasicInfo):
 class Accommodation(BasicInfo):
     name = models.CharField(null=False, blank=False, max_length=50)
     address = models.CharField(max_length=250, null=True, blank=True)
-    end_time = models.DateField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
     date_range = models.CharField(null=True, blank=True, max_length=50)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
 
@@ -104,8 +104,8 @@ class Accommodation(BasicInfo):
         elif 'to' in self.date_range:
             start_date, end_date = (self.date_range).split(' to ', 2)
 
-        self.start_time = make_aware(datetime.strptime(start_date, '%d/%m/%y'))
-        self.end_time = make_aware(datetime.strptime(end_date, '%d/%m/%y'))
+        self.start_time = make_aware(datetime.strptime(start_date, '%d.%m.%y'))
+        self.end_time = make_aware(datetime.strptime(end_date, '%d.%m.%y'))
 
 
 class Attraction(BasicInfo):

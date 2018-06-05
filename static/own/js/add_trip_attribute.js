@@ -1,5 +1,5 @@
 const params = {
-    dateFormat: "d/m/y",
+    dateFormat: "d.m.y",
     locale: language_code,
     time_24hr: true,
     mode: "range",
@@ -8,7 +8,7 @@ const params = {
 
 const params2 = {
     enableTime: true,
-    dateFormat: "d/m/Y (H:i)",
+    dateFormat: "d.m.y (H:i)",
     locale: language_code,
     time_24hr: true
 };

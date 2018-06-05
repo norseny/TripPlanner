@@ -14,7 +14,7 @@ class MyDateTimeInput(forms.DateTimeInput):
 class MyDateTimeField(forms.DateTimeField):
     widget = MyDateTimeInput(
         attrs={'class': 'form-control form-control-sm datetime'},
-        format='%d/%m/%Y (%H:%M)'
+        format='%d.%m.%Y (%H:%M)'
     )
 
 class MyDateRangeField(forms.CharField):
