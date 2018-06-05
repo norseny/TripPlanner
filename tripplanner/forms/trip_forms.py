@@ -5,22 +5,26 @@ from django.utils.translation import gettext as _
 
 from tripplanner.models import *
 from django import forms
+from tripplanner import extra_utils
 
 dict_of_textinput_attrs_autocomplete = {'class': 'form-control form-control-sm autocomplete'}
 dict_of_textinput_attrs = {'class': 'form-control form-control-sm'}
-dict_of_datetime_range_attrs = {'class': 'datetimepicker-range form-control form-control-sm'}
+# dict_of_datetime_range_attrs = {'class': 'datetimepicker-range form-control form-control-sm'}
 
 
 class MyDateTimeInput(forms.DateTimeInput):
-    input_type = 'datetime'
-
+    input_type = 'date'
 
 class MyDateTimeField(forms.DateTimeField):
     widget = MyDateTimeInput(
-        attrs={'class': 'form-control form-control-sm'},
+        attrs={'class': 'form-control form-control-sm datetime'},
         format='%d/%m/%Y (%H:%M)'
     )
 
+class MyDateRangeField(forms.CharField):
+    widget = TextInput(
+        attrs={'class': 'form-control form-control-sm daterange'},
+    )
 
 class TripForm(ModelForm, Form):
     class Meta:
@@ -60,22 +64,28 @@ class JourneyForm(ModelForm):
 
 
 class AccommodationForm(ModelForm):
-    start_time = MyDateTimeField(required=False)
-    end_time = MyDateTimeField(required=False)
+    # start_time = MyDateTimeField(required=False)
+    # end_time = MyDateTimeField(required=False)
+    date_range = MyDateRangeField(required=False)
 
     class Meta:
         model = Accommodation
-        fields = ['name', 'address', 'start_time', 'end_time', 'price', 'more_info']
+        fields = ['name', 'address', 'date_range', 'price', 'more_info']
         widgets = {
             'name': TextInput(attrs=dict_of_textinput_attrs),
             'address': TextInput(attrs=dict_of_textinput_attrs),
             'price': NumberInput(attrs=dict_of_textinput_attrs),
             'more_info': Textarea(
-                attrs={'rows': 2, 'cols': '65', 'class': 'materialize-textarea form-control form-control-sm '
-                                                         'more-info'}),
-
+                attrs={'rows': 2, 'cols': '65', 'class': 'materialize-textarea form-control form-control-sm more-info'}),
         }
         exclude = ()
+
+    # def is_valid(self):
+    #     if 'date_range' in self.cleaned_data:
+    #         if self.cleaned_data['date_range'] != '':
+    #             custom_validators.daterange_validator(self.cleaned_data['date_range'])
+    #             return True
+    #     return True
 
 
 class AttractionForm(ModelForm):
@@ -95,14 +105,14 @@ class AttractionForm(ModelForm):
         exclude = ()
 
 
+
 AttractionFormSet = inlineformset_factory(Trip, Attraction, form=AttractionForm, extra=1)
 JourneyFormSet = inlineformset_factory(Trip, Journey, form=JourneyForm, extra=1)
-
 AccommodationFormSet = inlineformset_factory(Trip, Accommodation, form=AccommodationForm, extra=1)
 
 
-class AddParticipantForm(Form):
-    username = forms.CharField(max_length=50)
+# class AddParticipantForm(Form):
+#     username = forms.CharField(max_length=50)
 
 
 class ImageUploadForm(ModelForm):
@@ -130,7 +140,6 @@ class ProfileForm(ModelForm, Form):
         exclude = ()
         widgets = {
             'about_me': Textarea(attrs={'rows': '10', 'cols': '20', 'class': 'materialize-textarea form-control form-control-sm p-2'}),
-            # 'more_info': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
             'location': TextInput(attrs=dict_of_textinput_attrs),
             'email': EmailInput(attrs=dict_of_textinput_attrs)
 

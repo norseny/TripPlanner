@@ -324,7 +324,7 @@ msgid "Total: "
 msgstr "Suma: "
 
 msgid "More info"
-msgstr "Więcej "
+msgstr "Notatki"
 
 msgid "About TripPlanner"
 msgstr "O TripPlannerze"
@@ -341,17 +341,17 @@ msgstr "Wprowadź hasło ponownie, by potwierdzić spójność haseł."
 msgid "Required. 150 characters or fewer. Only letters, digits and @/./+/-/_."
 msgstr "Wymagany. 150 lub mniej znaków. Jedynie litery, cyfry i @/./+/-/_."
 
-#msgid "Your password can't be too similar to your other personal information."
-#msgstr "Twoje hasło nie może być zbyt podobne do twoich innych danych osobistych."
+msgid "the password can't be too similar to your other personal information,"
+msgstr "hasło nie może być zbyt podobne do twoich innych danych osobistych."
 
 msgid "Your password must contain at least 8 characters."
 msgstr "Twoje hasło musi zawierać co najmniej 8 znaków."
 
-#msgid "Your password can't be a commonly used password."
-#msgstr "Twoje hasło nie może być powszechnie używanym hasłem."
+msgid "the password can't be a commonly used password."
+msgstr "hasło nie może być powszechnie używanym hasłem."
 
-#msgid "Your password can't be entirely numeric."
-#msgstr "Twoje hasło nie może składać się tylko z cyfr."
+msgid "the password can't be entirely numeric,"
+msgstr "hasło nie może składać się tylko z cyfr,"
 
 msgid "New account created!"
 msgstr "Twoje konto zostało utworzone!"
@@ -361,6 +361,9 @@ msgstr "Zaloguj się, aby skorzystać z tej funkcji!"
 
 msgid "Description, max 1000 characters"
 msgstr "Opis, maksymalnie 1000 znaków"
+
+msgid "You did not follow at least one of the general security recommendations"
+msgstr "Nie spełniono co najmniej jednego z&nbsp;poniższych zaleceń bezpieczeństwa"
 
 msgid "from"
 msgstr "od"
@@ -538,3 +541,12 @@ msgstr "Rejestrując się w serwisie, oświadczasz, że zapoznałeś się z"
 
 msgid "agreements"
 msgstr "regulaminem"
+
+msgid "the password cannot be too similar to the username,"
+msgstr "hasło nie może być zbyt podobne do loginu,"
+
+msgid "the password must contain at least 8 characters,"
+msgstr "hasło powinno mieć co najmniej 8 znaków,"
+
+msgid "Date range"
+msgstr "Zakres czasowy"

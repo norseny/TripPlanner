@@ -8,15 +8,20 @@
 {% block content %}
     <article class="my-3 m-md-5">
         <h1 class="text-center my-3 mb-md-4 h1-responsive">{% trans "About the website" %}</h1>
+
+        {% get_current_language as LANGUAGE_CODE %}
+        {% if LANGUAGE_CODE == 'en' or LANGUAGE_CODE == 'en-gb' %}
+            <p>Agreements and website description currently available only in Polish.</p>
+        {% endif %}
         <section>
-            <p>Serwis stanowi integralną część pracy licencjackiej (kierunek: elektroniczne przetwarzanie informacji),
+            <p class="mr-md-5 ml-md-5">Serwis stanowi integralną część pracy licencjackiej (kierunek: elektroniczne przetwarzanie informacji),
                 przygotowanej pod kierunkiem dr Piotra Jordana Śliwińskiego na Wydziale Zarządzania i Komunikacji
                 Społecznej Uniwersytetu Jagiellońskiego.</p>
         </section>
         <h2 class="h2-responsive text-center mb-4">Regulamin serwisu</h2>
         <section>
             <h3 class="h3-responsive text-center">1. Postanowienia ogólne</h3>
-            <ol>
+            <ol class="font-small mr-md-5 ml-md-5">
                 <li>Niniejszy Regulamin określa zasady funkcjonowania oraz warunki korzystania z serwisu TripPlanner,
                     zwanego dalej Serwisem. Regulamin definiuje prawa i obowiązki korzystających z niego Użytkowników
                     oraz administratora Serwisu w zakresie świadczenia usług drogą elektroniczną.
@@ -47,7 +52,7 @@
                 <li>Serwis świadczy usługi drogą internetową.</li>
                 </ol>
                 <h3 class="h3-responsive text-center">2. Warunki techniczne korzystania z serwisu</h3>
-            <ol>
+            <ol class="font-small mr-md-5 ml-md-5">
             <li>Do korzystania z Serwisu niezbędne jest posiadanie urządzenia elektronicznego (np. komputer,
                     telefon, tablet,
                     telewizor i inne) wyposażonego w możliwie aktualną przeglądarkę internetową. Serwis nie ponosi
@@ -58,7 +63,7 @@
                 </li>
             </ol>
             <h3 class="h3-responsive text-center">3. Prawo autorskie</h3>
-            <ol>
+            <ol class="font-small mr-md-5 ml-md-5">
                 <li>Wszelkie treści opublikowane w ramach Serwisu podlegają ochronie prawnoautorskiej. Prawa autorskie
                     przysługują Serwisowi i/lub twórcom treści.
                 </li>
@@ -86,7 +91,7 @@
                 </li>
             </ol>
                 <h3 class="h3-responsive text-center">4. Prawa i obowiązki użytkownika</h3>
-            <ol>
+            <ol class="font-small mr-md-5 ml-md-5">
             <li> Użytkownikiem Serwisu może być osoba fizyczna, osoba prawna oraz jednostka organizacyjna nie
                     posiadająca osobowości prawnej, której ustawa przyznaje zdolność prawną, prowadząca we własnym
                     imieniu działalność gospodarczą lub zawodową.
@@ -135,7 +140,7 @@
                 </li>
                 </ol>
                 <h3 class="h3-responsive text-center">5. Dane osobowe i ochrona prywatności</h3>
-            <ol>
+            <ol class="font-small mr-md-5 ml-md-5">
             <li>Wraz z uzyskaniem statusu Użytkownika Zarejestrowanego, Użytkownik wyraża zgodę na przetwarzanie
                     przez Administratora udostępnionych przez siebie danych osobowych w celu realizacji usług
                     świadczonych przez Serwis, w ramach i z uwzględnieniem zastrzeżeń niniejszego regulaminu.
@@ -161,7 +166,7 @@
                 </li>
             </ol>
                 <h3 class="h3-responsive text-center">6. Postanowienia końcowe</h3>
-            <ol>
+            <ol class="font-small mr-md-5 ml-md-5">
             <li>Niniejszy regulamin zaczyna obowiązywać z chwilą ogłoszenia go w serwisie.</li>
                 <li>Data ostatniej aktualizacji regulaminu: 27 maja 2018 roku.</li>
                 <li>Korzystanie z Serwisu, zarówno przez Użytkownika, jak i Użytkownika Zarejestrowanego jest

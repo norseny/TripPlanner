@@ -540,8 +540,6 @@ label {
 }
 
 #login, #signup {
-    /*min-width: 300px;*/
-    /*max-width: 400px;*/
     width: 300px;
 }
 
@@ -561,15 +559,20 @@ label {
     padding: .25rem;
 }
 
+.no-list-style {
+    width: 120%;
+    padding-left: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
 .form-plus-minus-js {
     font-size: 2.5rem;
     color: #0091ea;
     font-weight: 400;
 }
 
-.nav-item {
-    /*padding: 2px;*/
-}
 
 .error-style {
     color: #bf0000;
@@ -587,12 +590,8 @@ input[type=number] {
     cursor: pointer;
 }
 
-.details-label{
-    /*font-size: 1.5rem;*/
-    /*color: #321911;*/
-}
 
-#icon-details-down-view, #icon-details-up-view, .icon-details-down-form, .icon-details-up-form, form-js-icon  {
+#icon-details-down-view, #icon-details-up-view, .icon-details-down-form, .icon-details-up-form, .form-js-icon  {
     color: #0091ea;
 }
 
@@ -648,10 +647,6 @@ input[type=number] {
 .table th {
     padding: .25rem;
 }
-
-/*.underline-on-hover:hover {*/
-    /*text-decoration: underline!important;*/
-/*}*/
 
 .no-a-underline-on-hover:hover{
     border: none!important;

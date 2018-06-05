@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 import django
 from decimal import *
+from datetime import datetime
+from django.utils.timezone import make_aware
+
+
 
 
 class MeansOfTransport(models.Model):
@@ -17,7 +21,7 @@ class MeansOfTransport(models.Model):
 
 
 class BasicInfo(models.Model):
-    start_time = models.DateTimeField(null=True, blank=True)
+    start_time = models.DateField(null=True, blank=True)
     price = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True)
     name = models.CharField(null=True, blank=True, max_length=50)
     more_info = models.TextField(null=True, max_length=1000, blank=True)
@@ -29,7 +33,7 @@ class Trip(BasicInfo):
     name = models.CharField(max_length=50, unique=True, null=False, blank=False)
     description = models.TextField(null=True, max_length=250, blank=True)
     created_by = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
-    end_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateField(null=True, blank=True)
     main_image = models.ImageField(upload_to='users_img', blank=True, null=True)
     private_trip = models.BooleanField(default=False)
     currency = models.TextField(max_length=10, default='PLN')
@@ -44,6 +48,7 @@ class Trip(BasicInfo):
     def update_dates_and_price(self, journeys, accommodations, attractions):
         start_times = set()
         end_times = set()
+
         all_details = journeys + accommodations + attractions
         total_price = Decimal(0.0)
 
@@ -73,7 +78,7 @@ class Trip(BasicInfo):
 class Journey(BasicInfo):
     start_point = models.CharField(max_length=250, null=True, blank=True)
     end_point = models.CharField(max_length=250, null=True, blank=True)
-    end_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateField(null=True, blank=True)
 
     # date = models.DateField(null=True, blank=True)
 
@@ -82,9 +87,39 @@ class Journey(BasicInfo):
 
 
 class Accommodation(BasicInfo):
+    name = models.CharField(null=False, blank=False, max_length=50)
     address = models.CharField(max_length=250, null=True, blank=True)
-    end_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateField(null=True, blank=True)
+    date_range = models.CharField(null=True, blank=True, max_length=50)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
+
+
+    # def start_end_date_from_daterange(self, clean_values):
+    #     if 'do' in clean_values['date_range']:
+    #         start_date, end_date = clean_values['date_range'].split(' do ', 2)
+    #     elif 'to' in clean_values['date_range']:
+    #         start_date, end_date = clean_values['date_range'].split(' to ', 2)
+    #
+    #     self.start_time = make_aware(datetime.strptime(start_date, '%d/%m/%y'))
+    #     self.end_time = make_aware(datetime.strptime(end_date, '%d/%m/%y'))
+    #     self.save()
+
+    def save(self, force_insert=False, force_update=False):
+        if self.date_range:
+            self.start_end_date_from_daterange()
+        else:
+            self.start_time = None
+            self.end_time = None
+        models.Model.save(self, force_insert, force_update)
+
+    def start_end_date_from_daterange(self):
+        if 'do' in self.date_range:
+            start_date, end_date = (self.date_range).split(' do ', 2)
+        elif 'to' in self.date_range:
+            start_date, end_date = (self.date_range).split(' to ', 2)
+
+        self.start_time = make_aware(datetime.strptime(start_date, '%d/%m/%y'))
+        self.end_time = make_aware(datetime.strptime(end_date, '%d/%m/%y'))
 
 
 class Attraction(BasicInfo):

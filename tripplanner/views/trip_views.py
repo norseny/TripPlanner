@@ -21,6 +21,7 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 import json
 from django.db.models import Sum
+from tripplanner import extra_utils
 
 
 group1 = [login_required, user_is_trip_creator]
@@ -148,21 +149,18 @@ class TripWithAttributesCreate(CreateView):
                 self.object = form.save()
                 self.object.participants.add(current_user)
 
-                if journeys.is_valid():
-                    journeys.instance = self.object
-                    journeys.save()
+                journeys.instance = self.object
+                journeys.save()
 
-                if accommodations.is_valid():
-                    accommodations.instance = self.object
-                    accommodations.save()
+                accommodations.instance = self.object
+                accommodations.save()
+                # extra_utils.update_acc_dates(self.object.id, accommodations.cleaned_data)
 
-                if attractions.is_valid():
-                    attractions.instance = self.object
-                    attractions.save()
+                attractions.instance = self.object
+                attractions.save()
 
                 models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
                                                    attractions.cleaned_data)
-
             else:
                 return self.form_invalid(form)
 
@@ -196,17 +194,19 @@ class TripWithAttributesUpdate(UpdateView):
             if attractions.is_valid() and accommodations.is_valid() and journeys.is_valid():
                 self.object = form.save()
 
-                if journeys.is_valid():
-                    journeys.instance = self.object
-                    journeys.save()
-                if accommodations.is_valid():
-                    accommodations.instance = self.object
-                    accommodations.save()
-                if attractions.is_valid():
-                    attractions.instance = self.object
-                    attractions.save()
+                journeys.instance = self.object
+                journeys.save()
+
+                accommodations.instance = self.object
+                accommodations.save()
+                # extra_utils.update_acc_dates(self.object.id, accommodations.cleaned_data)
+
+                attractions.instance = self.object
+                attractions.save()
+
                 models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
-                                                   attractions.cleaned_data)
+                                                   attractions.cleaned_data) #todo: instead of cleaned data fetch
+                # queries in Trip.update... (acc daterange not taken into account)
             else:
                 return self.form_invalid(form)
 
@@ -321,6 +321,7 @@ def inspired(request):
             attraction_clone.trip_id = trip_clone.id
             attraction_clone.save()
 
+        request.session['list_view'] = 'logged_my_trips'
         messages.success(request, _(str('Here is your new trip! Change the name and fill in the fields.')))
 
         data = {

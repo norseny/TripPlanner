@@ -8,7 +8,7 @@
     {% csrf_token %}
     <h1 class="h3 mb-3 font-weight-normal">{% trans 'Log in' %}</h1>
     {% if form.errors %}
-            <p class="error-style">{% trans "Your username and password didn't match. Please try again." %}</p> {# todo: moze inny komunikat #}
+            <p class="error-style">{% trans "Your username and password didn't match. Please try again." %}</p>
     {% endif %}
     {% if next %}
         <input type="hidden" name="next" value="{{ next }}" />
@@ -28,7 +28,7 @@
         <div class="controls">
             <button type="submit" class="btn btn-lg btn-primary btn-block">{% trans 'Log in' %}</button>
         </div>
-        <div class="controls">
+        <div class="controls font-small">
             <a href="{% url 'signup' %}">{% trans 'New to Trip Planner? Sign up!' %}</a>
         </div>
     </form>

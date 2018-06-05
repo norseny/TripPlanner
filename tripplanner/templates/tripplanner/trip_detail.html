@@ -292,10 +292,10 @@
                             <li>{{ el.address|default_if_none:"" }}</li>
                             <li>
                                 {% if el.start_time %}
-                                    <span class="text-nowrap">{% trans 'from' %}: {{ el.start_time|date:"d/m/y (H:i)" }}</span>
+                                    <span class="text-nowrap">{% trans 'from' %}: {{ el.start_time|date:"d/m/y" }}</span>
                                 {% endif %}
                                 {% if el.end_time %}
-                                    <span class="text-nowrap">{% trans 'to' %}: {{ el.end_time|date:"d/m/y (H:i)" }}</span>
+                                    <span class="text-nowrap">{% trans 'to' %}: {{ el.end_time|date:"d/m/y" }}</span>
                                 {% endif %}
                             </li>
                             <li>{{ el.price|default_if_none:"" }}</li>
@@ -328,10 +328,10 @@
                             <div class="col-3 col-lg-4 py-1">{{ el.address|default_if_none:"" }}</div>
                             <div class="col-5 text-center py-1">
                                 {% if el.start_time %}
-                                    <span class="text-nowrap">{% trans 'from' %}: {{ el.start_time|date:"d/m/y (H:i)" }}</span>
+                                    <span class="text-nowrap">{% trans 'from' %}: {{ el.start_time|date:"d/m/y" }}</span>
                                 {% endif %}
                                 {% if el.end_time %}
-                                    <span class="text-nowrap">{% trans 'to' %}: {{ el.end_time|date:"d/m/y (H:i)" }}</span>
+                                    <span class="text-nowrap">{% trans 'to' %}: {{ el.end_time|date:"d/m/y" }}</span>
                                 {% endif %}
                             </div>
                             <div class=" col-2 col-lg-1 text-right py-1">{{ el.price|default_if_none:"" }}</div>
