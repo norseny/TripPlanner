@@ -550,3 +550,7 @@ msgstr "hasło powinno mieć co najmniej 8 znaków,"
 
 msgid "Date range"
 msgstr "Zakres czasowy"
+
+
+msgid "You already have the trip with this name!"
+msgstr "Masz już taką wycieczkę!"

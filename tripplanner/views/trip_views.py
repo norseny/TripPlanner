@@ -154,7 +154,6 @@ class TripWithAttributesCreate(CreateView):
 
                 accommodations.instance = self.object
                 accommodations.save()
-                # extra_utils.update_acc_dates(self.object.id, accommodations.cleaned_data)
 
                 attractions.instance = self.object
                 attractions.save()
@@ -199,14 +198,13 @@ class TripWithAttributesUpdate(UpdateView):
 
                 accommodations.instance = self.object
                 accommodations.save()
-                # extra_utils.update_acc_dates(self.object.id, accommodations.cleaned_data)
 
                 attractions.instance = self.object
                 attractions.save()
 
                 models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
                                                    attractions.cleaned_data) #todo: instead of cleaned data fetch
-                # queries in Trip.update... (acc daterange not taken into account)
+                # queries in Trip.update... (accomm daterange not taken into account)
             else:
                 return self.form_invalid(form)
 
@@ -285,7 +283,7 @@ def inspired(request):
     trip_clone = Trip.objects.get(pk=trip_id)
 
     try:
-        trip_clone.name = trip_clone.name + ' copy'
+        trip_clone.name = trip_clone.name + ' ' + request.user.username
         trip_clone.created_by_id = user_id
         trip_clone.start_time = None
         trip_clone.end_time = None

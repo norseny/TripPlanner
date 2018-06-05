@@ -7,8 +7,6 @@ from datetime import datetime
 from django.utils.timezone import make_aware
 
 
-
-
 class MeansOfTransport(models.Model):
     name = models.CharField(max_length=50, unique=True)
     name_pl = models.CharField(max_length=50)
@@ -80,8 +78,6 @@ class Journey(BasicInfo):
     end_point = models.CharField(max_length=250, null=True, blank=True)
     end_time = models.DateField(null=True, blank=True)
 
-    # date = models.DateField(null=True, blank=True)
-
     means_of_transport = models.ForeignKey(MeansOfTransport, on_delete=models.SET_NULL, null=True, blank=True)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
 
@@ -93,16 +89,6 @@ class Accommodation(BasicInfo):
     date_range = models.CharField(null=True, blank=True, max_length=50)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
 
-
-    # def start_end_date_from_daterange(self, clean_values):
-    #     if 'do' in clean_values['date_range']:
-    #         start_date, end_date = clean_values['date_range'].split(' do ', 2)
-    #     elif 'to' in clean_values['date_range']:
-    #         start_date, end_date = clean_values['date_range'].split(' to ', 2)
-    #
-    #     self.start_time = make_aware(datetime.strptime(start_date, '%d/%m/%y'))
-    #     self.end_time = make_aware(datetime.strptime(end_date, '%d/%m/%y'))
-    #     self.save()
 
     def save(self, force_insert=False, force_update=False):
         if self.date_range:

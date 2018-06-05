@@ -1,15 +1,11 @@
 from django.forms import Form, ModelForm, inlineformset_factory, Textarea, TextInput, Select, NumberInput, \
     CheckboxInput, EmailInput
-from django.core.exceptions import ValidationError
-from django.utils.translation import gettext as _
 
 from tripplanner.models import *
 from django import forms
-from tripplanner import extra_utils
 
 dict_of_textinput_attrs_autocomplete = {'class': 'form-control form-control-sm autocomplete'}
 dict_of_textinput_attrs = {'class': 'form-control form-control-sm'}
-# dict_of_datetime_range_attrs = {'class': 'datetimepicker-range form-control form-control-sm'}
 
 
 class MyDateTimeInput(forms.DateTimeInput):
@@ -34,7 +30,6 @@ class TripForm(ModelForm, Form):
         widgets = {
             'description': Textarea(attrs={'rows': 2, 'cols': '65', 'class': 'materialize-textarea form-control '
                                                                              'form-control-sm'}),
-            # 'more_info': Textarea(attrs={'rows': 2, 'cols': '65', 'class':'materialize-textarea form-control form-control-sm'}),
             'name': TextInput(attrs=dict_of_textinput_attrs),
             'private_trip': CheckboxInput(attrs={'class': 'form-check',}),
             'currency': TextInput({'class': 'form-control form-control-sm', 'style' : 'width:20%'}),
@@ -64,8 +59,6 @@ class JourneyForm(ModelForm):
 
 
 class AccommodationForm(ModelForm):
-    # start_time = MyDateTimeField(required=False)
-    # end_time = MyDateTimeField(required=False)
     date_range = MyDateRangeField(required=False)
 
     class Meta:
@@ -79,13 +72,6 @@ class AccommodationForm(ModelForm):
                 attrs={'rows': 2, 'cols': '65', 'class': 'materialize-textarea form-control form-control-sm more-info'}),
         }
         exclude = ()
-
-    # def is_valid(self):
-    #     if 'date_range' in self.cleaned_data:
-    #         if self.cleaned_data['date_range'] != '':
-    #             custom_validators.daterange_validator(self.cleaned_data['date_range'])
-    #             return True
-    #     return True
 
 
 class AttractionForm(ModelForm):
@@ -109,10 +95,6 @@ class AttractionForm(ModelForm):
 AttractionFormSet = inlineformset_factory(Trip, Attraction, form=AttractionForm, extra=1)
 JourneyFormSet = inlineformset_factory(Trip, Journey, form=JourneyForm, extra=1)
 AccommodationFormSet = inlineformset_factory(Trip, Accommodation, form=AccommodationForm, extra=1)
-
-
-# class AddParticipantForm(Form):
-#     username = forms.CharField(max_length=50)
 
 
 class ImageUploadForm(ModelForm):
