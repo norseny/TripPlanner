@@ -10,12 +10,14 @@
                     <h1 class="h3 font-weight-normal">{% trans 'Sign up' %}</h1>
                     {% if form.errors %}
                         <div class="error-style font-small text-left">
-                        <p>{% trans "You did not follow at least one of the general security recommendations" %}:</p>
-                            <ul class="no-list-style">
-                                <li>{% trans "the password cannot be too similar to the username," %}</li>
-                                <li>{% trans "the password must contain at least 8 characters," %}</li>
-                                <li>{% trans "the password can't be entirely numeric," %}</li>
-                                <li>{% trans "the password can't be a commonly used password." %}</li>
+                        <p>
+                            {% trans "Your passwords do not match/ you did not follow the general security recommendations." %}</p>
+                            <p class="mb-0 pb-0">{% trans "The password" %}:</p>
+                            <ul class="w-120 m-0 p-0">
+                                <li>{% trans "cannot be too similar to the username," %}</li>
+                                <li>{% trans "must contain at least 8 characters," %}</li>
+                                <li>{% trans "can't be entirely numeric," %}</li>
+                                <li>{% trans "can't be a commonly used password." %}</li>
                             </ul>
                         </div>
                     {% endif %}
@@ -40,8 +42,6 @@
                             confirmation:</label>
 
                         <div class="controls">
-
-
                             <input class="form-control" type="password" name="password2"
                                    id="id_password2" required="" placeholder="{% trans 'Repeat password' %}">
                         </div>

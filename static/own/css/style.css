@@ -559,12 +559,8 @@ label {
     padding: .25rem;
 }
 
-.no-list-style {
+.w-120 {
     width: 120%;
-    padding-left: 0;
-    margin-left: 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
 }
 
 .form-plus-minus-js {
