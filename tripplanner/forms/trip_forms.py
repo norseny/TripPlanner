@@ -1,8 +1,11 @@
 from django.forms import Form, ModelForm, inlineformset_factory, Textarea, TextInput, Select, NumberInput, \
     CheckboxInput, EmailInput
-
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
 from tripplanner.models import *
 from django import forms
+
+
 
 dict_of_textinput_attrs_autocomplete = {'class': 'form-control form-control-sm autocomplete'}
 dict_of_textinput_attrs = {'class': 'form-control form-control-sm'}
@@ -56,6 +59,14 @@ class JourneyForm(ModelForm):
                                                          'more-info'}),
         }
         exclude = ('name',)
+
+    def clean(self):
+        cleaned_data = super(JourneyForm, self).clean()
+        if cleaned_data['start_time'] and cleaned_data['end_time']:
+            if cleaned_data['end_time'] < cleaned_data['start_time']:
+                self.add_error('start_time', ValidationError(_(str('Start time cannot be later than end time.'))))
+
+
 
 
 class AccommodationForm(ModelForm):
