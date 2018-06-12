@@ -363,7 +363,7 @@ msgid "Description, max 1000 characters"
 msgstr "Opis, maksymalnie 1000 znaków"
 
 msgid "Your passwords do not match/ you did not follow the general security recommendations."
-msgstr "Wpisane hasła nie różnią się/ nie spełniono zaleceń bezpieczeństwa."
+msgstr "Wpisane hasła różnią się/ nie spełniono zaleceń bezpieczeństwa."
 
 msgid "from"
 msgstr "od"
