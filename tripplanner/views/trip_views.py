@@ -21,8 +21,8 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 import json
 from django.db.models import Sum
-from tripplanner import extra_utils
-
+from tripcore import settings
+import os
 
 group1 = [login_required, user_is_trip_creator]
 group2 = [login_required, user_is_trip_participant]
@@ -30,11 +30,11 @@ group3 = [login_required, logged_user_is_profile_user]
 
 
 def tripplanner(request):
-    return render(request, 'tripplanner/tripplanner.html')
+    return render(request, os.path.join(settings.APP_TEMPLATES, 'tripplanner', 'tripplanner.html'))
 
 
 def about_tripplanner(request):
-    return render(request, 'tripplanner/about_tripplanner.html')
+    return render(request, os.path.join(settings.APP_TEMPLATES, 'tripplanner', 'about_tripplanner.html'))
 
 
 class TripList(ListView):
@@ -53,7 +53,7 @@ class TripList(ListView):
 @method_decorator(login_required, name='dispatch')
 class MyTripList(ListView):
     model = Trip
-    template_name = 'tripplanner/my_trip_list.html'
+    template_name_suffix = '_my_list'
 
     def get_queryset(self):
         curr_user = User.objects.get(pk=self.request.user.id)
@@ -79,8 +79,10 @@ class TripDetail(DetailView):
 
         data = super(TripDetail, self).get_context_data(**kwargs)
         data['total_cost_journeys'] = Journey.objects.filter(trip_id=trip.id).aggregate(Sum('price'))['price__sum']
-        data['total_cost_accommodations'] = Accommodation.objects.filter(trip_id=trip.id).aggregate(Sum('price'))['price__sum']
-        data['total_cost_attractions'] = Attraction.objects.filter(trip_id=trip.id).aggregate(Sum('price'))['price__sum']
+        data['total_cost_accommodations'] = Accommodation.objects.filter(trip_id=trip.id).aggregate(Sum('price'))[
+            'price__sum']
+        data['total_cost_attractions'] = Attraction.objects.filter(trip_id=trip.id).aggregate(Sum('price'))[
+            'price__sum']
 
         # arrows implementation
         trip_list = []
@@ -89,23 +91,27 @@ class TripDetail(DetailView):
             self.request.session['list_view'] = 'not_logged_all_trips'
 
         if self.request.session['list_view'] == 'logged_other_trips':
-            trip_list = list(Trip.objects.exclude(participants=self.request.user.id).exclude(private_trip=True).values_list('id',flat=True).order_by('pk').all())
+            trip_list = list(
+                Trip.objects.exclude(participants=self.request.user.id).exclude(private_trip=True).values_list('id',
+                                                                                                               flat=True).order_by(
+                    'pk').all())
         elif self.request.session['list_view'] == 'logged_my_trips':
-            trip_list = list(Trip.objects.filter(participants=self.request.user.id).values_list('id',flat=True).order_by('pk').all())
+            trip_list = list(
+                Trip.objects.filter(participants=self.request.user.id).values_list('id', flat=True).order_by(
+                    'pk').all())
         elif self.request.session['list_view'] == 'logged_my_fav_trips':
-            trip_list = list(Trip.objects.filter(profile__pk=self.request.user.id).values_list('id',flat=True).order_by('pk').all())
+            trip_list = list(
+                Trip.objects.filter(profile__pk=self.request.user.id).values_list('id', flat=True).order_by('pk').all())
         elif self.request.session['list_view'] == 'searched_trips':
             trip_list = self.request.session['searched_results']
-        else: #not_logged_all_trips
-            trip_list = list(Trip.objects.exclude(private_trip=True).values_list('id',flat=True).order_by('pk').all())
-
+        else:  # not_logged_all_trips
+            trip_list = list(Trip.objects.exclude(private_trip=True).values_list('id', flat=True).order_by('pk').all())
 
         try:
             if trip.participants.get(id=self.request.user.id):
                 data['participant'] = True
         except:
             pass
-
 
         trip_count = len(trip_list)
         curr_trip_pos = trip_list.index(trip.id)
@@ -203,7 +209,7 @@ class TripWithAttributesUpdate(UpdateView):
                 attractions.save()
 
                 models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
-                                                   attractions.cleaned_data) #todo: instead of cleaned data fetch
+                                                   attractions.cleaned_data)  # todo: instead of cleaned data fetch
                 # queries in Trip.update... (accomm daterange not taken into account)
             else:
                 return self.form_invalid(form)
@@ -334,6 +340,7 @@ def inspired(request):
 
     return JsonResponse(data)
 
+
 def add_to_fav(request):
     trip_id = request.GET.get('tripId', None)
     trip = Trip.objects.get(pk=trip_id)
@@ -369,14 +376,16 @@ class TripDetailPdf(DetailView):
 class ImageUploadView(UpdateView):
     model = Trip
     form_class = ImageUploadForm
-    template_name = 'tripplanner/trip_upload_img.html'
+    template_name_suffix = '_upload_img'
 
 
 def get_places(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
 
-        with open("tripplanner/data/sorted_cities.json", encoding='utf-8') as data_file:
+        sorted_cities_json_path = os.path.join(settings.BASE_DIR, 'tripplanner', 'data', 'sorted_cities.json')
+
+        with open(sorted_cities_json_path, encoding='utf-8') as data_file:
             jdictionary = json.load(data_file)
 
         results = find_in_city_json(q, jdictionary)
@@ -412,7 +421,8 @@ class ProfileDetail(DetailView):
         self.request.session['list_view'] = 'not_logged_all_trips'
         data = super(ProfileDetail, self).get_context_data(**kwargs)
         data['created_trips_me'] = Trip.objects.filter(created_by_id=self.kwargs['pk']).order_by('pk')
-        data['created_trips'] = Trip.objects.filter(created_by_id=self.kwargs['pk']).exclude(private_trip=True).order_by('pk')
+        data['created_trips'] = Trip.objects.filter(created_by_id=self.kwargs['pk']).exclude(
+            private_trip=True).order_by('pk')
         return data
 
 
@@ -423,11 +433,13 @@ class ProfileUpdate(UpdateView):
 
 
 class SearchedTripList(ListView):
-    template_name = 'tripplanner/trip_list.html'
+    template_name_suffix = '_list'
 
     def get_queryset(self):
-        j_start = list(Journey.objects.filter(start_point__icontains=self.kwargs['query']).values_list('trip_id', flat=True).all())
-        j_end = list(Journey.objects.filter(end_point__icontains=self.kwargs['query']).values_list('trip_id', flat=True).all())
+        j_start = list(
+            Journey.objects.filter(start_point__icontains=self.kwargs['query']).values_list('trip_id', flat=True).all())
+        j_end = list(
+            Journey.objects.filter(end_point__icontains=self.kwargs['query']).values_list('trip_id', flat=True).all())
         trips_set = sorted(set(j_start + j_end))
         self.request.session['list_view'] = 'searched_trips'
         self.request.session['searched_results'] = trips_set
