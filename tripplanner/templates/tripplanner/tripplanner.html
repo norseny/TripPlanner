@@ -78,7 +78,7 @@
     <div class="h-100 w-100 d-flex
 {#    align-items-end#}
     justify-content-end
-{#    align-items-xl-center#}
+    align-items-xl-center
 align-items-start
     flex-column">
         <div id="home-1-text-container" class="text-center p-2">
@@ -206,6 +206,16 @@ align-items-start
     <script src="{% static 'own/js/smooth-scroll.js' %}"></script>
     <script src="{% static 'own/js/home.js' %}"></script>
 
+    <script type="text/javascript" src="//ciasteczka.eu/cookiesEU-latest.min.js"></script>
+
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+            jQuery.fn.cookiesEU();
+        });
+
+    </script>
 
 </footer>
 </body>
