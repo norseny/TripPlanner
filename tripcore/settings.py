@@ -123,12 +123,6 @@ STATICFILES_DIRS = [
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
-
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/my-trips' # default: /accounts/profile/
