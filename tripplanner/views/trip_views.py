@@ -209,8 +209,7 @@ class TripWithAttributesUpdate(UpdateView):
                 attractions.save()
 
                 models.Trip.update_dates_and_price(self.object, journeys.cleaned_data, accommodations.cleaned_data,
-                                                   attractions.cleaned_data)  # todo: instead of cleaned data fetch
-                # queries in Trip.update... (accomm daterange not taken into account)
+                                                   attractions.cleaned_data)
             else:
                 return self.form_invalid(form)
 

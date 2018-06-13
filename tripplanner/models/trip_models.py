@@ -35,7 +35,7 @@ class Trip(BasicInfo):
     main_image = models.ImageField(upload_to='users_img', blank=True, null=True)
     private_trip = models.BooleanField(default=False)
     currency = models.TextField(max_length=10, default='PLN')
-    participants = models.ManyToManyField(User) #todo: duration (timedelta start and endtime)
+    participants = models.ManyToManyField(User)
 
     def __str__(self):
         return self.name

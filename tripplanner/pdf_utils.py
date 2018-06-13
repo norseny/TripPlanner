@@ -73,7 +73,7 @@ class PdfPrint:
             name="MyNormal", fontName='RobotoCondensed-Regular',
             fontSize=10, leading=12
         ))
-        styles.add(ParagraphStyle(  # todo: align to right
+        styles.add(ParagraphStyle(
             name="MyNormalDecimal", fontName='RobotoCondensed-Regular',
             fontSize=10, aligment=TA_RIGHT,
         ))
