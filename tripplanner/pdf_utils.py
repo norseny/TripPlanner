@@ -24,12 +24,6 @@ class PdfPrint:
             self.pageSize = letter
         self.width, self.height = self.pageSize
 
-        # pdfmetrics.registerFont(
-        #     TTFont('RobotoCondensed-Regular', 'static/libs/font-roboto/RobotoCondensed-Regular.ttf'))
-        # pdfmetrics.registerFont(TTFont('RobotoBold', 'static/libs/font-roboto/Roboto-Bold.ttf'))
-        # pdfmetrics.registerFont(
-        #     TTFont('RobotoCondensed-BoldItalic', 'static/libs/font-roboto/RobotoCondensed-BoldItalic.ttf'))
-
         roboto_condensed_regular_path = os.path.join(settings.BASE_DIR, 'tripplanner', 'pdf_utils_additional', 'font-roboto', 'RobotoCondensed-Regular.ttf')
         roboto_bold_path = os.path.join(settings.BASE_DIR, 'tripplanner', 'pdf_utils_additional', 'font-roboto', 'Roboto-Bold.ttf')
         roboto_condensed_bold_italic_path = os.path.join(settings.BASE_DIR, 'tripplanner', 'pdf_utils_additional', 'font-roboto', 'RobotoCondensed-BoldItalic.ttf')
