@@ -3,7 +3,6 @@ from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-APP_TEMPLATES  = os.path.join(BASE_DIR, 'tripplanner', 'templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -11,8 +10,16 @@ APP_TEMPLATES  = os.path.join(BASE_DIR, 'tripplanner', 'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'w4)03ckn%^uu2^p(gv(l)ykl2jf9cz$=fw-mzypzzn-sz*cgs9'
 
+#Read secret key from a file
+# with open(os.path.join(BASE_DIR, 'tripcore', 'secret_key.txt')) as f:
+#     SECRET_KEY = f.read().strip()
+#Read secret key from env variable
+# SECRET_KEY = os.environ['SECRET_KEY']
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -57,6 +64,9 @@ TEMPLATES = [
         },
     },
 ]
+APP_TEMPLATES  = os.path.join(BASE_DIR, 'tripplanner', 'templates')
+
+
 
 WSGI_APPLICATION = 'tripcore.wsgi.application'
 
@@ -104,12 +114,11 @@ USE_L10N = False
 USE_TZ = True
 
 
-
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/generated')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static_prod')
 
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
